@@ -8,7 +8,9 @@ pipeline {
             args '-u root'
         }
     }
-
+    environment {
+        CI = true
+    }
     stages {
         stage('Stage') {
             steps {
@@ -16,17 +18,17 @@ pipeline {
                 sh 'npm install'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm run test:coverage'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building...'
                 sh 'npm run build'
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
-            }
-        }
+        } 
     }
 }
