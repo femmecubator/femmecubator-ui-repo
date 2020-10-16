@@ -12,7 +12,6 @@ if (process.env.REACT_APP_MOCK_API_TRUE) {
 function App() {
   const { auth } = useAuth();
 
-  console.log("isLoggedIn?", auth.isLoggedIn());
   return (
     <div className="App">
       <header className="App-header">
