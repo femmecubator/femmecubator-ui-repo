@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:mock": "set REACT_APP_MOCK_API_TRUE=true && npm start",
+    "start:mock": "REACT_APP_MOCK_API_TRUE=true npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
