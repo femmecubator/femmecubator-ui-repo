@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
-import {API_PATH} from '../utils/constants';
+import { API_PATH } from '../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,12 +33,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header() {
-  const classes = useStyles();
+  const { root, header, title, menuButtonsContainer, menuButton } = useStyles();
+
   const [menuHeaders, setMenuHeaders] = useState([])
 
   useEffect(() => {
     axios.get(API_PATH.COMMON_MENU)
-      .then(res => setMenuHeaders(res.data.headers))
+      .then(({data: { headers }}) => setMenuHeaders(headers))
       .catch(err => console.log(err))
   }, [])
 
@@ -47,7 +48,19 @@ export default function Header() {
       return menuHeaders.map((item) => {
         let color = (item.label === "Join Us!") ? '#50E3C2' : 'white';
 
-        return (<Button key={item.id} color="inherit" href={item.href} className={classes.menuButton} style={{color}}>{item.label}</Button>)
+        const {id, href, label} = item;
+        
+        return (
+          <Button {...{
+            key: id,
+            color: "inherit",
+            href,
+            className: menuButton,
+            style: {color}
+          }}>
+            {label}
+          </Button>
+        )
       })
     }
   }  
@@ -55,16 +68,15 @@ export default function Header() {
   const menuButtons = getMenuButtons();
 
   return (
-    <header className={classes.root}>
-      <AppBar position="static" className={classes.header}>
+    <header className={root}>
+      <AppBar position="static" className={header}>
         <Toolbar>
           
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={title}>
             Femmecubator
           </Typography>
           
-          <div className={classes.menuButtonsContainer}>{ menuButtons }</div>
-          
+          <div className={menuButtonsContainer}>{ menuButtons }</div>
                     
         </Toolbar>
       </AppBar>
