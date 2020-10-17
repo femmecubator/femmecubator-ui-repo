@@ -25,6 +25,11 @@ const commonMenuData = {
       label: "Join Us!",
       href: "/register",
     },
+    {
+      id: 6,
+      label: "Log Out",
+      href: "/logout",
+    },
   ],
 };
 

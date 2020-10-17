@@ -4,9 +4,14 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import axios from "axios";
 import { API_PATH } from "../../utils/constants";
 import { useAuth } from "../../context/auth";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,14 +19,26 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     backgroundColor: "#3E50B4",
-    paddingRight: "79px",
-    paddingLeft: "118px",
+    ["@media (min-width: 799px)"]: {
+      paddingRight: "79px",
+      paddingLeft: "118px",
+    },
   },
   menuButton: {
     fontFamily: "Open Sans, sans-serif",
     fontWeight: 700,
     size: "18px",
     marginLeft: "38px",
+  },
+  menuDrawer: {
+    marginRight: "19px",
+  },
+  joinBtn: {
+    border: "1px solid white",
+    color: "white",
+    fontFamily: "Work Sans, sans-serif",
+    fontWeight: 600,
+    size: "16px",
   },
   title: {
     flexGrow: 1,
@@ -33,32 +50,62 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header() {
-  const { root, header, title, menuButtonsContainer, menuButton } = useStyles();
+  const {
+    root,
+    header,
+    title,
+    menuButtonsContainer,
+    menuButton,
+    menuDrawer,
+    joinBtn,
+  } = useStyles();
 
   const {
     auth: { isAuthenticated },
   } = useAuth();
 
   const [menuHeaders, setMenuHeaders] = useState([]);
+  const [mobileView, setMobileView] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
     axios
       .get(API_PATH.COMMON_MENU)
       .then(({ data: { headers } }) => setMenuHeaders(headers))
       .catch((err) => console.log(err));
+
+    const setResponsiveness = () => {
+      return window.innerWidth < 799
+        ? setMobileView(true)
+        : setMobileView(false);
+    };
+
+    setResponsiveness();
+
+    window.addEventListener("resize", () => setResponsiveness());
   }, []);
 
-  const getMenuButtons = () => {
+  const femmecubatorLogo = (
+    <Typography variant="h6" className={title}>
+      <Link
+        {...{ href: "/", color: "inherit", style: { textDecoration: "none" } }}
+      >
+        Femmecubator
+      </Link>
+    </Typography>
+  );
+
+  // Get the menu header objects based on whether or not the user is logged in
+  const getFilteredMenuHeadersObjs = () => {
     if (menuHeaders.length) {
       let menuHeadersToDisplay;
 
       if (isAuthenticated) {
-        // - if a user is logged in then, "listings and mentors" is available
         menuHeadersToDisplay = menuHeaders.filter(
-          ({ href }) => href === "/listings" || href === "/mentors"
+          ({ href }) =>
+            href === "/listings" || href === "/mentors" || href === "/logout"
         );
       } else {
-        // if a user is not logged in, only the items "get involved, login, join us" is available
         menuHeadersToDisplay = menuHeaders.filter(({ href }) => {
           return (
             href === "/get-involved" ||
@@ -68,38 +115,101 @@ export default function Header() {
         });
       }
 
-      return menuHeadersToDisplay.map(({ id, href, label }) => {
-        let color = label === "Join Us!" ? "#50E3C2" : "white";
-
-        return (
-          <Button
-            {...{
-              key: id,
-              color: "inherit",
-              href,
-              className: menuButton,
-              style: { color },
-            }}
-          >
-            {label}
-          </Button>
-        );
-      });
+      return menuHeadersToDisplay;
     }
   };
 
-  const menuButtons = getMenuButtons();
+  const getMenuButtons = () => {
+    if (menuHeaders.length) {
+      return getFilteredMenuHeadersObjs()
+        .filter(({ href }) => href !== "/logout")
+        .map(({ id, href, label }) => {
+          let color = label === "Join Us!" ? "#50E3C2" : "white";
+
+          return (
+            <Button
+              {...{
+                key: id,
+                color: "inherit",
+                href,
+                className: menuButton,
+                style: { color },
+              }}
+            >
+              {label}
+            </Button>
+          );
+        });
+    }
+  };
+
+  const getDrawerChoices = () => {
+    if (menuHeaders.length) {
+      return getFilteredMenuHeadersObjs().map(({ id, href, label }) => (
+        <Link
+          {...{ href, color: "inherit", style: { textDecoration: "none" } }}
+        >
+          <MenuItem key={id}>{label}</MenuItem>
+        </Link>
+      ));
+    }
+  };
+
+  const displayDesktop = () => {
+    return (
+      <Toolbar>
+        {femmecubatorLogo}
+        <div className={menuButtonsContainer}>{getMenuButtons()}</div>
+      </Toolbar>
+    );
+  };
+
+  const displayMobile = () => {
+    return (
+      <Toolbar>
+        <IconButton
+          edge="start"
+          className={menuDrawer}
+          color="inherit"
+          aria-label="menu"
+          onClick={(e) => setAnchorEl(e.currentTarget)}
+          aria-haspopup="true"
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Menu
+          id="simple-menu"
+          open={!!anchorEl}
+          onClose={() => setAnchorEl(null)}
+          keepMounted
+          anchorEl={anchorEl}
+        >
+          {getDrawerChoices()}
+        </Menu>
+
+        {femmecubatorLogo}
+
+        {!isAuthenticated && (
+          <Button
+            {...{
+              variant: "outlined",
+              size: "small",
+              className: joinBtn,
+              href: "/register",
+            }}
+          >
+            JOIN
+          </Button>
+        )}
+      </Toolbar>
+    );
+  };
 
   return (
     <header className={root}>
       <AppBar position="static" className={header}>
-        <Toolbar>
-          <Typography variant="h6" className={title}>
-            Femmecubator
-          </Typography>
-
-          <div className={menuButtonsContainer}>{menuButtons}</div>
-        </Toolbar>
+        {mobileView ? displayMobile() : displayDesktop()}
       </AppBar>
     </header>
   );
