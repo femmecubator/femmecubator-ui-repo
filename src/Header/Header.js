@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
+import {API_PATH} from '../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ export default function Header() {
   const [menuHeaders, setMenuHeaders] = useState([])
 
   useEffect(() => {
-    axios.get('/api/commonMenu')
+    axios.get(API_PATH.COMMON_MENU)
       .then(res => setMenuHeaders(res.data.headers))
       .catch(err => console.log(err))
   }, [])
