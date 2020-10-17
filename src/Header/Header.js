@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 import { API_PATH } from '../utils/constants';
+import { useAuth } from "../context/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const { root, header, title, menuButtonsContainer, menuButton } = useStyles();
 
+  const { auth: { isAuthenticated } } = useAuth();
+
   const [menuHeaders, setMenuHeaders] = useState([])
 
   useEffect(() => {
@@ -43,9 +46,28 @@ export default function Header() {
       .catch(err => console.log(err))
   }, [])
 
+  
   const getMenuButtons = () => {
     if (menuHeaders.length) {
-      return menuHeaders.map((item) => {
+
+      let menuHeadersToDisplay;
+      
+      if (isAuthenticated) {
+        // - if a user is logged in then, "listings and mentors" is available
+        menuHeadersToDisplay = menuHeaders.filter(m => {
+          const {href} = m;
+          return (href === '/listings' || href === '/mentors')
+        })
+      } else {
+        // if a user is not logged in, only the items "get involved, login, join us" is available
+        menuHeadersToDisplay = menuHeaders.filter(m => {
+          const {href} = m;
+          return (href === '/get-involved' || href === '/log-in' || href === '/register')
+        })
+      }
+
+
+      return menuHeadersToDisplay.map((item) => {
         let color = (item.label === "Join Us!") ? '#50E3C2' : 'white';
 
         const {id, href, label} = item;
