@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     initialize(TRACKING_ID);
     // track page views and language location
-    console.log(TRACKING_ID);
     pageview(window.location.pathname + window.location.search);
   }, []);
   const { auth } = useAuth();
