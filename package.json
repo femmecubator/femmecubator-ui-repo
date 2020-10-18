@@ -39,5 +39,8 @@
   "devDependencies": {
     "dot-env": "0.0.1",
     "miragejs": "^0.1.41"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

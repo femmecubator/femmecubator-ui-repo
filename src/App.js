@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { initialize, pageview } from "react-ga";
-import logo from "./logo.svg";
-import "./App.css";
-import { mockServer } from "./mock/mockServer";
-import { useAuth } from "./context/auth";
-import { TRACKING_ID } from "./utils/constants";
+import React, { useEffect } from 'react';
+import { initialize, pageview } from 'react-ga';
+import logo from './logo.svg';
+import './App.css';
+import { mockServer } from './mock/mockServer';
+import { TRACKING_ID } from './utils/constants';
 if (process.env.REACT_APP_MOCK_API_TRUE) {
-  console.log("starting mock server...");
+  console.log('starting mock server...');
   mockServer();
 }
 
 function App() {
   useEffect(() => {
-    initialize(TRACKING_ID);
-    // track page views and language location
-    pageview(window.location.pathname + window.location.search);
+    if (process.env.NODE_ENV === 'production') {
+      initialize(TRACKING_ID);
+      // track page views and language location
+      pageview(window.location.pathname + window.location.search);
+    }
   }, []);
-  const { auth } = useAuth();
 
   return (
     <div className="App">
