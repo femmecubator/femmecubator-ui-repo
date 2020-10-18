@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": false,
+    "paths": {
+      "components/*": ["./src/components"],
+      "context/*": ["./src/context"],
+      "mock/*": ["./src/mock"],
+      "utils/*": ["./src/utils"]
+    }
+  },
+  "include": ["src"]
+}
