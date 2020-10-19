@@ -1,5 +1,5 @@
-import { isAuthCookiesExists } from "../../utils/cookies";
-import { API_PATH } from "../../utils/constants";
+import { isAuthCookiesExists } from '../../utils/cookies';
+import { API_PATH } from '../../utils/constants';
 
 export default class Auth {
   constructor() {

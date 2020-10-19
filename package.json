@@ -11,7 +11,7 @@
     "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
+    "react-ga": "^3.2.0",
     "react-scripts": "3.4.3",
     "universal-cookie": "^4.0.4"
   },
@@ -41,5 +41,8 @@
   "devDependencies": {
     "dot-env": "0.0.1",
     "miragejs": "^0.1.41"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

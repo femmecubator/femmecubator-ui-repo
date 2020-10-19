@@ -18,10 +18,13 @@ const DEFAULT_COMMON_MENU = {
   ]
 }
 
+// Google Analytics Tracking ID
+const TRACKING_ID = 'UA-180314898-1';
+
 const API_PATH = {
   COMMON_MENU: '/api/commonMenu',
   LOGOFF_ENDPOINT: "/api/logoff",
   TIMEDOUT_ENDPOINT: "/api/logoff?timeout=true",
 }
 
-export { API_PATH, DEFAULT_COMMON_MENU };
+export { API_PATH, DEFAULT_COMMON_MENU, TRACKING_ID};
