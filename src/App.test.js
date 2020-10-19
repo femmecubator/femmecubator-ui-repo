@@ -3,8 +3,6 @@ import { render } from '@testing-library/react';
 import App from './App';
 import { AuthProvider } from './context/auth';
 
-const initialize = jest.fn();
-
 describe('<App />', () => {
   test('should render app component', () => {
     const { getByText } = render(
