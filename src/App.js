@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import { mockServer } from './mock/mockServer';
 import { TRACKING_ID } from './utils/constants';
+import Header from './components/Header/Header';
+
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   console.log('starting mock server...');
   mockServer();
