@@ -81,7 +81,7 @@ export default function Header() {
   const [menuHeaders, setMenuHeaders] = useState([]);
   const [userName, setUserName] = useState('');
   const [mobileView, setMobileView] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(false);
 
   useEffect(() => {
     console.log('isLoggedIn', isLoggedIn());
@@ -163,6 +163,9 @@ export default function Header() {
     }
   };
 
+  const handlePopupOpen = (e) => setAnchorEl(e.currentTarget);
+  const handlePopupClose = () => setAnchorEl(null);
+
   const displayDesktop = () => {
     return (
       <Toolbar>
@@ -170,15 +173,40 @@ export default function Header() {
         <div className={menuButtonsContainer}>
           {getMenuButtons()}
           {userName && (
-            <Button
-              {...{
-                color: 'inherit',
-                className: userButton,
-              }}
-            >
-              <AccountCircleIcon className={userIcon} />
-              {userName}
-            </Button>
+            <>
+              <Button
+                {...{
+                  color: 'inherit',
+                  className: userButton,
+                  'aria-label': 'menu',
+                  onClick: handlePopupOpen,
+                  'aria-haspopup': 'true',
+                }}
+              >
+                <AccountCircleIcon className={userIcon} />
+                {userName}
+              </Button>
+
+              <Menu
+                {...{
+                  id: 'simple-menu',
+                  open: !!anchorEl,
+                  onClose: handlePopupClose,
+                  keepMounted: true,
+                  anchorEl,
+                }}
+              >
+                <Link
+                  {...{
+                    href: '/logout',
+                    color: 'inherit',
+                    style: { textDecoration: 'none' },
+                  }}
+                >
+                  <MenuItem>Log Out</MenuItem>
+                </Link>
+              </Menu>
+            </>
           )}
         </div>
       </Toolbar>
@@ -186,8 +214,6 @@ export default function Header() {
   };
 
   const displayMobile = () => {
-    const handleDrawerClick = (e) => setAnchorEl(e.currentTarget);
-    const handleDrawerClose = () => setAnchorEl(null);
     return (
       <Toolbar>
         <IconButton
@@ -196,7 +222,7 @@ export default function Header() {
             className: menuDrawer,
             color: 'inherit',
             'aria-label': 'menu',
-            onClick: handleDrawerClick,
+            onClick: handlePopupOpen,
             'aria-haspopup': 'true',
           }}
         >
@@ -207,7 +233,7 @@ export default function Header() {
           {...{
             id: 'simple-menu',
             open: !!anchorEl,
-            onClose: handleDrawerClose,
+            onClose: handlePopupClose,
             keepMounted: true,
             anchorEl,
           }}
