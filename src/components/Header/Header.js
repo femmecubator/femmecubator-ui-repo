@@ -75,7 +75,7 @@ export default function Header() {
   } = useStyles();
 
   const {
-    auth: { isAuthenticated },
+    auth: { isLoggedIn },
   } = useAuth();
 
   const [menuHeaders, setMenuHeaders] = useState([]);
@@ -84,17 +84,22 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
+    console.log('isLoggedIn', isLoggedIn());
     axios
       .get(API_PATH.COMMON_MENU)
       .then(({ data }) => {
-        if (data.headers && isAuthenticated) {
-          setMenuHeaders(data.headers);
-          setUserName(data.userName);
+        if (data.headers && isLoggedIn()) {
+          const { headers, userName } = data;
+          setMenuHeaders(headers);
+          setUserName(userName);
         } else {
           setMenuHeaders(DEFAULT_COMMON_MENU.headers);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setMenuHeaders(DEFAULT_COMMON_MENU.headers);
+      });
 
     const setResponsiveness = () => {
       return window.innerWidth < 799
@@ -190,9 +195,9 @@ export default function Header() {
             edge: 'start',
             className: menuDrawer,
             color: 'inherit',
-            ariaLabel: 'menu',
+            'aria-label': 'menu',
             onClick: handleDrawerClick,
-            ariaHaspopup: 'true',
+            'aria-haspopup': 'true',
           }}
         >
           <MenuIcon />
@@ -212,7 +217,7 @@ export default function Header() {
 
         {femmecubatorLogo}
 
-        {!isAuthenticated && (
+        {!isLoggedIn() && (
           <Button
             {...{
               variant: 'outlined',
