@@ -74,9 +74,7 @@ export default function Header() {
     userIcon,
   } = useStyles();
 
-  const {
-    auth: { isLoggedIn },
-  } = useAuth();
+  const { auth } = useAuth();
 
   const [menuHeaders, setMenuHeaders] = useState([]);
   const [userName, setUserName] = useState('');
@@ -84,11 +82,10 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(false);
 
   useEffect(() => {
-    console.log('isLoggedIn', isLoggedIn());
     axios
       .get(API_PATH.COMMON_MENU)
       .then(({ data }) => {
-        if (data.headers && isLoggedIn()) {
+        if (data.headers && auth.isLoggedIn()) {
           const { headers, userName } = data;
           setMenuHeaders(headers);
           setUserName(userName);
@@ -243,7 +240,7 @@ export default function Header() {
 
         {femmecubatorLogo}
 
-        {!isLoggedIn() && (
+        {!auth.isLoggedIn() && (
           <Button
             {...{
               variant: 'outlined',
