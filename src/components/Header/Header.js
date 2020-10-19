@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import axios from "axios";
-import { API_PATH } from "../../utils/constants";
+import { API_PATH, DEFAULT_COMMON_MENU } from "../../utils/constants";
 import { useAuth } from "../../context/auth";
 import Link from "@material-ui/core/Link";
 
@@ -71,7 +71,14 @@ export default function Header() {
   useEffect(() => {
     axios
       .get(API_PATH.COMMON_MENU)
-      .then(({ data: { headers } }) => setMenuHeaders(headers))
+      .then(({ data }) => {
+        if (data.headers) {
+          setMenuHeaders(data.headers)
+        } else {
+          setMenuHeaders(DEFAULT_COMMON_MENU.headers)
+        }
+        
+      }
       .catch((err) => console.log(err));
 
     const setResponsiveness = () => {
