@@ -129,7 +129,7 @@ export default function Header() {
   const getMenuButtons = () => {
     if (menuHeaders.length) {
       return menuHeaders
-        .filter(({ href }) => href !== '/logout')
+        .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
           let color = label === 'Join Us!' ? '#50E3C2' : 'white';
 
@@ -167,6 +167,27 @@ export default function Header() {
     }
   };
 
+  const getAccountChoices = () => {
+    if (menuHeaders.length) {
+      return menuHeaders
+        .filter(({ href }) => href === '/logout' || href === '/account')
+        .map(({ id, href, label }) => {
+          return (
+            <Link
+              {...{
+                id,
+                href,
+                color: 'inherit',
+                style: { textDecoration: 'none' },
+              }}
+            >
+              <MenuItem>{label}</MenuItem>
+            </Link>
+          );
+        });
+    }
+  };
+
   const displayDesktop = () => {
     const handleAccountOpen = (e) => setAnchorEl(e.currentTarget);
     const handleAccountClose = () => setAnchorEl(null);
@@ -200,7 +221,7 @@ export default function Header() {
                   anchorEl,
                 }}
               >
-                <Link
+                {/* <Link
                   {...{
                     href: '/logout',
                     color: 'inherit',
@@ -208,7 +229,8 @@ export default function Header() {
                   }}
                 >
                   <MenuItem>Log Out</MenuItem>
-                </Link>
+                </Link> */}
+                {getAccountChoices()}
               </Menu>
             </>
           )}
