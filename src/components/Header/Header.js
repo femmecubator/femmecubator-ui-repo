@@ -221,15 +221,6 @@ export default function Header() {
                   anchorEl,
                 }}
               >
-                {/* <Link
-                  {...{
-                    href: '/logout',
-                    color: 'inherit',
-                    style: { textDecoration: 'none' },
-                  }}
-                >
-                  <MenuItem>Log Out</MenuItem>
-                </Link> */}
                 {getAccountChoices()}
               </Menu>
             </>
@@ -249,6 +240,7 @@ export default function Header() {
           {...{
             edge: 'start',
             className: menuDrawer,
+            'data-testid': 'drawer-button',
             color: 'inherit',
             'aria-label': 'menu',
             onClick: handleDrawerOpen,

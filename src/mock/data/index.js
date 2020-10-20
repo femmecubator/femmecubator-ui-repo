@@ -12,13 +12,13 @@ const commonMenuData = {
     },
     {
       id: 3,
-      label: 'Log Out',
-      href: '/logout',
+      label: 'My Account',
+      href: '/account',
     },
     {
       id: 4,
-      label: 'My Account',
-      href: '/account',
+      label: 'Log Out',
+      href: '/logout',
     },
   ],
   userName: 'Anh V.',
