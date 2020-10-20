@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'npm run test:coverage'
+                sh 'npm run test'
             }
         }
         stage('Build') {
