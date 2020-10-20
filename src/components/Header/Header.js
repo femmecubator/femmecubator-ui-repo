@@ -13,6 +13,7 @@ import axios from 'axios';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 import Link from '@material-ui/core/Link';
+import { Drawer } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
   menuDrawer: {
     marginRight: '19px',
   },
+  drawerContainer: {
+    height: '100%',
+    padding: '20px',
+  },
   joinBtn: {
     border: '1px solid white',
     color: 'white',
@@ -72,6 +77,7 @@ export default function Header() {
     joinBtn,
     userButton,
     userIcon,
+    drawerContainer,
   } = useStyles();
 
   const { auth } = useAuth();
@@ -80,6 +86,7 @@ export default function Header() {
   const [userName, setUserName] = useState('');
   const [mobileView, setMobileView] = useState(false);
   const [anchorEl, setAnchorEl] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -160,10 +167,10 @@ export default function Header() {
     }
   };
 
-  const handlePopupOpen = (e) => setAnchorEl(e.currentTarget);
-  const handlePopupClose = () => setAnchorEl(null);
-
   const displayDesktop = () => {
+    const handleAccountOpen = (e) => setAnchorEl(e.currentTarget);
+    const handleAccountClose = () => setAnchorEl(null);
+
     return (
       <Toolbar>
         {femmecubatorLogo}
@@ -176,7 +183,7 @@ export default function Header() {
                   color: 'inherit',
                   className: userButton,
                   'aria-label': 'menu',
-                  onClick: handlePopupOpen,
+                  onClick: handleAccountOpen,
                   'aria-haspopup': 'true',
                 }}
               >
@@ -188,7 +195,7 @@ export default function Header() {
                 {...{
                   id: 'simple-menu',
                   open: !!anchorEl,
-                  onClose: handlePopupClose,
+                  onClose: handleAccountClose,
                   keepMounted: true,
                   anchorEl,
                 }}
@@ -211,6 +218,9 @@ export default function Header() {
   };
 
   const displayMobile = () => {
+    const handleDrawerOpen = () => setDrawerOpen(true);
+    const handleDrawerClose = () => setDrawerOpen(false);
+
     return (
       <Toolbar>
         <IconButton
@@ -219,24 +229,16 @@ export default function Header() {
             className: menuDrawer,
             color: 'inherit',
             'aria-label': 'menu',
-            onClick: handlePopupOpen,
+            onClick: handleDrawerOpen,
             'aria-haspopup': 'true',
           }}
         >
           <MenuIcon />
         </IconButton>
 
-        <Menu
-          {...{
-            id: 'simple-menu',
-            open: !!anchorEl,
-            onClose: handlePopupClose,
-            keepMounted: true,
-            anchorEl,
-          }}
-        >
-          {getDrawerChoices()}
-        </Menu>
+        <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
+          <div className={drawerContainer}>{getDrawerChoices()}</div>
+        </Drawer>
 
         {femmecubatorLogo}
 
