@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { mockServer } from 'mock/mockServer';
@@ -32,9 +26,9 @@ describe('<Header />', () => {
         <Header />
       </AuthProvider>
     );
-
-    cleanup;
   });
+
+  afterEach(cleanup);
 
   it('should display Femmecubator text logo', () => {
     screen.getByText(/femmecubator/i);
