@@ -45,5 +45,8 @@
   },
   "prettier": {
     "singleQuote": true
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom-sixteen"
   }
 }
