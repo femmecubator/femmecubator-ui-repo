@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     backgroundColor: '#3E50B4',
-    ['@media (min-width: 799px)']: {
+    '@media (min-width: 799px)': {
       paddingRight: '79px',
       paddingLeft: '118px',
     },
@@ -92,7 +92,7 @@ export default function Header() {
     axios
       .get(API_PATH.COMMON_MENU)
       .then(({ data }) => {
-        if (data.headers && auth.isLoggedIn()) {
+        if (data && data.headers && auth.isLoggedIn()) {
           const { headers, userName } = data;
           setMenuHeaders(headers);
           setUserName(userName);
@@ -101,7 +101,7 @@ export default function Header() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // Throw new error here when error boundary is in place
         setMenuHeaders(DEFAULT_COMMON_MENU.headers);
       });
 
@@ -114,7 +114,7 @@ export default function Header() {
     setResponsiveness();
 
     window.addEventListener('resize', () => setResponsiveness());
-  }, []);
+  }, [auth]);
 
   const femmecubatorLogo = (
     <Typography variant="h6" className={title}>
@@ -127,7 +127,7 @@ export default function Header() {
   );
 
   const getMenuButtons = () => {
-    if (menuHeaders.length) {
+    if (menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
@@ -151,7 +151,7 @@ export default function Header() {
   };
 
   const getDrawerChoices = () => {
-    if (menuHeaders.length) {
+    if (menuHeaders && menuHeaders.length) {
       return menuHeaders.map(({ id, href, label }) => (
         <Link
           {...{
@@ -168,7 +168,7 @@ export default function Header() {
   };
 
   const getAccountChoices = () => {
-    if (menuHeaders.length) {
+    if (menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(({ href }) => href === '/logout' || href === '/account')
         .map(({ id, href, label }) => {
