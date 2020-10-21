@@ -10,15 +10,15 @@
     "react-dom": "^16.14.0",
     "react-ga": "^3.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "universal-cookie": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "start:mock": "REACT_APP_MOCK_API_TRUE=true npm start",
     "build": "react-scripts build",
-    "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jest-environment-jsdom-sixteen",
-    "test:coverage": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jest-environment-jsdom-sixteen --watchAll=false --coverage --passWithNoTests",
+    "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test",
+    "test:coverage": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,10 +37,9 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.8",
     "dot-env": "0.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "miragejs": "^0.1.41"
   },
   "prettier": {
