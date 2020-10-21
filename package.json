@@ -17,7 +17,7 @@
     "start": "react-scripts start",
     "start:mock": "REACT_APP_MOCK_API_TRUE=true npm start",
     "build": "react-scripts build",
-    "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jest-environment-jsdom-sixteen --watchAll=false",
+    "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jest-environment-jsdom-sixteen",
     "test:coverage": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jest-environment-jsdom-sixteen --watchAll=false --coverage --passWithNoTests",
     "eject": "react-scripts eject"
   },
