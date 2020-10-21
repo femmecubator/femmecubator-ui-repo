@@ -1,3 +1,3 @@
-{
-    "testEnvironment": "jest-environment-jsdom-sixteen"
-}
+module.exports = {
+  testEnvironment: 'jest-environment-jsdom-sixteen',
+};
