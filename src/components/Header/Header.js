@@ -175,7 +175,7 @@ export default function Header() {
           return (
             <Link
               {...{
-                id,
+                key: id,
                 href,
                 color: 'inherit',
                 style: { textDecoration: 'none' },
