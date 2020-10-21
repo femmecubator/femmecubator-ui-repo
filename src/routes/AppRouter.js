@@ -1,21 +1,32 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-import { routes } from '../utils/constants';
+import { ROUTES } from '../utils/constants';
+import ComponentFactory from 'utils/ComponentFactory';
 
 const AppRouter = () => {
-  const renderRoutes = routes.map(({ path, component, isProtected }, key) =>
+  const renderRoutes = ROUTES.map(({ id, path, label, isProtected }) =>
     isProtected ? (
-      <ProtectedRoute exact path={path} component={component} key={key} />
+      <ProtectedRoute
+        exact
+        path={path}
+        component={ComponentFactory.create(label)}
+        key={id}
+      />
     ) : (
-      <Route exact path={path} component={component} key={key} />
+      <Route
+        exact
+        path={path}
+        component={ComponentFactory.create(label)}
+        key={id}
+      />
     )
   );
 
   return (
-    <div>
+    <>
       <Switch>{renderRoutes}</Switch>
-    </div>
+    </>
   );
 };
 
