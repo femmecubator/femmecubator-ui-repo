@@ -1,8 +1,3 @@
-import Landing from 'stubs/Landing';
-import Login from 'stubs/Login';
-import Register from 'stubs/Register';
-import Mentor from 'stubs/Mentor';
-
 const DEFAULT_COMMON_MENU = {
   headers: [
     {
@@ -32,27 +27,38 @@ const API_PATH = {
   TIMEDOUT_ENDPOINT: '/api/logoff?timeout=true',
 };
 
-const routes = [
+const ROUTES_LABEL = {
+  LANDING_PAGE: 'landingPage',
+  MENTOR: 'mentor',
+  LOGIN: 'login',
+  REGISTER: 'register',
+};
+
+const ROUTES = [
   {
-    isProtected: true,
+    id: 1,
+    isProtected: false,
+    label: ROUTES_LABEL.LANDING_PAGE,
     path: '/',
-    component: Landing,
   },
   {
+    id: 2,
     isProtected: true,
+    label: ROUTES_LABEL.MENTOR,
     path: '/mentor',
-    component: Mentor,
   },
   {
+    id: 3,
     isProtected: false,
+    label: ROUTES_LABEL.LOGIN,
     path: '/login',
-    component: Login,
   },
   {
+    id: 4,
     isProtected: false,
+    label: ROUTES_LABEL.REGISTER,
     path: '/register',
-    component: Register,
   },
 ];
 
-export { API_PATH, DEFAULT_COMMON_MENU, TRACKING_ID, routes };
+export { API_PATH, DEFAULT_COMMON_MENU, TRACKING_ID, ROUTES, ROUTES_LABEL };
