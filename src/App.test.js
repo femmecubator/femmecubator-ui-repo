@@ -1,30 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import App from './App';
-import { shallow } from 'enzyme';
-
-const AuthContext = React.createContext();
-
-jest.mock('./context/auth/auth.js', () => {
-  return {
-    auth: {
-      isLoggedIn: () => true,
-    },
-  };
-});
-
-const auth = require('context/auth/index');
+import { AuthProvider } from './context/auth';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('<App />', () => {
   test('should render app component', () => {
-    const wrapper = shallow(
+    const { getByText } = render(
       <Router>
-        <AuthContext.Provider value={{ auth }}>
+        <AuthProvider>
           <App />
-        </AuthContext.Provider>
+        </AuthProvider>
       </Router>
     );
-
-    expect(wrapper.find(App)).toHaveLength(1);
+    const linkElement = getByText(/Femmecubator/i);
+    expect(linkElement).toBeInTheDocument();
   });
 });
