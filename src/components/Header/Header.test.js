@@ -1,16 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { mockServer } from 'mock/mockServer';
-import { AuthProvider } from 'context/auth/AuthProvider';
-import { act } from 'react-dom/test-utils';
+
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   mockServer();
 }
-
-jest.mock('../../context/auth/auth');
-
-const auth = require('context/auth/index');
 
 // Fn's to resize screen
 const resizeToMobile = () => {
@@ -23,34 +19,34 @@ const resizeToDesktop = () => {
   global.dispatchEvent(new Event('resize'));
 };
 
-let container;
 describe('<Header />', () => {
   beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-    act(() => {
-      ReactDOM.render(
-        <AuthProvider value={{ auth }}>
-          <Header />
-        </AuthProvider>,
-        container
-      );
-    });
-  });
-  it('should render logo', () => {
-    expect(container.querySelector('a').textContent).toBe('Femmecubator');
+    render(
+      <AuthProvider>
+        <Header />
+      </AuthProvider>
+    );
   });
 
-  xit('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', () => {
+  afterEach(cleanup);
+
+  it('should display Femmecubator text logo', () => {
+    screen.getByText(/femmecubator/i);
+  });
+
+  it('should display the protected menu items if user is authenticated', async () => {
+    await waitFor(() => screen.getByText(/mentors/i));
+    screen.getByText(/mentors/i);
+
+    await waitFor(() => screen.getByText(/listings/i));
+    screen.getByText(/listings/i);
+  });
+
+  it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', () => {
     resizeToDesktop();
-    expect(container.querySelector('.drawer-button')).toHaveLength(1);
+    expect(screen.queryByTestId('drawer-button')).not.toBeInTheDocument();
 
     resizeToMobile();
-    expect(container.querySelector('.drawer-button')).toHaveLength(1);
-  });
-
-  xit('should display the protected menu items if user is authenticated', async () => {
-    expect(container.querySelector('button')).toHaveLength(1);
-    // screen.getByText(/listings/i);
+    expect(screen.queryByTestId('drawer-button')).toBeInTheDocument();
   });
 });

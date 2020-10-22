@@ -37,9 +37,11 @@
     ]
   },
   "devDependencies": {
+    "@sheerun/mutationobserver-shim": "^0.3.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.8",
     "dot-env": "0.0.1",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5",
     "miragejs": "^0.1.41"
   },
   "prettier": {
