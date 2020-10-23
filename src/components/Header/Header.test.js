@@ -4,6 +4,7 @@ import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { mockServer } from 'mock/mockServer';
 import { act } from 'react-dom/test-utils';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   mockServer();
@@ -25,7 +26,9 @@ describe('<Header />', () => {
     act(() => {
       render(
         <AuthProvider>
-          <Header />
+          <Router>
+            <Header />
+          </Router>
         </AuthProvider>
       );
     });
