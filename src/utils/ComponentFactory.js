@@ -1,11 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Landing from 'stubs/Landing';
-import Login from 'stubs/Login';
-import Register from 'stubs/Register';
-import Mentors from 'stubs/Mentors';
-import Listings from 'stubs/Listings';
+import { Landing, Login, Register, Mentors, Listings, Volunteer } from 'stubs';
 import { ROUTES_LABEL } from 'utils/constants';
-const { LANDING_PAGE, MENTORS, LOGIN, REGISTER, LISTINGS } = ROUTES_LABEL;
+const {
+  LANDING_PAGE,
+  MENTORS,
+  LOGIN,
+  REGISTER,
+  LISTINGS,
+  VOLUNTEER,
+} = ROUTES_LABEL;
 
 export default class ComponentFactory {
   static create(label) {
@@ -20,6 +23,8 @@ export default class ComponentFactory {
         return Register;
       case LISTINGS:
         return Listings;
+      case VOLUNTEER:
+        return Volunteer;
       default:
         throw new Error('Route undefined!');
     }
