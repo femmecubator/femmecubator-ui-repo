@@ -3,6 +3,7 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { mockServer } from 'mock/mockServer';
+import { act } from 'react-dom/test-utils';
 
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   mockServer();
@@ -21,11 +22,13 @@ const resizeToDesktop = () => {
 
 describe('<Header />', () => {
   beforeEach(() => {
-    render(
-      <AuthProvider>
-        <Header />
-      </AuthProvider>
-    );
+    act(() => {
+      render(
+        <AuthProvider>
+          <Header />
+        </AuthProvider>
+      );
+    });
   });
 
   afterEach(cleanup);
