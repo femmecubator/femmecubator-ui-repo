@@ -123,7 +123,6 @@ export default function Header() {
     <Typography variant="h6" className={title}>
       <Link
         {...{
-          onClick: (e) => e.preventDefault(),
           component: RouterLink,
           to: '/',
           color: 'inherit',
@@ -187,7 +186,6 @@ export default function Header() {
             <Link
               {...{
                 key: id,
-                onClick: (e) => e.preventDefault(),
                 component: RouterLink,
                 to,
                 color: 'inherit',
