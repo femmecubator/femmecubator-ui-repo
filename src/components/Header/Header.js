@@ -13,6 +13,7 @@ import axios from 'axios';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import { Drawer } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -116,10 +117,18 @@ export default function Header() {
     window.addEventListener('resize', () => setResponsiveness());
   }, [auth]);
 
+  // const onClick = (e) => e.preventDefault();
+
   const femmecubatorLogo = (
     <Typography variant="h6" className={title}>
       <Link
-        {...{ href: '/', color: 'inherit', style: { textDecoration: 'none' } }}
+        {...{
+          onClick: (e) => e.preventDefault(),
+          component: RouterLink,
+          to: '/',
+          color: 'inherit',
+          style: { textDecoration: 'none' },
+        }}
       >
         Femmecubator
       </Link>
@@ -152,10 +161,12 @@ export default function Header() {
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
-      return menuHeaders.map(({ id, href, label }) => (
+      return menuHeaders.map(({ id, href: to, label }) => (
         <Link
           {...{
-            href,
+            onClick: (e) => e.preventDefault(),
+            component: RouterLink,
+            to,
             color: 'inherit',
             style: { textDecoration: 'none' },
             key: id,
@@ -171,12 +182,14 @@ export default function Header() {
     if (menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(({ href }) => href === '/logout' || href === '/account')
-        .map(({ id, href, label }) => {
+        .map(({ id, href: to, label }) => {
           return (
             <Link
               {...{
                 key: id,
-                href,
+                onClick: (e) => e.preventDefault(),
+                component: RouterLink,
+                to,
                 color: 'inherit',
                 style: { textDecoration: 'none' },
               }}
