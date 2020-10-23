@@ -83,12 +83,7 @@ export default function Header() {
   } = useStyles();
 
   const { auth } = useAuth();
-  /*
-  const [menuHeaders, setMenuHeaders] = useState([]);
-  const [userName, setUserName] = useState('');
-  const [mobileView, setMobileView] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);*/
+
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.headers,
     userName: '',
