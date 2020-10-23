@@ -1,14 +1,19 @@
 import React from 'react';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, render, screen, waitFor, act } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { mockServer } from 'mock/mockServer';
-import { act } from 'react-dom/test-utils';
+// import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import axios from 'axios';
+import { commonMenuData } from 'mock/data';
+
+jest.mock('axios');
+/*
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   mockServer();
-}
+}*/
 
 // Fn's to resize screen
 const resizeToMobile = () => {
@@ -23,6 +28,8 @@ const resizeToDesktop = () => {
 
 describe('<Header />', () => {
   beforeEach(() => {
+    axios.get.mockImplementationOnce(() => Promise.resolve(commonMenuData));
+
     act(() => {
       render(
         <AuthProvider>
@@ -41,10 +48,10 @@ describe('<Header />', () => {
   });
 
   it('should display the protected menu items if user is authenticated', async () => {
-    await waitFor(() => screen.getByText(/mentors/i));
+    await act(() => waitFor(() => screen.getByText(/mentors/i)));
     screen.getByText(/mentors/i);
 
-    await waitFor(() => screen.getByText(/listings/i));
+    await act(() => waitFor(() => screen.getByText(/listings/i)));
     screen.getByText(/listings/i);
   });
 
