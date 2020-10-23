@@ -3,7 +3,7 @@ const DEFAULT_COMMON_MENU = {
     {
       id: 1,
       label: 'Get Involved',
-      href: '/get-involved',
+      href: '/volunteer',
     },
     {
       id: 2,
@@ -33,6 +33,7 @@ const ROUTES_LABEL = {
   LOGIN: 'login',
   REGISTER: 'register',
   LISTINGS: 'listings',
+  VOLUNTEER: 'volunteer',
 };
 
 const ROUTES = [
@@ -65,6 +66,12 @@ const ROUTES = [
     isProtected: false,
     label: ROUTES_LABEL.LISTINGS,
     path: '/listings',
+  },
+  {
+    id: 6,
+    isProtected: false,
+    label: ROUTES_LABEL.VOLUNTEER,
+    path: '/volunteer',
   },
 ];
 
