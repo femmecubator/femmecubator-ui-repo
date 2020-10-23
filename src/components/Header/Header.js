@@ -16,7 +16,7 @@ import Link from '@material-ui/core/Link';
 import { Link as RouterLink } from 'react-router-dom';
 import { Drawer } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -101,7 +101,7 @@ export default function Header() {
           setMenuHeaders(DEFAULT_COMMON_MENU.headers);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         // Throw new error here when error boundary is in place
         setMenuHeaders(DEFAULT_COMMON_MENU.headers);
       });
@@ -116,8 +116,6 @@ export default function Header() {
 
     window.addEventListener('resize', () => setResponsiveness());
   }, [auth]);
-
-  // const onClick = (e) => e.preventDefault();
 
   const femmecubatorLogo = (
     <Typography variant="h6" className={title}>
@@ -146,9 +144,10 @@ export default function Header() {
               {...{
                 key: id,
                 color: 'inherit',
-                href,
+                to: href,
                 className: menuButton,
                 style: { color },
+                component: RouterLink,
               }}
             >
               {label}
@@ -163,7 +162,6 @@ export default function Header() {
       return menuHeaders.map(({ id, href: to, label }) => (
         <Link
           {...{
-            onClick: (e) => e.preventDefault(),
             component: RouterLink,
             to,
             color: 'inherit',
