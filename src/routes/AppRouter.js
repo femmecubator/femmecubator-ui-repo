@@ -1,27 +1,21 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute';
-import { ROUTES } from '../utils/constants';
+import { Switch } from 'react-router-dom';
+import FemmecubatorRoute from './FemmecubatorRoute';
+import { ROUTES } from 'utils/constants';
 import ComponentFactory from 'utils/ComponentFactory';
 
 const AppRouter = () => {
-  const renderRoutes = ROUTES.map(({ id, path, label, isProtected }) =>
-    isProtected ? (
-      <ProtectedRoute
+  const renderRoutes = ROUTES.map((route) => {
+    return (
+      <FemmecubatorRoute
+        key={route.id}
         exact
-        path={path}
-        component={ComponentFactory.create(label)}
-        key={id}
+        path={route.path}
+        {...route}
+        component={ComponentFactory.create(route.label)}
       />
-    ) : (
-      <Route
-        exact
-        path={path}
-        component={ComponentFactory.create(label)}
-        key={id}
-      />
-    )
-  );
+    );
+  });
 
   return (
     <>

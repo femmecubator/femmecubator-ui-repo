@@ -8,7 +8,7 @@ const DEFAULT_COMMON_MENU = {
     {
       id: 2,
       label: 'Log In',
-      href: '/log-in',
+      href: '/login',
     },
     {
       id: 3,
@@ -29,9 +29,10 @@ const API_PATH = {
 
 const ROUTES_LABEL = {
   LANDING_PAGE: 'landingPage',
-  MENTOR: 'mentor',
+  MENTORS: 'mentors',
   LOGIN: 'login',
   REGISTER: 'register',
+  LISTINGS: 'listings',
 };
 
 const ROUTES = [
@@ -44,8 +45,8 @@ const ROUTES = [
   {
     id: 2,
     isProtected: true,
-    label: ROUTES_LABEL.MENTOR,
-    path: '/mentor',
+    label: ROUTES_LABEL.MENTORS,
+    path: '/mentors',
   },
   {
     id: 3,
@@ -58,6 +59,12 @@ const ROUTES = [
     isProtected: false,
     label: ROUTES_LABEL.REGISTER,
     path: '/register',
+  },
+  {
+    id: 5,
+    isProtected: false,
+    label: ROUTES_LABEL.LISTINGS,
+    path: '/listings',
   },
 ];
 
