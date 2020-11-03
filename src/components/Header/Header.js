@@ -15,7 +15,6 @@ import { useAuth } from '../../context/auth';
 import Link from '@material-ui/core/Link';
 import { Link as RouterLink } from 'react-router-dom';
 import { Drawer } from '@material-ui/core';
-import _ from 'lodash';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -85,30 +84,33 @@ export default function Header() {
 
   const { auth } = useAuth();
 
-  const [state, setState] = useState({
-    menuHeaders: DEFAULT_COMMON_MENU.headers,
-    userName: '',
-    mobileView: false,
-    anchorEl: false,
-    drawerOpen: false,
-  });
-
-  const { menuHeaders, userName, mobileView, anchorEl, drawerOpen } = state;
+  const [menuHeaders, setMenuHeaders] = useState([]);
+  const [userName, setUserName] = useState('');
+  const [mobileView, setMobileView] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     axios
       .get(API_PATH.COMMON_MENU)
-      .then(({ data: { headers: menuHeaders = {}, userName = '' } }) =>
-        setState((prevState) => ({ ...prevState, menuHeaders, userName }))
-      )
+      .then(({ data }) => {
+        if (data && data.headers && auth.isLoggedIn()) {
+          const { headers, userName } = data;
+          setMenuHeaders(headers);
+          setUserName(userName);
+        } else {
+          setMenuHeaders(DEFAULT_COMMON_MENU.headers);
+        }
+      })
       .catch(() => {
         // Throw new error here when error boundary is in place
+        setMenuHeaders(DEFAULT_COMMON_MENU.headers);
       });
 
     const setResponsiveness = () => {
       return window.innerWidth < 799
-        ? setState((prevState) => ({ ...prevState, mobileView: true }))
-        : setState((prevState) => ({ ...prevState, mobileView: false }));
+        ? setMobileView(true)
+        : setMobileView(false);
     };
 
     setResponsiveness();
@@ -197,17 +199,15 @@ export default function Header() {
   };
 
   const displayDesktop = () => {
-    const handleAccountOpen = (e) =>
-      setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
-    const handleAccountClose = () =>
-      setState((prevState) => ({ ...prevState, anchorEl: null }));
+    const handleAccountOpen = (e) => setAnchorEl(e.currentTarget);
+    const handleAccountClose = () => setAnchorEl(null);
 
     return (
       <Toolbar>
         {femmecubatorLogo}
         <div className={menuButtonsContainer}>
           {getMenuButtons()}
-          {!_.isEmpty(userName) && (
+          {userName && (
             <>
               <Button
                 {...{
@@ -241,10 +241,8 @@ export default function Header() {
   };
 
   const displayMobile = () => {
-    const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
-    const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+    const handleDrawerOpen = () => setDrawerOpen(true);
+    const handleDrawerClose = () => setDrawerOpen(false);
 
     return (
       <Toolbar>
