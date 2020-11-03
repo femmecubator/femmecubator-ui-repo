@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   header: {
-    backgroundColor: '#3E50B4',
+    backgroundColor: '#400CCC',
     '@media (min-width: 799px)': {
       paddingRight: '79px',
       paddingLeft: '118px',
@@ -65,6 +65,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Work Sans, sans-serif',
     fontWeight: 600,
     size: '24px',
+    color: '#FFFEFE',
   },
 }));
 
@@ -135,7 +136,7 @@ export default function Header() {
       return menuHeaders
         .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
-          let color = label === 'Join Us!' ? '#50E3C2' : 'white';
+          let color = label === 'Join Us!' ? 'white' : 'white';
 
           return (
             <Button
