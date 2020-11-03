@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
     fontFamily: 'Work Sans, sans-serif',
     fontWeight: 600,
-    size: '24px',
+    fontSize: '24px',
     color: '#FFFEFE',
   },
 }));
@@ -96,14 +96,16 @@ export default function Header() {
   const { menuHeaders, userName, mobileView, anchorEl, drawerOpen } = state;
 
   useEffect(() => {
-    axios
-      .get(API_PATH.COMMON_MENU)
-      .then(({ data: { headers: menuHeaders = {}, userName = '' } }) =>
-        setState((prevState) => ({ ...prevState, menuHeaders, userName }))
-      )
-      .catch(() => {
-        // Throw new error here when error boundary is in place
-      });
+    if (auth.isLoggedIn()) {
+      axios
+        .get(API_PATH.COMMON_MENU)
+        .then(({ data: { headers: menuHeaders = {}, userName = '' } }) =>
+          setState((prevState) => ({ ...prevState, menuHeaders, userName }))
+        )
+        .catch(() => {
+          // Throw new error here when error boundary is in place
+        });
+    }
 
     const setResponsiveness = () => {
       return window.innerWidth < 799
@@ -117,7 +119,7 @@ export default function Header() {
   }, [auth]);
 
   const femmecubatorLogo = (
-    <Typography variant="h6" className={title}>
+    <Typography variant="h1" className={title}>
       <Link
         {...{
           component: RouterLink,
