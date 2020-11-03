@@ -138,7 +138,6 @@ export default function Header() {
       return menuHeaders
         .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
-          // Change "Join Us!" to another color
           let color = label === 'Join Us!' ? 'white' : 'white';
 
           return (
