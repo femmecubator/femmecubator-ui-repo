@@ -149,9 +149,10 @@ export default function Header() {
                 className: menuButton,
                 style: { color },
                 component: RouterLink,
+                'aria-label': label,
               }}
             >
-              {label}
+              <span aria-hidden="true">{label}</span>
             </Button>
           );
         });
