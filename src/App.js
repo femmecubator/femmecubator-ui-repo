@@ -5,6 +5,8 @@ import { mockServer } from './mock/mockServer';
 import { TRACKING_ID } from './utils/constants';
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
+import { ErrorBoundary } from 'components/ErrorBoundary';
+import ErrorTest from 'components/ErrorTest';
 
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   console.log('starting mock server...');
@@ -22,8 +24,21 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <AppRouter />
+      <ErrorBoundary>
+        <Header />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <AppRouter />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ErrorTest heroName="Batman" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ErrorTest heroName="Superman" />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ErrorTest heroName="Joker" />
+      </ErrorBoundary>
     </div>
   );
 }
