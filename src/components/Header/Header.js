@@ -277,7 +277,8 @@ export default function Header() {
               variant: 'outlined',
               size: 'small',
               className: joinBtn,
-              href: '/register',
+              to: '/register',
+              component: RouterLink,
             }}
           >
             JOIN
