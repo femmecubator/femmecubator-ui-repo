@@ -12,15 +12,9 @@ export class ErrorBoundary extends Component {
         console.log(errorInfo)
     }
 
-    resetErrorBoundary() {
-        this.setState(prevState => ({
-            hasError: !prevState.hasError,
-            error: 'null',
-        }));
-    }
     render() {
         if (this.state.hasError) {
-            return <div><ErrorFallback error={this.state} resetErrorBoundary={this.resetErrorBoundary.bind(this)} /></div>
+            return <><ErrorFallback /></>
         }
         return this.props.children
     }

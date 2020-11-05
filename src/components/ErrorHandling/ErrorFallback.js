@@ -34,14 +34,15 @@ function iconStyles() {
     }
 }
 
-function ErrorFallback({ error, resetErrorBoundary }) {
-    const classes = makeStyles(iconStyles)();
+function ErrorFallback() {
+    const {image, errorText, normalText, successIcon,centered } = makeStyles(iconStyles)();
+    const { reload } = window.location;
     return (
-        <div className={classes.centered}>
-            <img className={classes.image} src={errorIllustration} alt='errorIllustration' />
-            <h2 className={classes.errorText}>We're having trouble loading this page.</h2>
-            <p className={classes.normalText}>Try again or do a quick reset by logging out.</p>
-            <Button variant="contained" className={classes.successIcon} onClick={resetErrorBoundary}>Try Again</Button>
+        <div className={centered}>
+            <img className={image} src={errorIllustration} alt='errorIllustration' />
+            <h2 className={errorText}>We're having trouble loading this page.</h2>
+            <p className={normalText}>Try again or do a quick reset by logging out.</p>
+            <Button variant="contained" className={successIcon} onClick={reload}>Try Again</Button>
         </div>
     )
 }
