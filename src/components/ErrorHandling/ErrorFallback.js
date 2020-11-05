@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import errorIllustration from './errorIllustration.svg';
 import Button from '@material-ui/core/Button';
 function iconStyles() {
