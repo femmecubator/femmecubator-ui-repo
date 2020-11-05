@@ -1,30 +1,34 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import errorIllustration from './errorIllustration.svg';
 import Button from '@material-ui/core/Button';
 function iconStyles() {
     return {
-        root: {
+        centered: {
             margin: "0 auto",
+            width: "50%",
+            marginTop: "5%",
+            fontFamily: 'Open Sans, sans-serif',
         },
         errorText: {
-            fontFamily: 'Open Sans, sans-serif',
-            fontWeight: "700", 
+            fontWeight: "700",
             color: "#400CCC",
-            fontSize: "28px",
+            fontSize: "1.75rem",
         },
         normalText: {
-            fontFamily: 'Open Sans, sans-serif',
             fontWeight: "400",
-            fontSize: '21px',
-            marginLeft: '38px'
+            fontSize: '1.3rem',
+            marginLeft: '2.3rem'
         },
         successIcon: {
+            width: "8.5rem",
+            height: "2.85rem",
+            fontFamily: 'Open Sans, sans-serif',
             backgroundColor: "#1E90FF",
-            color: "#fff"
+            color: "#fff",
+            fontWeight: "600",
         },
-        errorIcon: {
-            color: "red",
+        image: {
+            width: "100%",
         }
     }
 }
@@ -32,8 +36,8 @@ function iconStyles() {
 function ErrorFallback({ error, resetErrorBoundary }) {
     const classes = makeStyles(iconStyles)();
     return (
-        <div className={classes.root}>
-            <img src={errorIllustration} alt='errorIllustration' />
+        <div className={classes.centered}>
+            <img className={classes.image} src={errorIllustration} alt='errorIllustration' />
             <h2 className={classes.errorText}>We're having trouble loading this page.</h2>
             <p className={classes.normalText}>Try again or do a quick reset by logging out.</p>
             <Button variant="contained" className={classes.successIcon} onClick={resetErrorBoundary}>Try Again</Button>
