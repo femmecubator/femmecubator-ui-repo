@@ -17,7 +17,6 @@ function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       initialize(TRACKING_ID);
-      // track page views and language location
       pageview(window.location.pathname + window.location.search);
     }
   }, []);
@@ -30,12 +29,12 @@ function App() {
       <ErrorBoundary>
         <AppRouter />
       </ErrorBoundary>
-      <ErrorBoundary>
+      {/* <ErrorBoundary>
         <ErrorTest heroName="Batman" />
       </ErrorBoundary>
       <ErrorBoundary>
         <ErrorTest heroName="Superman" />
-      </ErrorBoundary>
+      </ErrorBoundary> */}
       <ErrorBoundary>
         <ErrorTest heroName="Joker" />
       </ErrorBoundary>

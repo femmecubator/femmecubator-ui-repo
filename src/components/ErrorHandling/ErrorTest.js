@@ -1,10 +1,15 @@
 import React from 'react'
 
-export default function ErrorTest() {
-    if(this)
+function ErrorTest({ heroName }) {
+    if (heroName === 'Joker') {
+        throw new Error('Not a hero!');
+    }
     return (
         <div>
-            
+            {heroName}
         </div>
     )
+
 }
+
+export default ErrorTest

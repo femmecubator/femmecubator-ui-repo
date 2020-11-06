@@ -2,23 +2,38 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import errorIllustration from './errorIllustration.svg';
 import Button from '@material-ui/core/Button';
-function iconStyles() {
+import {
+    createMuiTheme, MuiThemeProvider, responsiveFontSizes, ThemeProvider, Typography
+} from "@material-ui/core";
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+function errorStyles() {
     return {
         centered: {
             margin: "0 auto",
-            width: "50%",
+            width: "100%",
             marginTop: "5%",
-            fontFamily: 'Open Sans, sans-serif',
+            "@media (max-width: 680px)": {
+                marginTop: "15%",
+                width: "90%",
+            },
         },
         errorText: {
+            fontFamily: 'Open Sans, sans-serif',
             fontWeight: "700",
             color: "#400CCC",
             fontSize: "1.75rem",
+            marginBottom: "1.5rem",
         },
         normalText: {
+            fontFamily: 'Open Sans, sans-serif',
             fontWeight: "400",
-            fontSize: '1.3rem',
-            marginLeft: '2.3rem'
+            fontSize: "1.3rem",
+            marginBottom: "1.5rem",
+            "@media (max-width: 680px)": {
+                maxWidth: "77%",
+                marginLeft: "3rem",
+            }
         },
         successIcon: {
             width: "8.5rem",
@@ -29,20 +44,29 @@ function iconStyles() {
             fontWeight: "600",
         },
         image: {
-            width: "100%",
+            width: "50%",
+            "@media (max-width: 680px)": {
+                width: "100%",
+            }
         }
     }
 }
 
 function ErrorFallback() {
-    const {image, errorText, normalText, successIcon,centered } = makeStyles(iconStyles)();
-    const { reload } = window.location;
+    const { image, errorText, normalText, successIcon, centered } = makeStyles(errorStyles)();
+    const refreshPage = (() => window.location.reload());
     return (
         <div className={centered}>
-            <img className={image} src={errorIllustration} alt='errorIllustration' />
-            <h2 className={errorText}>We're having trouble loading this page.</h2>
-            <p className={normalText}>Try again or do a quick reset by logging out.</p>
-            <Button variant="contained" className={successIcon} onClick={reload}>Try Again</Button>
+            <MuiThemeProvider>
+                <img className={image} src={errorIllustration} alt='errorIllustration' />
+                <Typography className={errorText} variant="h2" gutterBottom>
+                    We're having trouble loading this page.
+                </Typography>
+                <Typography variant="p" component="p" gutterBottom className={normalText}>
+                    Try again or do a quick reset by logging out.
+                </Typography>
+                <Button {...{ variant: 'contained', className: successIcon, onClick: refreshPage }}>Try Again</Button>
+            </MuiThemeProvider>
         </div>
     )
 }
