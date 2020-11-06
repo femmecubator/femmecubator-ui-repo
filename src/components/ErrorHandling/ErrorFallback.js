@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import errorIllustration from './errorIllustration.svg';
+import errorIllustration from '../../assets/images/errorIllustration.svg';
 import Button from '@material-ui/core/Button';
 import {
     createMuiTheme, MuiThemeProvider, responsiveFontSizes, ThemeProvider, Typography

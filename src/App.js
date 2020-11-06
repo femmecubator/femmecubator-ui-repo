@@ -6,7 +6,6 @@ import { TRACKING_ID } from './utils/constants';
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components//ErrorHandling/ErrorBoundary';
-import ErrorTest from 'components/ErrorHandling/ErrorTest';
 
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   console.log('starting mock server...');
@@ -23,20 +22,9 @@ function App() {
 
   return (
     <div className="App">
-      <ErrorBoundary>
-        <Header />
-      </ErrorBoundary>
+      <Header />
       <ErrorBoundary>
         <AppRouter />
-      </ErrorBoundary>
-      {/* <ErrorBoundary>
-        <ErrorTest heroName="Batman" />
-      </ErrorBoundary>
-      <ErrorBoundary>
-        <ErrorTest heroName="Superman" />
-      </ErrorBoundary> */}
-      <ErrorBoundary>
-        <ErrorTest heroName="Joker" />
       </ErrorBoundary>
     </div>
   );
