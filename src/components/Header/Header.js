@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import axios from 'axios';
+import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 import { Link as RouterLink } from 'react-router-dom';
@@ -99,7 +99,7 @@ export default function Header() {
 
   useEffect(() => {
     if (auth.isLoggedIn()) {
-      axios
+      request
         .get(API_PATH.COMMON_MENU)
         .then(({ data: { headers: menuHeaders = {}, userName = '' } }) =>
           setState((prevState) => ({ ...prevState, menuHeaders, userName }))

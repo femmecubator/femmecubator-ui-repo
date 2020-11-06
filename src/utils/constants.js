@@ -23,6 +23,7 @@ const TRACKING_ID = 'UA-180314898-1';
 
 const API_PATH = {
   COMMON_MENU: '/api/commonMenu',
+  LOGIN: '/api/login',
   LOGOFF_ENDPOINT: '/api/logoff',
   TIMEDOUT_ENDPOINT: '/api/logoff?timeout=true',
 };
