@@ -16,6 +16,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:local:backend": "cd ../femmecubator-api-repo && npm run start-debug",
+    "start:local:frontend": "cd ../femmecubator-ui-repo && npm start",
+    "start-local": "run-p start:local:* -- --watch",
     "start:mock": "REACT_APP_MOCK_API_TRUE=true npm start",
     "build": "react-scripts build",
     "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test",
@@ -45,6 +48,7 @@
     "dot-env": "0.0.1",
     "miragejs": "^0.1.41"
   },
+  "proxy": "http://local.femmecubator.com:3001",
   "prettier": {
     "singleQuote": true
   }
