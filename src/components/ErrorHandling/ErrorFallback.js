@@ -7,54 +7,55 @@ import {
 } from "@material-ui/core";
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
-function errorStyles() {
-    return {
-        centered: {
-            margin: "0 auto",
+const errorStyles = makeStyles(() => ({
+    centered: {
+        margin: "0 auto",
+        width: "100%",
+        marginTop: "5%",
+        "@media (max-width: 680px)": {
+            marginTop: "15%",
+            width: "90%",
+        },
+    },
+    errorText: {
+        fontFamily: 'Open Sans, sans-serif',
+        fontWeight: "700",
+        color: "#400CCC",
+        fontSize: "1.75rem",
+        marginBottom: "1.5rem",
+    },
+    normalText: {
+        fontFamily: 'Open Sans, sans-serif',
+        fontWeight: "400",
+        fontSize: "1.3rem",
+        marginBottom: "1.5rem",
+        "@media (max-width: 680px)": {
+            maxWidth: "77%",
+            marginLeft: "3rem",
+        }
+    },
+    successIcon: {
+        width: "8.5rem",
+        height: "2.85rem",
+        fontFamily: 'Open Sans, sans-serif',
+        backgroundColor: "#1E90FF",
+        color: "#fff",
+        fontWeight: "600",
+    },
+    image: {
+        width: "50%",
+        "@media (max-width: 680px)": {
             width: "100%",
-            marginTop: "5%",
-            "@media (max-width: 680px)": {
-                marginTop: "15%",
-                width: "90%",
-            },
-        },
-        errorText: {
-            fontFamily: 'Open Sans, sans-serif',
-            fontWeight: "700",
-            color: "#400CCC",
-            fontSize: "1.75rem",
-            marginBottom: "1.5rem",
-        },
-        normalText: {
-            fontFamily: 'Open Sans, sans-serif',
-            fontWeight: "400",
-            fontSize: "1.3rem",
-            marginBottom: "1.5rem",
-            "@media (max-width: 680px)": {
-                maxWidth: "77%",
-                marginLeft: "3rem",
-            }
-        },
-        successIcon: {
-            width: "8.5rem",
-            height: "2.85rem",
-            fontFamily: 'Open Sans, sans-serif',
-            backgroundColor: "#1E90FF",
-            color: "#fff",
-            fontWeight: "600",
-        },
-        image: {
-            width: "50%",
-            "@media (max-width: 680px)": {
-                width: "100%",
-            }
         }
     }
-}
+}))
+
+const gutterBottom = true;
 
 function ErrorFallback() {
-    const { image, errorText, normalText, successIcon, centered } = makeStyles(errorStyles)();
-    const refreshPage = (() => window.location.reload());
+    const { image, errorText, normalText, successIcon, centered } = errorStyles();
+    const { reload } = window.location
+    render()
     return (
         <div className={centered}>
             <MuiThemeProvider>
@@ -65,7 +66,7 @@ function ErrorFallback() {
                 <Typography variant="p" component="p" gutterBottom className={normalText}>
                     Try again or do a quick reset by logging out.
                 </Typography>
-                <Button {...{ variant: 'contained', className: successIcon, onClick: refreshPage }}>Try Again</Button>
+                <Button {...{ variant: 'contained', className: successIcon, onClick: reload.bind(window.location) }}>Try Again</Button>
             </MuiThemeProvider>
         </div>
     )
