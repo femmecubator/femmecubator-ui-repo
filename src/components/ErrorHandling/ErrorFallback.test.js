@@ -1,11 +1,9 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react'
-import { ErrorBoundary } from './ErrorBoundary';
-
-
-test('<ErrorBoundary>', () => {
+import ErrorFallback from "./ErrorFallback";
+test('<ErrorFallback>', () => {
     afterEach(cleanup);
-    const { debug, getByTestId } = render(<ErrorBoundary />);
+    const { debug } = render(<ErrorFallback />);
     console.log(debug());
 
     // it('should display Femmecubator text logo', () => {

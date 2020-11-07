@@ -54,16 +54,15 @@ const gutterBottom = true;
 
 function ErrorFallback() {
     const { image, errorText, normalText, successIcon, centered } = errorStyles();
-    const { reload } = window.location
-    render()
+    const { reload } = window.location;
     return (
         <div className={centered}>
-            <MuiThemeProvider>
+            <MuiThemeProvider theme={theme}>
                 <img className={image} src={errorIllustration} alt='errorIllustration' />
                 <Typography className={errorText} variant="h2" gutterBottom>
                     We're having trouble loading this page.
                 </Typography>
-                <Typography variant="p" component="p" gutterBottom className={normalText}>
+                <Typography variant="body1" component="p" gutterBottom className={normalText}>
                     Try again or do a quick reset by logging out.
                 </Typography>
                 <Button {...{ variant: 'contained', className: successIcon, onClick: reload.bind(window.location) }}>Try Again</Button>
