@@ -23,7 +23,9 @@
     "build": "react-scripts build",
     "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test",
     "test:coverage": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public --no-dll",
+    "build-storybook": "build-storybook -s public --no-dll"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,12 +43,21 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
     "@sheerun/mutationobserver-shim": "^0.3.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/node-logger": "^6.0.28",
+    "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/react": "^6.0.28",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.8",
+    "babel-loader": "^8.1.0",
     "dot-env": "0.0.1",
-    "miragejs": "^0.1.41"
+    "miragejs": "^0.1.41",
+    "react-is": "^17.0.1"
   },
   "proxy": "http://local.femmecubator.com:3001",
   "prettier": {
