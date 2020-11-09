@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useContext as useContextMock } from 'react';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { mockServer } from 'mock/mockServer';
 import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { GlobalProvider } from 'context/global';
+import App from '../../App';
 
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   mockServer();
 }
 
-// Fn's to resize screen
 const resizeToMobile = () => {
   global.innerWidth = 600;
   global.dispatchEvent(new Event('resize'));
@@ -26,9 +27,13 @@ describe('<Header />', () => {
     act(() => {
       render(
         <AuthProvider>
-          <Router>
-            <Header />
-          </Router>
+          <GlobalProvider>
+            <Router>
+              <App>
+                <Header />
+              </App>
+            </Router>
+          </GlobalProvider>
         </AuthProvider>
       );
     });

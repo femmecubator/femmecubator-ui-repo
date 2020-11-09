@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   makeStyles,
   AppBar,
@@ -18,7 +18,7 @@ import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 import { Link as RouterLink } from 'react-router-dom';
 import _ from 'lodash';
-
+import { GlobalContext } from 'context/global';
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -69,9 +69,13 @@ const useStyles = makeStyles(() => ({
     fontSize: '24px',
     color: '#FFFEFE',
   },
+  menuButtonsContainer: {
+    display: 'flex',
+  },
 }));
 
 export default function Header() {
+  console.log('useStyles', useStyles);
   const {
     root,
     header,
@@ -86,16 +90,17 @@ export default function Header() {
   } = useStyles();
 
   const { auth } = useAuth();
-
+  const {
+    globalState: { isMobile },
+  } = useContext(GlobalContext);
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.headers,
     userName: '',
-    mobileView: false,
     anchorEl: false,
     drawerOpen: false,
   });
 
-  const { menuHeaders, userName, mobileView, anchorEl, drawerOpen } = state;
+  const { menuHeaders, userName, anchorEl, drawerOpen } = state;
 
   useEffect(() => {
     if (auth.isLoggedIn()) {
@@ -108,16 +113,16 @@ export default function Header() {
           // Throw new error here when error boundary is in place
         });
     }
-
+    /*
     const setResponsiveness = () => {
       return window.innerWidth < 799
-        ? setState((prevState) => ({ ...prevState, mobileView: true }))
-        : setState((prevState) => ({ ...prevState, mobileView: false }));
+        ? setState((prevState) => ({ ...prevState, isMobile: true }))
+        : setState((prevState) => ({ ...prevState, isMobile: false }));
     };
 
     setResponsiveness();
 
-    window.addEventListener('resize', () => setResponsiveness());
+    window.addEventListener('resize', () => setResponsiveness());*/
   }, [auth]);
 
   const femmecubatorLogo = (
@@ -143,19 +148,20 @@ export default function Header() {
           let color = label === 'Join Us!' ? '#B9EBEC' : 'white';
 
           return (
-            <Button
-              {...{
-                key: id,
-                color: 'inherit',
-                to: href,
-                className: menuButton,
-                style: { color },
-                component: RouterLink,
-                'aria-label': label,
-              }}
-            >
-              <span aria-hidden="true">{label}</span>
-            </Button>
+            <div key={id}>
+              <Button
+                {...{
+                  color: 'inherit',
+                  to: href,
+                  className: menuButton,
+                  style: { color },
+                  component: RouterLink,
+                  'aria-label': label,
+                }}
+              >
+                <span aria-hidden="true">{label}</span>
+              </Button>
+            </div>
           );
         });
     }
@@ -293,7 +299,7 @@ export default function Header() {
   return (
     <header className={root}>
       <AppBar position="static" className={header}>
-        {mobileView ? displayMobile() : displayDesktop()}
+        {isMobile ? displayMobile() : displayDesktop()}
       </AppBar>
     </header>
   );
