@@ -113,16 +113,6 @@ export default function Header() {
           // Throw new error here when error boundary is in place
         });
     }
-    /*
-    const setResponsiveness = () => {
-      return window.innerWidth < 799
-        ? setState((prevState) => ({ ...prevState, isMobile: true }))
-        : setState((prevState) => ({ ...prevState, isMobile: false }));
-    };
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());*/
   }, [auth]);
 
   const femmecubatorLogo = (
