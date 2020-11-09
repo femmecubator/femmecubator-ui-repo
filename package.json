@@ -21,8 +21,8 @@
     "start-local": "run-p start:local:* -- --watch",
     "start:mock": "REACT_APP_MOCK_API_TRUE=true npm start",
     "build": "react-scripts build",
-    "test": "REACT_APP_MOCK_API_TRUE=true react-scripts test",
-    "test:coverage": "REACT_APP_MOCK_API_TRUE=true react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
+    "test": "REACT_APP_TESTING=true react-scripts test",
+    "test:coverage": "REACT_APP_TESTING=true react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

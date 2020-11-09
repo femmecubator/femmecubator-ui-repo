@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 import App from '../../App';
 
-if (process.env.REACT_APP_MOCK_API_TRUE) {
+if (process.env.REACT_APP_TESTING) {
   mockServer();
 }
 
