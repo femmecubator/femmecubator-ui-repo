@@ -19,6 +19,8 @@ import { useAuth } from '../../context/auth';
 import { Link as RouterLink } from 'react-router-dom';
 import _ from 'lodash';
 import { GlobalContext } from 'context/global';
+import { clearSessionData } from 'utils/cookies';
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -101,15 +103,22 @@ export default function Header() {
 
   const { menuHeaders, userName, anchorEl, drawerOpen } = state;
 
+  console.log(`menuHeaders:::::`, menuHeaders);
   useEffect(() => {
     if (auth.isLoggedIn()) {
       request
         .get(API_PATH.COMMON_MENU)
-        .then(({ data: { headers: menuHeaders = {}, userName = '' } }) =>
-          setState((prevState) => ({ ...prevState, menuHeaders, userName }))
+        .then(
+          ({
+            data: {
+              data: { headers: menuHeaders = {}, userName = '' },
+            },
+          }) =>
+            setState((prevState) => ({ ...prevState, menuHeaders, userName }))
         )
         .catch(() => {
-          // Throw new error here when error boundary is in place
+          clearSessionData();
+          window.location.replace(API_PATH.LOGIN_PAGE);
         });
     }
   }, [auth]);

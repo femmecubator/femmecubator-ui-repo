@@ -26,6 +26,7 @@ const API_PATH = {
   LOGIN: '/api/login',
   LOGOFF_ENDPOINT: '/api/logoff',
   TIMEDOUT_ENDPOINT: '/api/logoff?timeout=true',
+  LOGIN_PAGE: '/login',
 };
 
 const ROUTES_LABEL = {
