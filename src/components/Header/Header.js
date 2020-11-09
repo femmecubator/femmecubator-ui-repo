@@ -75,7 +75,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function Header() {
-  console.log('useStyles', useStyles);
   const {
     root,
     header,
