@@ -103,7 +103,6 @@ export default function Header() {
 
   const { menuHeaders, userName, anchorEl, drawerOpen } = state;
 
-  console.log(`menuHeaders:::::`, menuHeaders);
   useEffect(() => {
     if (auth.isLoggedIn()) {
       request
