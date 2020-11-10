@@ -8,7 +8,7 @@ const COOKIES_LIST = {
 };
 
 function isAuthCookiesExists() {
-  return !!cookies.get('SESSIONID') || process.env.REACT_APP_TESTING;
+  return !!cookies.get('SESSIONID');
 }
 
 function clearSessionData() {

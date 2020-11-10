@@ -1,4 +1,4 @@
-import React, { useContext as useContextMock } from 'react';
+import React from 'react';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
@@ -7,10 +7,6 @@ import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 import App from '../../App';
-
-if (process.env.REACT_APP_TESTING) {
-  mockServer();
-}
 
 const resizeToMobile = () => {
   global.innerWidth = 600;
@@ -21,6 +17,13 @@ const resizeToDesktop = () => {
   global.innerWidth = 900;
   global.dispatchEvent(new Event('resize'));
 };
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useLocation: () => ({
+    pathname: 'fakedomain.com:3000/mentors',
+  }),
+}));
 
 describe('<Header />', () => {
   beforeEach(() => {
@@ -45,12 +48,15 @@ describe('<Header />', () => {
     screen.getByText(/femmecubator/i);
   });
 
-  it('should display the protected menu items if user is authenticated', async () => {
-    await waitFor(() => screen.getByText(/mentors/i));
-    screen.getByText(/mentors/i);
+  it('should display the general menu if user is not authenticated', async () => {
+    await waitFor(() => screen.getByText(/get involved/i));
+    screen.getByText(/get involved/i);
 
-    await waitFor(() => screen.getByText(/listings/i));
-    screen.getByText(/listings/i);
+    await waitFor(() => screen.getByText(/log in/i));
+    screen.getByText(/log in/i);
+
+    await waitFor(() => screen.getByText(/join us!/i));
+    screen.getByText(/join us!/i);
   });
 
   it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', () => {
