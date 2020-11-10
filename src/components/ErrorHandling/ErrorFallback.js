@@ -38,7 +38,7 @@ const errorStyles = makeStyles(() => ({
         width: "8.5rem",
         height: "2.85rem",
         fontFamily: 'Open Sans, sans-serif',
-        backgroundColor: "#1E90FF",
+        backgroundColor: "#026FE4",
         color: "#fff",
         fontWeight: "600",
     },
@@ -55,17 +55,18 @@ const gutterBottom = true;
 function ErrorFallback() {
     const { image, errorText, normalText, successIcon, centered } = errorStyles();
     const { reload } = window.location;
+    const altText = "Working Woman on her desk looking a bit tired";
     return (
         <div className={centered}>
             <MuiThemeProvider theme={theme}>
-                <img className={image} src={errorIllustration} alt='errorIllustration' />
-                <Typography className={errorText} variant="h2" gutterBottom>
+                <img data-testid="errorIllustration" className={image} src={errorIllustration} alt={altText} />
+                <Typography {...{ className: errorText, variant: "h2", gutterBottom }}>
                     We're having trouble loading this page.
                 </Typography>
-                <Typography variant="body1" component="p" gutterBottom className={normalText}>
+                <Typography {...{ variant: "subtitle1", component: "p", gutterBottom, className: normalText }}>
                     Try again or do a quick reset by logging out.
                 </Typography>
-                <Button {...{ variant: 'contained', className: successIcon, onClick: reload.bind(window.location) }}>Try Again</Button>
+                <Button data-testid="reloadButton" {...{ variant: 'contained', className: successIcon, onClick: reload.bind(window.location) }}>Try Again</Button>
             </MuiThemeProvider>
         </div>
     )
