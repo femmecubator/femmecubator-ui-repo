@@ -16,7 +16,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import _ from 'lodash';
 import { GlobalContext } from 'context/global';
 import { clearSessionData } from 'utils/cookies';
@@ -76,6 +76,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
+
 export default function Header() {
   const {
     root,
@@ -90,6 +92,7 @@ export default function Header() {
     drawerContainer,
   } = useStyles();
 
+  const location = useLocation();
   const { auth } = useAuth();
   const {
     globalState: { isMobile },
@@ -102,6 +105,7 @@ export default function Header() {
   });
 
   const { menuHeaders, userName, anchorEl, drawerOpen } = state;
+  const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
     if (auth.isLoggedIn()) {
@@ -138,7 +142,7 @@ export default function Header() {
   );
 
   const getMenuButtons = () => {
-    if (menuHeaders && menuHeaders.length) {
+    if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
