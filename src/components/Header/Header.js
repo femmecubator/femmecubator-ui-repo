@@ -1,27 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import React, { useEffect, useState, useContext } from 'react';
+import {
+  makeStyles,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  Drawer,
+  Link,
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import axios from 'axios';
+import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
-import Link from '@material-ui/core/Link';
-import { Link as RouterLink } from 'react-router-dom';
-import { Drawer } from '@material-ui/core';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import _ from 'lodash';
+import { GlobalContext } from 'context/global';
+import { clearSessionData } from 'utils/cookies';
 
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
   header: {
-    backgroundColor: '#3E50B4',
+    backgroundColor: '#400CCC',
     '@media (min-width: 799px)': {
       paddingRight: '79px',
       paddingLeft: '118px',
@@ -63,9 +68,15 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
     fontFamily: 'Work Sans, sans-serif',
     fontWeight: 600,
-    size: '24px',
+    fontSize: '24px',
+    color: '#FFFEFE',
+  },
+  menuButtonsContainer: {
+    display: 'flex',
   },
 }));
+
+const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
 
 export default function Header() {
   const {
@@ -81,44 +92,42 @@ export default function Header() {
     drawerContainer,
   } = useStyles();
 
+  const location = useLocation();
   const { auth } = useAuth();
+  const {
+    globalState: { isMobile },
+  } = useContext(GlobalContext);
+  const [state, setState] = useState({
+    menuHeaders: DEFAULT_COMMON_MENU.headers,
+    userName: '',
+    anchorEl: false,
+    drawerOpen: false,
+  });
 
-  const [menuHeaders, setMenuHeaders] = useState([]);
-  const [userName, setUserName] = useState('');
-  const [mobileView, setMobileView] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const { menuHeaders, userName, anchorEl, drawerOpen } = state;
+  const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
-    axios
-      .get(API_PATH.COMMON_MENU)
-      .then(({ data }) => {
-        if (data && data.headers && auth.isLoggedIn()) {
-          const { headers, userName } = data;
-          setMenuHeaders(headers);
-          setUserName(userName);
-        } else {
-          setMenuHeaders(DEFAULT_COMMON_MENU.headers);
-        }
-      })
-      .catch(() => {
-        // Throw new error here when error boundary is in place
-        setMenuHeaders(DEFAULT_COMMON_MENU.headers);
-      });
-
-    const setResponsiveness = () => {
-      return window.innerWidth < 799
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
+    if (auth.isLoggedIn()) {
+      request
+        .get(API_PATH.COMMON_MENU)
+        .then(
+          ({
+            data: {
+              data: { headers: menuHeaders = {}, userName = '' },
+            },
+          }) =>
+            setState((prevState) => ({ ...prevState, menuHeaders, userName }))
+        )
+        .catch(() => {
+          clearSessionData();
+          window.location.replace(API_PATH.LOGIN_PAGE);
+        });
+    }
   }, [auth]);
 
   const femmecubatorLogo = (
-    <Typography variant="h6" className={title}>
+    <Typography variant="h1" className={title}>
       <Link
         {...{
           component: RouterLink,
@@ -133,25 +142,27 @@ export default function Header() {
   );
 
   const getMenuButtons = () => {
-    if (menuHeaders && menuHeaders.length) {
+    if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
-          let color = label === 'Join Us!' ? '#50E3C2' : 'white';
+          let color = label === 'Join Us!' ? '#B9EBEC' : 'white';
 
           return (
-            <Button
-              {...{
-                key: id,
-                color: 'inherit',
-                to: href,
-                className: menuButton,
-                style: { color },
-                component: RouterLink,
-              }}
-            >
-              {label}
-            </Button>
+            <div key={id}>
+              <Button
+                {...{
+                  color: 'inherit',
+                  to: href,
+                  className: menuButton,
+                  style: { color },
+                  component: RouterLink,
+                  'aria-label': label,
+                }}
+              >
+                <span aria-hidden="true">{label}</span>
+              </Button>
+            </div>
           );
         });
     }
@@ -198,15 +209,17 @@ export default function Header() {
   };
 
   const displayDesktop = () => {
-    const handleAccountOpen = (e) => setAnchorEl(e.currentTarget);
-    const handleAccountClose = () => setAnchorEl(null);
+    const handleAccountOpen = (e) =>
+      setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
+    const handleAccountClose = () =>
+      setState((prevState) => ({ ...prevState, anchorEl: null }));
 
     return (
       <Toolbar>
         {femmecubatorLogo}
         <div className={menuButtonsContainer}>
           {getMenuButtons()}
-          {userName && (
+          {!_.isEmpty(userName) && (
             <>
               <Button
                 {...{
@@ -240,8 +253,10 @@ export default function Header() {
   };
 
   const displayMobile = () => {
-    const handleDrawerOpen = () => setDrawerOpen(true);
-    const handleDrawerClose = () => setDrawerOpen(false);
+    const handleDrawerOpen = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    const handleDrawerClose = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
       <Toolbar>
@@ -271,7 +286,8 @@ export default function Header() {
               variant: 'outlined',
               size: 'small',
               className: joinBtn,
-              href: '/register',
+              to: '/register',
+              component: RouterLink,
             }}
           >
             JOIN
@@ -284,7 +300,7 @@ export default function Header() {
   return (
     <header className={root}>
       <AppBar position="static" className={header}>
-        {mobileView ? displayMobile() : displayDesktop()}
+        {isMobile ? displayMobile() : displayDesktop()}
       </AppBar>
     </header>
   );
