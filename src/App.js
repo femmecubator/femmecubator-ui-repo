@@ -5,6 +5,7 @@ import { mockServer } from './mock/mockServer';
 import { TRACKING_ID } from './utils/constants';
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
+import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 import { GlobalContext } from 'context/global';
 import { updateView } from 'context/actionCreators';
 
@@ -37,7 +38,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <AppRouter />
+      <ErrorBoundary>
+        <AppRouter />
+      </ErrorBoundary>
     </div>
   );
 }
