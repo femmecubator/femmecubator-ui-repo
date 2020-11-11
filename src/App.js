@@ -5,8 +5,7 @@ import { mockServer } from './mock/mockServer';
 import { TRACKING_ID } from './utils/constants';
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
-import { ErrorBoundary } from 'components//ErrorHandling/ErrorBoundary';
-
+import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   console.log('starting mock server...');
   mockServer();
