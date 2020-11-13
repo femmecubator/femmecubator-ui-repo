@@ -25,6 +25,8 @@ function App() {
       initialize(TRACKING_ID);
       pageview(window.location.pathname + window.location.search);
     }
+    if(setResponsiveness())
+      dispatch(updateView(setResponsiveness()));
     window.addEventListener('resize', () =>
       dispatch(updateView(setResponsiveness()))
     );
