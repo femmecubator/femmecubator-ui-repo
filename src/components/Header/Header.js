@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   makeStyles,
   AppBar,
@@ -16,8 +16,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import _ from 'lodash';
+import { GlobalContext } from 'context/global';
+import { clearSessionData } from 'utils/cookies';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -69,7 +71,12 @@ const useStyles = makeStyles(() => ({
     fontSize: '24px',
     color: '#FFFEFE',
   },
+  menuButtonsContainer: {
+    display: 'flex',
+  },
 }));
+
+const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
 
 export default function Header() {
   const {
@@ -85,39 +92,38 @@ export default function Header() {
     drawerContainer,
   } = useStyles();
 
+  const location = useLocation();
   const { auth } = useAuth();
-
+  const {
+    globalState: { isMobile },
+  } = useContext(GlobalContext);
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.headers,
     userName: '',
-    mobileView: false,
     anchorEl: false,
     drawerOpen: false,
   });
 
-  const { menuHeaders, userName, mobileView, anchorEl, drawerOpen } = state;
+  const { menuHeaders, userName, anchorEl, drawerOpen } = state;
+  const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
     if (auth.isLoggedIn()) {
       request
         .get(API_PATH.COMMON_MENU)
-        .then(({ data: { headers: menuHeaders = {}, userName = '' } }) =>
-          setState((prevState) => ({ ...prevState, menuHeaders, userName }))
+        .then(
+          ({
+            data: {
+              data: { headers: menuHeaders = {}, userName = '' },
+            },
+          }) =>
+            setState((prevState) => ({ ...prevState, menuHeaders, userName }))
         )
         .catch(() => {
-          // Throw new error here when error boundary is in place
+          clearSessionData();
+          window.location.replace(API_PATH.LOGIN_PAGE);
         });
     }
-
-    const setResponsiveness = () => {
-      return window.innerWidth < 799
-        ? setState((prevState) => ({ ...prevState, mobileView: true }))
-        : setState((prevState) => ({ ...prevState, mobileView: false }));
-    };
-
-    setResponsiveness();
-
-    window.addEventListener('resize', () => setResponsiveness());
   }, [auth]);
 
   const femmecubatorLogo = (
@@ -136,26 +142,27 @@ export default function Header() {
   );
 
   const getMenuButtons = () => {
-    if (menuHeaders && menuHeaders.length) {
+    if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(({ href }) => href !== '/logout' && href !== '/account')
         .map(({ id, href, label }) => {
           let color = label === 'Join Us!' ? '#B9EBEC' : 'white';
 
           return (
-            <Button
-              {...{
-                key: id,
-                color: 'inherit',
-                to: href,
-                className: menuButton,
-                style: { color },
-                component: RouterLink,
-                'aria-label': label,
-              }}
-            >
-              <span aria-hidden="true">{label}</span>
-            </Button>
+            <div key={id}>
+              <Button
+                {...{
+                  color: 'inherit',
+                  to: href,
+                  className: menuButton,
+                  style: { color },
+                  component: RouterLink,
+                  'aria-label': label,
+                }}
+              >
+                <span aria-hidden="true">{label}</span>
+              </Button>
+            </div>
           );
         });
     }
@@ -293,7 +300,7 @@ export default function Header() {
   return (
     <header className={root}>
       <AppBar position="static" className={header}>
-        {mobileView ? displayMobile() : displayDesktop()}
+        {isMobile ? displayMobile() : displayDesktop()}
       </AppBar>
     </header>
   );

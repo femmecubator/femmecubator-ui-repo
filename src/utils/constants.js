@@ -26,6 +26,7 @@ const API_PATH = {
   LOGIN: '/api/login',
   LOGOFF_ENDPOINT: '/api/logoff',
   TIMEDOUT_ENDPOINT: '/api/logoff?timeout=true',
+  LOGIN_PAGE: '/login',
 };
 
 const ROUTES_LABEL = {
@@ -76,4 +77,15 @@ const ROUTES = [
   },
 ];
 
-export { API_PATH, DEFAULT_COMMON_MENU, TRACKING_ID, ROUTES, ROUTES_LABEL };
+const ACTION_TYPE = {
+  UPDATE_UI_VIEW: 'UPDATE_UI_VIEW',
+};
+
+export {
+  API_PATH,
+  DEFAULT_COMMON_MENU,
+  TRACKING_ID,
+  ROUTES,
+  ROUTES_LABEL,
+  ACTION_TYPE,
+};
