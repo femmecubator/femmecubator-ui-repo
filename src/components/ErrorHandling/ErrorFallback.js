@@ -25,10 +25,6 @@ const errorStyles = makeStyles(() => ({
         fontWeight: '400',
         fontSize: '1.3rem',
         marginBottom: '1.5rem',
-        '@media (max-width: 680px)': {
-            maxWidth: '70%',
-            marginLeft: '3rem',
-        }
     },
     successIcon: {
         width: '8.5rem',
@@ -39,9 +35,9 @@ const errorStyles = makeStyles(() => ({
         fontWeight: '600',
     },
     image: {
-        width: '30%',
+        width: '20%',
         '@media (max-width: 680px)': {
-            width: '60%',
+            width: '30%',
         }
     }
 }))
@@ -58,7 +54,7 @@ function ErrorFallback() {
                 We're having trouble loading this page.
                 </Typography>
             <Typography {...{ variant: 'subtitle1', component: 'p', gutterBottom, className: normalText }}>
-                Try again or do a quick reset by logging out.
+                Try again or do a quick reset.
                 </Typography>
             <Button data-testid='reloadButton' {...{ variant: 'contained', className: successIcon, onClick: reload.bind(window.location) }}>Try Again</Button>
         </div >
