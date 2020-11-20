@@ -1,0 +1,18 @@
+.circle {
+  height: 101px;
+  width: 101px;
+  background-color: #bb6bd9;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.center {
+  margin: auto;
+  width: 40%;
+  padding: 23%;
+  color: #f2f7ff;
+}
+
+.registration-from-container {
+  color: #e5e5e5;
+}
