@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   withStyles,
 } from '@material-ui/core/styles';
-import { Typography, Button, List } from '@material-ui/core/';
+import { Typography, Button } from '@material-ui/core/';
 import Grid from '@material-ui/core/Grid';
 import mainImage from './assets/firstImage.jpg';
 import secondImage from './assets/secondimage.jpg';
@@ -19,7 +19,7 @@ import KeyboardIcon from '@material-ui/icons/Keyboard';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-export const BlueFilledButton = withStyles({
+const BlueFilledButton = withStyles({
   root: {
     background: '#026FE4',
     borderRadius: '4px',
@@ -40,7 +40,7 @@ export const BlueFilledButton = withStyles({
   },
 })(Button);
 
-export const WhiteOutlineButton = withStyles({
+const WhiteOutlineButton = withStyles({
   root: {
     background: 'transparent',
     borderRadius: '4px',
@@ -62,7 +62,7 @@ export const WhiteOutlineButton = withStyles({
   },
 })(Button);
 
-export const BlueOutlineButton = withStyles({
+const BlueOutlineButton = withStyles({
   root: {
     background: 'transparent',
     borderRadius: '4px',
@@ -183,7 +183,6 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     gap: '20px',
     width: '100%',
-    alignItems: 'center',
     padding: '0px 20px',
     marginTop: '40px',
     justifyContent: 'space-around',

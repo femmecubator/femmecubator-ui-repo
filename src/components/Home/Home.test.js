@@ -1,10 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import Home, {
-  StyledButton,
-  BlueOutlineButton,
-  WhiteButton,
-} from 'components/Home/Home';
+import Home from 'components/Home/Home';
 import { act } from 'react-dom/test-utils';
 import secondImage from './assets/secondimage.jpg';
 
@@ -43,22 +39,10 @@ describe('<Home />', () => {
     });
   });
 
-  it('should display Carousel if window is smaller than 799px and should hide Carousel if larger', () => {});
-
   it('should fire a click event for all buttons', () => {
-    const handleClick = jest.fn();
-    const { getByText } = render(
-      <>
-        <BlueOutlineButton onClick={handleClick}>
-          BLUE OUTLINE
-        </BlueOutlineButton>
-        <StyledButton onClick={handleClick}>BLUE FILLED</StyledButton>
-        <WhiteButton onClick={handleClick}>WHITE BUTTON</WhiteButton>
-      </>
-    );
-    fireEvent.click(getByText(/BLUE OUTLINE/i));
-    fireEvent.click(getByText(/BLUE FILLED/i));
-    fireEvent.click(getByText(/WHITE BUTTON/i));
-    expect(handleClick).toHaveBeenCalledTimes(3);
+    const buttons = screen.getAllByRole('button');
+    buttons.forEach((bttn) => {
+      fireEvent.click(bttn);
+    });
   });
 });
