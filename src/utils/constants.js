@@ -30,7 +30,7 @@ const API_PATH = {
 };
 
 const ROUTES_LABEL = {
-  LANDING_PAGE: 'landingPage',
+  HOME: 'homePage',
   MENTORS: 'mentors',
   LOGIN: 'login',
   REGISTER: 'register',
@@ -42,7 +42,7 @@ const ROUTES = [
   {
     id: 1,
     isProtected: false,
-    label: ROUTES_LABEL.LANDING_PAGE,
+    label: ROUTES_LABEL.HOME,
     path: '/',
   },
   {
