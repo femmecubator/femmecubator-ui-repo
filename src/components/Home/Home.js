@@ -103,7 +103,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     '@media (max-width: 799px)': {
       height: '332px',
-      padding: '0px',
     },
   },
   topImageContainer: {
