@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   createMuiTheme,
   makeStyles,
@@ -463,7 +463,7 @@ const theme = createMuiTheme({
   },
 });
 
-export default function FullWidthGrid() {
+export default function Home() {
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   const {
