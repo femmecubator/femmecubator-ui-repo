@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   header: {
+    boxShadow: 'none',
     backgroundColor: '#400CCC',
     '@media (min-width: 799px)': {
       paddingRight: '79px',
