@@ -5,7 +5,6 @@ import { mockServer } from './mock/mockServer';
 import { TRACKING_ID } from './utils/constants';
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
-import Home from 'components/Home/Home';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 import { GlobalContext } from 'context/global';
 import { updateView } from 'context/actionCreators';
@@ -26,8 +25,7 @@ function App() {
       initialize(TRACKING_ID);
       pageview(window.location.pathname + window.location.search);
     }
-    if(setResponsiveness())
-      dispatch(updateView(setResponsiveness()));
+    if (setResponsiveness()) dispatch(updateView(setResponsiveness()));
     window.addEventListener('resize', () =>
       dispatch(updateView(setResponsiveness()))
     );

@@ -533,20 +533,18 @@ export default function Home() {
                 From easy access to mentorship to gaining new skills, jumpstart
                 your career in tech through the Femmecubator community.
               </Typography>
-              <BlueFilledButton
-                data-testid="styled-button"
-                variant="contained"
-                color="primary"
-              >
+              <BlueFilledButton data-testid="styled-button" variant="contained">
                 JOIN TODAY
               </BlueFilledButton>
             </div>
           </Grid>
           <Grid className={topImageContainer} item xs={12} sm={6}>
             <img
-              src={mainImage}
-              className={topImage}
-              alt="Three ladies sitting and working on their laptops"
+              {...{
+                src: mainImage,
+                className: topImage,
+                alt: 'Three ladies sitting and working on their laptops',
+              }}
             />
           </Grid>
           <Grid className={bookAndContributeContainer} item xs={12}>
@@ -764,9 +762,11 @@ export default function Home() {
                     Volunteer
                   </Typography>
                   <Typography
-                    variant="body1"
-                    className={carouselComponentParagraph}
-                    paragraph={true}
+                    {...{
+                      variant: 'body1',
+                      className: carouselComponentParagraph,
+                      paragraph: true,
+                    }}
                   >
                     Are you a UX or Web Dev bootcamp grad looking to expand your
                     skills? Have at least 5-7 hours a week to devote for
@@ -815,9 +815,11 @@ export default function Home() {
               </Typography>
               <form className={slackForm}>
                 <input
-                  type="text"
-                  placeholder="Your email address here"
-                  className={inputForm}
+                  {...{
+                    type: 'text',
+                    placeholder: 'Your email address here',
+                    className: inputForm,
+                  }}
                 />
                 <BlueFilledButton>SUBMIT</BlueFilledButton>
               </form>
