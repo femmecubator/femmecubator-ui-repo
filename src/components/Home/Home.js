@@ -711,9 +711,6 @@ export default function Home() {
                     Mentor
                   </Typography>
                   <Typography
-                    variant="body1"
-                    className={carouselComponentParagraph}
-                    paragraph={true}
                     {...{
                       variant: 'body1',
                       className: carouselComponentParagraph,
