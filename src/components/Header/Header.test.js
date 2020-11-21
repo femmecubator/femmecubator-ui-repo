@@ -45,12 +45,11 @@ describe('<Header />', () => {
   afterEach(cleanup);
 
   it('should display Femmecubator text logo', () => {
-    screen.getByText(/femmecubator/i);
+    screen.getByRole('link', { name: /femmecubator/i });
   });
 
   it('should display the general menu if user is not authenticated', async () => {
-    await waitFor(() => screen.getByText(/get involved/i));
-    screen.getByText(/get involved/i);
+    screen.getByRole('button', { name: /get involved/i });
 
     await waitFor(() => screen.getByText(/log in/i));
     screen.getByText(/log in/i);
