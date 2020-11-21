@@ -169,13 +169,28 @@ const useStyles = makeStyles(() => ({
     height: '549px',
     backgroundColor: '#F2F7FF',
     display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: '0px 20px',
+    '@media (max-width: 799px)': {
+      height: '466px',
+      padding: '0px',
+    },
+  },
+  carouselContainerDiv: {
+    display: 'flex',
+    alignItems: 'center',
     gap: '20px',
+    width: '100%',
+    alignItems: 'center',
+    padding: '0px 20px',
+    marginTop: '40px',
     justifyContent: 'space-around',
     '@media (max-width: 799px)': {
       height: '466px',
       padding: '0px',
+      marginTop: '25px',
     },
   },
   joinSlackContainer: {
@@ -454,7 +469,7 @@ const theme = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 799,
+      sm: 800,
       md: 960,
       lg: 1280,
       xl: 1920,
@@ -501,6 +516,7 @@ export default function Home() {
     inputForm,
     slackFormContainer,
     slackForm,
+    carouselContainerDiv,
   } = useStyles();
 
   return (
@@ -513,9 +529,7 @@ export default function Home() {
                 Hey Girl, Get Connected!
               </Typography>
               <Typography
-                variant="body1"
-                className={paragraph}
-                paragraph={true}
+                {...{ variant: 'body1', className: paragraph, paragraph: true }}
               >
                 From easy access to mentorship to gaining new skills, jumpstart
                 your career in tech through the Femmecubator community.
@@ -552,9 +566,11 @@ export default function Home() {
                   Book Mentors
                 </Typography>
                 <Typography
-                  variant="body1"
-                  className={bookAndContributeContainerParagraph}
-                  paragraph={true}
+                  {...{
+                    variant: 'body1',
+                    className: bookAndContributeContainerParagraph,
+                    paragraph: true,
+                  }}
                 >
                   Are you thinking of going into Design or Development career
                   tracks? Easily book time with mentors who can help with
@@ -578,9 +594,11 @@ export default function Home() {
                   Contribute content
                 </Typography>
                 <Typography
-                  variant="body1"
-                  className={bookAndContributeContainerParagraph}
-                  paragraph={true}
+                  {...{
+                    variant: 'body1',
+                    className: bookAndContributeContainerParagraph,
+                    paragraph: true,
+                  }}
                 >
                   Help grow this community with us! We’re looking for org
                   leaders from women empowerment groups or individuals who want
@@ -601,19 +619,23 @@ export default function Home() {
             </div>
           </Grid>
           <Grid
-            className={ourMissionContainer}
-            data-testid="background"
-            item
-            xs={12}
+            {...{
+              className: ourMissionContainer,
+              'data-testid': 'background',
+              item: true,
+              xs: 12,
+            }}
           >
             <div className={ourMissionComponent}>
               <Typography variant="h1" className={titleWhite}>
                 Our Mission
               </Typography>
               <Typography
-                variant="body1"
-                className={ourMissionComponentParagraph}
-                paragraph={true}
+                {...{
+                  variant: 'body1',
+                  className: ourMissionComponentParagraph,
+                  paragraph: true,
+                }}
               >
                 Femmecubator is an online community for Women of Color in tech.
                 Our goal is to connect you with resources and access to a
@@ -626,11 +648,16 @@ export default function Home() {
             </div>
           </Grid>
           <Grid
-            className={carouselContainer}
-            data-testid="home-carousel"
-            item
-            xs={12}
+            {...{
+              className: carouselContainer,
+              'data-testid': 'home-carousel',
+              item: true,
+              xs: 12,
+            }}
           >
+            <Typography variant="h2" className={getConnectedHeader}>
+              Get Involved
+            </Typography>
             {matches ? (
               <Carousel className="myCarousel">
                 <div className={carouselContainerComponents}>
@@ -642,9 +669,11 @@ export default function Home() {
                     Support
                   </Typography>
                   <Typography
-                    variant="body1"
-                    className={carouselComponentParagraph}
-                    paragraph={true}
+                    {...{
+                      variant: 'body1',
+                      className: carouselComponentParagraph,
+                      paragraph: true,
+                    }}
                   >
                     We are fundraising for our first mentorship program cohort
                     which will launch by March. Our goal is to mentor 10 Women
@@ -661,9 +690,11 @@ export default function Home() {
                     Volunteer
                   </Typography>
                   <Typography
-                    variant="body1"
-                    className={carouselComponentParagraph}
-                    paragraph={true}
+                    {...{
+                      variant: 'body1',
+                      className: carouselComponentParagraph,
+                      paragraph: true,
+                    }}
                   >
                     Are you a UX or Web Dev bootcamp grad looking to expand your
                     skills? Have at least 5-7 hours a week to devote for
@@ -686,6 +717,11 @@ export default function Home() {
                     variant="body1"
                     className={carouselComponentParagraph}
                     paragraph={true}
+                    {...{
+                      variant: 'body1',
+                      className: carouselComponentParagraph,
+                      paragraph: true,
+                    }}
                   >
                     Our members need you! If you are an industry expert in
                     Design or Development and can allot an hour a week for
@@ -698,7 +734,7 @@ export default function Home() {
                 </div>
               </Carousel>
             ) : (
-              <>
+              <div className={carouselContainerDiv}>
                 <div className={carouselContainerComponents}>
                   <Typography variant="h1" className={title}>
                     <FavoriteBorderOutlinedIcon
@@ -708,9 +744,11 @@ export default function Home() {
                     Support
                   </Typography>
                   <Typography
-                    variant="body1"
-                    className={carouselComponentParagraph}
-                    paragraph={true}
+                    {...{
+                      variant: 'body1',
+                      className: carouselComponentParagraph,
+                      paragraph: true,
+                    }}
                   >
                     We are fundraising for our first mentorship program cohort
                     which will launch by March. Our goal is to mentor 10 Women
@@ -749,9 +787,11 @@ export default function Home() {
                     Mentor
                   </Typography>
                   <Typography
-                    variant="body1"
-                    className={carouselComponentParagraph}
-                    paragraph={true}
+                    {...{
+                      variant: 'body1',
+                      className: carouselComponentParagraph,
+                      paragraph: true,
+                    }}
                   >
                     Our members need you! If you are an industry expert in
                     Design or Development and can allot an hour a week for
@@ -762,7 +802,7 @@ export default function Home() {
                     SIGN UP TO BE A MENTOR
                   </BlueOutlineButton>
                 </div>
-              </>
+              </div>
             )}
           </Grid>
           <Grid className={joinSlackContainer} item xs={12}>
