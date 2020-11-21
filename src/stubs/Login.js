@@ -5,12 +5,12 @@ import { isAuthCookiesExists } from 'utils/cookies';
 
 const Login = () => {
   const [state, setState] = useState({
-    userName: '',
+    userId: '',
     password: '',
     isLoggedIn: isAuthCookiesExists(),
   });
 
-  const { userName, password, isLoggedIn } = state;
+  const { userId, password, isLoggedIn } = state;
 
   const handleChange = ({ target: { name, value } }) => {
     setState((prevState) => ({
@@ -24,7 +24,7 @@ const Login = () => {
   }
 
   const submitHandler = () => {
-    request.post(API_PATH.LOGIN, { userName, password }).then(({ status }) => {
+    request.post(API_PATH.LOGIN, { userId, password }).then(({ status }) => {
       if (status === 200) {
         window.location.href = '/mentors';
       }
@@ -34,15 +34,15 @@ const Login = () => {
   return (
     <>
       <div style={{ paddingTop: '10px' }}>
-        <label htmlFor="userName" style={{ paddingRight: '10px' }}>
+        <label htmlFor="userId" style={{ paddingRight: '10px' }}>
           User Name:
         </label>
         <input
           {...{
             type: 'text',
-            name: 'userName',
-            id: 'userName',
-            value: userName,
+            name: 'userId',
+            id: 'userId',
+            value: userId,
             onChange: handleChange,
           }}
         />
