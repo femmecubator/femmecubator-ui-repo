@@ -7,7 +7,7 @@ import { GlobalProvider } from 'context/global';
 
 describe('<App />', () => {
   test('should render app component', () => {
-    const { getByText } = render(
+    const result = render(
       <Router>
         <AuthProvider>
           <GlobalProvider>
@@ -16,7 +16,7 @@ describe('<App />', () => {
         </AuthProvider>
       </Router>
     );
-    const linkElement = getByText(/Femmecubator/i);
-    expect(linkElement).toBeInTheDocument();
+
+    expect(result.container.querySelector('#root')).toBeTruthy;
   });
 });
