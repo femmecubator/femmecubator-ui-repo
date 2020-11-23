@@ -1,7 +1,7 @@
 .circle {
   height: 101px;
   width: 101px;
-  background-color: #bb6bd9;
+  background-color: #abf5d1;
   border-radius: 50%;
   display: inline-block;
 }
@@ -13,6 +13,22 @@
   color: #f2f7ff;
 }
 
-.registration-from-container {
-  color: #e5e5e5;
+.registration-form-container {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+}
+
+.registration-form {
+  display: inline-block;
+  float: left;
+  width: 70%;
+}
+
+.vl {
+  border-left: 1px solid #828282;
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  text-align: center;
 }
