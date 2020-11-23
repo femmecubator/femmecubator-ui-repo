@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
   },
   bookMentor: {
-    fontFamily: 'Work Sans, sans-serif',
+    fontFamily: 'Open Sans, sans-serif',
     fontSize: '28px',
     fontWeight: 700,
     paddingTop: '20px',

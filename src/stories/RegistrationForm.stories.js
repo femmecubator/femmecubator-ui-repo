@@ -1,5 +1,6 @@
 import React from 'react';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
+import './RegistrationForm.css';
 
 export default {
   title: 'Registration Form',
