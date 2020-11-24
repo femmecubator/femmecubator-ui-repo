@@ -28,7 +28,8 @@ const useStyles = makeStyles(() => ({
   header: {
     boxShadow: 'none',
     backgroundColor: '#400CCC',
-    '@media (min-width: 799px)': {
+    paddingLeft: '10px',
+    '@media (min-width: 1055px)': {
       paddingRight: '79px',
       paddingLeft: '118px',
     },
@@ -38,6 +39,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     size: '18px',
     marginLeft: '38px',
+    '@media (max-width: 1055px)': {
+      marginLeft: 20,
+    },
   },
   userButton: {
     fontFamily: 'Work Sans, sans-serif',
@@ -52,10 +56,19 @@ const useStyles = makeStyles(() => ({
   },
   menuDrawer: {
     marginRight: '19px',
+    '@media (max-width: 350px)': {
+      marginRight: 0,
+    },
   },
   drawerContainer: {
     height: '100%',
+    width: 254,
     padding: '20px',
+  },
+  drawerChoice: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: 14,
+    fontWeight: 600,
   },
   joinBtn: {
     border: '1px solid white',
@@ -71,6 +84,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: 600,
     fontSize: '24px',
     color: '#FFFEFE',
+    '@media (max-width: 350px)': {
+      fontSize: '18px',
+    },
   },
   menuButtonsContainer: {
     display: 'flex',
@@ -91,6 +107,7 @@ export default function Header() {
     userButton,
     userIcon,
     drawerContainer,
+    drawerChoice,
   } = useStyles();
 
   const location = useLocation();
@@ -127,6 +144,11 @@ export default function Header() {
     }
   }, [auth]);
 
+  const handleDrawerOpen = () =>
+    setState((prevState) => ({ ...prevState, drawerOpen: true }));
+  const handleDrawerClose = () =>
+    setState((prevState) => ({ ...prevState, drawerOpen: false }));
+
   const femmecubatorLogo = (
     <Typography variant="h1" className={title}>
       <Link
@@ -144,46 +166,58 @@ export default function Header() {
 
   const getMenuButtons = () => {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
-      return menuHeaders
-        .filter(({ href }) => href !== '/logout' && href !== '/account')
-        .map(({ id, href, label }) => {
-          let color = label === 'Join Us!' ? '#B9EBEC' : 'white';
+      return (
+        menuHeaders
+          .filter(({ href }) => href !== '/' && href !== '/register')
+          // .filter(({ href }) => href !== '/logout' && href !== '/account')
+          .map(({ id, href, label }) => {
+            let color = label === 'Donate' ? '#B9EBEC' : 'white';
 
-          return (
-            <div key={id}>
-              <Button
-                {...{
-                  color: 'inherit',
-                  to: href,
-                  className: menuButton,
-                  style: { color },
-                  component: RouterLink,
-                  'aria-label': label,
-                }}
-              >
-                <span aria-hidden="true">{label}</span>
-              </Button>
-            </div>
-          );
-        });
+            return (
+              <div key={id}>
+                <Button
+                  {...{
+                    color: 'inherit',
+                    to: href,
+                    className: menuButton,
+                    style: { color },
+                    component: RouterLink,
+                    'aria-label': label,
+                  }}
+                >
+                  <span aria-hidden="true">{label}</span>
+                </Button>
+              </div>
+            );
+          })
+      );
     }
   };
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
-      return menuHeaders.map(({ id, href: to, label }) => (
-        <Link
-          {...{
-            component: RouterLink,
-            to,
-            color: 'inherit',
-            style: { textDecoration: 'none' },
-            key: id,
-          }}
-        >
-          <MenuItem>{label}</MenuItem>
-        </Link>
-      ));
+      return menuHeaders
+        .filter(
+          ({ href }) =>
+            href === '/' ||
+            href === '/volunteer' ||
+            href === '/login' ||
+            href === '/register'
+        )
+        .map(({ id, href: to, label }) => (
+          <Link
+            {...{
+              component: RouterLink,
+              to,
+              color: 'inherit',
+              style: { textDecoration: 'none' },
+              key: id,
+              onClick: handleDrawerClose,
+            }}
+          >
+            <MenuItem className={drawerChoice}>{label}</MenuItem>
+          </Link>
+        ));
     }
   };
 
@@ -254,11 +288,6 @@ export default function Header() {
   };
 
   const displayMobile = () => {
-    const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
-    const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
-
     return (
       <Toolbar>
         <IconButton
