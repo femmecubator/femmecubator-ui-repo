@@ -14,6 +14,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
@@ -81,7 +82,7 @@ const useStyles = makeStyles(() => ({
   arrowIcon: {
     position: 'absolute',
     left: 219,
-    top: 31,
+    top: 17,
     cursor: 'pointer',
   },
   joinBtn: {
@@ -105,6 +106,25 @@ const useStyles = makeStyles(() => ({
   menuButtonsContainer: {
     display: 'flex',
   },
+  accountPopup: {
+    marginTop: 14,
+  },
+  accountChoicesContainer: {
+    margin: '-8px 0',
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#F2F7FF',
+    width: 134,
+  },
+  accountChoice: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: 14,
+    fontWeight: 600,
+    color: '#232735',
+    padding: 0,
+    margin: '8px 22px',
+  },
+  logOutIcon: { fontSize: 16, marginRight: 5 },
 }));
 
 const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
@@ -123,6 +143,10 @@ export default function Header() {
     drawerContainer,
     drawerChoice,
     arrowIcon,
+    accountPopup,
+    accountChoicesContainer,
+    accountChoice,
+    logOutIcon,
   } = useStyles();
 
   const location = useLocation();
@@ -163,6 +187,10 @@ export default function Header() {
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
   const handleDrawerClose = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: false }));
+  const handleAccountOpen = (e) =>
+    setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
+  const handleAccountClose = () =>
+    setState((prevState) => ({ ...prevState, anchorEl: null }));
 
   const femmecubatorLogo = (
     <Typography variant="h1" className={title}>
@@ -182,7 +210,14 @@ export default function Header() {
   const getMenuButtons = () => {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
-        .filter(({ href }) => href !== '/' && href !== '/register')
+        .filter(
+          ({ href }) =>
+            href !== '/' &&
+            href !== '/register' &&
+            href !== '/notifications' &&
+            href !== '/logout' &&
+            href !== '/settings'
+        )
         .map(({ id, href, label }) => {
           let color = label === 'Donate' ? '#B9EBEC' : 'white';
 
@@ -208,35 +243,42 @@ export default function Header() {
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
-      return menuHeaders
-        .filter(
+      let filteredChoices;
+
+      if (auth.isLoggedIn()) {
+        filteredChoices = menuHeaders.filter(
+          ({ href }) => href !== '/notifications'
+        );
+      } else {
+        filteredChoices = menuHeaders.filter(
           ({ href }) =>
-            href === '/' ||
-            href === '/volunteer' ||
-            href === '/login' ||
-            href === '/register'
-        )
-        .map(({ id, href: to, label }) => (
-          <Link
-            {...{
-              component: RouterLink,
-              to,
-              color: 'inherit',
-              style: { textDecoration: 'none' },
-              key: id,
-              onClick: handleDrawerClose,
-            }}
-          >
-            <MenuItem className={drawerChoice}>{label}</MenuItem>
-          </Link>
-        ));
+            href !== '/listings' && href !== '/mentors' && href !== '/donate'
+        );
+      }
+      return filteredChoices.map(({ id, href: to, label }) => (
+        <Link
+          {...{
+            component: RouterLink,
+            to,
+            color: 'inherit',
+            style: { textDecoration: 'none' },
+            key: id,
+            onClick: handleDrawerClose,
+          }}
+        >
+          <MenuItem className={drawerChoice}>
+            {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
+            {label}
+          </MenuItem>
+        </Link>
+      ));
     }
   };
 
   const getAccountChoices = () => {
     if (menuHeaders && menuHeaders.length) {
       return menuHeaders
-        .filter(({ href }) => href === '/logout' || href === '/account')
+        .filter(({ href }) => href === '/logout' || href === '/settings')
         .map(({ id, href: to, label }) => {
           return (
             <Link
@@ -246,9 +288,13 @@ export default function Header() {
                 to,
                 color: 'inherit',
                 style: { textDecoration: 'none' },
+                onClick: handleAccountClose,
               }}
             >
-              <MenuItem>{label}</MenuItem>
+              <MenuItem className={accountChoice}>
+                {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
+                {label}
+              </MenuItem>
             </Link>
           );
         });
@@ -256,11 +302,6 @@ export default function Header() {
   };
 
   const displayDesktop = () => {
-    const handleAccountOpen = (e) =>
-      setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
-    const handleAccountClose = () =>
-      setState((prevState) => ({ ...prevState, anchorEl: null }));
-
     return (
       <Toolbar>
         {femmecubatorLogo}
@@ -284,13 +325,19 @@ export default function Header() {
               <Menu
                 {...{
                   id: 'simple-menu',
+                  className: accountPopup,
                   open: !!anchorEl,
                   onClose: handleAccountClose,
                   keepMounted: true,
                   anchorEl,
+                  getContentAnchorEl: null,
+                  anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
+                  transformOrigin: { vertical: 'top', horizontal: 'center' },
                 }}
               >
-                {getAccountChoices()}
+                <div className={accountChoicesContainer}>
+                  {getAccountChoices()}
+                </div>
               </Menu>
             </>
           )}

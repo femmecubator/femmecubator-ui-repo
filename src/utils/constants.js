@@ -3,7 +3,7 @@ const DEFAULT_COMMON_MENU = {
     {
       id: 1,
       label: 'Listings',
-      href: '/Listings',
+      href: '/listings',
     },
     {
       id: 2,
