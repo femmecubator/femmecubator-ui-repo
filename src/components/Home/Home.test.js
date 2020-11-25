@@ -35,7 +35,7 @@ describe('<Home />', () => {
 
   it('should display the top Image', () => {
     screen.getByRole('img', {
-      name: /three ladies sitting and working on their laptops/i,
+      name: /Three women of color with laptops working together in an open office./i,
     });
   });
 
