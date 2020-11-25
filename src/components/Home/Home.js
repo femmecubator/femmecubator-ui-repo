@@ -144,12 +144,10 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '20px',
     '@media (max-width: 799px)': {
       height: '218px',
       flexDirection: 'column',
       padding: '10px 0px',
-      gap: '0px',
     },
   },
   ourMissionContainer: {
@@ -181,7 +179,6 @@ const useStyles = makeStyles(() => ({
   carouselContainerDiv: {
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
     width: '100%',
     padding: '0px 20px',
     marginTop: '40px',
@@ -214,7 +211,6 @@ const useStyles = makeStyles(() => ({
     marginBottom: '30px',
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
     '@media (max-width: 799px)': {
       marginBottom: '15px',
       textAlign: 'center',
@@ -229,7 +225,6 @@ const useStyles = makeStyles(() => ({
     marginBottom: '30px',
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
     '@media (max-width: 799px)': {
       marginBottom: '15px',
     },
@@ -274,8 +269,10 @@ const useStyles = makeStyles(() => ({
   },
   workathonSVG: {
     height: '100%',
+    marginRight: '20px',
     '@media (max-height: 799px)': {
       textAlign: 'center',
+      marginRight: '0px',
     },
   },
   meetOnSlackSVG: {
@@ -373,12 +370,15 @@ const useStyles = makeStyles(() => ({
   },
   partnerSVG: {
     color: '#EB5757',
+    marginRight: '15px',
   },
   mentorSVG: {
     color: '#F2994A',
+    marginRight: '15px',
   },
   volunteerSVG: {
     color: '#719AF5',
+    marginRight: '15px',
   },
   greenCircle: {
     width: '60px',
@@ -389,15 +389,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: '8%',
+    '@media (max-width: 799px)': {
+      marginBottom: '27px',
+    },
   },
   bookMentorsContainer: {
     display: 'flex',
     padding: '20px',
-    gap: '8%',
     '@media (max-width: 799px)': {
       flexDirection: 'column',
       alignItems: 'center',
-      gap: '25px',
     },
   },
   bookAndContributeContainerSVG: {
@@ -449,7 +451,6 @@ const useStyles = makeStyles(() => ({
   slackFormContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '10px',
     justifyContent: 'flex-start',
     '@media (max-width: 799px)': {
       width: '80%',
@@ -458,6 +459,7 @@ const useStyles = makeStyles(() => ({
   },
   slackForm: {
     width: '100%',
+    marginTop: '10px',
     '@media (max-width: 799px)': {
       alignItems: 'center',
     },
@@ -524,7 +526,7 @@ export default function Home() {
         <Grid container>
           <Grid className={introContainer} item xs={12} sm={6}>
             <div className={firstContainerDiv}>
-              <Typography variant="h1" className={getConnectedHeader}>
+              <Typography variant="h2" className={getConnectedHeader}>
                 Hey Girl, Get Connected!
               </Typography>
               <Typography
@@ -557,7 +559,7 @@ export default function Home() {
               </div>
               <div className={bookAndContributeComponents}>
                 <Typography
-                  variant="h1"
+                  variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
                   Book Mentors
@@ -585,7 +587,7 @@ export default function Home() {
               </div>
               <div className={bookAndContributeComponents}>
                 <Typography
-                  variant="h1"
+                  variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
                   Contribute content
@@ -624,7 +626,7 @@ export default function Home() {
             }}
           >
             <div className={ourMissionComponent}>
-              <Typography variant="h1" className={titleWhite}>
+              <Typography variant="h2" className={titleWhite}>
                 Our Mission
               </Typography>
               <Typography
@@ -656,9 +658,9 @@ export default function Home() {
               Get Involved
             </Typography>
             {matches ? (
-              <Carousel className="myCarousel">
+              <Carousel navButtonsAlwaysInvisible={true} className="myCarousel">
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <FavoriteBorderOutlinedIcon
                       className={partnerSVG}
                       fontSize="large"
@@ -682,7 +684,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <PanToolIcon className={volunteerSVG} fontSize="large" />
                     Volunteer
                   </Typography>
@@ -703,7 +705,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <SupervisorAccountIcon
                       className={mentorSVG}
                       fontSize="large"
@@ -730,7 +732,7 @@ export default function Home() {
             ) : (
               <div className={carouselContainerDiv}>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <FavoriteBorderOutlinedIcon
                       className={partnerSVG}
                       fontSize="large"
@@ -754,7 +756,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <PanToolIcon className={volunteerSVG} fontSize="large" />
                     Volunteer
                   </Typography>
@@ -775,7 +777,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <SupervisorAccountIcon
                       className={mentorSVG}
                       fontSize="large"
