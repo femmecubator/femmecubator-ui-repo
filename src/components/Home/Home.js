@@ -66,11 +66,11 @@ const BlueOutlineButton = withStyles({
   root: {
     background: 'transparent',
     borderRadius: '4px',
-    border: '1px solid #026FE4',
+    border: '1px solid #016EE3',
     height: '45px',
     padding: '10px 21px',
     marginTop: 'auto',
-    color: '#026FE4',
+    color: '#016EE3',
     boxShadow: 'none',
     '&:hover': {
       background: '#550CCC',
@@ -140,16 +140,14 @@ const useStyles = makeStyles(() => ({
   },
   workathonContainer: {
     height: '180px',
-    backgroundColor: '#BB6BD9',
+    backgroundColor: '#A454C2',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '20px',
     '@media (max-width: 799px)': {
       height: '218px',
       flexDirection: 'column',
       padding: '10px 0px',
-      gap: '0px',
     },
   },
   ourMissionContainer: {
@@ -181,7 +179,6 @@ const useStyles = makeStyles(() => ({
   carouselContainerDiv: {
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
     width: '100%',
     padding: '0px 20px',
     marginTop: '40px',
@@ -214,7 +211,6 @@ const useStyles = makeStyles(() => ({
     marginBottom: '30px',
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
     '@media (max-width: 799px)': {
       marginBottom: '15px',
       textAlign: 'center',
@@ -229,7 +225,6 @@ const useStyles = makeStyles(() => ({
     marginBottom: '30px',
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
     '@media (max-width: 799px)': {
       marginBottom: '15px',
     },
@@ -274,8 +269,10 @@ const useStyles = makeStyles(() => ({
   },
   workathonSVG: {
     height: '100%',
+    marginRight: '20px',
     '@media (max-height: 799px)': {
       textAlign: 'center',
+      marginRight: '0px',
     },
   },
   meetOnSlackSVG: {
@@ -373,12 +370,15 @@ const useStyles = makeStyles(() => ({
   },
   partnerSVG: {
     color: '#EB5757',
+    marginRight: '15px',
   },
   mentorSVG: {
     color: '#F2994A',
+    marginRight: '15px',
   },
   volunteerSVG: {
     color: '#719AF5',
+    marginRight: '15px',
   },
   greenCircle: {
     width: '60px',
@@ -389,15 +389,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: '8%',
+    '@media (max-width: 799px)': {
+      marginBottom: '27px',
+    },
   },
   bookMentorsContainer: {
     display: 'flex',
     padding: '20px',
-    gap: '8%',
     '@media (max-width: 799px)': {
       flexDirection: 'column',
       alignItems: 'center',
-      gap: '25px',
     },
   },
   bookAndContributeContainerSVG: {
@@ -449,7 +451,6 @@ const useStyles = makeStyles(() => ({
   slackFormContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '10px',
     justifyContent: 'flex-start',
     '@media (max-width: 799px)': {
       width: '80%',
@@ -458,6 +459,7 @@ const useStyles = makeStyles(() => ({
   },
   slackForm: {
     width: '100%',
+    marginTop: '10px',
     '@media (max-width: 799px)': {
       alignItems: 'center',
     },
@@ -524,7 +526,7 @@ export default function Home() {
         <Grid container>
           <Grid className={introContainer} item xs={12} sm={6}>
             <div className={firstContainerDiv}>
-              <Typography variant="h1" className={getConnectedHeader}>
+              <Typography variant="h2" className={getConnectedHeader}>
                 Hey Girl, Get Connected!
               </Typography>
               <Typography
@@ -543,7 +545,8 @@ export default function Home() {
               {...{
                 src: mainImage,
                 className: topImage,
-                alt: 'Three ladies sitting and working on their laptops',
+                alt:
+                  'Three women of color with laptops working together in an open office.',
               }}
             />
           </Grid>
@@ -557,7 +560,7 @@ export default function Home() {
               </div>
               <div className={bookAndContributeComponents}>
                 <Typography
-                  variant="h1"
+                  variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
                   Book Mentors
@@ -585,7 +588,7 @@ export default function Home() {
               </div>
               <div className={bookAndContributeComponents}>
                 <Typography
-                  variant="h1"
+                  variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
                   Contribute content
@@ -607,7 +610,14 @@ export default function Home() {
           <Grid className={workathonContainer} item xs={12}>
             <WorkathonSVG className={workathonSVG} />
             <div className={workathonContainerDiv}>
-              <Typography variant="h3" className={registerWebmaking}>
+              <Typography
+                {...{
+                  'aria-label': 'Register for webmaking workathon',
+                  'aria-required': true,
+                  variant: 'h3',
+                  className: registerWebmaking,
+                }}
+              >
                 REGISTER FOR WEBMAKING WORKATHON
               </Typography>
               <Typography variant="body1" className={letGrow}>
@@ -624,7 +634,7 @@ export default function Home() {
             }}
           >
             <div className={ourMissionComponent}>
-              <Typography variant="h1" className={titleWhite}>
+              <Typography variant="h2" className={titleWhite}>
                 Our Mission
               </Typography>
               <Typography
@@ -634,10 +644,12 @@ export default function Home() {
                   paragraph: true,
                 }}
               >
-                Femmecubator is an online community for Women of Color in tech.
-                Our goal is to connect you with resources and access to a
-                network of industry-experts to help fast track your career as
-                you transition to your new role.
+                Technology needs more women of color at the table. Femmecubator
+                is an online community for women of color (WOC), including
+                self-identified and non-binary individuals, who want to
+                transform their careers - and the world - through tech. With
+                access to resources and a supportive network of leaders, we’ll
+                help you find your next step in tech.
               </Typography>
               <WhiteOutlineButton variant="contained" color="primary">
                 JOIN TODAY
@@ -656,9 +668,9 @@ export default function Home() {
               Get Involved
             </Typography>
             {matches ? (
-              <Carousel className="myCarousel">
+              <Carousel navButtonsAlwaysInvisible={true} className="myCarousel">
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <FavoriteBorderOutlinedIcon
                       className={partnerSVG}
                       fontSize="large"
@@ -682,7 +694,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <PanToolIcon className={volunteerSVG} fontSize="large" />
                     Volunteer
                   </Typography>
@@ -703,7 +715,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <SupervisorAccountIcon
                       className={mentorSVG}
                       fontSize="large"
@@ -730,7 +742,7 @@ export default function Home() {
             ) : (
               <div className={carouselContainerDiv}>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <FavoriteBorderOutlinedIcon
                       className={partnerSVG}
                       fontSize="large"
@@ -754,7 +766,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <PanToolIcon className={volunteerSVG} fontSize="large" />
                     Volunteer
                   </Typography>
@@ -775,7 +787,7 @@ export default function Home() {
                   </BlueOutlineButton>
                 </div>
                 <div className={carouselContainerComponents}>
-                  <Typography variant="h1" className={title}>
+                  <Typography variant="h3" className={title}>
                     <SupervisorAccountIcon
                       className={mentorSVG}
                       fontSize="large"
@@ -802,7 +814,7 @@ export default function Home() {
             )}
           </Grid>
           <Grid className={joinSlackContainer} item xs={12}>
-            <MeetOnSlack className={meetOnSlackSVG} />
+            <MeetOnSlack aria-label="Whatever" className={meetOnSlackSVG} />
             <div className={slackFormContainer}>
               <Typography
                 variant="h2"
