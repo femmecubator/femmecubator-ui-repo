@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
@@ -63,12 +64,25 @@ const useStyles = makeStyles(() => ({
   drawerContainer: {
     height: '100%',
     width: 254,
-    padding: '20px',
+    paddingTop: 86,
+    backgroundColor: '#F2F7FF',
   },
   drawerChoice: {
     fontFamily: 'Open Sans, sans-serif',
     fontSize: 14,
     fontWeight: 600,
+    color: '#232735',
+    width: 190,
+    height: 40,
+    padding: '8px, 0',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  arrowIcon: {
+    position: 'absolute',
+    left: 219,
+    top: 31,
+    cursor: 'pointer',
   },
   joinBtn: {
     border: '1px solid white',
@@ -108,6 +122,7 @@ export default function Header() {
     userIcon,
     drawerContainer,
     drawerChoice,
+    arrowIcon,
   } = useStyles();
 
   const location = useLocation();
@@ -166,31 +181,28 @@ export default function Header() {
 
   const getMenuButtons = () => {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
-      return (
-        menuHeaders
-          .filter(({ href }) => href !== '/' && href !== '/register')
-          // .filter(({ href }) => href !== '/logout' && href !== '/account')
-          .map(({ id, href, label }) => {
-            let color = label === 'Donate' ? '#B9EBEC' : 'white';
+      return menuHeaders
+        .filter(({ href }) => href !== '/' && href !== '/register')
+        .map(({ id, href, label }) => {
+          let color = label === 'Donate' ? '#B9EBEC' : 'white';
 
-            return (
-              <div key={id}>
-                <Button
-                  {...{
-                    color: 'inherit',
-                    to: href,
-                    className: menuButton,
-                    style: { color },
-                    component: RouterLink,
-                    'aria-label': label,
-                  }}
-                >
-                  <span aria-hidden="true">{label}</span>
-                </Button>
-              </div>
-            );
-          })
-      );
+          return (
+            <div key={id}>
+              <Button
+                {...{
+                  color: 'inherit',
+                  to: href,
+                  className: menuButton,
+                  style: { color },
+                  component: RouterLink,
+                  'aria-label': label,
+                }}
+              >
+                <span aria-hidden="true">{label}</span>
+              </Button>
+            </div>
+          );
+        });
     }
   };
 
@@ -305,6 +317,7 @@ export default function Header() {
         </IconButton>
 
         <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
+          <ArrowForwardIcon className={arrowIcon} onClick={handleDrawerClose} />
           <div className={drawerContainer}>{getDrawerChoices()}</div>
         </Drawer>
 
