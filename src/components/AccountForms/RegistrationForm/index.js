@@ -81,6 +81,12 @@ const FORM_SUBTITLE = 'Have an existing account?';
 
 const RegistrationForm = () => {
   const classes = useStyles();
+  const { register, handleSubmit, errors } = useForm({
+    revalidateMode: 'onChange',
+  });
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
   return (
     <>
       <div className={classes.root}>
@@ -93,39 +99,99 @@ const RegistrationForm = () => {
               <Typography variant="body2" className={classes.formSubtitle}>
                 {FORM_SUBTITLE} <Link to="/login">Login</Link>
               </Typography>
-              <form>
+              <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                  <TextField label="First Name" variant="outlined" />
                   <TextField
                     {...{
+                      label: 'First Name',
+                      variant: 'outlined',
+                      name: 'firstName',
+                      inputRef: register({ required: true }),
+                      error: errors.firstName,
+                      helperText: errors.firstName && 'First name is required',
+                    }}
+                  />
+                  <TextField
+                    {...{
+                      inputRef: register({ required: true }),
+                      name: 'lastName',
                       label: 'Last Name',
                       variant: 'outlined',
                       className: classes.textFieldSpacing,
+                      error: errors.lastName,
+                      helperText: errors.lastName && 'Last name is required',
                     }}
                   />
                 </div>
                 <div className={classes.inputSpacing}>
-                  <TextField label="Preferred Location" variant="outlined" />
+                  <TextField
+                    {...{
+                      label: 'Preferred Location',
+                      variant: 'outlined',
+                      inputRef: register({ required: true }),
+                      name: 'preferredLocation',
+                      error: errors.preferredLocation,
+                      helperText:
+                        errors.preferredLocation &&
+                        'Preferred Location is required',
+                    }}
+                  />
                 </div>
                 <div className={classes.inputSpacing}>
-                  <TextField label="Email" variant="outlined" />
+                  <TextField
+                    {...{
+                      label: 'Email',
+                      variant: 'outlined',
+                      inputRef: register({
+                        required: 'Email is required',
+                        pattern: {
+                          value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                          message: 'Invalid email format',
+                        },
+                      }),
+                      name: 'email',
+                      error: errors.email,
+                      helperText: errors.email && errors.email.message,
+                    }}
+                  />
                 </div>
                 <div className={classes.inputSpacing}>
-                  <TextField label="Username" variant="outlined" />
+                  <TextField
+                    {...{
+                      label: 'Username',
+                      variant: 'outlined',
+                      inputRef: register({ required: true }),
+                      name: 'userName',
+                      error: errors.userName,
+                      helperText: errors.userName && 'Username is required',
+                    }}
+                  />
                 </div>
                 <div className={classes.inputSpacing}>
-                  <TextField label="Password" variant="outlined" />
+                  <TextField
+                    {...{
+                      label: 'Password',
+                      variant: 'outlined',
+                      inputRef: register,
+                      name: 'password',
+                      type: 'password',
+                    }}
+                  />
                   <TextField
                     {...{
                       label: 'Retype Password',
                       variant: 'outlined',
                       className: classes.textFieldSpacing,
+                      inputRef: register,
+                      name: 'retypePassword',
+                      type: 'password',
                     }}
                   />
                 </div>
                 <div>
                   <Button
                     {...{
+                      type: 'submit',
                       variant: 'contained',
                       color: 'primary',
                       className: classes.button,
