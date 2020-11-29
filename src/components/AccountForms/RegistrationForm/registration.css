@@ -17,16 +17,18 @@
   position: relative;
   width: 1000px;
   height: 600px;
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .registration-form {
-  display: inline-block;
   float: left;
-  width: 70%;
+  width: 65%;
 }
 
 .vl {
-  border-left: 1px solid #828282;
+  border-left: 1px solid #bdbdbd;
   position: absolute;
   display: inline-block;
   height: 100%;

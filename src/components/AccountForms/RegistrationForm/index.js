@@ -3,7 +3,9 @@ import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
+import { Typography, TextField, Button } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,37 +37,115 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     paddingTop: '20px',
   },
+  formTitle: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '28px',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    lineHeight: '38px',
+    letterSpacing: '0em',
+    textAlign: 'left',
+  },
+  formSubtitle: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '24px',
+    letterSpacing: '0px',
+    textAlign: 'left',
+    paddingBottom: '25px',
+  },
+  inputSpacing: {
+    marginTop: '8px',
+  },
+  textFieldSpacing: {
+    marginLeft: '8px',
+  },
+  schoolIcon: {
+    height: '56.11px',
+    width: '39.28px',
+    color: '#550CCC',
+  },
+  button: {
+    marginTop: '48px',
+    float: 'right',
+    marginRight: '185px',
+    backgroundColor: '#026FE4',
+    color: '#FFFFFF',
+  },
 }));
+
 const FORM_TITLE = 'Create an account';
 const FORM_SUBTITLE = 'Have an existing account?';
+
 const RegistrationForm = () => {
   const classes = useStyles();
-
   return (
     <>
       <div className={classes.root}>
         <Paper className={classes.paperContainer}>
           <div className="registration-form-container">
             <div className="registration-form">
-              <div>{FORM_TITLE}</div>
-              <div>{FORM_SUBTITLE}</div>
+              <Typography variant="h2" className={classes.formTitle}>
+                {FORM_TITLE}
+              </Typography>
+              <Typography variant="body2" className={classes.formSubtitle}>
+                {FORM_SUBTITLE} <Link to="/login">Login</Link>
+              </Typography>
+              <form>
+                <div>
+                  <TextField label="First Name" variant="outlined" />
+                  <TextField
+                    {...{
+                      label: 'Last Name',
+                      variant: 'outlined',
+                      className: classes.textFieldSpacing,
+                    }}
+                  />
+                </div>
+                <div className={classes.inputSpacing}>
+                  <TextField label="Preferred Location" variant="outlined" />
+                </div>
+                <div className={classes.inputSpacing}>
+                  <TextField label="Email" variant="outlined" />
+                </div>
+                <div className={classes.inputSpacing}>
+                  <TextField label="Username" variant="outlined" />
+                </div>
+                <div className={classes.inputSpacing}>
+                  <TextField label="Password" variant="outlined" />
+                  <TextField
+                    {...{
+                      label: 'Retype Password',
+                      variant: 'outlined',
+                      className: classes.textFieldSpacing,
+                    }}
+                  />
+                </div>
+                <div>
+                  <Button
+                    {...{
+                      variant: 'contained',
+                      color: 'primary',
+                      className: classes.button,
+                    }}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </form>
             </div>
             <div className="vl">
-              <div style={{ top: '25%', position: 'relative' }}>
+              <div style={{ top: '15%', position: 'relative' }}>
                 <div className="circle">
                   <div className="center">
-                    <SchoolIcon
-                      style={{
-                        height: '56.11px',
-                        width: '39.28px',
-                        color: '#550CCC',
-                      }}
-                    />
+                    <SchoolIcon className={classes.schoolIcon} />
                   </div>
                 </div>
                 <div>
                   <Typography variant="h2" className={classes.bookMentor}>
-                    Book Mentors G
+                    Book Mentors
                   </Typography>
                   <Typography
                     variant="body1"

@@ -10,6 +10,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-ga": "^3.2.0",
+    "react-hook-form": "^6.12.0",
     "react-material-ui-carousel": "^2.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
