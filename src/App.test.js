@@ -5,6 +5,7 @@ import { AuthProvider } from './context/auth';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 
+
 describe('<App />', () => {
   test('should render app component', () => {
     const result = render(
