@@ -1,0 +1,11 @@
+## file extensions
+*.*
+!*.js
+!*.jsx
+
+/node_modules
+/build
+/public
+/femmecubator
+/storybook-static
+/coverage
