@@ -2,7 +2,6 @@ import React from 'react';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
-import { mockServer } from 'mock/mockServer';
 import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
