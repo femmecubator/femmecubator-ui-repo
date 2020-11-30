@@ -178,8 +178,8 @@ export default function Header() {
             to,
             color: 'inherit',
             style: { textDecoration: 'none' },
-            key: id,
           }}
+          key={id}
         >
           <MenuItem>{label}</MenuItem>
         </Link>
@@ -194,8 +194,8 @@ export default function Header() {
         .map(({ id, href: to, label }) => {
           return (
             <Link
+              key={id}
               {...{
-                key: id,
                 component: RouterLink,
                 to,
                 color: 'inherit',
