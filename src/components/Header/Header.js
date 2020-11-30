@@ -265,6 +265,7 @@ export default function Header() {
             key: id,
             onClick: handleDrawerClose,
           }}
+          key={id}
         >
           <MenuItem className={drawerChoice}>
             {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
@@ -282,8 +283,8 @@ export default function Header() {
         .map(({ id, href: to, label }) => {
           return (
             <Link
+              key={id}
               {...{
-                key: id,
                 component: RouterLink,
                 to,
                 color: 'inherit',

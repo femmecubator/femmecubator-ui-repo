@@ -4,16 +4,6 @@ import Home from 'components/Home/Home';
 import { act } from 'react-dom/test-utils';
 import secondImage from './assets/secondimage.jpg';
 
-const resizeToMobile = () => {
-  global.innerWidth = 600;
-  global.dispatchEvent(new Event('resize'));
-};
-
-const resizeToDesktop = () => {
-  global.innerWidth = 900;
-  global.dispatchEvent(new Event('resize'));
-};
-
 describe('<Home />', () => {
   beforeEach(() => {
     act(() => {

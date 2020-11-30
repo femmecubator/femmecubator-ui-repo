@@ -527,13 +527,14 @@ export default function Home() {
           <Grid className={introContainer} item xs={12} sm={6}>
             <div className={firstContainerDiv}>
               <Typography variant="h2" className={getConnectedHeader}>
-                Hey Girl, Get Connected!
+                Hey girl, get connected!
               </Typography>
               <Typography
                 {...{ variant: 'body1', className: paragraph, paragraph: true }}
               >
-                From easy access to mentorship to gaining new skills, jumpstart
-                your career in tech through the Femmecubator community.
+                From offering easy access to mentorship to helping you gain new
+                skills, the Femmecubator community can jumpstart your career in
+                tech.
               </Typography>
               <BlueFilledButton data-testid="styled-button" variant="contained">
                 JOIN TODAY
@@ -563,7 +564,7 @@ export default function Home() {
                   variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
-                  Book Mentors
+                  Book mentors
                 </Typography>
                 <Typography
                   {...{
@@ -600,9 +601,9 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Help grow this community with us! We’re looking for org
-                  leaders from women empowerment groups or individuals who want
-                  to take part in research and creating content.
+                  Grow this community with us! We’re looking for org leaders
+                  from women empowerment groups or individuals who want to take
+                  part in research and creating content.
                 </Typography>
               </div>
             </div>
@@ -618,10 +619,10 @@ export default function Home() {
                   className: registerWebmaking,
                 }}
               >
-                REGISTER FOR WEBMAKING WORKATHON
+                Register for our webmaking workathon
               </Typography>
               <Typography variant="body1" className={letGrow}>
-                Let’s grow this community together.
+                Stay tuned for more updates by joining our Slack channel.
               </Typography>
             </div>
           </Grid>
@@ -635,7 +636,7 @@ export default function Home() {
           >
             <div className={ourMissionComponent}>
               <Typography variant="h2" className={titleWhite}>
-                Our Mission
+                Our mission
               </Typography>
               <Typography
                 {...{
@@ -665,7 +666,7 @@ export default function Home() {
             }}
           >
             <Typography variant="h2" className={getConnectedHeader}>
-              Get Involved
+              Get involved
             </Typography>
             {matches ? (
               <Carousel navButtonsAlwaysInvisible={true} className="myCarousel">
@@ -820,7 +821,7 @@ export default function Home() {
                 variant="h2"
                 className={bookAndContributeComponentTitle}
               >
-                Join the community on Slack.
+                Join the community on Slack
               </Typography>
               <form className={slackForm}>
                 <input
