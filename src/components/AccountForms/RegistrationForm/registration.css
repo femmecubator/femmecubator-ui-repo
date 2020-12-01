@@ -15,11 +15,11 @@
 
 .registration-form-container {
   position: relative;
-  width: 1000px;
-  height: 600px;
-  margin-left: 40px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  width: 51.5625em;
+  height: 31.25em;
+  margin-left: 2.5em;
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
 }
 
 .registration-form {
