@@ -23,13 +23,23 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0em',
     color: theme.primaryDark,
   },
+  loginFormContainer: {
+    maxWidth: '320px',
+    width: '100%',
+  },
   loginForm: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    
   },
-  inputSpacing: {
-    margin: '6.25% 0',
+  input: {
+    height: '31px',
+  },
+  loginInput: {
+    margin: '4% 0',
+    minWidth: '100%',
   },
   forgotPasswordLink: {
     marginBottom: '6.25%',
@@ -69,7 +79,7 @@ const useStyles = makeStyles(() => ({
       display: 'inline-block',
       height: '0.5em',
       verticalAlign: 'bottom',
-      width: '35%',
+      width: '24%',
       marginRight: '5px',
       marginLeft: '-100%',
       borderTop: `1px solid ${theme.primaryDark}`,
@@ -79,7 +89,7 @@ const useStyles = makeStyles(() => ({
       display: 'inline-block',
       height: '0.5em',
       verticalAlign: 'bottom',
-      width: '35%',
+      width: '24%',
       marginRight: '-100%',
       marginLeft: '5px',
       borderTop: `1px solid ${theme.primaryDark}`,

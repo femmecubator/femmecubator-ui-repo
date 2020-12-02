@@ -46,7 +46,7 @@ const LoginForm = () => {
             id='email'
             label='Email'
             variant='outlined'
-            className={classes.inputSpacing}
+            className={classes.loginInput}
             inputRef={register(emailRequirements)}
             name='email'
             autoComplete='email'
@@ -55,18 +55,26 @@ const LoginForm = () => {
             InputLabelProps={{
               htmlFor: 'email'
             }}
+            InputProps={{
+              classes: {
+                input: classes.input
+              },
+            }}
           />
           <TextField 
             id='password'
             label='Password'
             variant='outlined'
-            className={classes.inputSpacing}
+            className={classes.loginInput}
             inputRef={register({ require: true })}
             name='password'
             autoComplete='current-password'
             type={showPassword ? 'text' : 'password'}
             error={errors.password && true}
             InputProps={{
+              classes: {
+                input: classes.input
+              },
               endAdornment: (
                 <InputAdornment position='end'>
                   <IconButton
