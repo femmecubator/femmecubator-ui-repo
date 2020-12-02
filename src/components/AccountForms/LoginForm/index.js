@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
-import { Visibility, VisiblityOff } from '@material-ui/icons';
+import { Visibility, VisibilityOff, VisiblityOff } from '@material-ui/icons';
 
 const FORM_TITLE = 'Welcome back!'
 
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => console.log(data);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
 
   const emailRequirements = {
     required: true,
@@ -36,15 +41,17 @@ const LoginForm = () => {
           name='Password'
           label='Password'
           variant='outlined'
-          type='password'
+          type={showPassword ? 'text' : 'password'}
           inputRef={register(passwordRequirements)}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
                 <IconButton
                   aria-label='toggle password visibility'
+                  edge='end'
+                  onClick={handleClickShowPassword}
                 >
-                  <Visibility />
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             ),
