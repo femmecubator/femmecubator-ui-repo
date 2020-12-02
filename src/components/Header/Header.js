@@ -92,7 +92,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 600,
     size: '16px',
   },
-  title: {
+  femmecubatorTitle: {
     flexGrow: 1,
     textAlign: 'left',
     fontFamily: 'Work Sans, sans-serif',
@@ -125,6 +125,18 @@ const useStyles = makeStyles(() => ({
     margin: '8px 22px',
   },
   logOutIcon: { fontSize: 16, marginRight: 5 },
+  userInfoContainer: {
+    margin: '0 43px 52px',
+    '& > :first-child': {
+      fontSize: 18,
+      fontWeight: 700,
+    },
+    '& > :nth-child(2)': {
+      fontSize: 14,
+      color: '#026FE4',
+      fontWeight: 700,
+    },
+  },
 }));
 
 const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
@@ -133,7 +145,7 @@ export default function Header() {
   const {
     root,
     header,
-    title,
+    femmecubatorTitle,
     menuButtonsContainer,
     menuButton,
     menuDrawer,
@@ -147,6 +159,7 @@ export default function Header() {
     accountChoicesContainer,
     accountChoice,
     logOutIcon,
+    userInfoContainer,
   } = useStyles();
 
   const location = useLocation();
@@ -157,11 +170,12 @@ export default function Header() {
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.headers,
     userName: '',
+    title: '',
     anchorEl: false,
     drawerOpen: false,
   });
 
-  const { menuHeaders, userName, anchorEl, drawerOpen } = state;
+  const { menuHeaders, userName, title, anchorEl, drawerOpen } = state;
   const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
@@ -171,10 +185,15 @@ export default function Header() {
         .then(
           ({
             data: {
-              data: { headers: menuHeaders = {}, userName = '' },
+              data: { headers: menuHeaders = {}, userName = '', title = '' },
             },
           }) =>
-            setState((prevState) => ({ ...prevState, menuHeaders, userName }))
+            setState((prevState) => ({
+              ...prevState,
+              menuHeaders,
+              userName,
+              title,
+            }))
         )
         .catch(() => {
           clearSessionData();
@@ -193,7 +212,7 @@ export default function Header() {
     setState((prevState) => ({ ...prevState, anchorEl: null }));
 
   const femmecubatorLogo = (
-    <Typography variant="h1" className={title}>
+    <Typography variant="h1" className={femmecubatorTitle}>
       <Link
         {...{
           component: RouterLink,
@@ -366,7 +385,27 @@ export default function Header() {
 
         <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
           <ArrowForwardIcon className={arrowIcon} onClick={handleDrawerClose} />
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
+
+          <div className={drawerContainer}>
+            {auth.isLoggedIn() && (
+              <div className={userInfoContainer}>
+                <div>
+                  <Link
+                    {...{
+                      component: RouterLink,
+                      to: '/settings',
+                      color: 'inherit',
+                      style: { textDecoration: 'none' },
+                    }}
+                  >
+                    @{userName}
+                  </Link>
+                </div>
+                <div>{title}</div>
+              </div>
+            )}
+            {getDrawerChoices()}
+          </div>
         </Drawer>
 
         {femmecubatorLogo}
