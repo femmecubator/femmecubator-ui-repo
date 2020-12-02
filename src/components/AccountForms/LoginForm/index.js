@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
-import { TextField, InputAdornment, IconButton, Button } from '@material-ui/core';
+import { 
+  TextField, 
+  InputAdornment, 
+  IconButton, 
+  Button, 
+} from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
+import { ReactComponent as TwitterLogo } from './assets/TwitterLogo.svg';
 
 const FORM_TITLE = 'Welcome back!';
 
@@ -30,8 +37,9 @@ const LoginForm = () => {
   
   return (
     <div className={classes.root}>
-      {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>}
+      <LoginHero />
       <div className={classes.loginFormContainer}>
+        {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>}
         <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
         <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
           <TextField 
@@ -80,11 +88,22 @@ const LoginForm = () => {
           </Link>
           <Button 
             type='submit'
-            variant='contained'
+            className={`${classes.button} ${classes.signIn}`}
           >
             SIGN IN
           </Button>
         </form>
+        <Button
+          className={`${classes.button} ${classes.signInTwitter}`}
+        >
+          SIGN IN VIA TWITTER <TwitterLogo className={classes.twitter} />
+        </Button>
+        <p className={classes.orDivider}>OR</p>
+        <Button
+          className={`${classes.button} ${classes.createAccount}`}
+        >
+          CREATE ACCOUNT
+        </Button>
       </div>
     </div>
   )
