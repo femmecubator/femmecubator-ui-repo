@@ -53,8 +53,8 @@ describe('<Header />', () => {
     await waitFor(() => screen.getByText(/log in/i));
     screen.getByText(/log in/i);
 
-    await waitFor(() => screen.getByText(/join us!/i));
-    screen.getByText(/join us!/i);
+    await waitFor(() => screen.getAllByText(/donate/i));
+    screen.getAllByText(/donate/i);
   });
 
   it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', () => {
