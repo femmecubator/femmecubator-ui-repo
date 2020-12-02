@@ -134,7 +134,7 @@ const useStyles = makeStyles(() => ({
     '& > :nth-child(2)': {
       fontSize: 14,
       color: '#026FE4',
-      fontWeight: 700,
+      fontWeight: 600,
     },
   },
 }));
