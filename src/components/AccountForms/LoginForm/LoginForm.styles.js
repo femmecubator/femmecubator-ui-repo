@@ -16,6 +16,12 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     fontFamily: 'Open Sans, sans-serif',
   },
+  heroImage: {
+    width: '589px',
+    '@media (max-width: 972px)' : {
+      display: 'none',
+    }
+  },
   formTitle: {
     fontSize: '1.75rem',
     fontWeight: '700',
@@ -73,6 +79,7 @@ const useStyles = makeStyles(() => ({
   orDivider: {
     color: theme.primaryDark,
     fontWeight: '400',
+    overflow: 'hidden',
 
     '&::before': {
       content: '""',

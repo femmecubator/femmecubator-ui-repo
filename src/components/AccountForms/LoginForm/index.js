@@ -37,7 +37,7 @@ const LoginForm = () => {
   
   return (
     <div className={classes.root}>
-      <LoginHero />
+      <LoginHero className={classes.heroImage} />
       <div className={classes.loginFormContainer}>
         {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>}
         <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
@@ -104,7 +104,7 @@ const LoginForm = () => {
         <Button
           className={`${classes.button} ${classes.signInTwitter}`}
         >
-          SIGN IN VIA TWITTER <TwitterLogo className={classes.twitter} />
+          CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
         </Button>
         <p className={classes.orDivider}>OR</p>
         <Button
