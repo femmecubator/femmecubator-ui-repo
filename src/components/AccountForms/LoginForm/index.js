@@ -46,7 +46,7 @@ const LoginForm = () => {
     loginHandler(credentials).then(response => {
       if (response.status === 200) {
         auth.login();
-        history.push('/');
+        history.push('/mentors');
       }
     });
 
