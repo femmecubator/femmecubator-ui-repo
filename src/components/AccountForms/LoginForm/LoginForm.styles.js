@@ -43,9 +43,6 @@ const useStyles = makeStyles(() => ({
       background: theme.primaryError,
       borderRadius: '4px 0 0 4px',
     },
-    'p': {
-      padding: '0'
-    }
   },
   errorTab: {
     width: '8px',
