@@ -6,6 +6,8 @@ const theme = {
   secondaryDark: '#828282',
   primaryAccent: '#026FE4',
   secondaryAccent: '#1E90FF',
+  primaryError: '#EB5757',
+  secondaryError: '#FFEAEA',
 };
 
 const useStyles = makeStyles(() => ({
@@ -21,6 +23,34 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 972px)' : {
       display: 'none',
     }
+  },
+  error: {
+    position: 'relative',
+    padding: '0 16px',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    color: theme.primaryError,
+    background: theme.secondaryError,
+    borderRadius: '4px',
+    '&::before': {
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      content: '""',
+      width: '8px',
+      height: '100%',
+      background: theme.primaryError,
+      borderRadius: '4px 0 0 4px',
+    },
+    'p': {
+      padding: '0'
+    }
+  },
+  errorTab: {
+    width: '8px',
+    height: '100%',
+    background: theme.primaryError,
   },
   formTitle: {
     fontSize: '1.75rem',

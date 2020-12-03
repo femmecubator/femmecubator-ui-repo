@@ -12,7 +12,8 @@ import {
   IconButton, 
   Button, 
 } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
+// import ErrorIcon from '@material-ui/icons/Error';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
 import { ReactComponent as TwitterLogo } from './assets/TwitterLogo.svg';
 
@@ -65,7 +66,11 @@ const LoginForm = () => {
     <div className={classes.root}>
       <LoginHero className={classes.heroImage} />
       <div className={classes.loginFormContainer}>
-        {/* {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>} */}
+        {(errors.email || errors.password) && 
+          <div className={classes.error}>
+            <Error /><p>Sorry, invalid email or password. Try again?</p>
+          </div>
+        }
         <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
         <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
           <TextField 
