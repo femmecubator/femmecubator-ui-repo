@@ -125,7 +125,7 @@ export default function Header() {
           window.location.replace(API_PATH.LOGIN_PAGE);
         });
     }
-  }, [auth, auth.isLoggedIn()]);
+  }, [auth]);
 
   const femmecubatorLogo = (
     <Typography variant="h1" className={title}>

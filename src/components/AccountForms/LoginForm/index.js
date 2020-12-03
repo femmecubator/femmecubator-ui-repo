@@ -13,7 +13,6 @@ import {
   Button, 
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
-// import ErrorIcon from '@material-ui/icons/Error';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
 import { ReactComponent as TwitterLogo } from './assets/TwitterLogo.svg';
 
@@ -40,7 +39,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (auth.isLoggedIn()) {
       history.replace('/mentors');
-    }
+    };
   }, [auth, history]);
 
   const onSubmit = credentials => {
@@ -50,13 +49,12 @@ const LoginForm = () => {
         history.push('/mentors');
       }
     });
-
   };
 
   const loginHandler = async credentials => {
     const response = await request.post(API_PATH.LOGIN, credentials);
     return response;
-  }
+  };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -165,7 +163,7 @@ const LoginForm = () => {
         </Button>
       </div>
     </div>
-  )
+  );
 
   return (
     <>
