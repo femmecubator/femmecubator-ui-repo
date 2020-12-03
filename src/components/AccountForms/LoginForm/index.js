@@ -46,7 +46,7 @@ const LoginForm = () => {
   const onSubmit = credentials => {
     loginHandler(credentials).then(response => {
       if (response.status === 200) {
-        auth.login();
+        auth.checkCookie();
         history.push('/mentors');
       }
     });

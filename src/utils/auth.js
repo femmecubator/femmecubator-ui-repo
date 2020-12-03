@@ -10,8 +10,13 @@ export default class Auth {
     return this.isAuthenticated;
   }
 
-  login() {
-    this.isAuthenticated = isAuthCookiesExists();
+  checkCookie() {
+    if (isAuthCookiesExists()) {
+      this.isAuthenticated = isAuthCookiesExists();
+      return true;
+    } else {
+      throw new Error('Invalid cookie!');
+    }
   }
 
   logoff() {
