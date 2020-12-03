@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { API_PATH } from 'utils/constants';
-import { isAuthCookiesExists } from 'utils/cookies';
 import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
 
 import { Link, useHistory } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import { 
-  Paper,
   TextField, 
   InputAdornment, 
   IconButton, 
@@ -39,16 +37,16 @@ const LoginForm = () => {
   const { auth } = useAuth();
 
   useEffect(() => {
-    if (isAuthCookiesExists()) {
+    if (auth.isLoggedIn()) {
       history.replace('/mentors');
     }
   }, [history]);
 
   const onSubmit = credentials => {
     loginHandler(credentials).then(response => {
-      if (response.status === 200 && isAuthCookiesExists()) {
+      if (response.status === 200) {
         auth.login();
-        history.replace('/mentors');
+        history.push('/');
       }
     });
 
@@ -62,9 +60,9 @@ const LoginForm = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  
-  return (
-    <Paper className={classes.root}>
+
+  const content = (
+    <div className={classes.root}>
       <LoginHero className={classes.heroImage} />
       <div className={classes.loginFormContainer}>
         {/* {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>} */}
@@ -161,7 +159,13 @@ const LoginForm = () => {
           CREATE ACCOUNT
         </Button>
       </div>
-    </Paper>
+    </div>
+  )
+
+  return (
+    <>
+    {auth.isAuthenticated ? null : content}
+    </>
   )
 };
 
