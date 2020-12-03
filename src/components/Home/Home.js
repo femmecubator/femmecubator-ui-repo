@@ -147,7 +147,7 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 799px)': {
       height: '218px',
       flexDirection: 'column',
-      padding: '10px 0px',
+      padding: '10px 10px',
     },
   },
   ourMissionContainer: {
