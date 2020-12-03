@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import { 
+  Paper,
   TextField, 
   InputAdornment, 
   IconButton, 
@@ -20,7 +21,7 @@ const emailRequirements = {
 };
 
 // const passwordRequirements = {
-//   required: true,
+  // required: true,
 //   pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])/,
 // }
 
@@ -36,10 +37,10 @@ const LoginForm = () => {
   }
   
   return (
-    <div className={classes.root}>
+    <Paper className={classes.root}>
       <LoginHero className={classes.heroImage} />
       <div className={classes.loginFormContainer}>
-        {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>}
+        {/* {(errors.email || errors.password) && <p>Sorry, invalid email or password.</p>} */}
         <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
         <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
           <TextField 
@@ -53,12 +54,20 @@ const LoginForm = () => {
             error={errors.email && true}
             helperText={errors.email && 'Invalid email format'}
             InputLabelProps={{
-              htmlFor: 'email'
+              classes: { 
+                root: classes.label,
+                shrink: classes.labelShrink
+              } 
             }}
             InputProps={{
               classes: {
                 input: classes.input
               },
+            }}
+            FormHelperTextProps={{
+              classes: {
+                root: classes.helperText
+              }
             }}
           />
           <TextField 
@@ -66,11 +75,18 @@ const LoginForm = () => {
             label='Password'
             variant='outlined'
             className={classes.loginInput}
-            inputRef={register({ require: true })}
+            inputRef={register({ required: true })}
             name='password'
             autoComplete='current-password'
             type={showPassword ? 'text' : 'password'}
             error={errors.password && true}
+            helperText={errors.password && 'Enter a password'}
+            InputLabelProps={{ 
+              classes: { 
+                root: classes.label,
+                shrink: classes.labelShrink
+              } 
+            }}
             InputProps={{
               classes: {
                 input: classes.input
@@ -86,6 +102,11 @@ const LoginForm = () => {
                   </IconButton>
                 </InputAdornment>
               ),
+            }}
+            FormHelperTextProps={{
+              classes: {
+                root: classes.helperText
+              }
             }}
           />
           <Link 
@@ -113,7 +134,7 @@ const LoginForm = () => {
           CREATE ACCOUNT
         </Button>
       </div>
-    </div>
+    </Paper>
   )
 };
 

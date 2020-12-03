@@ -43,9 +43,19 @@ const useStyles = makeStyles(() => ({
   input: {
     height: '31px',
   },
+  label: {
+    top: '5px',
+  },
+  labelShrink: {
+    top: '0',
+  },
   loginInput: {
     margin: '4% 0',
     minWidth: '100%',
+  },
+  helperText: {
+    position: 'absolute',
+    top: '65px',
   },
   forgotPasswordLink: {
     marginBottom: '6.25%',
