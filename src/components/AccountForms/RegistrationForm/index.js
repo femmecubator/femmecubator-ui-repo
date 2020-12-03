@@ -104,7 +104,11 @@ const useStyles = makeStyles((theme) => ({
 const FORM_TITLE = 'Create account';
 const FORM_SUBTITLE = 'Have an existing account?';
 
-const RegistrationForm = () => {
+function submitHandler(data) {
+  alert(JSON.stringify(data));
+}
+
+const RegistrationForm = ({ onSubmit = submitHandler }) => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm({
     revalidateMode: 'onChange',
@@ -112,9 +116,7 @@ const RegistrationForm = () => {
   const {
     globalState: { isMobile },
   } = useContext(GlobalContext);
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
+
   let content = (
     <div className={classes.root}>
       <Paper className={classes.paperContainer}>
