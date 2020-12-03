@@ -1,6 +1,13 @@
 body {
   background-color: #F2F7FF;
 }
+
+@media only screen and (max-width: 799px) {
+  body {
+    background-color: white;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

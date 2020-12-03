@@ -50,16 +50,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     lineHeight: '38px',
     letterSpacing: '0em',
-    textAlign: 'left',
+    textAlign: 'center',
   },
   formSubtitle: {
+    textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
     fontSize: '16px',
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: '24px',
     letterSpacing: '0px',
-    textAlign: 'left',
     paddingBottom: '25px',
   },
   inputSpacing: {
@@ -74,11 +74,30 @@ const useStyles = makeStyles((theme) => ({
     color: '#550CCC',
   },
   button: {
-    marginTop: '48px',
-    float: 'right',
-    marginRight: '16.25em',
+    [theme.breakpoints.up(799)]: {
+      marginTop: '48px',
+      float: 'right',
+      marginRight: '16.25em',
+    },
     backgroundColor: '#026FE4',
     color: '#FFFFFF',
+  },
+  registrationFormContainer: {
+    [theme.breakpoints.between(768, 1024)]: { width: '40.5625em' },
+    position: 'relative',
+    width: '51.5625em',
+    height: '34.25em',
+    marginLeft: '2.5em',
+    marginTop: '2.5em',
+    marginBottom: '2.5em',
+  },
+  mobileInputField: {
+    paddingBottom: '1.25em',
+  },
+  buttonGrid: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '2.5em',
   },
 }));
 
@@ -101,7 +120,7 @@ const RegistrationForm = () => {
       <Paper className={classes.paperContainer}>
         <Grid container>
           <Grid item xs={12}>
-            <div className="registration-form-container">
+            <div className={classes.registrationFormContainer}>
               <div className="registration-form">
                 <Typography variant="h2" className={classes.formTitle}>
                   {FORM_TITLE}
@@ -151,6 +170,18 @@ const RegistrationForm = () => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        label: 'Title',
+                        variant: 'outlined',
+                        inputRef: register({ required: true }),
+                        name: 'title',
+                        error: errors.title,
+                        helperText: errors.title && 'Title is required',
+                      }}
+                    />
+                  </div>
+                  <div className={classes.inputSpacing}>
+                    <TextField
+                      {...{
                         label: 'Email',
                         variant: 'outlined',
                         inputRef: register({
@@ -183,9 +214,17 @@ const RegistrationForm = () => {
                       {...{
                         label: 'Password',
                         variant: 'outlined',
-                        inputRef: register,
                         name: 'password',
                         type: 'password',
+                        inputRef: register({
+                          required: 'Password is required',
+                          pattern: {
+                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            message: 'Invalid password: (A-z@$!%*?%)',
+                          },
+                        }),
+                        error: errors.password,
+                        helperText: errors.password && errors.password.message,
                       }}
                     />
                     <TextField
@@ -193,9 +232,19 @@ const RegistrationForm = () => {
                         label: 'Retype Password',
                         variant: 'outlined',
                         className: classes.textFieldSpacing,
-                        inputRef: register,
                         name: 'retypePassword',
                         type: 'password',
+                        inputRef: register({
+                          required: 'Password is required',
+                          pattern: {
+                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            message: 'Invalid password: (A-z@$!%*?%)',
+                          },
+                        }),
+                        error: errors.retypePassword,
+                        helperText:
+                          errors.retypePassword &&
+                          errors.retypePassword.message,
                       }}
                     />
                   </div>
@@ -248,33 +297,160 @@ const RegistrationForm = () => {
       <div className={classes.rootMobile}>
         <Grid
           container
-          direction="column"
+          direction="row"
           justify="center"
           alignItems="center"
           spacing={0}
         >
-          <Grid item xs={12}>
-            <Typography variant="h2" className={classes.formTitle} nowrap>
+          <Grid item xs={12} style={{ marginTop: '1.5625em' }}>
+            <Typography
+              variant="h2"
+              className={classes.formTitle}
+              nowrap="true"
+            >
               {FORM_TITLE}
             </Typography>
             <Typography variant="body2" className={classes.formSubtitle}>
               {FORM_SUBTITLE} <Link to="/login">Login</Link>
             </Typography>
-            <Grid item xs={12} style={{ paddingLeft: 0, paddingRight: 0 }}>
-              <form noValidate onSubmit={handleSubmit(onSubmit)}>
-                <TextField
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            style={{ paddingLeft: '1.5625em', paddingRight: '1.5625em' }}
+          >
+            <form noValidate onSubmit={handleSubmit(onSubmit)}>
+              <TextField
+                {...{
+                  label: 'First Name',
+                  variant: 'outlined',
+                  name: 'firstName',
+                  inputRef: register({ required: true }),
+                  error: errors.firstName,
+                  helperText: errors.firstName && 'First name is required',
+                  fullWidth: true,
+                  className: classes.mobileInputField,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'Last Name',
+                  variant: 'outlined',
+                  name: 'lastName',
+                  inputRef: register({ required: true }),
+                  error: errors.lastName,
+                  helperText: errors.lastName && 'Last name is required',
+                  fullWidth: true,
+                  className: classes.mobileInputField,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'Preferred Location',
+                  variant: 'outlined',
+                  name: 'prefLoc',
+                  inputRef: register({ required: true }),
+                  error: errors.prefLoc,
+                  helperText:
+                    errors.prefLoc && 'Preferred Location is required',
+                  fullWidth: true,
+                  className: classes.mobileInputField,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'Title',
+                  variant: 'outlined',
+                  name: 'title',
+                  inputRef: register({ required: true }),
+                  error: errors.title,
+                  helperText: errors.title && 'Title is required',
+                  fullWidth: true,
+                  className: classes.mobileInputField,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'Email',
+                  variant: 'outlined',
+                  inputRef: register({
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Invalid email format',
+                    },
+                  }),
+                  name: 'email',
+                  error: errors.email,
+                  helperText: errors.email && errors.email.message,
+                  fullWidth: true,
+                  className: classes.mobileInputField,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'User name',
+                  variant: 'outlined',
+                  name: 'userName',
+                  inputRef: register({ required: true }),
+                  error: errors.userName,
+                  helperText: errors.userName && 'User name is required',
+                  fullWidth: true,
+                  className: classes.mobileInputField,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'Password',
+                  variant: 'outlined',
+                  className: classes.mobileInputField,
+                  fullWidth: true,
+                  name: 'password',
+                  type: 'password',
+                  inputRef: register({
+                    required: 'Password is required',
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      message: 'Invalid password: (A-z@$!%*?%)',
+                    },
+                  }),
+                  error: errors.password,
+                  helperText: errors.password && errors.password.message,
+                }}
+              />
+              <TextField
+                {...{
+                  label: 'Retype Password',
+                  variant: 'outlined',
+                  className: classes.mobileInputField,
+                  fullWidth: true,
+                  inputRef: register({
+                    required: 'Password is required',
+                    pattern: {
+                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                      message: 'Invalid password: (A-z@$!%*?%)',
+                    },
+                  }),
+                  error: errors.retypePassword,
+                  helperText:
+                    errors.retypePassword && errors.retypePassword.message,
+                  name: 'retypePassword',
+                  type: 'password',
+                }}
+              />
+              <Grid item sm={12} className={classes.buttonGrid}>
+                <Button
                   {...{
-                    label: 'First Name',
-                    variant: 'outlined',
-                    name: 'firstName',
-                    inputRef: register({ required: true }),
-                    error: errors.firstName,
-                    helperText: errors.firstName && 'First name is required',
-                    fullWidth: true,
+                    type: 'submit',
+                    variant: 'contained',
+                    color: 'primary',
+                    className: classes.button,
                   }}
-                />
-              </form>
-            </Grid>
+                >
+                  Submit
+                </Button>
+              </Grid>
+            </form>
           </Grid>
         </Grid>
       </div>

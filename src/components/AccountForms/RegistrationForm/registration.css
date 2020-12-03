@@ -13,15 +13,6 @@
   color: #f2f7ff;
 }
 
-.registration-form-container {
-  position: relative;
-  width: 51.5625em;
-  height: 31.25em;
-  margin-left: 2.5em;
-  margin-top: 2.5em;
-  margin-bottom: 2.5em;
-}
-
 .registration-form {
   float: left;
   width: 65%;
