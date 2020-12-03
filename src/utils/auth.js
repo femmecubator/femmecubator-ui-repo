@@ -10,6 +10,10 @@ export default class Auth {
     return this.isAuthenticated;
   }
 
+  login() {
+    this.isAuthenticated = isAuthCookiesExists();
+  }
+
   logoff() {
     clearSessionData();
     this.location.replace(API_PATH.LOGIN_PAGE);

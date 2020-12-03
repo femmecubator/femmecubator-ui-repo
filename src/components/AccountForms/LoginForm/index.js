@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { API_PATH } from 'utils/constants';
+import { isAuthCookiesExists } from 'utils/cookies';
+import request from 'utils/axiosConfig';
+import { useAuth } from '../../../context/auth';
+
+import { Link, useHistory } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import { 
   Paper,
@@ -28,13 +33,35 @@ const emailRequirements = {
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
   const classes = useStyles();
 
-  const onSubmit = data => console.log(data);
+  const { auth } = useAuth();
+
+  useEffect(() => {
+    if (isAuthCookiesExists()) {
+      history.replace('/mentors');
+    }
+  }, [history]);
+
+  const onSubmit = credentials => {
+    loginHandler(credentials).then(response => {
+      if (response.status === 200 && isAuthCookiesExists()) {
+        auth.login();
+        history.replace('/mentors');
+      }
+    });
+
+  };
+
+  const loginHandler = async credentials => {
+    const response = await request.post(API_PATH.LOGIN, credentials);
+    return response;
+  }
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
   
   return (
     <Paper className={classes.root}>
