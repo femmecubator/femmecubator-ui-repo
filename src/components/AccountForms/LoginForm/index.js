@@ -40,7 +40,7 @@ const LoginForm = () => {
     if (auth.isLoggedIn()) {
       history.replace('/mentors');
     }
-  }, [history]);
+  }, [auth, history]);
 
   const onSubmit = credentials => {
     loginHandler(credentials).then(response => {

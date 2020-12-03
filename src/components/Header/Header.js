@@ -104,12 +104,12 @@ export default function Header() {
     anchorEl: false,
     drawerOpen: false,
   });
-
   const { menuHeaders, userName, anchorEl, drawerOpen } = state;
   const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
+  const loggedIn = auth.isLoggedIn();
 
   useEffect(() => {
-    if (auth.isLoggedIn()) {
+    if (loggedIn) {
       request
         .get(API_PATH.COMMON_MENU)
         .then(
@@ -125,7 +125,7 @@ export default function Header() {
           window.location.replace(API_PATH.LOGIN_PAGE);
         });
     }
-  }, [auth.isLoggedIn()]);
+  }, [loggedIn]);
 
   const femmecubatorLogo = (
     <Typography variant="h1" className={title}>
