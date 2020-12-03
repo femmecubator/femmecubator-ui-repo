@@ -3,23 +3,7 @@ import { setupServer } from 'msw/node';
 
 const server = setupServer(
   rest.get('http://local.femmecubator.com:3000', (_req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        headers: [
-          { id: 1, label: 'Home', href: '/' },
-          { id: 2, label: 'Listings', href: '/listings' },
-          { id: 3, label: 'Mentors', href: '/mentors' },
-          { id: 4, label: 'Get Involved', href: '/get-involved' },
-          { id: 5, label: 'Notifications', href: '/notifications' },
-          { id: 7, label: 'Settings', href: '/settings' },
-          { id: 8, label: 'Log Out', href: '/logout' },
-        ],
-        role_id: 1,
-        title: 'UX Designer',
-        userName: 'Jane D.',
-      })
-    );
+    return res(ctx.status(200));
   }),
   rest.get('*', (req, res, ctx) => {
     console.error(`Please add request handler for ${req.url.toString()}`);

@@ -6,6 +6,7 @@ import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 import App from '../../App';
+import { server, rest } from 'testServer';
 
 const resizeToMobile = () => {
   global.innerWidth = 600;
@@ -47,7 +48,7 @@ describe('<Header />', () => {
     screen.getByRole('link', { name: /femmecubator/i });
   });
 
-  it('should display the general menu if user is not authenticated', async () => {
+  it('should display the general menu if user IS NOT authenticated', async () => {
     screen.getByRole('button', { name: /get involved/i });
 
     await waitFor(() => screen.getByText(/log in/i));
@@ -55,6 +56,37 @@ describe('<Header />', () => {
 
     await waitFor(() => screen.getAllByText(/donate/i));
     screen.getAllByText(/donate/i);
+  });
+
+  it('should display the logged in menu if user IS authenticated', async () => {
+    server.use(
+      rest.get('http://local.femmecubator.com:3000', (_req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            data: {
+              data: {
+                headers: [
+                  { id: 1, label: 'Home', href: '/' },
+                  { id: 2, label: 'Listings', href: '/listings' },
+                  { id: 3, label: 'Mentors', href: '/mentors' },
+                  { id: 4, label: 'Get Involved', href: '/get-involved' },
+                  { id: 5, label: 'Notifications', href: '/notifications' },
+                  { id: 7, label: 'Settings', href: '/settings' },
+                  { id: 8, label: 'Log Out', href: '/logout' },
+                ],
+                role_id: 1,
+                title: 'UX Designer',
+                userName: 'Jane D.',
+              },
+            },
+          })
+        );
+      })
+    );
+
+    await waitFor(() => screen.getByText(/Jane D./i));
+    screen.getByText(/Jane D./i);
   });
 
   it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', () => {
