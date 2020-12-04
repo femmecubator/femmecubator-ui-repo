@@ -10,6 +10,5 @@ describe('<LoginForm />', () => {
     const { debug, getByTestId } = render(<LoginForm />);
 
     debug();
-    
   });
 });

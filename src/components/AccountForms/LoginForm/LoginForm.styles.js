@@ -20,9 +20,9 @@ const useStyles = makeStyles(() => ({
   },
   heroImage: {
     width: '589px',
-    '@media (max-width: 972px)' : {
+    '@media (max-width: 972px)': {
       display: 'none',
-    }
+    },
   },
   error: {
     position: 'relative',
@@ -65,7 +65,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    
   },
   input: {
     height: '31px',
@@ -106,8 +105,8 @@ const useStyles = makeStyles(() => ({
     background: theme.secondaryAccent,
     '&:hover': {
       background: theme.secondaryAccent,
-      boxShadow: `0 0 1px 1px ${theme.secondaryAccent}`
-    }
+      boxShadow: `0 0 1px 1px ${theme.secondaryAccent}`,
+    },
   },
   signInTwitter: {
     color: theme.primaryAccent,
@@ -115,8 +114,8 @@ const useStyles = makeStyles(() => ({
     background: theme.white,
     '&:hover': {
       background: theme.white,
-      boxShadow: `0 0 1px 1px ${theme.primaryAccent}`
-    }
+      boxShadow: `0 0 1px 1px ${theme.primaryAccent}`,
+    },
   },
   twitter: {
     marginLeft: '0.25rem',
@@ -145,7 +144,7 @@ const useStyles = makeStyles(() => ({
       marginRight: '-100%',
       marginLeft: '5px',
       borderTop: `1px solid ${theme.primaryDark}`,
-    }
+    },
   },
   createAccount: {
     color: theme.white,
@@ -153,9 +152,9 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       color: theme.white,
       background: theme.secondaryDark,
-      boxShadow: `0 0 1px 2px ${theme.secondaryDark}`
-    }
-  }
+      boxShadow: `0 0 1px 2px ${theme.secondaryDark}`,
+    },
+  },
 }));
 
 export default useStyles;

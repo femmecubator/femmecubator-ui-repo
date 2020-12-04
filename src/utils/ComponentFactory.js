@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Register, Mentors, Listings, Volunteer } from 'stubs';
+import { Mentors, Listings, Volunteer } from 'stubs';
 import Home from 'components/Home/Home';
+import RegistrationForm from 'components/AccountForms/RegistrationForm';
 import LoginForm from 'components/AccountForms/LoginForm';
 import { ROUTES_LABEL } from 'utils/constants';
 const { HOME, MENTORS, LOGIN, REGISTER, LISTINGS, VOLUNTEER } = ROUTES_LABEL;
@@ -15,7 +16,7 @@ export default class ComponentFactory {
       case LOGIN:
         return LoginForm;
       case REGISTER:
-        return Register;
+        return RegistrationForm;
       case LISTINGS:
         return Listings;
       case VOLUNTEER:

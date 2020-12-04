@@ -6,11 +6,11 @@ import { useAuth } from '../../../context/auth';
 
 import { Link, useHistory } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
-import { 
-  TextField, 
-  InputAdornment, 
-  IconButton, 
-  Button, 
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+  Button,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
@@ -24,7 +24,7 @@ const emailRequirements = {
 };
 
 // const passwordRequirements = {
-  // required: true,
+// required: true,
 //   pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])/,
 // }
 
@@ -39,11 +39,11 @@ const LoginForm = () => {
   useEffect(() => {
     if (auth.isLoggedIn()) {
       history.replace('/mentors');
-    };
+    }
   }, [auth, history]);
 
-  const onSubmit = credentials => {
-    loginHandler(credentials).then(response => {
+  const onSubmit = (credentials) => {
+    loginHandler(credentials).then((response) => {
       if (response.status === 200) {
         auth.checkCookie();
         history.push('/mentors');
@@ -51,7 +51,7 @@ const LoginForm = () => {
     });
   };
 
-  const loginHandler = async credentials => {
+  const loginHandler = async (credentials) => {
     const response = await request.post(API_PATH.LOGIN, credentials);
     return response;
   };
@@ -63,70 +63,68 @@ const LoginForm = () => {
   const content = (
     <div className={classes.root}>
       <LoginHero className={classes.heroImage} />
-      <div 
-        className={classes.loginFormContainer}
-        data-testid='auth-error'
-      >
-        {(errors.email || errors.password) && 
+      <div className={classes.loginFormContainer} data-testid="auth-error">
+        {(errors.email || errors.password) && (
           <div className={classes.error}>
-            <Error /><p>Sorry, invalid email or password. Try again?</p>
+            <Error />
+            <p>Sorry, invalid email or password. Try again?</p>
           </div>
-        }
+        )}
         <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
         <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
-          <TextField 
-            id='email'
-            label='Email'
-            variant='outlined'
+          <TextField
+            id="email"
+            label="Email"
+            variant="outlined"
             className={classes.loginInput}
             inputRef={register(emailRequirements)}
-            name='email'
-            autoComplete='email'
+            name="email"
+            autoComplete="email"
             error={errors.email && true}
             helperText={errors.email && 'Invalid email format'}
             InputLabelProps={{
-              classes: { 
+              classes: {
                 root: classes.label,
-                shrink: classes.labelShrink
-              } 
+                shrink: classes.labelShrink,
+              },
             }}
             InputProps={{
               classes: {
-                input: classes.input
+                input: classes.input,
               },
             }}
             FormHelperTextProps={{
               classes: {
-                root: classes.helperText
-              }
+                root: classes.helperText,
+              },
             }}
           />
-          <TextField 
-            id='password'
-            label='Password'
-            variant='outlined'
+          <TextField
+            id="password"
+            label="Password"
+            variant="outlined"
             className={classes.loginInput}
             inputRef={register({ required: true })}
-            name='password'
-            autoComplete='current-password'
+            name="password"
+            autoComplete="current-password"
             type={showPassword ? 'text' : 'password'}
             error={errors.password && true}
             helperText={errors.password && 'Enter a password'}
-            InputLabelProps={{ 
-              classes: { 
+            InputLabelProps={{
+              classes: {
                 root: classes.label,
-                shrink: classes.labelShrink
-              } 
+                shrink: classes.labelShrink,
+              },
             }}
             InputProps={{
               classes: {
-                input: classes.input
+                input: classes.input,
               },
               endAdornment: (
-                <InputAdornment position='end'>
+                <InputAdornment position="end">
                   <IconButton
-                    aria-label='toggle password visibility'
-                    edge='end'
+                    aria-label="toggle password visibility"
+                    edge="end"
                     onClick={handleClickShowPassword}
                   >
                     {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -136,43 +134,32 @@ const LoginForm = () => {
             }}
             FormHelperTextProps={{
               classes: {
-                root: classes.helperText
-              }
+                root: classes.helperText,
+              },
             }}
           />
-          <Link 
-            className={classes.forgotPasswordLink}
-            to='/'
-          >
+          <Link className={classes.forgotPasswordLink} to="/">
             Forgot Password
           </Link>
-          <Button 
-            type='submit'
+          <Button
+            type="submit"
             className={`${classes.button} ${classes.signIn}`}
           >
             SIGN IN
           </Button>
         </form>
-        <Button
-          className={`${classes.button} ${classes.signInTwitter}`}
-        >
+        <Button className={`${classes.button} ${classes.signInTwitter}`}>
           CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
         </Button>
         <p className={classes.orDivider}>OR</p>
-        <Button
-          className={`${classes.button} ${classes.createAccount}`}
-        >
+        <Button className={`${classes.button} ${classes.createAccount}`}>
           CREATE ACCOUNT
         </Button>
       </div>
     </div>
   );
 
-  return (
-    <>
-    {auth.isAuthenticated ? null : content}
-    </>
-  )
+  return <>{auth.isAuthenticated ? null : content}</>;
 };
 
 export default LoginForm;
