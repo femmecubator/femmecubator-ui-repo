@@ -1,15 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { Typography, TextField, Button, Grid } from '@material-ui/core';
+import {
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  InputAdornment,
+} from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from 'context/global';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textFieldSpacing: {
     marginLeft: '8px',
+    width: '14.875em',
   },
   schoolIcon: {
     height: '56.11px',
@@ -101,6 +111,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '2.5em',
+  },
+  textField: {
+    width: '14.875em',
   },
 }));
 
@@ -179,6 +192,14 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
   const {
     globalState: { isMobile },
   } = useContext(GlobalContext);
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    retypePassword: false,
+  });
+
+  const handleClickShowPassword = (key) => {
+    setShowPassword((prevState) => ({ ...prevState, [key]: !prevState[key] }));
+  };
 
   let content = (
     <div className={classes.root}>
@@ -197,7 +218,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   <div>
                     <TextField
                       {...{
-                        // 'data-testid': 'firstName',
+                        className: classes.textField,
                         label: 'First Name',
                         variant: 'outlined',
                         inputProps: { 'data-testid': 'firstName' },
@@ -224,6 +245,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        className: classes.textField,
                         inputProps: { 'data-testid': 'prefLoc' },
                         label: 'Preferred Location',
                         variant: 'outlined',
@@ -237,6 +259,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        className: classes.textField,
                         inputProps: { 'data-testid': 'title' },
                         label: 'Title',
                         variant: 'outlined',
@@ -250,6 +273,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        className: classes.textField,
                         inputProps: { 'data-testid': 'email' },
                         label: 'Email',
                         variant: 'outlined',
@@ -263,6 +287,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        className: classes.textField,
                         inputProps: { 'data-testid': 'userName' },
                         label: 'Username',
                         variant: 'outlined',
@@ -276,11 +301,31 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
-                        inputProps: { 'data-testid': 'password' },
+                        InputProps: {
+                          inputProps: { 'data-testid': 'password' },
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                {...{
+                                  'aria-label': 'toggle password visibility',
+                                  onClick: () =>
+                                    handleClickShowPassword('password'),
+                                  edge: 'end',
+                                }}
+                              >
+                                {showPassword.password ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        },
                         label: 'Password',
                         variant: 'outlined',
                         name: 'password',
-                        type: 'password',
+                        type: showPassword.password ? 'text' : 'password',
                         inputRef: register,
                         error: !isEmpty(errors.password),
                         helperText: errors.password && errors.password.message,
@@ -288,12 +333,32 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                     />
                     <TextField
                       {...{
-                        inputProps: { 'data-testid': 'retypePassword' },
+                        InputProps: {
+                          inputProps: { 'data-testid': 'retypePassword' },
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                {...{
+                                  'aria-label': 'toggle password visibility',
+                                  onClick: () =>
+                                    handleClickShowPassword('retypePassword'),
+                                  edge: 'end',
+                                }}
+                              >
+                                {showPassword.retypePassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        },
                         label: 'Retype Password',
                         variant: 'outlined',
                         className: classes.textFieldSpacing,
                         name: 'retypePassword',
-                        type: 'password',
+                        type: showPassword.retypePassword ? 'text' : 'password',
                         inputRef: register,
                         error: !isEmpty(errors.retypePassword),
                         helperText:
@@ -449,12 +514,31 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
               />
               <TextField
                 {...{
+                  InputProps: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          {...{
+                            'aria-label': 'toggle password visibility',
+                            onClick: () => handleClickShowPassword('password'),
+                            edge: 'end',
+                          }}
+                        >
+                          {showPassword.password ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  },
                   label: 'Password',
                   variant: 'outlined',
                   className: classes.mobileInputField,
                   fullWidth: true,
                   name: 'password',
-                  type: 'password',
+                  type: showPassword.password ? 'text' : 'password',
                   inputRef: register,
                   error: errors.password,
                   helperText: errors.password && errors.password.message,
@@ -462,6 +546,26 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
               />
               <TextField
                 {...{
+                  InputProps: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          {...{
+                            'aria-label': 'toggle password visibility',
+                            onClick: () =>
+                              handleClickShowPassword('retypePassword'),
+                            edge: 'end',
+                          }}
+                        >
+                          {showPassword.retypePassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  },
                   label: 'Retype Password',
                   variant: 'outlined',
                   className: classes.mobileInputField,
@@ -471,7 +575,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                   helperText:
                     errors.retypePassword && errors.retypePassword.message,
                   name: 'retypePassword',
-                  type: 'password',
+                  type: showPassword.retypePassword ? 'text' : 'password',
                 }}
               />
               <Grid item sm={12} className={classes.buttonGrid}>
