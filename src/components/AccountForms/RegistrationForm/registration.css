@@ -1,0 +1,27 @@
+.circle {
+  height: 101px;
+  width: 101px;
+  background-color: #abf5d1;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.center {
+  margin: auto;
+  width: 40%;
+  padding: 23%;
+  color: #f2f7ff;
+}
+
+.registration-form {
+  float: left;
+  width: 65%;
+}
+
+.vl {
+  border-left: 1px solid #bdbdbd;
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+}
