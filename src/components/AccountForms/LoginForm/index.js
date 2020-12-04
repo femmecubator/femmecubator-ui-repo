@@ -7,6 +7,7 @@ import { useAuth } from '../../../context/auth';
 import { Link, useHistory } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import {
+  Paper,
   TextField,
   InputAdornment,
   IconButton,
@@ -62,100 +63,102 @@ const LoginForm = () => {
 
   const content = (
     <div className={classes.root}>
-      <LoginHero className={classes.heroImage} />
-      <div className={classes.loginFormContainer} data-testid="auth-error">
-        {(errors.email || errors.password) && (
-          <div className={classes.error}>
-            <Error />
-            <p>Sorry, invalid email or password. Try again?</p>
-          </div>
-        )}
-        <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
-        <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            id="email"
-            label="Email"
-            variant="outlined"
-            className={classes.loginInput}
-            inputRef={register(emailRequirements)}
-            name="email"
-            autoComplete="email"
-            error={errors.email && true}
-            helperText={errors.email && 'Invalid email format'}
-            InputLabelProps={{
-              classes: {
-                root: classes.label,
-                shrink: classes.labelShrink,
-              },
-            }}
-            InputProps={{
-              classes: {
-                input: classes.input,
-              },
-            }}
-            FormHelperTextProps={{
-              classes: {
-                root: classes.helperText,
-              },
-            }}
-          />
-          <TextField
-            id="password"
-            label="Password"
-            variant="outlined"
-            className={classes.loginInput}
-            inputRef={register({ required: true })}
-            name="password"
-            autoComplete="current-password"
-            type={showPassword ? 'text' : 'password'}
-            error={errors.password && true}
-            helperText={errors.password && 'Enter a password'}
-            InputLabelProps={{
-              classes: {
-                root: classes.label,
-                shrink: classes.labelShrink,
-              },
-            }}
-            InputProps={{
-              classes: {
-                input: classes.input,
-              },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    edge="end"
-                    onClick={handleClickShowPassword}
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            FormHelperTextProps={{
-              classes: {
-                root: classes.helperText,
-              },
-            }}
-          />
-          <Link className={classes.forgotPasswordLink} to="/">
-            Forgot Password
-          </Link>
-          <Button
-            type="submit"
-            className={`${classes.button} ${classes.signIn}`}
-          >
-            SIGN IN
+      <Paper classes={{ root: classes.paperContainer }}>
+        <LoginHero className={classes.heroImage} />
+        <div className={classes.loginFormContainer} data-testid="auth-error">
+          {(errors.email || errors.password) && (
+            <div className={classes.error}>
+              <Error />
+              <p>Sorry, invalid email or password. Try again?</p>
+            </div>
+          )}
+          <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
+          <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
+            <TextField
+              id="email"
+              label="Email"
+              variant="outlined"
+              className={classes.loginInput}
+              inputRef={register(emailRequirements)}
+              name="email"
+              autoComplete="email"
+              error={errors.email && true}
+              helperText={errors.email && 'Invalid email format'}
+              InputLabelProps={{
+                classes: {
+                  root: classes.label,
+                  shrink: classes.labelShrink,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  input: classes.input,
+                },
+              }}
+              FormHelperTextProps={{
+                classes: {
+                  root: classes.helperText,
+                },
+              }}
+            />
+            <TextField
+              id="password"
+              label="Password"
+              variant="outlined"
+              className={classes.loginInput}
+              inputRef={register({ required: true })}
+              name="password"
+              autoComplete="current-password"
+              type={showPassword ? 'text' : 'password'}
+              error={errors.password && true}
+              helperText={errors.password && 'Enter a password'}
+              InputLabelProps={{
+                classes: {
+                  root: classes.label,
+                  shrink: classes.labelShrink,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  input: classes.input,
+                },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      edge="end"
+                      onClick={handleClickShowPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              FormHelperTextProps={{
+                classes: {
+                  root: classes.helperText,
+                },
+              }}
+            />
+            <Link className={classes.forgotPasswordLink} to="/">
+              Forgot Password
+            </Link>
+            <Button
+              type="submit"
+              className={`${classes.button} ${classes.signIn}`}
+            >
+              SIGN IN
+            </Button>
+          </form>
+          <Button className={`${classes.button} ${classes.signInTwitter}`}>
+            CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
           </Button>
-        </form>
-        <Button className={`${classes.button} ${classes.signInTwitter}`}>
-          CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
-        </Button>
-        <p className={classes.orDivider}>OR</p>
-        <Button className={`${classes.button} ${classes.createAccount}`}>
-          CREATE ACCOUNT
-        </Button>
-      </div>
+          <p className={classes.orDivider}>OR</p>
+          <Button className={`${classes.button} ${classes.createAccount}`}>
+            CREATE ACCOUNT
+          </Button>
+        </div>
+      </Paper>
     </div>
   );
 

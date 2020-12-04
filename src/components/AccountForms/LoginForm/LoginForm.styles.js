@@ -12,9 +12,13 @@ const theme = {
 
 const useStyles = makeStyles(() => ({
   root: {
+    margin: '5% 0',
+  },
+  paperContainer: {
+    margin: 'auto',
     padding: '2rem',
+    width: 'fit-content',
     display: 'flex',
-    flexWrap: 'wrap',
     justifyContent: 'center',
     fontFamily: 'Open Sans, sans-serif',
   },
@@ -59,6 +63,9 @@ const useStyles = makeStyles(() => ({
   loginFormContainer: {
     maxWidth: '320px',
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   loginForm: {
     width: '100%',
@@ -121,8 +128,10 @@ const useStyles = makeStyles(() => ({
     marginLeft: '0.25rem',
   },
   orDivider: {
+    width: '100%',
     color: theme.primaryDark,
     fontWeight: '400',
+    textAlign: 'center',
     overflow: 'hidden',
 
     '&::before': {
@@ -130,7 +139,7 @@ const useStyles = makeStyles(() => ({
       display: 'inline-block',
       height: '0.5em',
       verticalAlign: 'bottom',
-      width: '24%',
+      width: '35%',
       marginRight: '5px',
       marginLeft: '-100%',
       borderTop: `1px solid ${theme.primaryDark}`,
@@ -140,7 +149,7 @@ const useStyles = makeStyles(() => ({
       display: 'inline-block',
       height: '0.5em',
       verticalAlign: 'bottom',
-      width: '24%',
+      width: '35%',
       marginRight: '-100%',
       marginLeft: '5px',
       borderTop: `1px solid ${theme.primaryDark}`,
