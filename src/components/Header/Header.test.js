@@ -25,20 +25,18 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('<Header />', () => {
-  beforeEach(() => {
-    act(() => {
-      render(
-        <AuthProvider>
-          <GlobalProvider>
-            <Router>
-              <App>
-                <Header />
-              </App>
-            </Router>
-          </GlobalProvider>
-        </AuthProvider>
-      );
-    });
+  beforeEach(async () => {
+    render(
+      <AuthProvider>
+        <GlobalProvider>
+          <Router>
+            <App>
+              <Header />
+            </App>
+          </Router>
+        </GlobalProvider>
+      </AuthProvider>
+    );
   });
 
   afterEach(cleanup);
@@ -57,11 +55,11 @@ describe('<Header />', () => {
     screen.getByText(/join us!/i);
   });
 
-  it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', () => {
-    resizeToDesktop();
+  it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', async () => {
+    await act(async () => resizeToDesktop());
     expect(screen.queryByTestId('drawer-button')).not.toBeInTheDocument();
 
-    resizeToMobile();
+    await act(async () => resizeToMobile());
     expect(screen.queryByTestId('drawer-button')).toBeInTheDocument();
   });
 });
