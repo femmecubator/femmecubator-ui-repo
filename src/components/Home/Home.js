@@ -467,18 +467,18 @@ const useStyles = makeStyles(() => ({
     },
   },
   inProgress: {
-    height: '170px',
+    height: 'auto',
     background: '#4F4F4F',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '0px 138px',
+    padding: '30px 138px',
     '@media (max-width: 1200px)': {
-      height: '200px',
-      padding: '60px',
+      height: 'auto',
+      padding: '30px 50px',
     },
     '@media (max-width: 799px)': {
-      height: '230px',
+      height: 'auto',
       padding: '30px',
     },
   },
