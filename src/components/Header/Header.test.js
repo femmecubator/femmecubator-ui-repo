@@ -67,7 +67,7 @@ describe('<Header />', () => {
     expect(document.getElementById('app-header')).toHaveTextContent(/donate/i);
   });
 
-  it('should display the logged in menu if user IS authenticated', async () => {
+  xit('should display the logged in menu if user IS authenticated', async () => {
     mockIsLoggedIn = true;
 
     await waitFor(() => screen.getByText(/Jane D./i));
