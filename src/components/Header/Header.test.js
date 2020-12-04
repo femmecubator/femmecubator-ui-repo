@@ -6,7 +6,6 @@ import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 import App from '../../App';
-import { server, rest } from 'testServer';
 
 const resizeToMobile = () => {
   global.innerWidth = 600;
@@ -17,6 +16,17 @@ const resizeToDesktop = () => {
   global.innerWidth = 900;
   global.dispatchEvent(new Event('resize'));
 };
+
+let mockIsLoggedIn = false;
+
+jest.mock('../../context/auth', () => ({
+  ...jest.requireActual('../../context/auth'),
+  useAuth: () => ({
+    auth: {
+      isLoggedIn: () => mockIsLoggedIn,
+    },
+  }),
+}));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -54,36 +64,11 @@ describe('<Header />', () => {
     await waitFor(() => screen.getByText(/log in/i));
     screen.getByText(/log in/i);
 
-    await waitFor(() => screen.getAllByText(/donate/i));
-    screen.getAllByText(/donate/i);
+    expect(document.getElementById('app-header')).toHaveTextContent(/donate/i);
   });
 
   it('should display the logged in menu if user IS authenticated', async () => {
-    server.use(
-      rest.get('http://local.femmecubator.com:3000', (_req, res, ctx) => {
-        return res(
-          ctx.status(200),
-          ctx.json({
-            data: {
-              data: {
-                headers: [
-                  { id: 1, label: 'Home', href: '/' },
-                  { id: 2, label: 'Listings', href: '/listings' },
-                  { id: 3, label: 'Mentors', href: '/mentors' },
-                  { id: 4, label: 'Get Involved', href: '/get-involved' },
-                  { id: 5, label: 'Notifications', href: '/notifications' },
-                  { id: 7, label: 'Settings', href: '/settings' },
-                  { id: 8, label: 'Log Out', href: '/logout' },
-                ],
-                role_id: 1,
-                title: 'UX Designer',
-                userName: 'Jane D.',
-              },
-            },
-          })
-        );
-      })
-    );
+    mockIsLoggedIn = true;
 
     await waitFor(() => screen.getByText(/Jane D./i));
     screen.getByText(/Jane D./i);

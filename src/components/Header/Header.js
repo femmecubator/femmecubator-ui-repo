@@ -428,7 +428,7 @@ export default function Header() {
   };
 
   return (
-    <header className={root}>
+    <header className={root} id="app-header">
       <AppBar position="static" className={header}>
         {isMobile ? displayMobile() : displayDesktop()}
       </AppBar>
