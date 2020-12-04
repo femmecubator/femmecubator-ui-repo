@@ -104,11 +104,19 @@ const useStyles = makeStyles(() => ({
     margin: '6.25% 0',
     color: theme.white,
     background: theme.secondaryAccent,
+    '&:hover': {
+      background: theme.secondaryAccent,
+      boxShadow: `0 0 1px 1px ${theme.secondaryAccent}`
+    }
   },
   signInTwitter: {
     color: theme.primaryAccent,
     border: `1px solid ${theme.primaryAccent}`,
     background: theme.white,
+    '&:hover': {
+      background: theme.white,
+      boxShadow: `0 0 1px 1px ${theme.primaryAccent}`
+    }
   },
   twitter: {
     marginLeft: '0.25rem',
@@ -142,6 +150,11 @@ const useStyles = makeStyles(() => ({
   createAccount: {
     color: theme.white,
     background: theme.secondaryDark,
+    '&:hover': {
+      color: theme.white,
+      background: theme.secondaryDark,
+      boxShadow: `0 0 1px 1px ${theme.secondaryDark}`
+    }
   }
 }));
 
