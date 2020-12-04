@@ -96,7 +96,7 @@ const useStyles = makeStyles(() => ({
   button: {
     padding: '3.5px 21px',
     width: 'fit-content',
-    fontSize: '18px',
+    fontSize: 'clamp(14px, 2.5vw, 18px)',
     fontWeight: '600',
     boxShadow: 'none',
   },
@@ -153,7 +153,7 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       color: theme.white,
       background: theme.secondaryDark,
-      boxShadow: `0 0 1px 1px ${theme.secondaryDark}`
+      boxShadow: `0 0 1px 2px ${theme.secondaryDark}`
     }
   }
 }));
