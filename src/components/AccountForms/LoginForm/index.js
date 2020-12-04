@@ -63,7 +63,10 @@ const LoginForm = () => {
   const content = (
     <div className={classes.root}>
       <LoginHero className={classes.heroImage} />
-      <div className={classes.loginFormContainer}>
+      <div 
+        className={classes.loginFormContainer}
+        data-testid='auth-error'
+      >
         {(errors.email || errors.password) && 
           <div className={classes.error}>
             <Error /><p>Sorry, invalid email or password. Try again?</p>
