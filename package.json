@@ -81,11 +81,5 @@
   "proxy": "http://local.femmecubator.com:3001",
   "prettier": {
     "singleQuote": true
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test:coverage"
-    }
   }
 }
