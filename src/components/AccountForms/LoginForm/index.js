@@ -5,7 +5,7 @@ import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
 import { GlobalContext } from 'context/global';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import {
   Paper,
@@ -32,6 +32,7 @@ const LoginForm = ({ testOnSubmit }) => {
     globalState: { isMobile },
   } = useContext(GlobalContext);
   const history = useHistory();
+  const { search } = useLocation();
   const classes = useStyles({
     isMobile: isMobile,
   });
@@ -67,9 +68,15 @@ const LoginForm = ({ testOnSubmit }) => {
         <LoginHero className={classes.heroImage} />
         <div className={classes.loginFormContainer}>
           {(errors.email || errors.password) && !isMobile && (
-            <div className={classes.error} data-testid="authError">
+            <div className={`${classes.alert} ${classes.error}`}>
               <Error />
               <p role="alert">Sorry, invalid email or password. Try again?</p>
+            </div>
+          )}
+          {!(errors.email && errors.password) && search === '?timedOut=true' && (
+            <div className={`${classes.alert} ${classes.timedOut}`}>
+              <Error />
+              <p role="alert">Your session has timed out.</p>
             </div>
           )}
           <h2 className={classes.formTitle}>{FORM_TITLE}</h2>

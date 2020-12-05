@@ -8,6 +8,8 @@ const color = {
   secondaryAccent: '#1E90FF',
   primaryError: '#EB5757',
   secondaryError: '#FFEAEA',
+  primaryWarning: '#F2994A',
+  secondaryWarning: '#FBF1D0',
 };
 
 const useStyles = makeStyles(() => ({
@@ -29,15 +31,16 @@ const useStyles = makeStyles(() => ({
       display: 'none',
     },
   },
-  error: {
+  alert: {
     position: 'relative',
     padding: '0 16px',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    color: color.primaryError,
-    background: color.secondaryError,
     borderRadius: '4px',
+    '& p': {
+      margin: '16px 0 16px 8px',
+    },
     '&::before': {
       position: 'absolute',
       left: '0',
@@ -45,14 +48,22 @@ const useStyles = makeStyles(() => ({
       content: '""',
       width: '8px',
       height: '100%',
-      background: color.primaryError,
       borderRadius: '4px 0 0 4px',
     },
   },
-  errorTab: {
-    width: '8px',
-    height: '100%',
-    background: color.primaryError,
+  error: {
+    color: color.primaryError,
+    background: color.secondaryError,
+    '&::before': {
+      background: color.primaryError,
+    },
+  },
+  timedOut: {
+    color: color.primaryWarning,
+    background: color.secondaryWarning,
+    '&::before': {
+      background: color.primaryWarning,
+    },
   },
   formTitle: {
     fontSize: '1.75rem',
