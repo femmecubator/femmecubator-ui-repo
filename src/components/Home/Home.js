@@ -19,6 +19,8 @@ import KeyboardIcon from '@material-ui/icons/Keyboard';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+const isProgress = process.env['REACT_APP_WIP'] === 'true';
+
 const BlueFilledButton = withStyles({
   root: {
     background: '#026FE4',
@@ -95,7 +97,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   introContainer: {
-    backgroundColor: '#white',
+    backgroundColor: 'white',
     height: '476px',
     justifyContent: 'center',
     alignItems: 'center',
@@ -464,6 +466,37 @@ const useStyles = makeStyles(() => ({
       alignItems: 'center',
     },
   },
+  inProgress: {
+    height: 'auto',
+    background: '#4F4F4F',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: '30px 138px',
+    '@media (max-width: 1200px)': {
+      height: 'auto',
+      padding: '30px 50px',
+    },
+    '@media (max-width: 799px)': {
+      height: 'auto',
+      padding: '30px',
+    },
+  },
+  inProgressHeader: {
+    color: '#F2F2F2',
+    fontSize: '21px',
+    textAlign: 'left',
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: 700,
+    marginBottom: '20px',
+  },
+  inProgressParagraph: {
+    fontSize: '14px',
+    color: '#F2F2F2',
+    textAlign: 'left',
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: 400,
+  },
 }));
 
 const theme = createMuiTheme({
@@ -518,12 +551,36 @@ export default function Home() {
     slackFormContainer,
     slackForm,
     carouselContainerDiv,
+    inProgress,
+    inProgressHeader,
+    inProgressParagraph,
   } = useStyles();
 
   return (
     <ThemeProvider theme={theme}>
       <div className={root}>
         <Grid container>
+          {isProgress ? (
+            <Grid className={inProgress} item xs={12}>
+              <Typography variant="h3" className={inProgressHeader}>
+                Thanks so much for stopping by!
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: inProgressParagraph,
+                  paragraph: true,
+                }}
+              >
+                This is just a sneak peek of what we’re up to, but in Spring
+                2021 we’ll be ready to raise the curtain on a full slate of new
+                programming, resources and ways to get involved with our amazing
+                community. (We promise it’ll be worth the wait!) In the
+                meantime, subscribe for updates on femmecubator.org or reach out
+                to us on Instagram @femmecubator.
+              </Typography>
+            </Grid>
+          ) : null}
           <Grid className={introContainer} item xs={12} sm={6}>
             <div className={firstContainerDiv}>
               <Typography variant="h2" className={getConnectedHeader}>
