@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import request from 'utils/axiosConfig';
-import { API_PATH } from 'utils/constants';
+import { API_PATH, METHOD_TYPE } from 'utils/constants';
 import { isAuthCookiesExists } from 'utils/cookies';
 
 const Login = () => {
@@ -24,7 +24,11 @@ const Login = () => {
   }
 
   const submitHandler = () => {
-    request.post(API_PATH.LOGIN, { userId, password }).then(({ status }) => {
+    request({
+      method: METHOD_TYPE.POST,
+      url: API_PATH.LOGIN,
+      data: { userId, password },
+    }).then(({ status }) => {
       if (status === 200) {
         window.location.href = '/mentors';
       }
