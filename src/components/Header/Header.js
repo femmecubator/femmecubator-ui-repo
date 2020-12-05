@@ -13,6 +13,8 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
@@ -28,7 +30,8 @@ const useStyles = makeStyles(() => ({
   header: {
     boxShadow: 'none',
     backgroundColor: '#400CCC',
-    '@media (min-width: 799px)': {
+    paddingLeft: '10px',
+    '@media (min-width: 1055px)': {
       paddingRight: '79px',
       paddingLeft: '118px',
     },
@@ -38,6 +41,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     size: '18px',
     marginLeft: '38px',
+    '@media (max-width: 1055px)': {
+      marginLeft: 20,
+    },
   },
   userButton: {
     fontFamily: 'Work Sans, sans-serif',
@@ -52,10 +58,32 @@ const useStyles = makeStyles(() => ({
   },
   menuDrawer: {
     marginRight: '19px',
+    '@media (max-width: 350px)': {
+      marginRight: 0,
+    },
   },
   drawerContainer: {
     height: '100%',
-    padding: '20px',
+    width: 254,
+    paddingTop: 86,
+    backgroundColor: '#F2F7FF',
+  },
+  drawerChoice: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: 14,
+    fontWeight: 600,
+    color: '#232735',
+    width: 190,
+    height: 40,
+    padding: '8px, 0',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  arrowIcon: {
+    position: 'absolute',
+    left: 219,
+    top: 17,
+    cursor: 'pointer',
   },
   joinBtn: {
     border: '1px solid white',
@@ -64,16 +92,50 @@ const useStyles = makeStyles(() => ({
     fontWeight: 600,
     size: '16px',
   },
-  title: {
+  femmecubatorTitle: {
     flexGrow: 1,
     textAlign: 'left',
     fontFamily: 'Work Sans, sans-serif',
     fontWeight: 600,
     fontSize: '24px',
     color: '#FFFEFE',
+    '@media (max-width: 350px)': {
+      fontSize: '18px',
+    },
   },
   menuButtonsContainer: {
     display: 'flex',
+  },
+  accountPopup: {
+    marginTop: 14,
+  },
+  accountChoicesContainer: {
+    margin: '-8px 0',
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#F2F7FF',
+    width: 134,
+  },
+  accountChoice: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: 14,
+    fontWeight: 600,
+    color: '#232735',
+    padding: 0,
+    margin: '8px 22px',
+  },
+  logOutIcon: { fontSize: 16, marginRight: 5 },
+  userInfoContainer: {
+    margin: '0 43px 52px',
+    '& > :first-child': {
+      fontSize: 18,
+      fontWeight: 700,
+    },
+    '& > :nth-child(2)': {
+      fontSize: 14,
+      color: '#026FE4',
+      fontWeight: 600,
+    },
   },
 }));
 
@@ -83,7 +145,7 @@ export default function Header() {
   const {
     root,
     header,
-    title,
+    femmecubatorTitle,
     menuButtonsContainer,
     menuButton,
     menuDrawer,
@@ -91,6 +153,13 @@ export default function Header() {
     userButton,
     userIcon,
     drawerContainer,
+    drawerChoice,
+    arrowIcon,
+    accountPopup,
+    accountChoicesContainer,
+    accountChoice,
+    logOutIcon,
+    userInfoContainer,
   } = useStyles();
 
   const location = useLocation();
@@ -101,11 +170,12 @@ export default function Header() {
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.headers,
     userName: '',
+    title: '',
     anchorEl: false,
     drawerOpen: false,
   });
 
-  const { menuHeaders, userName, anchorEl, drawerOpen } = state;
+  const { menuHeaders, userName, title, anchorEl, drawerOpen } = state;
   const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
@@ -115,10 +185,15 @@ export default function Header() {
         .then(
           ({
             data: {
-              data: { headers: menuHeaders = {}, userName = '' },
+              data: { headers: menuHeaders = {}, userName = '', title = '' },
             },
           }) =>
-            setState((prevState) => ({ ...prevState, menuHeaders, userName }))
+            setState((prevState) => ({
+              ...prevState,
+              menuHeaders,
+              userName,
+              title,
+            }))
         )
         .catch(() => {
           clearSessionData();
@@ -127,8 +202,17 @@ export default function Header() {
     }
   }, [auth]);
 
+  const handleDrawerOpen = () =>
+    setState((prevState) => ({ ...prevState, drawerOpen: true }));
+  const handleDrawerClose = () =>
+    setState((prevState) => ({ ...prevState, drawerOpen: false }));
+  const handleAccountOpen = (e) =>
+    setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
+  const handleAccountClose = () =>
+    setState((prevState) => ({ ...prevState, anchorEl: null }));
+
   const femmecubatorLogo = (
-    <Typography variant="h1" className={title}>
+    <Typography variant="h1" className={femmecubatorTitle}>
       <Link
         {...{
           component: RouterLink,
@@ -145,9 +229,16 @@ export default function Header() {
   const getMenuButtons = () => {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
-        .filter(({ href }) => href !== '/logout' && href !== '/account')
+        .filter(
+          ({ href }) =>
+            href !== '/' &&
+            href !== '/register' &&
+            href !== '/notifications' &&
+            href !== '/logout' &&
+            href !== '/settings'
+        )
         .map(({ id, href, label }) => {
-          let color = label === 'Join Us!' ? '#B9EBEC' : 'white';
+          let color = label === 'Donate' ? '#B9EBEC' : 'white';
 
           return (
             <div key={id}>
@@ -171,17 +262,34 @@ export default function Header() {
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
-      return menuHeaders.map(({ id, href: to, label }) => (
+      let filteredChoices;
+
+      if (auth.isLoggedIn()) {
+        filteredChoices = menuHeaders.filter(
+          ({ href }) => href !== '/notifications'
+        );
+      } else {
+        filteredChoices = menuHeaders.filter(
+          ({ href }) =>
+            href !== '/listings' && href !== '/mentors' && href !== '/donate'
+        );
+      }
+      return filteredChoices.map(({ id, href: to, label }) => (
         <Link
           {...{
             component: RouterLink,
             to,
             color: 'inherit',
             style: { textDecoration: 'none' },
+            key: id,
+            onClick: handleDrawerClose,
           }}
           key={id}
         >
-          <MenuItem>{label}</MenuItem>
+          <MenuItem className={drawerChoice}>
+            {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
+            {label}
+          </MenuItem>
         </Link>
       ));
     }
@@ -190,7 +298,7 @@ export default function Header() {
   const getAccountChoices = () => {
     if (menuHeaders && menuHeaders.length) {
       return menuHeaders
-        .filter(({ href }) => href === '/logout' || href === '/account')
+        .filter(({ href }) => href === '/logout' || href === '/settings')
         .map(({ id, href: to, label }) => {
           return (
             <Link
@@ -200,9 +308,13 @@ export default function Header() {
                 to,
                 color: 'inherit',
                 style: { textDecoration: 'none' },
+                onClick: handleAccountClose,
               }}
             >
-              <MenuItem>{label}</MenuItem>
+              <MenuItem className={accountChoice}>
+                {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
+                {label}
+              </MenuItem>
             </Link>
           );
         });
@@ -210,11 +322,6 @@ export default function Header() {
   };
 
   const displayDesktop = () => {
-    const handleAccountOpen = (e) =>
-      setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
-    const handleAccountClose = () =>
-      setState((prevState) => ({ ...prevState, anchorEl: null }));
-
     return (
       <Toolbar>
         {femmecubatorLogo}
@@ -238,13 +345,19 @@ export default function Header() {
               <Menu
                 {...{
                   id: 'simple-menu',
+                  className: accountPopup,
                   open: !!anchorEl,
                   onClose: handleAccountClose,
                   keepMounted: true,
                   anchorEl,
+                  getContentAnchorEl: null,
+                  anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
+                  transformOrigin: { vertical: 'top', horizontal: 'center' },
                 }}
               >
-                {getAccountChoices()}
+                <div className={accountChoicesContainer}>
+                  {getAccountChoices()}
+                </div>
               </Menu>
             </>
           )}
@@ -254,11 +367,6 @@ export default function Header() {
   };
 
   const displayMobile = () => {
-    const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
-    const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
-
     return (
       <Toolbar>
         <IconButton
@@ -276,7 +384,28 @@ export default function Header() {
         </IconButton>
 
         <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
+          <ArrowForwardIcon className={arrowIcon} onClick={handleDrawerClose} />
+
+          <div className={drawerContainer}>
+            {auth.isLoggedIn() && (
+              <div className={userInfoContainer}>
+                <div>
+                  <Link
+                    {...{
+                      component: RouterLink,
+                      to: '/settings',
+                      color: 'inherit',
+                      style: { textDecoration: 'none' },
+                    }}
+                  >
+                    @{userName}
+                  </Link>
+                </div>
+                <div>{title}</div>
+              </div>
+            )}
+            {getDrawerChoices()}
+          </div>
         </Drawer>
 
         {femmecubatorLogo}
@@ -299,7 +428,7 @@ export default function Header() {
   };
 
   return (
-    <header className={root}>
+    <header className={root} id="app-header">
       <AppBar position="static" className={header}>
         {isMobile ? displayMobile() : displayDesktop()}
       </AppBar>
