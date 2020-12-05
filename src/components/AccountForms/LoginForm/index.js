@@ -71,7 +71,7 @@ const LoginForm = ({ testOnSubmit }) => {
               data-testid="authError"
             >
               <Error />
-              <p>Sorry, invalid email or password. Try again?</p>
+              <p role='alert'>Sorry, invalid email or password. Try again?</p>
             </div>
           )}
           <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
@@ -96,7 +96,6 @@ const LoginForm = ({ testOnSubmit }) => {
                 },
               }}
               InputProps={{
-                inputProps: { 'data-testid': 'Email' },
                 classes: {
                   input: classes.input,
                 },
@@ -125,7 +124,7 @@ const LoginForm = ({ testOnSubmit }) => {
                 },
               }}
               InputProps={{
-                inputProps: { 'data-testid': 'Password' },
+                inputProps: { 'data-testid': 'password' },
                 classes: {
                   input: classes.input,
                 },
@@ -153,7 +152,6 @@ const LoginForm = ({ testOnSubmit }) => {
             <Button
               type="submit"
               className={`${classes.button} ${classes.signIn}`}
-              data-testid='submit'
             >
               SIGN IN
             </Button>
