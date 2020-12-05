@@ -29,6 +29,14 @@ const API_PATH = {
   LOGIN_PAGE: '/login',
 };
 
+const METHOD_TYPE = {
+  GET: 'get',
+  POST: 'post',
+  PATCH: 'patch',
+  PUT: 'put',
+  DELETE: 'delete',
+};
+
 const ROUTES_LABEL = {
   HOME: 'homePage',
   MENTORS: 'mentors',
@@ -88,4 +96,5 @@ export {
   ROUTES,
   ROUTES_LABEL,
   ACTION_TYPE,
+  METHOD_TYPE,
 };

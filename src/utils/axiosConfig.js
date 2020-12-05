@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const request = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
   withCredentials: true,
 });
 
@@ -17,7 +18,7 @@ const request = axios.create({
 */
 request.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error.response.data.err)
+  (error) => Promise.reject(error.response.data)
 );
 
 export default request;
