@@ -66,7 +66,7 @@ const LoginForm = ({ testOnSubmit }) => {
       <Paper classes={{ root: classes.paperContainer }}>
         <LoginHero className={classes.heroImage} />
         <div className={classes.loginFormContainer}>
-          {(errors.email || errors.password) && (
+          {(errors.email || errors.password) && !isMobile && (
             <div className={classes.error} data-testid="authError">
               <Error />
               <p role="alert">Sorry, invalid email or password. Try again?</p>
