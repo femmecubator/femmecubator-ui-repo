@@ -97,7 +97,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   introContainer: {
-    backgroundColor: '#white',
+    backgroundColor: 'white',
     height: '476px',
     justifyContent: 'center',
     alignItems: 'center',
