@@ -4,6 +4,7 @@ import { API_PATH } from 'utils/constants';
 import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
 import { GlobalContext } from 'context/global';
+import isEmpty from 'lodash/isEmpty';
 
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
@@ -21,8 +22,11 @@ import { ReactComponent as TwitterLogo } from './assets/TwitterLogo.svg';
 const FORM_TITLE = 'Welcome back!';
 
 const emailRequirements = {
-  required: true,
-  pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  required: 'Email is required',
+  pattern: {
+    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    message: 'Invalid email format',
+  },
 };
 
 const LoginForm = ({ testOnSubmit }) => {
@@ -46,8 +50,8 @@ const LoginForm = ({ testOnSubmit }) => {
   }, [auth, history]);
 
   const onSubmit = (credentials) => {
-    request.post(API_PATH.LOGIN, credentials).then((response) => {
-      if (response.status === 200) {
+    request.post(API_PATH.LOGIN, credentials).then(({ status }) => {
+      if (status === 200) {
         auth.checkCookie();
         history.push('/mentors');
       }
@@ -67,13 +71,13 @@ const LoginForm = ({ testOnSubmit }) => {
       <Paper classes={{ root: classes.paperContainer }}>
         <LoginHero className={classes.heroImage} />
         <div className={classes.loginFormContainer}>
-          {(errors.email || errors.password) && !isMobile && (
+          {!isEmpty(errors) && !isMobile && (
             <div className={`${classes.alert} ${classes.error}`}>
               <Error />
               <p role="alert">Sorry, invalid email or password. Try again?</p>
             </div>
           )}
-          {!(errors.email && errors.password) && search === '?timedOut=true' && (
+          {isEmpty(errors) && search === '?timedOut=true' && (
             <div className={`${classes.alert} ${classes.timedOut}`}>
               <Error />
               <p role="alert">Your session has timed out.</p>
@@ -85,69 +89,73 @@ const LoginForm = ({ testOnSubmit }) => {
             onSubmit={handleSubmit(testOnSubmit || onSubmit)}
           >
             <TextField
-              id="email"
-              label="Email"
-              variant="outlined"
-              className={classes.loginInput}
-              inputRef={register(emailRequirements)}
-              name="email"
-              autoComplete="email"
-              error={errors.email && true}
-              helperText={errors.email && 'Invalid email format'}
-              InputLabelProps={{
-                classes: {
-                  root: classes.label,
-                  shrink: classes.labelShrink,
+              {...{
+                id: 'email',
+                label: 'Email',
+                variant: 'outlined',
+                className: classes.loginInput,
+                inputRef: register(emailRequirements),
+                name: 'email',
+                autoComplete: 'email',
+                error: !isEmpty(errors.email) && true,
+                helperText: errors.email && 'Invalid email format',
+                InputLabelProps: {
+                  classes: {
+                    root: classes.label,
+                    shrink: classes.labelShrink,
+                  },
                 },
-              }}
-              InputProps={{
-                classes: {
-                  input: classes.input,
+                InputProps: {
+                  classes: {
+                    input: classes.input,
+                  },
                 },
-              }}
-              FormHelperTextProps={{
-                classes: {
-                  root: classes.helperText,
+                FormHelperTextProps: {
+                  classes: {
+                    root: classes.helperText,
+                  },
                 },
               }}
             />
             <TextField
-              id="password"
-              label="Password"
-              variant="outlined"
-              className={classes.loginInput}
-              inputRef={register({ required: true })}
-              name="password"
-              autoComplete="current-password"
-              type={showPassword ? 'text' : 'password'}
-              error={errors.password && true}
-              helperText={errors.password && 'Enter a password'}
-              InputLabelProps={{
-                classes: {
-                  root: classes.label,
-                  shrink: classes.labelShrink,
+              {...{
+                id: 'password',
+                label: 'Password',
+                variant: 'outlined',
+                className: classes.loginInput,
+                inputRef: register({ required: true }),
+                name: 'password',
+                autoComplete: 'current-password',
+                type: showPassword ? 'text' : 'password',
+                error: !isEmpty(errors.password) && true,
+                helperText: errors.password && 'Enter a password',
+                InputLabelProps: {
+                  classes: {
+                    root: classes.label,
+                    shrink: classes.labelShrink,
+                  },
                 },
-              }}
-              InputProps={{
-                inputProps: { 'data-testid': 'password' },
-                classes: {
-                  input: classes.input,
+                InputProps: {
+                  inputProps: { 'data-testid': 'password' },
+                  classes: {
+                    input: classes.input,
+                  },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        edge="end"
+                        onClick={handleClickShowPassword}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
                 },
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      edge="end"
-                      onClick={handleClickShowPassword}
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              FormHelperTextProps={{
-                classes: {
-                  root: classes.helperText,
+                FormHelperTextProps: {
+                  classes: {
+                    root: classes.helperText,
+                  },
                 },
               }}
             />
