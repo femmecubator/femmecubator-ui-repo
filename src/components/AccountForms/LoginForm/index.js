@@ -58,7 +58,7 @@ const LoginForm = ({ testOnSubmit }) => {
 
   const handleClickRegister = () => {
     history.push('/register');
-  }
+  };
 
   const content = (
     <div className={classes.root}>
@@ -66,17 +66,14 @@ const LoginForm = ({ testOnSubmit }) => {
         <LoginHero className={classes.heroImage} />
         <div className={classes.loginFormContainer}>
           {(errors.email || errors.password) && (
-            <div 
-              className={classes.error}
-              data-testid="authError"
-            >
+            <div className={classes.error} data-testid="authError">
               <Error />
-              <p role='alert'>Sorry, invalid email or password. Try again?</p>
+              <p role="alert">Sorry, invalid email or password. Try again?</p>
             </div>
           )}
           <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
-          <form 
-            className={classes.loginForm} 
+          <form
+            className={classes.loginForm}
             onSubmit={handleSubmit(testOnSubmit || onSubmit)}
           >
             <TextField
@@ -156,13 +153,11 @@ const LoginForm = ({ testOnSubmit }) => {
               SIGN IN
             </Button>
           </form>
-          <Button 
-            className={`${classes.button} ${classes.signInTwitter}`}
-          >
+          <Button className={`${classes.button} ${classes.signInTwitter}`}>
             CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
           </Button>
           <p className={classes.orDivider}>OR</p>
-          <Button 
+          <Button
             className={`${classes.button} ${classes.createAccount}`}
             onClick={handleClickRegister}
           >
