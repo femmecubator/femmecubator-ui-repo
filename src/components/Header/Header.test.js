@@ -17,6 +17,17 @@ const resizeToDesktop = () => {
   global.dispatchEvent(new Event('resize'));
 };
 
+let mockIsLoggedIn = false;
+
+jest.mock('../../context/auth', () => ({
+  ...jest.requireActual('../../context/auth'),
+  useAuth: () => ({
+    auth: {
+      isLoggedIn: () => mockIsLoggedIn,
+    },
+  }),
+}));
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({
@@ -45,14 +56,20 @@ describe('<Header />', () => {
     screen.getByRole('link', { name: /femmecubator/i });
   });
 
-  it('should display the general menu if user is not authenticated', async () => {
+  it('should display the general menu if user IS NOT authenticated', async () => {
     screen.getByRole('button', { name: /get involved/i });
 
     await waitFor(() => screen.getByText(/log in/i));
     screen.getByText(/log in/i);
 
-    await waitFor(() => screen.getByText(/join us!/i));
-    screen.getByText(/join us!/i);
+    expect(document.getElementById('app-header')).toHaveTextContent(/donate/i);
+  });
+
+  xit('should display the logged in menu if user IS authenticated', async () => {
+    mockIsLoggedIn = true;
+
+    await waitFor(() => screen.getByText(/Jane D./i));
+    screen.getByText(/Jane D./i);
   });
 
   it('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', async () => {

@@ -8,3 +8,5 @@ import '@testing-library/jest-dom/extend-expect';
 // configure({ adapter: new Adapter() });
 import MutationObserver from '@sheerun/mutationobserver-shim';
 window.MutationObserver = MutationObserver;
+
+import './testServer';

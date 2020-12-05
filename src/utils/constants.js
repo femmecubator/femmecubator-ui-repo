@@ -2,18 +2,38 @@ const DEFAULT_COMMON_MENU = {
   headers: [
     {
       id: 1,
+      label: 'Listings',
+      href: '/listings',
+    },
+    {
+      id: 2,
+      label: 'Mentors',
+      href: '/mentors',
+    },
+    {
+      id: 3,
+      label: 'Home',
+      href: '/',
+    },
+    {
+      id: 4,
       label: 'Get Involved',
       href: '/volunteer',
     },
     {
-      id: 2,
+      id: 5,
       label: 'Log In',
       href: '/login',
     },
     {
-      id: 3,
-      label: 'Join Us!',
+      id: 6,
+      label: 'Sign Up',
       href: '/register',
+    },
+    {
+      id: 7,
+      label: 'Donate',
+      href: '/donate',
     },
   ],
 };
