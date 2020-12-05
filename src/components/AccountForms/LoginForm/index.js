@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { API_PATH } from 'utils/constants';
 import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
+import { GlobalContext } from 'context/global';
 
 import { Link, useHistory } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
@@ -27,8 +28,13 @@ const emailRequirements = {
 const LoginForm = ({ testOnSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm();
+  const {
+    globalState: { isMobile },
+  } = useContext(GlobalContext);
   const history = useHistory();
-  const classes = useStyles();
+  const classes = useStyles({
+    isMobile: isMobile,
+  });
 
   const { auth } = useAuth();
 

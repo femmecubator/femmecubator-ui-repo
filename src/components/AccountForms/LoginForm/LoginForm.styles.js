@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const theme = {
+const color = {
   white: '#ffffff',
   primaryDark: '#4F4F4F',
   secondaryDark: '#828282',
@@ -11,17 +11,18 @@ const theme = {
 };
 
 const useStyles = makeStyles(() => ({
-  root: {
-    margin: '5% 0',
-  },
-  paperContainer: {
+  root: (props) => ({
+    margin: props.isMobile ? '0' : '5% 0',
+  }),
+  paperContainer: (props) => ({
     margin: 'auto',
     padding: '2rem',
     width: 'fit-content',
     display: 'flex',
     justifyContent: 'center',
     fontFamily: 'Open Sans, sans-serif',
-  },
+    boxShadow: props.isMobile && 'none',
+  }),
   heroImage: {
     width: '589px',
     '@media (max-width: 972px)': {
@@ -34,8 +35,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    color: theme.primaryError,
-    background: theme.secondaryError,
+    color: color.primaryError,
+    background: color.secondaryError,
     borderRadius: '4px',
     '&::before': {
       position: 'absolute',
@@ -44,21 +45,21 @@ const useStyles = makeStyles(() => ({
       content: '""',
       width: '8px',
       height: '100%',
-      background: theme.primaryError,
+      background: color.primaryError,
       borderRadius: '4px 0 0 4px',
     },
   },
   errorTab: {
     width: '8px',
     height: '100%',
-    background: theme.primaryError,
+    background: color.primaryError,
   },
   formTitle: {
     fontSize: '1.75rem',
     fontWeight: '700',
     lineHeight: '38px',
     letterSpacing: '0em',
-    color: theme.primaryDark,
+    color: color.primaryDark,
   },
   loginFormContainer: {
     maxWidth: '320px',
@@ -108,20 +109,20 @@ const useStyles = makeStyles(() => ({
   },
   signIn: {
     margin: '6.25% 0',
-    color: theme.white,
-    background: theme.secondaryAccent,
+    color: color.white,
+    background: color.secondaryAccent,
     '&:hover': {
-      background: theme.secondaryAccent,
-      boxShadow: `0 0 1px 1px ${theme.secondaryAccent}`,
+      background: color.secondaryAccent,
+      boxShadow: `0 0 1px 1px ${color.secondaryAccent}`,
     },
   },
   signInTwitter: {
-    color: theme.primaryAccent,
-    border: `1px solid ${theme.primaryAccent}`,
-    background: theme.white,
+    color: color.primaryAccent,
+    border: `1px solid ${color.primaryAccent}`,
+    background: color.white,
     '&:hover': {
-      background: theme.white,
-      boxShadow: `0 0 1px 1px ${theme.primaryAccent}`,
+      background: color.white,
+      boxShadow: `0 0 1px 1px ${color.primaryAccent}`,
     },
   },
   twitter: {
@@ -129,7 +130,7 @@ const useStyles = makeStyles(() => ({
   },
   orDivider: {
     width: '100%',
-    color: theme.primaryDark,
+    color: color.primaryDark,
     fontWeight: '400',
     textAlign: 'center',
     overflow: 'hidden',
@@ -142,7 +143,7 @@ const useStyles = makeStyles(() => ({
       width: '35%',
       marginRight: '5px',
       marginLeft: '-100%',
-      borderTop: `1px solid ${theme.primaryDark}`,
+      borderTop: `1px solid ${color.primaryDark}`,
     },
     '&::after': {
       content: '""',
@@ -152,16 +153,16 @@ const useStyles = makeStyles(() => ({
       width: '35%',
       marginRight: '-100%',
       marginLeft: '5px',
-      borderTop: `1px solid ${theme.primaryDark}`,
+      borderTop: `1px solid ${color.primaryDark}`,
     },
   },
   createAccount: {
-    color: theme.white,
-    background: theme.secondaryDark,
+    color: color.white,
+    background: color.secondaryDark,
     '&:hover': {
-      color: theme.white,
-      background: theme.secondaryDark,
-      boxShadow: `0 0 1px 2px ${theme.secondaryDark}`,
+      color: color.white,
+      background: color.secondaryDark,
+      boxShadow: `0 0 1px 2px ${color.secondaryDark}`,
     },
   },
 }));
