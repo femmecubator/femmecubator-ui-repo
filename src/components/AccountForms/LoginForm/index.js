@@ -29,7 +29,7 @@ const emailRequirements = {
 //   pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])/,
 // }
 
-const LoginForm = () => {
+const LoginForm = ({ testOnSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
@@ -44,7 +44,7 @@ const LoginForm = () => {
   }, [auth, history]);
 
   const onSubmit = (credentials) => {
-    loginHandler(credentials).then((response) => {
+    request.post(API_PATH.LOGIN, credentials).then((response) => {
       if (response.status === 200) {
         auth.checkCookie();
         history.push('/mentors');
@@ -52,28 +52,33 @@ const LoginForm = () => {
     });
   };
 
-  const loginHandler = async (credentials) => {
-    const response = await request.post(API_PATH.LOGIN, credentials);
-    return response;
-  };
-
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleClickRegister = () => {
+    history.push('/register');
+  }
 
   const content = (
     <div className={classes.root}>
       <Paper classes={{ root: classes.paperContainer }}>
         <LoginHero className={classes.heroImage} />
-        <div className={classes.loginFormContainer} data-testid="auth-error">
+        <div className={classes.loginFormContainer}>
           {(errors.email || errors.password) && (
-            <div className={classes.error}>
+            <div 
+              className={classes.error}
+              data-testid="authError"
+            >
               <Error />
               <p>Sorry, invalid email or password. Try again?</p>
             </div>
           )}
           <h2 className={classes.formTitle}>{FORM_TITLE}</h2>
-          <form className={classes.loginForm} onSubmit={handleSubmit(onSubmit)}>
+          <form 
+            className={classes.loginForm} 
+            onSubmit={handleSubmit(testOnSubmit || onSubmit)}
+          >
             <TextField
               id="email"
               label="Email"
@@ -91,6 +96,7 @@ const LoginForm = () => {
                 },
               }}
               InputProps={{
+                inputProps: { 'data-testid': 'Email' },
                 classes: {
                   input: classes.input,
                 },
@@ -119,6 +125,7 @@ const LoginForm = () => {
                 },
               }}
               InputProps={{
+                inputProps: { 'data-testid': 'Password' },
                 classes: {
                   input: classes.input,
                 },
@@ -146,15 +153,21 @@ const LoginForm = () => {
             <Button
               type="submit"
               className={`${classes.button} ${classes.signIn}`}
+              data-testid='submit'
             >
               SIGN IN
             </Button>
           </form>
-          <Button className={`${classes.button} ${classes.signInTwitter}`}>
+          <Button 
+            className={`${classes.button} ${classes.signInTwitter}`}
+          >
             CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
           </Button>
           <p className={classes.orDivider}>OR</p>
-          <Button className={`${classes.button} ${classes.createAccount}`}>
+          <Button 
+            className={`${classes.button} ${classes.createAccount}`}
+            onClick={handleClickRegister}
+          >
             CREATE ACCOUNT
           </Button>
         </div>
