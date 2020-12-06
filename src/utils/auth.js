@@ -10,6 +10,15 @@ export default class Auth {
     return this.isAuthenticated;
   }
 
+  checkCookie() {
+    if (isAuthCookiesExists()) {
+      this.isAuthenticated = isAuthCookiesExists();
+      return true;
+    } else {
+      throw new Error('Invalid cookie!');
+    }
+  }
+
   logoff() {
     clearSessionData();
     this.location.replace(API_PATH.LOGIN_PAGE);
