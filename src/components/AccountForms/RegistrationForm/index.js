@@ -11,7 +11,7 @@ import {
   InputAdornment,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { GlobalContext } from 'context/global';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,6 +21,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import { useAuth } from 'context/auth';
 import request from 'utils/axiosConfig';
+import { API_PATH } from 'utils/constants';
+import { updateAuth } from 'context/actionCreators';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -200,9 +202,10 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     password: false,
     retypePassword: false,
   });
+  const history = useHistory();
 
   const onSubmit = (data) => {
-    request.post(API_PATH.LOGIN, data).then(({ status }) => {
+    request.post(API_PATH.REGISTER, data).then(({ status }) => {
       if (status === 200) {
         dispatch(updateAuth(auth.checkCookie()));
         history.push('/mentors');
