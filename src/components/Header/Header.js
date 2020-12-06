@@ -175,11 +175,12 @@ export default function Header() {
     drawerOpen: false,
   });
 
+  const isLoggedIn = auth.isLoggedIn();
   const { menuHeaders, userName, title, anchorEl, drawerOpen } = state;
   const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
-    if (auth.isLoggedIn()) {
+    if (isLoggedIn) {
       request
         .get(API_PATH.COMMON_MENU)
         .then(
@@ -200,7 +201,7 @@ export default function Header() {
           window.location.replace(API_PATH.LOGIN_PAGE);
         });
     }
-  }, [auth]);
+  }, [isLoggedIn]);
 
   const handleDrawerOpen = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
@@ -264,7 +265,7 @@ export default function Header() {
     if (menuHeaders && menuHeaders.length) {
       let filteredChoices;
 
-      if (auth.isLoggedIn()) {
+      if (isLoggedIn) {
         filteredChoices = menuHeaders.filter(
           ({ href }) => href !== '/notifications'
         );
@@ -387,7 +388,7 @@ export default function Header() {
           <ArrowForwardIcon className={arrowIcon} onClick={handleDrawerClose} />
 
           <div className={drawerContainer}>
-            {auth.isLoggedIn() && (
+            {isLoggedIn && (
               <div className={userInfoContainer}>
                 <div>
                   <Link
@@ -410,7 +411,7 @@ export default function Header() {
 
         {femmecubatorLogo}
 
-        {!auth.isLoggedIn() && (
+        {!isLoggedIn && (
           <Button
             {...{
               variant: 'outlined',
