@@ -237,6 +237,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div>
                     <TextField
                       {...{
+                        id: 'firstName',
                         className: classes.textField,
                         label: 'First Name',
                         variant: 'outlined',
@@ -250,6 +251,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                     />
                     <TextField
                       {...{
+                        id: 'lastName',
                         inputProps: { 'data-testid': 'lastName' },
                         inputRef: register,
                         name: 'lastName',
@@ -264,6 +266,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        id: 'prefLoc',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'prefLoc' },
                         label: 'Preferred Location',
@@ -278,6 +281,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        id: 'title',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'title' },
                         label: 'Title',
@@ -292,6 +296,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        id: 'email',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'email' },
                         label: 'Email',
@@ -306,6 +311,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        id: 'username',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'userName' },
                         label: 'Username',
@@ -320,8 +326,11 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
+                        id: 'password',
                         InputProps: {
-                          inputProps: { 'data-testid': 'password' },
+                          inputProps: {
+                            'data-testid': 'password',
+                          },
                           endAdornment: (
                             <InputAdornment position="end">
                               <IconButton
@@ -352,6 +361,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                     />
                     <TextField
                       {...{
+                        id: 'retypePassword',
                         InputProps: {
                           inputProps: { 'data-testid': 'retypePassword' },
                           endAdornment: (
