@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useAuth } from '../context/auth';
-
 const FemmecubatorRoute = ({ component: Component, isProtected, ...rest }) => {
-  const { auth } = useAuth();
-
+  const {
+    authState: { isLoggedIn },
+  } = useAuth();
   let route = <Route {...rest} render={(props) => <Component {...props} />} />;
 
   if (isProtected) {
@@ -12,11 +12,7 @@ const FemmecubatorRoute = ({ component: Component, isProtected, ...rest }) => {
       <Route
         {...rest}
         render={(props) =>
-          auth.isLoggedIn() ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to="/login" />
-          )
+          isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
         }
       />
     );
