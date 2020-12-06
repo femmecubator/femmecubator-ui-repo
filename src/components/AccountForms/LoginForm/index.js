@@ -1,12 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { API_PATH } from 'utils/constants';
 import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
 import { GlobalContext } from 'context/global';
 import isEmpty from 'lodash/isEmpty';
-
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { updateAuth } from 'context/actionCreators';
+import { Link, useHistory, useLocation, Redirect } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import {
   Paper,
@@ -42,18 +43,16 @@ const LoginForm = ({ testOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const { auth } = useAuth();
-
-  useEffect(() => {
-    if (auth.isLoggedIn()) {
-      history.replace('/mentors');
-    }
-  }, [auth, history]);
+  const {
+    dispatch,
+    auth,
+    authState: { isLoggedIn },
+  } = useAuth();
 
   const onSubmit = (credentials) => {
     request.post(API_PATH.LOGIN, credentials).then(({ status }) => {
       if (status === 200) {
-        auth.checkCookie();
+        dispatch(updateAuth(auth.checkCookie()));
         history.push('/mentors');
       }
     });
@@ -187,7 +186,19 @@ const LoginForm = ({ testOnSubmit }) => {
     </div>
   );
 
-  return <>{auth.isAuthenticated ? null : content}</>;
+  return (
+    <>
+      {isLoggedIn ? (
+        <Redirect
+          to={{
+            pathname: '/mentors',
+          }}
+        />
+      ) : (
+        content
+      )}
+    </>
+  );
 };
 
 export default LoginForm;

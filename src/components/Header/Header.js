@@ -18,7 +18,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
 import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
 import { GlobalContext } from 'context/global';
 import { clearSessionData } from 'utils/cookies';
@@ -141,7 +142,7 @@ const useStyles = makeStyles(() => ({
 
 const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
 
-export default function Header() {
+function Header() {
   const {
     root,
     header,
@@ -163,7 +164,9 @@ export default function Header() {
   } = useStyles();
 
   const location = useLocation();
-  const { auth } = useAuth();
+  const {
+    authState: { isLoggedIn },
+  } = useAuth();
   const {
     globalState: { isMobile },
   } = useContext(GlobalContext);
@@ -174,8 +177,8 @@ export default function Header() {
     anchorEl: false,
     drawerOpen: false,
   });
+  const history = useHistory();
 
-  const isLoggedIn = auth.isLoggedIn();
   const { menuHeaders, userName, title, anchorEl, drawerOpen } = state;
   const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
@@ -198,10 +201,10 @@ export default function Header() {
         )
         .catch(() => {
           clearSessionData();
-          window.location.replace(API_PATH.LOGIN_PAGE);
+          history.push(API_PATH.LOGIN_PAGE);
         });
     }
-  }, [isLoggedIn]);
+  }, [history, isLoggedIn]);
 
   const handleDrawerOpen = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
@@ -436,3 +439,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default withRouter(Header);
