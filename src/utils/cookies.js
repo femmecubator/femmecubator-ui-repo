@@ -18,7 +18,6 @@ function clearSessionData() {
   };
 
   for (const cookie of Object.keys(COOKIES_LIST)) {
-    console.log('cookie', cookie);
     cookies.remove(cookie, options);
   }
 }
