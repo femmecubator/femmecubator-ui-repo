@@ -4,17 +4,20 @@ import RegistrationForm from './index';
 import { act } from 'react-dom/test-utils';
 import { GlobalProvider } from 'context/global';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from 'context/auth';
 
 describe('<RegistrationForm />', () => {
   it('should check if the submit button handler has been called', async () => {
     const mockOnSubmit = jest.fn();
 
     const { getByTestId } = render(
-      <GlobalProvider>
-        <Router>
-          <RegistrationForm onSubmit={mockOnSubmit} />
-        </Router>
-      </GlobalProvider>
+      <AuthProvider>
+        <GlobalProvider>
+          <Router>
+            <RegistrationForm mockOnSubmit={mockOnSubmit} />
+          </Router>
+        </GlobalProvider>
+      </AuthProvider>
     );
     await act(async () => {
       fireEvent.input(getByTestId('firstName'), { target: { value: 'John' } });
@@ -46,11 +49,13 @@ describe('<RegistrationForm />', () => {
   it('should validate errors for required fields', async () => {
     const mockOnSubmit = jest.fn();
     const { getByTestId, container } = render(
-      <GlobalProvider>
-        <Router>
-          <RegistrationForm onSubmit={mockOnSubmit} />
-        </Router>
-      </GlobalProvider>
+      <AuthProvider>
+        <GlobalProvider>
+          <Router>
+            <RegistrationForm onSubmit={mockOnSubmit} />
+          </Router>
+        </GlobalProvider>
+      </AuthProvider>
     );
 
     await act(async () => {
@@ -71,11 +76,13 @@ describe('<RegistrationForm />', () => {
     const mockOnSubmit = jest.fn();
 
     const { getByTestId, container } = render(
-      <GlobalProvider>
-        <Router>
-          <RegistrationForm onSubmit={mockOnSubmit} />
-        </Router>
-      </GlobalProvider>
+      <AuthProvider>
+        <GlobalProvider>
+          <Router>
+            <RegistrationForm onSubmit={mockOnSubmit} />
+          </Router>
+        </GlobalProvider>
+      </AuthProvider>
     );
     await act(async () => {
       fireEvent.input(getByTestId('firstName'), { target: { value: '1234' } });

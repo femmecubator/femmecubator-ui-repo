@@ -11,7 +11,7 @@ import {
   InputAdornment,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { GlobalContext } from 'context/global';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,6 +19,10 @@ import isEmpty from 'lodash/isEmpty';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
+import { useAuth } from 'context/auth';
+import request from 'utils/axiosConfig';
+import { API_PATH } from 'utils/constants';
+import { updateAuth } from 'context/actionCreators';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,9 +127,6 @@ const MIN_CHARS = 'Must be more than 1 character';
 const ONLY_LETTERS = 'Must only contain letters (A-Z, a-z)';
 const ONLY_LETTERS_WS = 'Must only contain letters and spaces(A-Z, a-z)';
 const MIN_8CHARS = 'Must be more than 8 characters';
-function submitHandler(data) {
-  alert(JSON.stringify(data));
-}
 
 const RegistrationSchema = yup.object().shape({
   firstName: yup
@@ -183,7 +184,7 @@ const RegistrationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], "Passwords don't match."),
 });
 
-const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
+const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm({
     revalidateMode: 'onChange',
@@ -192,10 +193,25 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
   const {
     globalState: { isMobile },
   } = useContext(GlobalContext);
+  const {
+    dispatch,
+    auth,
+    authState: { isLoggedIn },
+  } = useAuth();
   const [showPassword, setShowPassword] = useState({
     password: false,
     retypePassword: false,
   });
+  const history = useHistory();
+
+  const onSubmit = (data) => {
+    request.post(API_PATH.REGISTER, data).then(({ status }) => {
+      if (status === 200) {
+        dispatch(updateAuth(auth.checkCookie()));
+        history.push('/mentors');
+      }
+    });
+  };
 
   const handleClickShowPassword = (key) => {
     setShowPassword((prevState) => ({ ...prevState, [key]: !prevState[key] }));
@@ -214,7 +230,10 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
                 <Typography variant="body2" className={classes.formSubtitle}>
                   {FORM_SUBTITLE} <Link to="/login">Login</Link>
                 </Typography>
-                <form noValidate onSubmit={handleSubmit(onSubmit, onError)}>
+                <form
+                  noValidate
+                  onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
+                >
                   <div>
                     <TextField
                       {...{
@@ -439,7 +458,7 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
             xs={12}
             style={{ paddingLeft: '1.5625em', paddingRight: '1.5625em' }}
           >
-            <form noValidate onSubmit={handleSubmit(onSubmit)}>
+            <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
               <TextField
                 {...{
                   label: 'First Name',
@@ -597,7 +616,19 @@ const RegistrationForm = ({ onSubmit = submitHandler, onError }) => {
     );
   }
 
-  return <>{content}</>;
+  return (
+    <>
+      {isLoggedIn ? (
+        <Redirect
+          to={{
+            pathname: '/mentors',
+          }}
+        />
+      ) : (
+        content
+      )}
+    </>
+  );
 };
 
 export default RegistrationForm;

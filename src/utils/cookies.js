@@ -13,10 +13,7 @@ function isAuthCookiesExists() {
 
 function clearSessionData() {
   const options = {
-    domain:
-      window.location.hostname === 'localhost'
-        ? 'localhost'
-        : 'femmecubator.com',
+    domain: '.femmecubator.com',
     path: '/',
   };
 
