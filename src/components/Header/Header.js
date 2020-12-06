@@ -165,6 +165,7 @@ function Header() {
 
   const location = useLocation();
   const {
+    auth,
     authState: { isLoggedIn },
   } = useAuth();
   const {
@@ -204,8 +205,11 @@ function Header() {
           history.push(API_PATH.LOGIN_PAGE);
         });
     }
-    return () => true;
   }, [history, isLoggedIn]);
+
+  const logoutHandler = () => {
+    auth.logoff();
+  };
 
   const handleDrawerOpen = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
@@ -239,7 +243,7 @@ function Header() {
             href !== '/' &&
             href !== '/register' &&
             href !== '/notifications' &&
-            href !== '/logout' &&
+            href !== '/login?logout=true' &&
             href !== '/settings'
         )
         .map(({ id, href, label }) => {
@@ -291,8 +295,10 @@ function Header() {
           }}
           key={id}
         >
-          <MenuItem className={drawerChoice}>
-            {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
+          <MenuItem className={drawerChoice} onClick={logoutHandler}>
+            {to === '/login?logout=true' && (
+              <ExitToAppIcon className={logOutIcon} />
+            )}
             {label}
           </MenuItem>
         </Link>
@@ -303,7 +309,9 @@ function Header() {
   const getAccountChoices = () => {
     if (menuHeaders && menuHeaders.length) {
       return menuHeaders
-        .filter(({ href }) => href === '/logout' || href === '/settings')
+        .filter(
+          ({ href }) => href === '/login?logout=true' || href === '/settings'
+        )
         .map(({ id, href: to, label }) => {
           return (
             <Link
@@ -316,8 +324,10 @@ function Header() {
                 onClick: handleAccountClose,
               }}
             >
-              <MenuItem className={accountChoice}>
-                {to === '/logout' && <ExitToAppIcon className={logOutIcon} />}
+              <MenuItem className={accountChoice} onClick={logoutHandler}>
+                {to === '/login?logout=true' && (
+                  <ExitToAppIcon className={logOutIcon} />
+                )}
                 {label}
               </MenuItem>
             </Link>

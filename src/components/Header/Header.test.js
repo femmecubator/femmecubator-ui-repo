@@ -1,23 +1,12 @@
-import React from 'react';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import React, { useState as useStateMock } from 'react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
-import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
-import App from '../../App';
+import { DEFAULT_COMMON_MENU } from 'utils/constants';
 
-const resizeToMobile = () => {
-  global.innerWidth = 600;
-  global.dispatchEvent(new Event('resize'));
-};
-
-const resizeToDesktop = () => {
-  global.innerWidth = 900;
-  global.dispatchEvent(new Event('resize'));
-};
-
-let mockIsLoggedIn = false;
+/*let mockIsLoggedIn = false;
 
 jest.mock('../../context/auth', () => ({
   ...jest.requireActual('../../context/auth'),
@@ -26,6 +15,10 @@ jest.mock('../../context/auth', () => ({
       isLoggedIn: () => mockIsLoggedIn,
     },
   }),
+}));*/
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useState: jest.fn(),
 }));
 
 jest.mock('react-router-dom', () => ({
@@ -37,48 +30,47 @@ jest.mock('react-router-dom', () => ({
 
 describe('<Header />', () => {
   beforeEach(async () => {
-    await act(async () =>
-      render(
-        <AuthProvider>
-          <GlobalProvider>
-            <Router>
-              <Header />
-            </Router>
-          </GlobalProvider>
-        </AuthProvider>
-      )
+    const initState = {
+      menuHeaders: DEFAULT_COMMON_MENU.headers,
+      userName: '',
+      title: '',
+      anchorEl: false,
+      drawerOpen: false,
+    };
+    const setState = jest
+      .fn()
+      .mockImplementationOnce((prevState = initState) => prevState);
+    useStateMock.mockImplementation((initState) => [initState, setState]);
+
+    render(
+      <AuthProvider>
+        <GlobalProvider>
+          <Router>
+            <Header />
+          </Router>
+        </GlobalProvider>
+      </AuthProvider>
     );
   });
 
   afterEach(cleanup);
 
   it('should display Femmecubator text logo', async () => {
-    // await waitFor(() => screen.getByRole('link', { name: /femmecubator/i }));
     screen.getByRole('link', { name: /femmecubator/i });
   });
 
   it('should display the general menu if user IS NOT authenticated', async () => {
-    // await waitFor(() => screen.getByRole('button', { name: /get involved/i }));
+    screen.getByRole('button', { name: /listings/i });
+    screen.getByRole('button', { name: /mentors/i });
     screen.getByRole('button', { name: /get involved/i });
-
-    // await waitFor(() => screen.getByText(/log in/i));
-    screen.getByText(/log in/i);
-
-    expect(document.getElementById('app-header')).toHaveTextContent(/donate/i);
+    screen.getByRole('button', { name: /log in/i });
+    screen.getByRole('button', { name: /donate/i });
   });
-  /*
+
   xit('should display the logged in menu if user IS authenticated', async () => {
     mockIsLoggedIn = true;
 
     await waitFor(() => screen.getByText(/Jane D./i));
     screen.getByText(/Jane D./i);
   });
-
-  xit('should display burger menu icon if window is smaller than 799px and should hide burger menu icon if larger', async () => {
-    await act(async () => resizeToDesktop());
-    expect(screen.queryByTestId('drawer-button')).not.toBeInTheDocument();
-
-    await act(async () => resizeToMobile());
-    expect(screen.queryByTestId('drawer-button')).toBeInTheDocument();
-  });*/
 });
