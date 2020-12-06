@@ -37,6 +37,7 @@ const LoginForm = ({ testOnSubmit }) => {
   } = useContext(GlobalContext);
   const history = useHistory();
   const { search } = useLocation();
+  const timedOut = /true/i.test(new URLSearchParams(search).get('timedOut'));
   const classes = useStyles({
     isMobile: isMobile,
   });
@@ -77,7 +78,7 @@ const LoginForm = ({ testOnSubmit }) => {
               <p role="alert">Sorry, invalid email or password. Try again?</p>
             </div>
           )}
-          {isEmpty(errors) && search === '?timedOut=true' && (
+          {isEmpty(errors) && timedOut && (
             <div className={`${classes.alert} ${classes.timedOut}`}>
               <Error />
               <p role="alert">Your session has timed out.</p>
