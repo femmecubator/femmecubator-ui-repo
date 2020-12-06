@@ -204,7 +204,6 @@ function Header() {
           history.push(API_PATH.LOGIN_PAGE);
         });
     }
-    return () => true;
   }, [history, isLoggedIn]);
 
   const handleDrawerOpen = () =>
