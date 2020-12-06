@@ -13,14 +13,12 @@ function isAuthCookiesExists() {
 
 function clearSessionData() {
   const options = {
-    domain:
-      window.location.hostname === 'localhost'
-        ? 'localhost'
-        : 'femmecubator.com',
+    domain: '.femmecubator.com',
     path: '/',
   };
 
   for (const cookie of Object.keys(COOKIES_LIST)) {
+    console.log('cookie', cookie);
     cookies.remove(cookie, options);
   }
 }

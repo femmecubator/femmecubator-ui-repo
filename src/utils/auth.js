@@ -21,11 +21,11 @@ export default class Auth {
 
   logoff() {
     clearSessionData();
-    this.location.replace(API_PATH.LOGIN_PAGE);
+    window.location.replace(API_PATH.LOGIN_PAGE);
   }
 
   timedOut() {
     clearSessionData();
-    this.location.replace(`${API_PATH.LOGIN_PAGE}?timedOut=yes`);
+    window.location.replace(`${API_PATH.LOGIN_PAGE}?timedOut=yes`);
   }
 }
