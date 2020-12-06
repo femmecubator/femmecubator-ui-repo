@@ -97,7 +97,7 @@ const LoginForm = ({ testOnSubmit }) => {
                 inputRef: register(emailRequirements),
                 name: 'email',
                 autoComplete: 'email',
-                error: !isEmpty(errors.email) && true,
+                error: !isEmpty(errors.email),
                 helperText: errors.email && 'Invalid email format',
                 InputLabelProps: {
                   classes: {
@@ -127,7 +127,7 @@ const LoginForm = ({ testOnSubmit }) => {
                 name: 'password',
                 autoComplete: 'current-password',
                 type: showPassword ? 'text' : 'password',
-                error: !isEmpty(errors.password) && true,
+                error: !isEmpty(errors.password),
                 helperText: errors.password && 'Enter a password',
                 InputLabelProps: {
                   classes: {
@@ -143,9 +143,11 @@ const LoginForm = ({ testOnSubmit }) => {
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        aria-label="toggle password visibility"
-                        edge="end"
-                        onClick={handleClickShowPassword}
+                        {...{
+                          'aria-label': 'toggle password visibility',
+                          edge: 'end',
+                          onClick: handleClickShowPassword,
+                        }}
                       >
                         {showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
