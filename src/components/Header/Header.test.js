@@ -6,16 +6,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 import { DEFAULT_COMMON_MENU } from 'utils/constants';
 
-/*let mockIsLoggedIn = false;
-
-jest.mock('../../context/auth', () => ({
-  ...jest.requireActual('../../context/auth'),
-  useAuth: () => ({
-    authState: {
-      isLoggedIn: () => mockIsLoggedIn,
-    },
-  }),
-}));*/
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: jest.fn(),
@@ -65,12 +55,5 @@ describe('<Header />', () => {
     screen.getByRole('button', { name: /get involved/i });
     screen.getByRole('button', { name: /log in/i });
     screen.getByRole('button', { name: /donate/i });
-  });
-
-  xit('should display the logged in menu if user IS authenticated', async () => {
-    mockIsLoggedIn = true;
-
-    await waitFor(() => screen.getByText(/Jane D./i));
-    screen.getByText(/Jane D./i);
   });
 });

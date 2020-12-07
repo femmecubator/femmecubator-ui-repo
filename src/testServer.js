@@ -12,21 +12,20 @@ const server = setupServer(
       return res(
         ctx.status(200),
         ctx.json({
+          message: 'Success',
           data: {
-            data: {
-              headers: [
-                { id: 1, label: 'Home', href: '/' },
-                { id: 2, label: 'Listings', href: '/listings' },
-                { id: 3, label: 'Mentors', href: '/mentors' },
-                { id: 4, label: 'Get Involved', href: '/get-involved' },
-                { id: 5, label: 'Notifications', href: '/notifications' },
-                { id: 7, label: 'Settings', href: '/settings' },
-                { id: 8, label: 'Log Out', href: '/logout' },
-              ],
-              role_id: 1,
-              title: 'UX Designer',
-              userName: 'Jane D.',
-            },
+            role_id: 1,
+            headers: [
+              { id: 1, label: 'Home', href: '/' },
+              { id: 2, label: 'Listings', href: '/listings' },
+              { id: 3, label: 'Mentors', href: '/mentors' },
+              { id: 4, label: 'Get Involved', href: '/get-involved' },
+              { id: 5, label: 'Notifications', href: '/notifications' },
+              { id: 7, label: 'Settings', href: '/settings' },
+              { id: 8, label: 'Log Out', href: '/login?logout=true' },
+            ],
+            userName: 'jane.doe',
+            title: 'Software Engineer',
           },
         })
       );
