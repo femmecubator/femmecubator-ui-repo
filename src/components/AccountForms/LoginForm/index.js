@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { API_PATH, ANALYTICS_TYPE } from 'utils/constants';
 import { trackEvent } from 'utils/analytics';
@@ -48,7 +48,7 @@ const LoginForm = ({ testOnSubmit }) => {
     auth,
     authState: { isLoggedIn },
   } = useAuth();
-  
+
   useEffect(() => {
     trackEvent();
   }, []);
