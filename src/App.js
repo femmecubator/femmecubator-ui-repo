@@ -1,8 +1,6 @@
 import React, { useEffect, useContext } from 'react';
-import { initialize, pageview } from 'react-ga';
 import './App.css';
 import { mockServer } from './mock/mockServer';
-import { TRACKING_ID } from './utils/constants';
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
@@ -21,10 +19,6 @@ function App() {
   const { dispatch } = useContext(GlobalContext);
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      initialize(TRACKING_ID);
-      pageview(window.location.pathname + window.location.search);
-    }
     if (setResponsiveness()) dispatch(updateView(setResponsiveness()));
     window.addEventListener('resize', () =>
       dispatch(updateView(setResponsiveness()))

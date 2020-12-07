@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   createMuiTheme,
   makeStyles,
@@ -18,7 +18,8 @@ import SchoolIcon from '@material-ui/icons/School';
 import KeyboardIcon from '@material-ui/icons/Keyboard';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import { ANALYTICS_TYPE } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
 const isProgress = process.env['REACT_APP_WIP'] === 'true';
 
 const BlueFilledButton = withStyles({
@@ -513,7 +514,6 @@ const theme = createMuiTheme({
 
 export default function Home() {
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
-
   const {
     root,
     introContainer,
@@ -555,6 +555,9 @@ export default function Home() {
     inProgressHeader,
     inProgressParagraph,
   } = useStyles();
+  useEffect(() => {
+    trackEvent();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
