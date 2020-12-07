@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-
-import { API_PATH } from 'utils/constants';
+import { API_PATH, ANALYTICS_TYPE } from 'utils/constants';
+import { trackEvent } from 'utils/analytics';
 import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
 import { GlobalContext } from 'context/global';
@@ -48,10 +48,19 @@ const LoginForm = ({ testOnSubmit }) => {
     auth,
     authState: { isLoggedIn },
   } = useAuth();
+  
+  useEffect(() => {
+    trackEvent();
+  }, []);
 
   const onSubmit = (credentials) => {
+    const options = {
+      category: 'onSubmit',
+      action: 'Logged In',
+    };
     request.post(API_PATH.LOGIN, credentials).then(({ status }) => {
       if (status === 200) {
+        trackEvent({ type: ANALYTICS_TYPE.EVENT, options });
         dispatch(updateAuth(auth.checkCookie()));
         history.push('/mentors');
       }
