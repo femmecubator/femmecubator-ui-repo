@@ -57,6 +57,11 @@ const METHOD_TYPE = {
   DELETE: 'delete',
 };
 
+const ANALYTICS_TYPE = {
+  PAGE_VIEW: 'pageView',
+  EVENT: 'event',
+};
+
 const ROUTES_LABEL = {
   HOME: 'homePage',
   MENTORS: 'mentors',
@@ -110,6 +115,7 @@ const ACTION_TYPE = {
 };
 
 export {
+  ANALYTICS_TYPE,
   API_PATH,
   DEFAULT_COMMON_MENU,
   TRACKING_ID,
