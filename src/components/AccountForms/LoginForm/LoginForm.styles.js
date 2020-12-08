@@ -93,7 +93,7 @@ const useStyles = makeStyles(() => ({
     top: '55px',
   },
   forgotPasswordLink: {
-    marginBottom: '6.25%',
+    marginBottom: '30px',
     alignSelf: 'flex-end',
     fontSize: '1rem',
     fontWeight: '400',
@@ -112,7 +112,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: 'none',
   },
   signIn: {
-    marginTop: '6.25%',
+    marginTop: '30px',
     width: '111px',
     color: color.white,
     background: color.primaryAccent,
