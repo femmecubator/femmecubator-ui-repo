@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   }),
   paperContainer: (props) => ({
     margin: 'auto',
-    padding: props.isMobile ? '0 1.5625em' : '2rem',
+    padding: props.isMobile ? '2rem 1.5625em' : '2rem',
     width: props.isMobile ? 'auto' : 'fit-content',
     display: 'flex',
     justifyContent: 'center',
