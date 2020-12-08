@@ -90,7 +90,7 @@ const useStyles = makeStyles(() => ({
   },
   helperText: {
     position: 'absolute',
-    top: '65px',
+    top: '55px',
   },
   forgotPasswordLink: {
     marginBottom: '6.25%',
