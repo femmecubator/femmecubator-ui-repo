@@ -5,7 +5,6 @@ const color = {
   primaryDark: '#4F4F4F',
   secondaryDark: '#828282',
   primaryAccent: '#026FE4',
-  secondaryAccent: '#1E90FF',
   primaryError: '#EB5757',
   secondaryError: '#FFEAEA',
   primaryWarning: '#F2994A',
@@ -13,17 +12,17 @@ const color = {
 };
 
 const useStyles = makeStyles(() => ({
-  root: (props) => ({
-    margin: props.isMobile ? '0' : '5% 0',
+  root: ({ isMobile }) => ({
+    margin: isMobile ? '0' : '5% 0',
   }),
-  paperContainer: (props) => ({
+  paperContainer: ({ isMobile }) => ({
     margin: 'auto',
-    padding: '2rem',
-    width: 'fit-content',
+    padding: isMobile ? '2rem 1.5625em' : '2rem',
+    width: isMobile ? 'auto' : 'fit-content',
     display: 'flex',
     justifyContent: 'center',
     fontFamily: 'Open Sans, sans-serif',
-    boxShadow: props.isMobile && 'none',
+    boxShadow: isMobile && 'none',
   }),
   heroImage: {
     width: '589px',
@@ -72,27 +71,17 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0em',
     color: color.primaryDark,
   },
-  loginFormContainer: {
-    maxWidth: '320px',
-    width: '100%',
+  loginFormContainer: ({ isMobile }) => ({
+    width: isMobile ? '100vw' : '320px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
+  }),
   loginForm: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  input: {
-    height: '31px',
-  },
-  label: {
-    top: '5px',
-  },
-  labelShrink: {
-    top: '0',
   },
   loginInput: {
     margin: '4% 0',
@@ -100,10 +89,11 @@ const useStyles = makeStyles(() => ({
   },
   helperText: {
     position: 'absolute',
-    top: '65px',
+    top: '55px',
+    fontFamily: 'Open Sans, sans-serif',
   },
   forgotPasswordLink: {
-    marginBottom: '6.25%',
+    marginBottom: '30px',
     alignSelf: 'flex-end',
     fontSize: '1rem',
     fontWeight: '400',
@@ -114,30 +104,22 @@ const useStyles = makeStyles(() => ({
   button: {
     padding: '3.5px 21px',
     width: 'fit-content',
-    fontSize: 'clamp(14px, 2.5vw, 18px)',
+    height: '32px',
+    fontSize: '18px',
+    fontFamily: 'Open Sans, sans-serif',
+    whiteSpace: 'nowrap',
     fontWeight: '600',
     boxShadow: 'none',
   },
   signIn: {
-    margin: '6.25% 0',
+    marginTop: '30px',
+    width: '111px',
     color: color.white,
-    background: color.secondaryAccent,
+    background: color.primaryAccent,
     '&:hover': {
-      background: color.secondaryAccent,
-      boxShadow: `0 0 1px 1px ${color.secondaryAccent}`,
-    },
-  },
-  signInTwitter: {
-    color: color.primaryAccent,
-    border: `1px solid ${color.primaryAccent}`,
-    background: color.white,
-    '&:hover': {
-      background: color.white,
+      background: color.primaryAccent,
       boxShadow: `0 0 1px 1px ${color.primaryAccent}`,
     },
-  },
-  twitter: {
-    marginLeft: '0.25rem',
   },
   orDivider: {
     width: '100%',
@@ -145,7 +127,6 @@ const useStyles = makeStyles(() => ({
     fontWeight: '400',
     textAlign: 'center',
     overflow: 'hidden',
-
     '&::before': {
       content: '""',
       display: 'inline-block',
