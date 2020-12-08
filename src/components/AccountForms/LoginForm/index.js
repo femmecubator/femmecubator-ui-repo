@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { API_PATH } from 'utils/constants';
+import { event } from 'react-ga';
 import request from 'utils/axiosConfig';
 import { useAuth } from '../../../context/auth';
 import { GlobalContext } from 'context/global';
@@ -50,8 +50,14 @@ const LoginForm = ({ testOnSubmit }) => {
   } = useAuth();
 
   const onSubmit = (credentials) => {
+    const inProduction = process.env.NODE_ENV === 'production';
+    const options = {
+      category: 'onSubmit',
+      action: 'Logged In',
+    };
     request.post(API_PATH.LOGIN, credentials).then(({ status }) => {
       if (status === 200) {
+        inProduction && event(options);
         dispatch(updateAuth(auth.checkCookie()));
         history.push('/mentors');
       }
