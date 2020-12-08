@@ -18,7 +18,6 @@ import {
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
-import { ReactComponent as TwitterLogo } from './assets/TwitterLogo.svg';
 
 const FORM_TITLE = 'Welcome back!';
 
@@ -105,17 +104,6 @@ const LoginForm = ({ testOnSubmit }) => {
                 autoComplete: 'email',
                 error: !isEmpty(errors.email),
                 helperText: errors.email && 'Invalid email format',
-                InputLabelProps: {
-                  classes: {
-                    root: classes.label,
-                    shrink: classes.labelShrink,
-                  },
-                },
-                InputProps: {
-                  classes: {
-                    input: classes.input,
-                  },
-                },
                 FormHelperTextProps: {
                   classes: {
                     root: classes.helperText,
@@ -135,17 +123,8 @@ const LoginForm = ({ testOnSubmit }) => {
                 type: showPassword ? 'text' : 'password',
                 error: !isEmpty(errors.password),
                 helperText: errors.password && 'Enter a password',
-                InputLabelProps: {
-                  classes: {
-                    root: classes.label,
-                    shrink: classes.labelShrink,
-                  },
-                },
                 InputProps: {
                   inputProps: { 'data-testid': 'password' },
-                  classes: {
-                    input: classes.input,
-                  },
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
@@ -177,9 +156,6 @@ const LoginForm = ({ testOnSubmit }) => {
               SIGN IN
             </Button>
           </form>
-          <Button className={`${classes.button} ${classes.signInTwitter}`}>
-            CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
-          </Button>
           <p className={classes.orDivider}>OR</p>
           <Button
             className={`${classes.button} ${classes.createAccount}`}
