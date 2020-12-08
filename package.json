@@ -30,6 +30,7 @@
     "storybook": "start-storybook -p 6006 -s public --no-dll",
     "build-storybook": "build-storybook -s public --no-dll",
     "test": "react-scripts test",
+    "test:ghook": "CI=true react-scripts test --watch=all",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint -f checkstyle . -o output/eslint/lint-results.xml && eslint -f html . -o output/eslint/eslint-report.html",
@@ -85,7 +86,7 @@
   "config": {
     "ghooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test:coverage"
+      "pre-push": "npm run test:ghook"
     }
   }
 }
