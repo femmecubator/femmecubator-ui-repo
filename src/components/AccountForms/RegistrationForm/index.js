@@ -479,11 +479,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
             <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
               <TextField
                 {...{
+                  id: 'firstName',
                   label: 'First Name',
                   variant: 'outlined',
                   name: 'firstName',
                   inputRef: register,
-                  error: errors.firstName,
+                  error: !isEmpty(errors.firstName),
                   helperText: errors.firstName && errors.firstName.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
@@ -491,11 +492,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
+                  id: 'lastName',
                   label: 'Last Name',
                   variant: 'outlined',
                   name: 'lastName',
                   inputRef: register,
-                  error: errors.lastName,
+                  error: !isEmpty(errors.lastName),
                   helperText: errors.lastName && errors.lastName.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
@@ -503,11 +505,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
+                  id: 'prefLoc',
                   label: 'Preferred Location',
                   variant: 'outlined',
                   name: 'prefLoc',
                   inputRef: register,
-                  error: errors.prefLoc,
+                  error: !isEmpty(errors.prefLoc),
                   helperText: errors.prefLoc && errors.prefLoc.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
@@ -515,11 +518,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
+                  id: 'title',
                   label: 'Title',
                   variant: 'outlined',
                   name: 'title',
                   inputRef: register,
-                  error: errors.title,
+                  error: !isEmpty(errors.title),
                   helperText: errors.title && errors.title.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
@@ -527,11 +531,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
+                  id: 'email',
                   label: 'Email',
                   variant: 'outlined',
                   inputRef: register,
                   name: 'email',
-                  error: errors.email,
+                  error: !isEmpty(errors.email),
                   helperText: errors.email && errors.email.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
@@ -539,11 +544,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
+                  id: 'userName',
                   label: 'User name',
                   variant: 'outlined',
                   name: 'userName',
                   inputRef: register,
-                  error: errors.userName,
+                  error: !isEmpty(errors.userName),
                   helperText: errors.userName && errors.userName.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
@@ -570,6 +576,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       </InputAdornment>
                     ),
                   },
+                  id: 'password',
                   label: 'Password',
                   variant: 'outlined',
                   className: classes.mobileInputField,
@@ -577,7 +584,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   name: 'password',
                   type: showPassword.password ? 'text' : 'password',
                   inputRef: register,
-                  error: errors.password,
+                  error: !isEmpty(errors.password),
                   helperText: errors.password && errors.password.message,
                 }}
               />
@@ -603,12 +610,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       </InputAdornment>
                     ),
                   },
+                  id: 'retypePassword',
                   label: 'Retype Password',
                   variant: 'outlined',
                   className: classes.mobileInputField,
                   fullWidth: true,
                   inputRef: register,
-                  error: errors.retypePassword,
+                  error: !isEmpty(errors.retypePassword),
                   helperText:
                     errors.retypePassword && errors.retypePassword.message,
                   name: 'retypePassword',
