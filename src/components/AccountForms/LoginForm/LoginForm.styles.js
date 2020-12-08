@@ -12,17 +12,17 @@ const color = {
 };
 
 const useStyles = makeStyles(() => ({
-  root: (props) => ({
-    margin: props.isMobile ? '0' : '5% 0',
+  root: ({ isMobile }) => ({
+    margin: isMobile ? '0' : '5% 0',
   }),
-  paperContainer: (props) => ({
+  paperContainer: ({ isMobile }) => ({
     margin: 'auto',
-    padding: props.isMobile ? '2rem 1.5625em' : '2rem',
-    width: props.isMobile ? 'auto' : 'fit-content',
+    padding: isMobile ? '2rem 1.5625em' : '2rem',
+    width: isMobile ? 'auto' : 'fit-content',
     display: 'flex',
     justifyContent: 'center',
     fontFamily: 'Open Sans, sans-serif',
-    boxShadow: props.isMobile && 'none',
+    boxShadow: isMobile && 'none',
   }),
   heroImage: {
     width: '589px',
@@ -71,8 +71,8 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0em',
     color: color.primaryDark,
   },
-  loginFormContainer: (props) => ({
-    width: props.isMobile ? '100vw' : '320px',
+  loginFormContainer: ({ isMobile }) => ({
+    width: isMobile ? '100vw' : '320px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -90,6 +90,7 @@ const useStyles = makeStyles(() => ({
   helperText: {
     position: 'absolute',
     top: '55px',
+    fontFamily: 'Open Sans, sans-serif',
   },
   forgotPasswordLink: {
     marginBottom: '30px',
