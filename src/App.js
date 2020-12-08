@@ -6,7 +6,19 @@ import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 import { GlobalContext } from 'context/global';
 import { updateView } from 'context/actionCreators';
+// import { pageview } from 'react-ga';
+import { withRouter } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { initialize, pageview } from 'react-ga';
 
+if (process.env.NODE_ENV === 'production') {
+  initialize(process.env.REACT_APP_TRACKING_ID);
+  const history = createBrowserHistory();
+  history.listen((location) => {
+    pageview(location.pathname + location.search);
+  });
+}
 if (process.env.REACT_APP_MOCK_API_TRUE) {
   mockServer();
 }
@@ -17,8 +29,12 @@ const setResponsiveness = () => {
 
 function App() {
   const { dispatch } = useContext(GlobalContext);
+  const location = useLocation();
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      pageview(location.pathname + location.search);
+    }
     if (setResponsiveness()) dispatch(updateView(setResponsiveness()));
     window.addEventListener('resize', () =>
       dispatch(updateView(setResponsiveness()))
@@ -28,7 +44,7 @@ function App() {
         'resize',
         dispatch(updateView(setResponsiveness()))
       );
-  }, [dispatch]);
+  }, [dispatch, location.pathname, location.search]);
 
   return (
     <div className="App">
@@ -40,4 +56,4 @@ function App() {
   );
 }
 
-export default React.memo(App);
+export default withRouter(React.memo(App));

@@ -38,9 +38,6 @@ const DEFAULT_COMMON_MENU = {
   ],
 };
 
-// Google Analytics Tracking ID
-const TRACKING_ID = 'UA-180314898-1';
-
 const API_PATH = {
   COMMON_MENU: '/api/commonMenu',
   LOGIN: '/api/login',
@@ -118,7 +115,6 @@ export {
   ANALYTICS_TYPE,
   API_PATH,
   DEFAULT_COMMON_MENU,
-  TRACKING_ID,
   ROUTES,
   ROUTES_LABEL,
   ACTION_TYPE,

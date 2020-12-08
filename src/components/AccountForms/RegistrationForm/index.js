@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,9 +21,9 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import { useAuth } from 'context/auth';
 import request from 'utils/axiosConfig';
-import { API_PATH, ANALYTICS_TYPE } from 'utils/constants';
-import { trackEvent } from 'utils/analytics';
+import { API_PATH } from 'utils/constants';
 import { updateAuth } from 'context/actionCreators';
+import { event } from 'react-ga';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -204,16 +204,15 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     retypePassword: false,
   });
   const history = useHistory();
-  useEffect(() => {
-    trackEvent();
-  }, []);
 
   const onSubmit = (data) => {
-    const options = {
-      category: 'onSubmit',
-      action: 'Created an Account',
-    };
-    trackEvent({ type: ANALYTICS_TYPE.EVENT, options });
+    if (process.env.NODE_ENV === 'production') {
+      const options = {
+        category: 'onSubmit',
+        action: 'Created an Account',
+      };
+      event(options);
+    }
     request.post(API_PATH.REGISTER, data).then(({ status }) => {
       if (status === 200) {
         dispatch(updateAuth(auth.checkCookie()));
