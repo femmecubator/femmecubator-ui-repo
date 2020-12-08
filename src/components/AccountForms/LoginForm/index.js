@@ -18,7 +18,6 @@ import {
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
-import { ReactComponent as TwitterLogo } from './assets/TwitterLogo.svg';
 
 const FORM_TITLE = 'Welcome back!';
 

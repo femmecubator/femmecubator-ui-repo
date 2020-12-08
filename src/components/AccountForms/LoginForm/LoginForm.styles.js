@@ -5,7 +5,6 @@ const color = {
   primaryDark: '#4F4F4F',
   secondaryDark: '#828282',
   primaryAccent: '#026FE4',
-  secondaryAccent: '#1E90FF',
   primaryError: '#EB5757',
   secondaryError: '#FFEAEA',
   primaryWarning: '#F2994A',
@@ -105,17 +104,21 @@ const useStyles = makeStyles(() => ({
   button: {
     padding: '3.5px 21px',
     width: 'fit-content',
+    height: '32px',
     fontSize: 'clamp(14px, 2.5vw, 18px)',
+    fontFamily: 'Open Sans, sans-serif',
+    whiteSpace: 'nowrap',
     fontWeight: '600',
     boxShadow: 'none',
   },
   signIn: {
-    margin: '6.25% 0',
+    marginTop: '6.25%',
+    width: '111px',
     color: color.white,
-    background: color.secondaryAccent,
+    background: color.primaryAccent,
     '&:hover': {
-      background: color.secondaryAccent,
-      boxShadow: `0 0 1px 1px ${color.secondaryAccent}`,
+      background: color.primaryAccent,
+      boxShadow: `0 0 1px 1px ${color.primaryAccent}`,
     },
   },
   orDivider: {
@@ -124,7 +127,6 @@ const useStyles = makeStyles(() => ({
     fontWeight: '400',
     textAlign: 'center',
     overflow: 'hidden',
-
     '&::before': {
       content: '""',
       display: 'inline-block',
