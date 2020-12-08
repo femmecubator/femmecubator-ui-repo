@@ -71,13 +71,12 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0em',
     color: color.primaryDark,
   },
-  loginFormContainer: {
-    maxWidth: '320px',
-    width: '100%',
+  loginFormContainer: (props) => ({
+    width: props.isMobile ? '100vw' : '320px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
+  }),
   loginForm: {
     width: '100%',
     display: 'flex',
