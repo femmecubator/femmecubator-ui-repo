@@ -171,9 +171,6 @@ const LoginForm = ({ testOnSubmit }) => {
               SIGN IN
             </Button>
           </form>
-          <Button className={`${classes.button} ${classes.signInTwitter}`}>
-            CONTINUE ON TWITTER <TwitterLogo className={classes.twitter} />
-          </Button>
           <p className={classes.orDivider}>OR</p>
           <Button
             className={`${classes.button} ${classes.createAccount}`}

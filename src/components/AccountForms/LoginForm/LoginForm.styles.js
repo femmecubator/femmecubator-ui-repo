@@ -127,18 +127,6 @@ const useStyles = makeStyles(() => ({
       boxShadow: `0 0 1px 1px ${color.secondaryAccent}`,
     },
   },
-  signInTwitter: {
-    color: color.primaryAccent,
-    border: `1px solid ${color.primaryAccent}`,
-    background: color.white,
-    '&:hover': {
-      background: color.white,
-      boxShadow: `0 0 1px 1px ${color.primaryAccent}`,
-    },
-  },
-  twitter: {
-    marginLeft: '0.25rem',
-  },
   orDivider: {
     width: '100%',
     color: color.primaryDark,
