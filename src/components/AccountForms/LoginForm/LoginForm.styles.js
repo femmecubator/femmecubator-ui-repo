@@ -85,15 +85,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  input: {
-    height: '31px',
-  },
-  label: {
-    top: '5px',
-  },
-  labelShrink: {
-    top: '0',
-  },
   loginInput: {
     margin: '4% 0',
     minWidth: '100%',

@@ -99,17 +99,6 @@ const LoginForm = ({ testOnSubmit }) => {
                 autoComplete: 'email',
                 error: !isEmpty(errors.email),
                 helperText: errors.email && 'Invalid email format',
-                InputLabelProps: {
-                  classes: {
-                    root: classes.label,
-                    shrink: classes.labelShrink,
-                  },
-                },
-                InputProps: {
-                  classes: {
-                    input: classes.input,
-                  },
-                },
                 FormHelperTextProps: {
                   classes: {
                     root: classes.helperText,
@@ -129,17 +118,8 @@ const LoginForm = ({ testOnSubmit }) => {
                 type: showPassword ? 'text' : 'password',
                 error: !isEmpty(errors.password),
                 helperText: errors.password && 'Enter a password',
-                InputLabelProps: {
-                  classes: {
-                    root: classes.label,
-                    shrink: classes.labelShrink,
-                  },
-                },
                 InputProps: {
                   inputProps: { 'data-testid': 'password' },
-                  classes: {
-                    input: classes.input,
-                  },
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
