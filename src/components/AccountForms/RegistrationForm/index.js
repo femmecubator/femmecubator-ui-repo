@@ -206,18 +206,21 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    request.post(API_PATH.REGISTER, data).then(({ status }) => {
-      if (status === 200) {
-        const inProd = process.env.NODE_ENV === 'production';
-        const options = {
-          category: 'onSubmit',
-          action: 'Created an Account',
-        };
-        inProd && event(options);
-        dispatch(updateAuth(auth.checkCookie()));
-        history.push('/mentors');
-      }
-    });
+    request
+      .post(API_PATH.REGISTER, data)
+      .then(({ status }) => {
+        if (status === 200) {
+          const inProd = process.env.NODE_ENV === 'production';
+          const options = {
+            category: 'onSubmit',
+            action: 'Created an Account',
+          };
+          inProd && event(options);
+          dispatch(updateAuth(auth.checkCookie()));
+          history.push('/mentors');
+        }
+      })
+      .catch((err) => console.log('error', err));
   };
 
   const handleClickShowPassword = (key) => {
