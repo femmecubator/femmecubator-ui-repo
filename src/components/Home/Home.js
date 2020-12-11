@@ -463,7 +463,8 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     marginTop: '10px',
     '@media (max-width: 799px)': {
-      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
     },
   },
   inProgress: {
