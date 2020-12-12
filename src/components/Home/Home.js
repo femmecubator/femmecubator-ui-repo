@@ -498,6 +498,9 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
   },
+  joinSlackButton: {
+    alignSelf: 'center',
+  },
 }));
 
 const theme = createMuiTheme({
@@ -550,6 +553,7 @@ export default function Home() {
     inputForm,
     slackFormContainer,
     slackForm,
+    joinSlackButton,
     carouselContainerDiv,
     inProgress,
     inProgressHeader,
@@ -888,7 +892,9 @@ export default function Home() {
                     className: inputForm,
                   }}
                 />
-                <BlueFilledButton>SUBMIT</BlueFilledButton>
+                <BlueFilledButton className={joinSlackButton}>
+                  SUBMIT
+                </BlueFilledButton>
               </form>
             </div>
           </Grid>
