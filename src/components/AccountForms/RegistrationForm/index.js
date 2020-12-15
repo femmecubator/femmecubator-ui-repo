@@ -204,6 +204,18 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     retypePassword: false,
   });
   const history = useHistory();
+  const [error, setError] = useState(null);
+
+  const key = Object.keys(error || {}).toString();
+  if (key === 'email') {
+    const { email } = error;
+    errors.email = email;
+  }
+
+  if (key === 'userName') {
+    const { userName } = error;
+    errors.userName = userName;
+  }
 
   const onSubmit = (data) => {
     request
@@ -220,7 +232,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           history.push('/mentors');
         }
       })
-      .catch((err) => console.log('error', err));
+      .catch(({ err }) => {
+        setError(err);
+      });
+  };
+
+  const resetError = (key) => () => {
+    setError({ [key]: {} });
   };
 
   const handleClickShowPassword = (key) => {
@@ -313,6 +331,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         variant: 'outlined',
                         inputRef: register,
                         name: 'email',
+                        onChange: resetError('email'),
                         error: !isEmpty(errors.email),
                         helperText: errors.email && errors.email.message,
                       }}
@@ -328,6 +347,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         variant: 'outlined',
                         inputRef: register,
                         name: 'userName',
+                        onChange: resetError('userName'),
                         error: !isEmpty(errors.userName),
                         helperText: errors.userName && errors.userName.message,
                       }}
@@ -538,6 +558,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   variant: 'outlined',
                   inputRef: register,
                   name: 'email',
+                  onChange: resetError('email'),
                   error: !isEmpty(errors.email),
                   helperText: errors.email && errors.email.message,
                   fullWidth: true,
@@ -550,6 +571,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   label: 'User name',
                   variant: 'outlined',
                   name: 'userName',
+                  onChange: resetError('userName'),
                   inputRef: register,
                   error: !isEmpty(errors.userName),
                   helperText: errors.userName && errors.userName.message,
