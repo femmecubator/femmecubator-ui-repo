@@ -18,6 +18,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import KeyboardIcon from '@material-ui/icons/Keyboard';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Footer from 'components/Footer/Footer';
 
 const isProgress = process.env['REACT_APP_WIP'] === 'true';
 
@@ -892,6 +893,7 @@ export default function Home() {
             </div>
           </Grid>
         </Grid>
+        <Footer />
       </div>
     </ThemeProvider>
   );

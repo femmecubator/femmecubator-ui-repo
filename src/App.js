@@ -11,7 +11,6 @@ import { withRouter } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { initialize, pageview } from 'react-ga';
-import Footer from 'components/Footer/Footer';
 
 if (process.env.NODE_ENV === 'production') {
   initialize(process.env.REACT_APP_TRACKING_ID);
@@ -53,7 +52,6 @@ function App() {
       <ErrorBoundary>
         <AppRouter />
       </ErrorBoundary>
-      <Footer />
     </div>
   );
 }
