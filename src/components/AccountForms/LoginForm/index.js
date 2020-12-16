@@ -29,9 +29,13 @@ const emailRequirements = {
   },
 };
 
+const passwordRequirements = {
+  required: 'Password is required',
+};
+
 const LoginForm = ({ testOnSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setError } = useForm();
   const {
     globalState: { isMobile },
   } = useContext(GlobalContext);
@@ -54,13 +58,23 @@ const LoginForm = ({ testOnSubmit }) => {
       category: 'onSubmit',
       action: 'Logged In',
     };
-    request.post(API_PATH.LOGIN, credentials).then(({ status }) => {
-      if (status === 200) {
-        inProduction && event(options);
-        dispatch(updateAuth(auth.checkCookie()));
-        history.push('/mentors');
-      }
-    });
+    request
+      .post(API_PATH.LOGIN, credentials)
+      .then(({ status }) => {
+        if (status === 200) {
+          inProduction && event(options);
+          dispatch(updateAuth(auth.checkCookie()));
+          history.push('/mentors');
+        }
+      })
+      .catch(({ status, error }) => {
+        if (status === 401 || status === 403) {
+          setError('server', {
+            type: 'auth',
+            message: error,
+          });
+        }
+      });
   };
 
   const handleClickShowPassword = () => {
@@ -76,7 +90,7 @@ const LoginForm = ({ testOnSubmit }) => {
       <Paper classes={{ root: classes.paperContainer }}>
         <LoginHero className={classes.heroImage} />
         <div className={classes.loginFormContainer}>
-          {!isEmpty(errors) && !isMobile && (
+          {errors.server && (
             <div className={`${classes.alert} ${classes.error}`}>
               <Error />
               <p role="alert">Sorry, invalid email or password. Try again?</p>
@@ -103,7 +117,7 @@ const LoginForm = ({ testOnSubmit }) => {
                 name: 'email',
                 autoComplete: 'email',
                 error: !isEmpty(errors.email),
-                helperText: errors.email && 'Invalid email format',
+                helperText: errors.email && errors.email.message,
                 FormHelperTextProps: {
                   classes: {
                     root: classes.helperText,
@@ -117,12 +131,12 @@ const LoginForm = ({ testOnSubmit }) => {
                 label: 'Password',
                 variant: 'outlined',
                 className: classes.loginInput,
-                inputRef: register({ required: true }),
+                inputRef: register(passwordRequirements),
                 name: 'password',
                 autoComplete: 'current-password',
                 type: showPassword ? 'text' : 'password',
                 error: !isEmpty(errors.password),
-                helperText: errors.password && 'Enter a password',
+                helperText: errors.password && errors.password.message,
                 InputProps: {
                   inputProps: { 'data-testid': 'password' },
                   endAdornment: (
