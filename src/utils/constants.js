@@ -66,6 +66,9 @@ const ROUTES_LABEL = {
   REGISTER: 'register',
   LISTINGS: 'listings',
   VOLUNTEER: 'volunteer',
+  ABOUT: 'whatWeDo',
+  RESOURCES: 'resources',
+  THREADS: 'threads',
 };
 
 const ROUTES = [
@@ -104,6 +107,24 @@ const ROUTES = [
     isProtected: false,
     label: ROUTES_LABEL.VOLUNTEER,
     path: '/volunteer',
+  },
+  {
+    id: 7,
+    isProtected: false,
+    label: ROUTES_LABEL.ABOUT,
+    path: '/about',
+  },
+  {
+    id: 8,
+    isProtected: false,
+    label: ROUTES_LABEL.RESOURCES,
+    path: '/resources',
+  },
+  {
+    id: 9,
+    isProtected: true,
+    label: ROUTES_LABEL.THREADS,
+    path: '/threads',
   },
 ];
 
