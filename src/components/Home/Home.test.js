@@ -3,11 +3,16 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import Home from 'components/Home/Home';
 import { act } from 'react-dom/test-utils';
 import secondImage from './assets/secondimage.jpg';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('<Home />', () => {
   beforeEach(() => {
     act(() => {
-      render(<Home />);
+      render(
+        <Router>
+          <Home />
+        </Router>
+      );
     });
   });
 
