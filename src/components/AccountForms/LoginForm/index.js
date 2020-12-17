@@ -35,7 +35,7 @@ const passwordRequirements = {
 
 const LoginForm = ({ testOnSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, errors, setError } = useForm();
+  const { register, handleSubmit, errors, setError, clearErrors } = useForm();
   const {
     globalState: { isMobile },
   } = useContext(GlobalContext);
@@ -53,15 +53,15 @@ const LoginForm = ({ testOnSubmit }) => {
   } = useAuth();
 
   const onSubmit = (credentials) => {
-    const inProduction = process.env.NODE_ENV === 'production';
-    const options = {
-      category: 'onSubmit',
-      action: 'Logged In',
-    };
     request
       .post(API_PATH.LOGIN, credentials)
       .then(({ status }) => {
         if (status === 200) {
+          const inProduction = process.env.NODE_ENV === 'production';
+          const options = {
+            category: 'onSubmit',
+            action: 'Logged In',
+          };
           inProduction && event(options);
           dispatch(updateAuth(auth.checkCookie()));
           history.push('/mentors');
@@ -93,7 +93,7 @@ const LoginForm = ({ testOnSubmit }) => {
           {errors.server && (
             <div className={`${classes.alert} ${classes.error}`}>
               <Error />
-              <p role="alert">Sorry, invalid email or password. Try again?</p>
+              <p role="alert">{errors.server.message}</p>
             </div>
           )}
           {isEmpty(errors) && timedOut && (
@@ -166,6 +166,7 @@ const LoginForm = ({ testOnSubmit }) => {
             <Button
               type="submit"
               className={`${classes.button} ${classes.signIn}`}
+              onClick={clearErrors}
             >
               SIGN IN
             </Button>
