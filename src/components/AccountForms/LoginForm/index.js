@@ -166,7 +166,7 @@ const LoginForm = ({ testOnSubmit }) => {
             <Button
               type="submit"
               className={`${classes.button} ${classes.signIn}`}
-              onClick={clearErrors}
+              onClick={() => clearErrors('server')}
             >
               SIGN IN
             </Button>
