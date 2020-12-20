@@ -241,13 +241,12 @@ function Header() {
         .filter(
           ({ href }) =>
             href !== '/' &&
-            href !== '/register' &&
             href !== '/notifications' &&
             href !== '/login?logout=true' &&
             href !== '/settings'
         )
         .map(({ id, href, label }) => {
-          let color = label === 'Donate' ? '#B9EBEC' : 'white';
+          let color = label === 'Join Us' ? '#B9EBEC' : 'white';
 
           return (
             <div key={id}>
@@ -279,8 +278,7 @@ function Header() {
         );
       } else {
         filteredChoices = menuHeaders.filter(
-          ({ href }) =>
-            href !== '/listings' && href !== '/mentors' && href !== '/donate'
+          ({ href }) => href !== '/register'
         );
       }
       return filteredChoices.map(({ id, href: to, label }) => (

@@ -2,38 +2,23 @@ const DEFAULT_COMMON_MENU = {
   headers: [
     {
       id: 1,
-      label: 'Listings',
-      href: '/listings',
+      label: 'What We Do',
+      href: '/about',
     },
     {
       id: 2,
-      label: 'Mentors',
-      href: '/mentors',
+      label: 'Resources',
+      href: '/resources',
     },
     {
       id: 3,
-      label: 'Home',
-      href: '/',
-    },
-    {
-      id: 4,
-      label: 'Get Involved',
-      href: '/volunteer',
-    },
-    {
-      id: 5,
       label: 'Log In',
       href: '/login',
     },
     {
-      id: 6,
-      label: 'Sign Up',
+      id: 4,
+      label: 'Join Us',
       href: '/register',
-    },
-    {
-      id: 7,
-      label: 'Donate',
-      href: '/donate',
     },
   ],
 };
