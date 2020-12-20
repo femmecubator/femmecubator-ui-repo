@@ -270,13 +270,9 @@ function Header() {
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
-      let filteredChoices;
+      let filteredChoices = menuHeaders;
 
-      if (isLoggedIn) {
-        filteredChoices = menuHeaders.filter(
-          ({ href }) => href !== '/notifications'
-        );
-      } else {
+      if (!isLoggedIn) {
         filteredChoices = menuHeaders.filter(
           ({ href }) => href !== '/register'
         );
@@ -411,7 +407,7 @@ function Header() {
                       style: { textDecoration: 'none' },
                     }}
                   >
-                    @{userName}
+                    {userName}
                   </Link>
                 </div>
                 <div>{title}</div>

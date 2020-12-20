@@ -50,10 +50,9 @@ describe('<Header />', () => {
   });
 
   it('should display the general menu if user IS NOT authenticated', async () => {
-    screen.getByRole('button', { name: /listings/i });
-    screen.getByRole('button', { name: /mentors/i });
-    screen.getByRole('button', { name: /get involved/i });
+    screen.getByRole('button', { name: /what we do/i });
+    screen.getByRole('button', { name: /resources/i });
     screen.getByRole('button', { name: /log in/i });
-    screen.getByRole('button', { name: /donate/i });
+    screen.getByRole('button', { name: /join us/i });
   });
 });
