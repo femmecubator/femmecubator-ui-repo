@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,16 +9,16 @@ import {
   Button,
   Grid,
   InputAdornment,
+  useMediaQuery,
+  IconButton,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import { GlobalContext } from 'context/global';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
+import _get from 'lodash/get';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useAuth } from 'context/auth';
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
@@ -187,13 +187,11 @@ const RegistrationSchema = yup.object().shape({
 
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setError } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
   });
-  const {
-    globalState: { isMobile },
-  } = useContext(GlobalContext);
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     dispatch,
     auth,
@@ -204,18 +202,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     retypePassword: false,
   });
   const history = useHistory();
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState({ userName: { message: '' } });
 
-  const key = Object.keys(error || {}).toString();
+  /*const key = Object.keys(error || {}).toString();
   if (key === 'email') {
     const { email } = error;
     errors.email = email;
-  }
-
-  if (key === 'userName') {
-    const { userName } = error;
-    errors.userName = userName;
-  }
+  }*/
 
   const onSubmit = (data) => {
     request
@@ -233,12 +226,16 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         }
       })
       .catch(({ err }) => {
-        setError(err);
+        const message = _get(
+          err,
+          `${Object.keys(err).toString()}.message`,
+          'Error occurred'
+        );
+        setError(Object.keys(err).toString(), {
+          type: 'manual',
+          message,
+        });
       });
-  };
-
-  const resetError = (key) => () => {
-    setError({ [key]: {} });
   };
 
   const handleClickShowPassword = (key) => {
@@ -331,7 +328,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         variant: 'outlined',
                         inputRef: register,
                         name: 'email',
-                        onChange: resetError('email'),
                         error: !isEmpty(errors.email),
                         helperText: errors.email && errors.email.message,
                       }}
@@ -340,14 +336,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
-                        id: 'username',
+                        id: 'userName',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'userName' },
                         label: 'Username',
                         variant: 'outlined',
                         inputRef: register,
                         name: 'userName',
-                        onChange: resetError('userName'),
                         error: !isEmpty(errors.userName),
                         helperText: errors.userName && errors.userName.message,
                       }}
@@ -558,7 +553,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   variant: 'outlined',
                   inputRef: register,
                   name: 'email',
-                  onChange: resetError('email'),
                   error: !isEmpty(errors.email),
                   helperText: errors.email && errors.email.message,
                   fullWidth: true,
@@ -571,7 +565,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   label: 'User name',
                   variant: 'outlined',
                   name: 'userName',
-                  onChange: resetError('userName'),
                   inputRef: register,
                   error: !isEmpty(errors.userName),
                   helperText: errors.userName && errors.userName.message,
