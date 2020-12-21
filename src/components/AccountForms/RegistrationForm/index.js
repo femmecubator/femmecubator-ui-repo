@@ -229,7 +229,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         const message = _get(
           err,
           `${Object.keys(err).toString()}.message`,
-          'Error occurred'
+          'Registration error occured'
         );
         setError(Object.keys(err).toString(), {
           type: 'manual',

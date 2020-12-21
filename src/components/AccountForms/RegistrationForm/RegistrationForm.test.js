@@ -99,7 +99,6 @@ describe('<RegistrationForm />', () => {
       fireEvent.input(userName, {
         target: { value: 'john.doe1@' },
       });
-      // fireEvent.blur(userName);
 
       fireEvent.input(getByTestId('password'), {
         target: { value: 'a1234567' },
