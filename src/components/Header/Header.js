@@ -246,7 +246,7 @@ function Header() {
             href !== '/settings'
         )
         .map(({ id, href, label }) => {
-          let color = label === 'Join Us' ? '#B9EBEC' : 'white';
+          const color = label === 'Join Us' ? '#B9EBEC' : 'white';
 
           return (
             <div key={id}>
