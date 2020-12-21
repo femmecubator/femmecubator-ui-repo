@@ -239,11 +239,7 @@ function Header() {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(
-          ({ href }) =>
-            href !== '/' &&
-            href !== '/notifications' &&
-            href !== '/login?logout=true' &&
-            href !== '/settings'
+          ({ href }) => href !== '/login?logout=true' && href !== '/settings'
         )
         .map(({ id, href, label }) => {
           const color = label === 'Join Us' ? '#B9EBEC' : 'white';
