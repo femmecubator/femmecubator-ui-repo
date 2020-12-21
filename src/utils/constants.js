@@ -2,38 +2,23 @@ const DEFAULT_COMMON_MENU = {
   headers: [
     {
       id: 1,
-      label: 'Listings',
-      href: '/listings',
+      label: 'What We Do',
+      href: '/about',
     },
     {
       id: 2,
-      label: 'Mentors',
-      href: '/mentors',
+      label: 'Resources',
+      href: '/resources',
     },
     {
       id: 3,
-      label: 'Home',
-      href: '/',
-    },
-    {
-      id: 4,
-      label: 'Get Involved',
-      href: '/volunteer',
-    },
-    {
-      id: 5,
       label: 'Log In',
       href: '/login',
     },
     {
-      id: 6,
-      label: 'Sign Up',
+      id: 4,
+      label: 'Join Us',
       href: '/register',
-    },
-    {
-      id: 7,
-      label: 'Donate',
-      href: '/donate',
     },
   ],
 };
@@ -66,6 +51,9 @@ const ROUTES_LABEL = {
   REGISTER: 'register',
   LISTINGS: 'listings',
   VOLUNTEER: 'volunteer',
+  ABOUT: 'whatWeDo',
+  RESOURCES: 'resources',
+  THREADS: 'threads',
 };
 
 const ROUTES = [
@@ -104,6 +92,24 @@ const ROUTES = [
     isProtected: false,
     label: ROUTES_LABEL.VOLUNTEER,
     path: '/volunteer',
+  },
+  {
+    id: 7,
+    isProtected: false,
+    label: ROUTES_LABEL.ABOUT,
+    path: '/about',
+  },
+  {
+    id: 8,
+    isProtected: false,
+    label: ROUTES_LABEL.RESOURCES,
+    path: '/resources',
+  },
+  {
+    id: 9,
+    isProtected: true,
+    label: ROUTES_LABEL.THREADS,
+    path: '/threads',
   },
 ];
 

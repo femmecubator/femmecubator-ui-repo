@@ -239,15 +239,10 @@ function Header() {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders
         .filter(
-          ({ href }) =>
-            href !== '/' &&
-            href !== '/register' &&
-            href !== '/notifications' &&
-            href !== '/login?logout=true' &&
-            href !== '/settings'
+          ({ href }) => href !== '/login?logout=true' && href !== '/settings'
         )
         .map(({ id, href, label }) => {
-          let color = label === 'Donate' ? '#B9EBEC' : 'white';
+          const color = label === 'Join Us' ? '#B9EBEC' : 'white';
 
           return (
             <div key={id}>
@@ -271,16 +266,11 @@ function Header() {
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
-      let filteredChoices;
+      let filteredChoices = menuHeaders;
 
-      if (isLoggedIn) {
+      if (!isLoggedIn) {
         filteredChoices = menuHeaders.filter(
-          ({ href }) => href !== '/notifications'
-        );
-      } else {
-        filteredChoices = menuHeaders.filter(
-          ({ href }) =>
-            href !== '/listings' && href !== '/mentors' && href !== '/donate'
+          ({ href }) => href !== '/register'
         );
       }
       return filteredChoices.map(({ id, href: to, label }) => (
@@ -413,7 +403,7 @@ function Header() {
                       style: { textDecoration: 'none' },
                     }}
                   >
-                    @{userName}
+                    {userName}
                   </Link>
                 </div>
                 <div>{title}</div>
