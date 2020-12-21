@@ -18,6 +18,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import KeyboardIcon from '@material-ui/icons/Keyboard';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Footer from 'components/Footer/Footer';
 
 const isProgress = process.env['REACT_APP_WIP'] === 'true';
 
@@ -463,7 +464,8 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     marginTop: '10px',
     '@media (max-width: 799px)': {
-      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
     },
   },
   inProgress: {
@@ -496,6 +498,9 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
+  },
+  joinSlackButton: {
+    alignSelf: 'center',
   },
 }));
 
@@ -549,6 +554,7 @@ export default function Home() {
     inputForm,
     slackFormContainer,
     slackForm,
+    joinSlackButton,
     carouselContainerDiv,
     inProgress,
     inProgressHeader,
@@ -887,11 +893,14 @@ export default function Home() {
                     className: inputForm,
                   }}
                 />
-                <BlueFilledButton>SUBMIT</BlueFilledButton>
+                <BlueFilledButton className={joinSlackButton}>
+                  SUBMIT
+                </BlueFilledButton>
               </form>
             </div>
           </Grid>
         </Grid>
+        <Footer />
       </div>
     </ThemeProvider>
   );
