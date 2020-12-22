@@ -63,11 +63,11 @@ const LoginForm = ({ testOnSubmit }) => {
       inProduction && event(options);
       dispatch(updateAuth(auth.checkCookie()));
       history.push('/mentors');
-    } catch ({ status, data: { error } }) {
+    } catch ({ status, data: { err } }) {
       if (status === 401 || status === 403) {
         setError('server', {
           type: 'auth',
-          message: error,
+          message: err,
         });
       }
     }
