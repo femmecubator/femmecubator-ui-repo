@@ -94,9 +94,7 @@ describe('<RegistrationForm />', () => {
       fireEvent.input(getByTestId('email'), {
         target: { value: 'johndoe' },
       });
-
-      const userName = getByTestId('userName');
-      fireEvent.input(userName, {
+      fireEvent.input(getByTestId('userName'), {
         target: { value: 'john.doe1@' },
       });
 
