@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,16 +9,15 @@ import {
   Button,
   Grid,
   InputAdornment,
+  useMediaQuery,
+  IconButton,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import { GlobalContext } from 'context/global';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useAuth } from 'context/auth';
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
@@ -187,13 +186,11 @@ const RegistrationSchema = yup.object().shape({
 
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setError } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
   });
-  const {
-    globalState: { isMobile },
-  } = useContext(GlobalContext);
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     dispatch,
     auth,
@@ -205,19 +202,26 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   });
   const history = useHistory();
 
-  const onSubmit = (data) => {
-    request.post(API_PATH.REGISTER, data).then(({ status }) => {
-      if (status === 200) {
-        const inProd = process.env.NODE_ENV === 'production';
-        const options = {
-          category: 'onSubmit',
-          action: 'Created an Account',
-        };
-        inProd && event(options);
-        dispatch(updateAuth(auth.checkCookie()));
-        history.push('/mentors');
-      }
-    });
+  const onSubmit = async (data) => {
+    try {
+      await request.post(API_PATH.REGISTER, data);
+
+      const inProd = process.env.NODE_ENV === 'production';
+      const options = {
+        category: 'onSubmit',
+        action: 'Created an Account',
+      };
+      inProd && event(options);
+      dispatch(updateAuth(auth.checkCookie()));
+      history.push('/mentors');
+    } catch ({ err }) {
+      const message =
+        err[`${Object.keys(err).toString()}`]?.message || 'Registration error';
+      setError(Object.keys(err).toString(), {
+        type: 'manual',
+        message,
+      });
+    }
   };
 
   const handleClickShowPassword = (key) => {
@@ -318,7 +322,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
-                        id: 'username',
+                        id: 'userName',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'userName' },
                         label: 'Username',
@@ -349,9 +353,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                                 }}
                               >
                                 {showPassword.password ? (
-                                  <Visibility />
-                                ) : (
                                   <VisibilityOff />
+                                ) : (
+                                  <Visibility />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -382,9 +386,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                                 }}
                               >
                                 {showPassword.retypePassword ? (
-                                  <Visibility />
-                                ) : (
                                   <VisibilityOff />
+                                ) : (
+                                  <Visibility />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -567,9 +571,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           }}
                         >
                           {showPassword.password ? (
-                            <Visibility />
-                          ) : (
                             <VisibilityOff />
+                          ) : (
+                            <Visibility />
                           )}
                         </IconButton>
                       </InputAdornment>
@@ -601,9 +605,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           }}
                         >
                           {showPassword.retypePassword ? (
-                            <Visibility />
-                          ) : (
                             <VisibilityOff />
+                          ) : (
+                            <Visibility />
                           )}
                         </IconButton>
                       </InputAdornment>

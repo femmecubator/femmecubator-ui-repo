@@ -97,6 +97,7 @@ describe('<RegistrationForm />', () => {
       fireEvent.input(getByTestId('userName'), {
         target: { value: 'john.doe1@' },
       });
+
       fireEvent.input(getByTestId('password'), {
         target: { value: 'a1234567' },
       });
