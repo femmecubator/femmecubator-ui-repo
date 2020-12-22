@@ -67,7 +67,7 @@ const LoginForm = ({ testOnSubmit }) => {
           history.push('/mentors');
         }
       })
-      .catch(({ status, error }) => {
+      .catch(({ status, data: { error } }) => {
         if (status === 401 || status === 403) {
           setError('server', {
             type: 'auth',
