@@ -17,7 +17,6 @@ import { Link, Redirect, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
-import _get from 'lodash/get';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useAuth } from 'context/auth';
 import request from 'utils/axiosConfig';
@@ -202,40 +201,27 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     retypePassword: false,
   });
   const history = useHistory();
-  // const [error, setError] = useState({ userName: { message: '' } });
 
-  /*const key = Object.keys(error || {}).toString();
-  if (key === 'email') {
-    const { email } = error;
-    errors.email = email;
-  }*/
+  const onSubmit = async (data) => {
+    try {
+      await request.post(API_PATH.REGISTER, data);
 
-  const onSubmit = (data) => {
-    request
-      .post(API_PATH.REGISTER, data)
-      .then(({ status }) => {
-        if (status === 200) {
-          const inProd = process.env.NODE_ENV === 'production';
-          const options = {
-            category: 'onSubmit',
-            action: 'Created an Account',
-          };
-          inProd && event(options);
-          dispatch(updateAuth(auth.checkCookie()));
-          history.push('/mentors');
-        }
-      })
-      .catch(({ err }) => {
-        const message = _get(
-          err,
-          `${Object.keys(err).toString()}.message`,
-          'Registration error occured'
-        );
-        setError(Object.keys(err).toString(), {
-          type: 'manual',
-          message,
-        });
+      const inProd = process.env.NODE_ENV === 'production';
+      const options = {
+        category: 'onSubmit',
+        action: 'Created an Account',
+      };
+      inProd && event(options);
+      dispatch(updateAuth(auth.checkCookie()));
+      history.push('/mentors');
+    } catch ({ err }) {
+      const message =
+        err[`${Object.keys(err).toString()}`]?.message || 'Registration error';
+      setError(Object.keys(err).toString(), {
+        type: 'manual',
+        message,
       });
+    }
   };
 
   const handleClickShowPassword = (key) => {
@@ -367,9 +353,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                                 }}
                               >
                                 {showPassword.password ? (
-                                  <Visibility />
-                                ) : (
                                   <VisibilityOff />
+                                ) : (
+                                  <Visibility />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -400,9 +386,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                                 }}
                               >
                                 {showPassword.retypePassword ? (
-                                  <Visibility />
-                                ) : (
                                   <VisibilityOff />
+                                ) : (
+                                  <Visibility />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -585,9 +571,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           }}
                         >
                           {showPassword.password ? (
-                            <Visibility />
-                          ) : (
                             <VisibilityOff />
+                          ) : (
+                            <Visibility />
                           )}
                         </IconButton>
                       </InputAdornment>
@@ -619,9 +605,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           }}
                         >
                           {showPassword.retypePassword ? (
-                            <Visibility />
-                          ) : (
                             <VisibilityOff />
+                          ) : (
+                            <Visibility />
                           )}
                         </IconButton>
                       </InputAdornment>
