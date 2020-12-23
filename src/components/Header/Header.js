@@ -20,7 +20,7 @@ import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 import { Link as RouterLink, useLocation, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { GlobalContext } from 'context/global';
 import { clearSessionData } from 'utils/cookies';
 
@@ -172,7 +172,8 @@ function Header() {
     globalState: { isMobile },
   } = useContext(GlobalContext);
   const [state, setState] = useState({
-    menuHeaders: DEFAULT_COMMON_MENU.headers,
+    menuHeaders: DEFAULT_COMMON_MENU.menuHeaders,
+    utilities: [],
     userName: '',
     title: '',
     anchorEl: false,
@@ -180,7 +181,14 @@ function Header() {
   });
   const history = useHistory();
 
-  const { menuHeaders, userName, title, anchorEl, drawerOpen } = state;
+  const {
+    menuHeaders,
+    utilities,
+    userName,
+    title,
+    anchorEl,
+    drawerOpen,
+  } = state;
   const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
@@ -190,12 +198,18 @@ function Header() {
         .then(
           ({
             data: {
-              data: { headers: menuHeaders = {}, userName = '', title = '' },
+              data: {
+                headers: menuHeaders = [],
+                utilities = [],
+                userName = '',
+                title = '',
+              },
             },
           }) =>
             setState((prevState) => ({
               ...prevState,
               menuHeaders,
+              utilities,
               userName,
               title,
             }))
@@ -237,30 +251,24 @@ function Header() {
 
   const getMenuButtons = () => {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
-      return menuHeaders
-        .filter(
-          ({ href }) => href !== '/login?logout=true' && href !== '/settings'
-        )
-        .map(({ id, href, label }) => {
-          const color = label === 'Join Us' ? '#B9EBEC' : 'white';
-
-          return (
-            <div key={id}>
-              <Button
-                {...{
-                  color: 'inherit',
-                  to: href,
-                  className: menuButton,
-                  style: { color },
-                  component: RouterLink,
-                  'aria-label': label,
-                }}
-              >
-                <span aria-hidden="true">{label}</span>
-              </Button>
-            </div>
-          );
-        });
+      return menuHeaders.map(({ id, href, label, color = 'white' }) => {
+        return (
+          <div key={id}>
+            <Button
+              {...{
+                color: 'inherit',
+                to: href,
+                className: menuButton,
+                style: { color },
+                component: RouterLink,
+                'aria-label': label,
+              }}
+            >
+              <span aria-hidden="true">{label}</span>
+            </Button>
+          </div>
+        );
+      });
     }
   };
 
@@ -297,32 +305,28 @@ function Header() {
   };
 
   const getAccountChoices = () => {
-    if (menuHeaders && menuHeaders.length) {
-      return menuHeaders
-        .filter(
-          ({ href }) => href === '/login?logout=true' || href === '/settings'
-        )
-        .map(({ id, href: to, label }) => {
-          return (
-            <Link
-              key={id}
-              {...{
-                component: RouterLink,
-                to,
-                color: 'inherit',
-                style: { textDecoration: 'none' },
-                onClick: handleAccountClose,
-              }}
-            >
-              <MenuItem className={accountChoice} onClick={logoutHandler}>
-                {to === '/login?logout=true' && (
-                  <ExitToAppIcon className={logOutIcon} />
-                )}
-                {label}
-              </MenuItem>
-            </Link>
-          );
-        });
+    if (utilities && utilities.length) {
+      return utilities.map(({ id, href: to, color, label }) => {
+        return (
+          <Link
+            key={id}
+            {...{
+              component: RouterLink,
+              to,
+              color,
+              style: { textDecoration: 'none' },
+              onClick: handleAccountClose,
+            }}
+          >
+            <MenuItem className={accountChoice} onClick={logoutHandler}>
+              {to === '/login?logout=true' && (
+                <ExitToAppIcon className={logOutIcon} />
+              )}
+              {label}
+            </MenuItem>
+          </Link>
+        );
+      });
     }
   };
 
@@ -332,7 +336,7 @@ function Header() {
         {femmecubatorLogo}
         <div className={menuButtonsContainer}>
           {getMenuButtons()}
-          {!_.isEmpty(userName) && (
+          {!isEmpty(userName) && (
             <>
               <Button
                 {...{

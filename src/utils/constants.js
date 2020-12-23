@@ -1,5 +1,5 @@
 const DEFAULT_COMMON_MENU = {
-  headers: [
+  menuHeaders: [
     {
       id: 1,
       label: 'What We Do',
@@ -18,6 +18,7 @@ const DEFAULT_COMMON_MENU = {
     {
       id: 4,
       label: 'Join Us',
+      color: '#B9EBEC',
       href: '/register',
     },
   ],
