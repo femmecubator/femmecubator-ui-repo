@@ -142,11 +142,30 @@ const useStyles = makeStyles(() => ({
 
 const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
 
+function FemmecubatorLogo() {
+  const { femmecubatorTitle } = useStyles();
+  return (
+    <>
+      <Typography variant="h1" className={femmecubatorTitle}>
+        <Link
+          {...{
+            component: RouterLink,
+            to: '/',
+            color: 'inherit',
+            style: { textDecoration: 'none' },
+          }}
+        >
+          Femmecubator
+        </Link>
+      </Typography>
+    </>
+  );
+}
+
 function Header() {
   const {
     root,
     header,
-    femmecubatorTitle,
     menuButtonsContainer,
     menuButton,
     menuDrawer,
@@ -234,21 +253,6 @@ function Header() {
   const handleAccountClose = () =>
     setState((prevState) => ({ ...prevState, anchorEl: null }));
 
-  const femmecubatorLogo = (
-    <Typography variant="h1" className={femmecubatorTitle}>
-      <Link
-        {...{
-          component: RouterLink,
-          to: '/',
-          color: 'inherit',
-          style: { textDecoration: 'none' },
-        }}
-      >
-        Femmecubator
-      </Link>
-    </Typography>
-  );
-
   const getMenuButtons = () => {
     if (!isNavHidden && menuHeaders && menuHeaders.length) {
       return menuHeaders.map(({ id, href, label, color = 'white' }) => {
@@ -333,7 +337,7 @@ function Header() {
   const displayDesktop = () => {
     return (
       <Toolbar>
-        {femmecubatorLogo}
+        <FemmecubatorLogo />
         <div className={menuButtonsContainer}>
           {getMenuButtons()}
           {!isEmpty(userName) && (
@@ -417,7 +421,7 @@ function Header() {
           </div>
         </Drawer>
 
-        {femmecubatorLogo}
+        <FemmecubatorLogo />
 
         {!isLoggedIn && (
           <Button
