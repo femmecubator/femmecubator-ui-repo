@@ -52,29 +52,25 @@ const LoginForm = ({ testOnSubmit }) => {
     authState: { isLoggedIn },
   } = useAuth();
 
-  const onSubmit = (credentials) => {
-    request
-      .post(API_PATH.LOGIN, credentials)
-      .then(({ status }) => {
-        if (status === 200) {
-          const inProduction = process.env.NODE_ENV === 'production';
-          const options = {
-            category: 'onSubmit',
-            action: 'Logged In',
-          };
-          inProduction && event(options);
-          dispatch(updateAuth(auth.checkCookie()));
-          history.push('/mentors');
-        }
-      })
-      .catch(({ status, error }) => {
-        if (status === 401 || status === 403) {
-          setError('server', {
-            type: 'auth',
-            message: error,
-          });
-        }
-      });
+  const onSubmit = async (credentials) => {
+    try {
+      await request.post(API_PATH.LOGIN, credentials);
+      const inProduction = process.env.NODE_ENV === 'production';
+      const options = {
+        category: 'onSubmit',
+        action: 'Logged In',
+      };
+      inProduction && event(options);
+      dispatch(updateAuth(auth.checkCookie()));
+      history.push('/mentors');
+    } catch ({ status, data: { err } }) {
+      if (status === 401 || status === 403) {
+        setError('server', {
+          type: 'auth',
+          message: err,
+        });
+      }
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -148,7 +144,7 @@ const LoginForm = ({ testOnSubmit }) => {
                           onClick: handleClickShowPassword,
                         }}
                       >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   ),
