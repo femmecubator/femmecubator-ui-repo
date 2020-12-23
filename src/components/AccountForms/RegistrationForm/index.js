@@ -91,11 +91,11 @@ const useStyles = makeStyles((theme) => ({
     color: '#550CCC',
   },
   button: {
-    [theme.breakpoints.up(799)]: {
-      marginTop: '48px',
-      float: 'right',
+    [theme.breakpoints.up(824)]: {
       marginRight: '16.25em',
     },
+    marginTop: '48px',
+    float: 'right',
     backgroundColor: '#026FE4',
     color: '#FFFFFF',
   },
