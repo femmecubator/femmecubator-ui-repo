@@ -18,7 +18,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
-import { API_PATH, DEFAULT_COMMON_MENU } from '../../utils/constants';
+import {
+  API_PATH,
+  DEFAULT_COMMON_MENU,
+  MOBILE_MEDIA_QUERY,
+} from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 import { Link as RouterLink, useLocation, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
@@ -187,7 +191,7 @@ function Header() {
     auth,
     authState: { isLoggedIn },
   } = useAuth();
-  const isMobile = useMediaQuery('(max-width:799px)');
+  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.menuHeaders,

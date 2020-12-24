@@ -125,6 +125,8 @@ const ACTION_TYPE = {
   UPDATE_UI_VIEW: 'UPDATE_UI_VIEW',
 };
 
+const MOBILE_MEDIA_QUERY = '(max-width:799px)';
+
 export {
   ANALYTICS_TYPE,
   API_PATH,
@@ -133,4 +135,5 @@ export {
   ROUTES_LABEL,
   ACTION_TYPE,
   METHOD_TYPE,
+  MOBILE_MEDIA_QUERY,
 };
