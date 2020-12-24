@@ -285,6 +285,7 @@ function Header() {
           ({ href }) => href !== '/register'
         );
       }
+
       return filteredChoices.map(({ id, href: to, label }) => (
         <Link
           {...{
@@ -314,7 +315,9 @@ function Header() {
               to,
               color,
               style: { textDecoration: 'none' },
-              onClick: handleAccountClose,
+              onClick: () => {
+                handleAccountClose(), handleDrawerClose();
+              },
             }}
           >
             <MenuItem
