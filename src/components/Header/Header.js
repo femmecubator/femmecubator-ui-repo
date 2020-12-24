@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AppBar, MenuItem, Link, useMediaQuery } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
@@ -75,18 +75,20 @@ function Header() {
     }
   }, [history, isLoggedIn]);
 
-  const logoutHandler = () => auth.logoff();
-
-  const handleDrawerOpen = () =>
+  const handleDrawerOpen = useCallback(() => {
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
-  const handleDrawerClose = () =>
+  }, []);
+  const handleDrawerClose = useCallback(() => {
     setState((prevState) => ({ ...prevState, drawerOpen: false }));
-  const handleAccountOpen = (e) =>
+  }, []);
+  const handleAccountOpen = useCallback((e) => {
     setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
-  const handleAccountClose = () =>
+  }, []);
+  const handleAccountClose = useCallback(() => {
     setState((prevState) => ({ ...prevState, anchorEl: null }));
+  }, []);
 
-  const getDrawerChoices = () => {
+  const getDrawerChoices = useCallback(() => {
     if (menuHeaders && menuHeaders.length) {
       let filteredChoices = menuHeaders;
 
@@ -112,9 +114,11 @@ function Header() {
         </Link>
       ));
     }
-  };
+  }, [drawerChoice, handleDrawerClose, isLoggedIn, menuHeaders]);
 
-  const getAccountChoices = () => {
+  const getAccountChoices = useCallback(() => {
+    const logoutHandler = () => auth.logoff();
+
     if (utilities && utilities.length) {
       return utilities.map(({ id, href: to, color, label }) => {
         return (
@@ -143,7 +147,16 @@ function Header() {
         );
       });
     }
-  };
+  }, [
+    accountChoice,
+    drawerChoice,
+    handleAccountClose,
+    handleDrawerClose,
+    isMobile,
+    logOutIcon,
+    utilities,
+    auth,
+  ]);
 
   return (
     <header className={root} id="app-header">
