@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  makeStyles,
-  AppBar,
-  MenuItem,
-  Link,
-  useMediaQuery,
-} from '@material-ui/core';
+import { AppBar, MenuItem, Link, useMediaQuery } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
 import {
@@ -19,41 +13,7 @@ import { withRouter } from 'react-router';
 import { clearSessionData } from 'utils/cookies';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    flexGrow: 1,
-  },
-  header: {
-    boxShadow: 'none',
-    backgroundColor: '#400CCC',
-    paddingLeft: '10px',
-    '@media (min-width: 1055px)': {
-      paddingRight: '79px',
-      paddingLeft: '118px',
-    },
-  },
-  drawerChoice: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: 14,
-    fontWeight: 600,
-    color: '#232735',
-    width: 190,
-    height: 40,
-    padding: '8px, 0',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  accountChoice: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: 14,
-    fontWeight: 600,
-    color: '#232735',
-    padding: 0,
-    margin: '8px 22px',
-  },
-  logOutIcon: { fontSize: 16, marginRight: 5 },
-}));
+import useStyles from './Header.styles';
 
 function Header() {
   const { root, header, drawerChoice, accountChoice, logOutIcon } = useStyles();
