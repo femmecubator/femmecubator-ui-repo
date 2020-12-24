@@ -56,19 +56,13 @@ const useStyles = makeStyles(() => ({
 }));
 
 function Header() {
-  const {
-    root,
-    header,
+  const { root, header, drawerChoice, accountChoice, logOutIcon } = useStyles();
 
-    drawerChoice,
-
-    accountChoice,
-    logOutIcon,
-  } = useStyles();
   const {
     auth,
     authState: { isLoggedIn },
   } = useAuth();
+
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   const [state, setState] = useState({
@@ -79,6 +73,7 @@ function Header() {
     anchorEl: false,
     drawerOpen: false,
   });
+
   const history = useHistory();
 
   const {
@@ -120,9 +115,7 @@ function Header() {
     }
   }, [history, isLoggedIn]);
 
-  const logoutHandler = () => {
-    auth.logoff();
-  };
+  const logoutHandler = () => auth.logoff();
 
   const handleDrawerOpen = () =>
     setState((prevState) => ({ ...prevState, drawerOpen: true }));

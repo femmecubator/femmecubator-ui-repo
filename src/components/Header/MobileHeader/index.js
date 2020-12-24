@@ -69,6 +69,7 @@ const MobileHeader = ({
     userInfoContainer,
     joinBtn,
   } = useStyles();
+
   const location = useLocation();
 
   const notOnLoginOrRegisterPath =

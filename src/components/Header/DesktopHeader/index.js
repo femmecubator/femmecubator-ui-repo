@@ -53,6 +53,7 @@ const DesktopHeader = ({
   handleAccountOpen,
 }) => {
   const location = useLocation();
+
   const {
     menuButtonsContainer,
     menuButton,

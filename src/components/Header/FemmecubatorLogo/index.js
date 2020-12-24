@@ -19,6 +19,7 @@ const useStyles = makeStyles(() => ({
 
 const FemmecubatorLogo = () => {
   const { femmecubatorTitle } = useStyles();
+
   return (
     <>
       <Typography variant="h1" className={femmecubatorTitle}>
