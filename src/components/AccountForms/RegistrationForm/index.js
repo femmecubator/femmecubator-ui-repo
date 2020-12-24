@@ -92,10 +92,11 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     [theme.breakpoints.up(824)]: {
-      marginRight: '16.25em',
+      marginLeft: '46%',
     },
     marginTop: '48px',
-    float: 'right',
+    display: 'flex',
+    justifyContent: 'flex-end',
     backgroundColor: '#026FE4',
     color: '#FFFFFF',
   },
