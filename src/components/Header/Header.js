@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   AppBar,
@@ -10,6 +10,8 @@ import {
   MenuItem,
   Drawer,
   Link,
+  createMuiTheme,
+  useMediaQuery,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -21,7 +23,6 @@ import { useAuth } from '../../context/auth';
 import { Link as RouterLink, useLocation, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import isEmpty from 'lodash/isEmpty';
-import { GlobalContext } from 'context/global';
 import { clearSessionData } from 'utils/cookies';
 
 const useStyles = makeStyles(() => ({
@@ -181,15 +182,13 @@ function Header() {
     logOutIcon,
     userInfoContainer,
   } = useStyles();
-
   const location = useLocation();
   const {
     auth,
     authState: { isLoggedIn },
   } = useAuth();
-  const {
-    globalState: { isMobile },
-  } = useContext(GlobalContext);
+  const isMobile = useMediaQuery('(max-width:799px)');
+
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.menuHeaders,
     utilities: [],
