@@ -319,7 +319,7 @@ function Header() {
           >
             <MenuItem
               className={isMobile ? drawerChoice : accountChoice}
-              onClick={logoutHandler}
+              onClick={to === '/login?logout=true' ? logoutHandler : null}
             >
               {to === '/login?logout=true' && (
                 <ExitToAppIcon className={logOutIcon} />

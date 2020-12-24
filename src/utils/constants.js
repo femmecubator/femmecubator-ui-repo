@@ -55,6 +55,7 @@ const ROUTES_LABEL = {
   ABOUT: 'whatWeDo',
   RESOURCES: 'resources',
   THREADS: 'threads',
+  SETTINGS: 'settings',
 };
 
 const ROUTES = [
@@ -111,6 +112,12 @@ const ROUTES = [
     isProtected: true,
     label: ROUTES_LABEL.THREADS,
     path: '/threads',
+  },
+  {
+    id: 10,
+    isProtected: true,
+    label: ROUTES_LABEL.SETTINGS,
+    path: '/settings',
   },
 ];
 
