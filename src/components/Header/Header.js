@@ -381,6 +381,9 @@ function Header() {
   };
 
   const displayMobile = () => {
+    const notOnLoginOrRegisterPath =
+      location.pathname !== '/register' && location.pathname !== '/login';
+
     return (
       <Toolbar>
         <IconButton
@@ -414,7 +417,7 @@ function Header() {
 
         <FemmecubatorLogo />
 
-        {!isLoggedIn && (
+        {!isLoggedIn && notOnLoginOrRegisterPath && (
           <Button
             {...{
               variant: 'outlined',
