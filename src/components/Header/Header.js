@@ -2,20 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Menu,
   MenuItem,
-  Drawer,
   Link,
-  createMuiTheme,
   useMediaQuery,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
 import {
@@ -24,10 +14,11 @@ import {
   MOBILE_MEDIA_QUERY,
 } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
-import { Link as RouterLink, useLocation, useHistory } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import isEmpty from 'lodash/isEmpty';
 import { clearSessionData } from 'utils/cookies';
+import DesktopHeader from './DesktopHeader';
+import MobileHeader from './MobileHeader';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -42,38 +33,6 @@ const useStyles = makeStyles(() => ({
       paddingLeft: '118px',
     },
   },
-  menuButton: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    size: '18px',
-    marginLeft: '38px',
-    '@media (max-width: 1055px)': {
-      marginLeft: 20,
-    },
-  },
-  userButton: {
-    fontFamily: 'Work Sans, sans-serif',
-    textTransform: 'none',
-    size: '18px',
-    fontWeight: 700,
-    marginLeft: '38px',
-  },
-  userIcon: {
-    fontSize: '24px',
-    marginRight: '12px',
-  },
-  menuDrawer: {
-    marginRight: '19px',
-    '@media (max-width: 350px)': {
-      marginRight: 0,
-    },
-  },
-  drawerContainer: {
-    height: '100%',
-    width: 254,
-    paddingTop: 86,
-    backgroundColor: '#F2F7FF',
-  },
   drawerChoice: {
     fontFamily: 'Open Sans, sans-serif',
     fontSize: 14,
@@ -85,43 +44,6 @@ const useStyles = makeStyles(() => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  arrowIcon: {
-    position: 'absolute',
-    left: 219,
-    top: 17,
-    cursor: 'pointer',
-  },
-  joinBtn: {
-    border: '1px solid white',
-    color: 'white',
-    fontFamily: 'Work Sans, sans-serif',
-    fontWeight: 600,
-    size: '16px',
-  },
-  femmecubatorTitle: {
-    flexGrow: 1,
-    textAlign: 'left',
-    fontFamily: 'Work Sans, sans-serif',
-    fontWeight: 600,
-    fontSize: '24px',
-    color: '#FFFEFE',
-    '@media (max-width: 350px)': {
-      fontSize: '18px',
-    },
-  },
-  menuButtonsContainer: {
-    display: 'flex',
-  },
-  accountPopup: {
-    marginTop: 14,
-  },
-  accountChoicesContainer: {
-    margin: '-8px 0',
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: '#F2F7FF',
-    width: 134,
-  },
   accountChoice: {
     fontFamily: 'Open Sans, sans-serif',
     fontSize: 14,
@@ -131,62 +53,18 @@ const useStyles = makeStyles(() => ({
     margin: '8px 22px',
   },
   logOutIcon: { fontSize: 16, marginRight: 5 },
-  userInfoContainer: {
-    margin: '0 43px 52px',
-    '& > :first-child': {
-      fontSize: 18,
-      fontWeight: 700,
-    },
-    '& > :nth-child(2)': {
-      fontSize: 14,
-      color: '#026FE4',
-      fontWeight: 600,
-    },
-  },
 }));
-
-const PATH_NAMES = ['/login', '/forgot', '/reset', '/register'];
-
-function FemmecubatorLogo() {
-  const { femmecubatorTitle } = useStyles();
-  return (
-    <>
-      <Typography variant="h1" className={femmecubatorTitle}>
-        <Link
-          {...{
-            component: RouterLink,
-            to: '/',
-            color: 'inherit',
-            style: { textDecoration: 'none' },
-          }}
-        >
-          Femmecubator
-        </Link>
-      </Typography>
-    </>
-  );
-}
 
 function Header() {
   const {
     root,
     header,
-    menuButtonsContainer,
-    menuButton,
-    menuDrawer,
-    joinBtn,
-    userButton,
-    userIcon,
-    drawerContainer,
+
     drawerChoice,
-    arrowIcon,
-    accountPopup,
-    accountChoicesContainer,
+
     accountChoice,
     logOutIcon,
-    userInfoContainer,
   } = useStyles();
-  const location = useLocation();
   const {
     auth,
     authState: { isLoggedIn },
@@ -211,7 +89,6 @@ function Header() {
     anchorEl,
     drawerOpen,
   } = state;
-  const isNavHidden = PATH_NAMES.includes(location.pathname.toLowerCase());
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -255,29 +132,6 @@ function Header() {
     setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
   const handleAccountClose = () =>
     setState((prevState) => ({ ...prevState, anchorEl: null }));
-
-  const getMenuButtons = () => {
-    if (!isNavHidden && menuHeaders && menuHeaders.length) {
-      return menuHeaders.map(({ id, href, label, color = 'white' }) => {
-        return (
-          <div key={id}>
-            <Button
-              {...{
-                color: 'inherit',
-                to: href,
-                className: menuButton,
-                style: { color },
-                component: RouterLink,
-                'aria-label': label,
-              }}
-            >
-              <span aria-hidden="true">{label}</span>
-            </Button>
-          </div>
-        );
-      });
-    }
-  };
 
   const getDrawerChoices = () => {
     if (menuHeaders && menuHeaders.length) {
@@ -338,109 +192,34 @@ function Header() {
     }
   };
 
-  const displayDesktop = () => {
-    return (
-      <Toolbar>
-        <FemmecubatorLogo />
-        <div className={menuButtonsContainer}>
-          {getMenuButtons()}
-          {!isEmpty(userName) && (
-            <>
-              <Button
-                {...{
-                  color: 'inherit',
-                  className: userButton,
-                  'aria-label': 'menu',
-                  onClick: handleAccountOpen,
-                  'aria-haspopup': 'true',
-                }}
-              >
-                <AccountCircleIcon className={userIcon} />
-                {userName}
-              </Button>
-
-              <Menu
-                {...{
-                  id: 'simple-menu',
-                  className: accountPopup,
-                  open: !!anchorEl,
-                  onClose: handleAccountClose,
-                  keepMounted: true,
-                  anchorEl,
-                  getContentAnchorEl: null,
-                  anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
-                  transformOrigin: { vertical: 'top', horizontal: 'center' },
-                }}
-              >
-                <div className={accountChoicesContainer}>
-                  {getAccountChoices()}
-                </div>
-              </Menu>
-            </>
-          )}
-        </div>
-      </Toolbar>
-    );
-  };
-
-  const displayMobile = () => {
-    const notOnLoginOrRegisterPath =
-      location.pathname !== '/register' && location.pathname !== '/login';
-
-    return (
-      <Toolbar>
-        <IconButton
-          {...{
-            edge: 'start',
-            className: menuDrawer,
-            'data-testid': 'drawer-button',
-            color: 'inherit',
-            'aria-label': 'menu',
-            onClick: handleDrawerOpen,
-            'aria-haspopup': 'true',
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
-
-        <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
-          <ArrowForwardIcon className={arrowIcon} onClick={handleDrawerClose} />
-
-          <div className={drawerContainer}>
-            {isLoggedIn && (
-              <div className={userInfoContainer}>
-                <div>{userName}</div>
-                <div>{title}</div>
-              </div>
-            )}
-            {getDrawerChoices()}
-            {isLoggedIn && getAccountChoices()}
-          </div>
-        </Drawer>
-
-        <FemmecubatorLogo />
-
-        {!isLoggedIn && notOnLoginOrRegisterPath && (
-          <Button
-            {...{
-              variant: 'outlined',
-              size: 'small',
-              className: joinBtn,
-              to: '/register',
-              component: RouterLink,
-            }}
-          >
-            JOIN
-          </Button>
-        )}
-      </Toolbar>
-    );
-  };
-
   return (
     <header className={root} id="app-header">
       <AppBar position="static" className={header}>
-        {isMobile ? displayMobile() : displayDesktop()}
+        {isMobile ? (
+          <MobileHeader
+            {...{
+              handleDrawerClose,
+              handleDrawerOpen,
+              drawerOpen,
+              isLoggedIn,
+              userName,
+              title,
+              getDrawerChoices,
+              getAccountChoices,
+            }}
+          />
+        ) : (
+          <DesktopHeader
+            {...{
+              menuHeaders,
+              userName,
+              getAccountChoices,
+              anchorEl,
+              handleAccountClose,
+              handleAccountOpen,
+            }}
+          />
+        )}
       </AppBar>
     </header>
   );
