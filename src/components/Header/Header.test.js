@@ -1,5 +1,5 @@
 import React, { useState as useStateMock } from 'react';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { GlobalProvider } from 'context/global';
 import { DEFAULT_COMMON_MENU } from 'utils/constants';
 import MobileHeader from './MobileHeader';
 import DesktopHeader from './DesktopHeader';
-import FemmecubatorLogo from './FemmecubatorLogo';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -56,9 +55,11 @@ describe('<Header />', () => {
   });
 
   it('should display the general menu if user IS NOT authenticated', async () => {
-    screen.getByRole('button', { name: /what we do/i });
-    screen.getByRole('button', { name: /resources/i });
-    screen.getByRole('button', { name: /log in/i });
-    screen.getByRole('button', { name: /join us/i });
+    waitFor(() => {
+      screen.getByRole('button', { name: /what we do/i });
+      screen.getByRole('button', { name: /resources/i });
+      screen.getByRole('button', { name: /log in/i });
+      screen.getByRole('button', { name: /join us/i });
+    });
   });
 });
