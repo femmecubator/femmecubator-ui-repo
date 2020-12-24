@@ -297,12 +297,7 @@ function Header() {
           }}
           key={id}
         >
-          <MenuItem className={drawerChoice} onClick={logoutHandler}>
-            {to === '/login?logout=true' && (
-              <ExitToAppIcon className={logOutIcon} />
-            )}
-            {label}
-          </MenuItem>
+          <MenuItem className={drawerChoice}>{label}</MenuItem>
         </Link>
       ));
     }
@@ -322,7 +317,10 @@ function Header() {
               onClick: handleAccountClose,
             }}
           >
-            <MenuItem className={accountChoice} onClick={logoutHandler}>
+            <MenuItem
+              className={isMobile ? drawerChoice : accountChoice}
+              onClick={logoutHandler}
+            >
               {to === '/login?logout=true' && (
                 <ExitToAppIcon className={logOutIcon} />
               )}
@@ -402,22 +400,12 @@ function Header() {
           <div className={drawerContainer}>
             {isLoggedIn && (
               <div className={userInfoContainer}>
-                <div>
-                  <Link
-                    {...{
-                      component: RouterLink,
-                      to: '/settings',
-                      color: 'inherit',
-                      style: { textDecoration: 'none' },
-                    }}
-                  >
-                    {userName}
-                  </Link>
-                </div>
+                <div>{userName}</div>
                 <div>{title}</div>
               </div>
             )}
             {getDrawerChoices()}
+            {isLoggedIn && getAccountChoices()}
           </div>
         </Drawer>
 
