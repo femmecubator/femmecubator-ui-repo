@@ -5,6 +5,9 @@ import Header from 'components/Header/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalProvider } from 'context/global';
 import { DEFAULT_COMMON_MENU } from 'utils/constants';
+import MobileHeader from './MobileHeader';
+import DesktopHeader from './DesktopHeader';
+import FemmecubatorLogo from './FemmecubatorLogo';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -36,7 +39,10 @@ describe('<Header />', () => {
       <AuthProvider>
         <GlobalProvider>
           <Router>
-            <Header />
+            <Header>
+              <DesktopHeader />
+              <MobileHeader />
+            </Header>
           </Router>
         </GlobalProvider>
       </AuthProvider>
