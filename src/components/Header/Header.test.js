@@ -1,9 +1,7 @@
 import React, { useState as useStateMock } from 'react';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
-import { AuthProvider } from 'context/auth';
 import Header from 'components/Header/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { GlobalProvider } from 'context/global';
 import { DEFAULT_COMMON_MENU } from 'utils/constants';
 import MobileHeader from './MobileHeader';
 import DesktopHeader from './DesktopHeader';
@@ -35,16 +33,12 @@ describe('<Header />', () => {
     useStateMock.mockImplementation((initState) => [initState, setState]);
 
     render(
-      <AuthProvider>
-        <GlobalProvider>
-          <Router>
-            <Header>
-              <DesktopHeader />
-              <MobileHeader />
-            </Header>
-          </Router>
-        </GlobalProvider>
-      </AuthProvider>
+      <Router>
+        <Header>
+          <DesktopHeader />
+          <MobileHeader />
+        </Header>
+      </Router>
     );
   });
 

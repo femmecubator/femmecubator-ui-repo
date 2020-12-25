@@ -1,12 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { API_PATH } from 'utils/constants';
 import { event } from 'react-ga';
 import request from 'utils/axiosConfig';
-import { useAuth } from '../../../context/auth';
-import { GlobalContext } from 'context/global';
 import isEmpty from 'lodash/isEmpty';
-import { updateAuth } from 'context/actionCreators';
 import { Link, useHistory, useLocation, Redirect } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import {
@@ -15,9 +12,11 @@ import {
   InputAdornment,
   IconButton,
   Button,
+  useMediaQuery,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
+import Auth from 'utils/auth';
 
 const FORM_TITLE = 'Welcome back!';
 
@@ -36,21 +35,13 @@ const passwordRequirements = {
 const LoginForm = ({ testOnSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
-  const {
-    globalState: { isMobile },
-  } = useContext(GlobalContext);
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const history = useHistory();
   const { search } = useLocation();
   const timedOut = /true/i.test(new URLSearchParams(search).get('timedOut'));
   const classes = useStyles({
     isMobile: isMobile,
   });
-
-  const {
-    dispatch,
-    auth,
-    authState: { isLoggedIn },
-  } = useAuth();
 
   const onSubmit = async (credentials) => {
     try {
@@ -61,7 +52,6 @@ const LoginForm = ({ testOnSubmit }) => {
         action: 'Logged In',
       };
       inProduction && event(options);
-      dispatch(updateAuth(auth.checkCookie()));
       history.push('/mentors');
     } catch ({ status, data: { err } }) {
       if (status === 401 || status === 403) {
@@ -181,7 +171,7 @@ const LoginForm = ({ testOnSubmit }) => {
 
   return (
     <>
-      {isLoggedIn ? (
+      {Auth.isLoggedIn() ? (
         <Redirect
           to={{
             pathname: '/mentors',

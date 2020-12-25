@@ -13,10 +13,10 @@ import {
   DEFAULT_COMMON_MENU,
   MOBILE_MEDIA_QUERY,
 } from '../../utils/constants';
-import { useAuth } from '../../context/auth';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { clearSessionData } from 'utils/cookies';
+import Auth from 'utils/auth';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
@@ -65,10 +65,8 @@ function Header() {
     accountChoice,
     logOutIcon,
   } = useStyles();
-  const {
-    auth,
-    authState: { isLoggedIn },
-  } = useAuth();
+
+  const isLoggedIn = Auth.isLoggedIn();
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   const [state, setState] = useState({
@@ -121,7 +119,7 @@ function Header() {
   }, [history, isLoggedIn]);
 
   const logoutHandler = () => {
-    auth.logoff();
+    Auth.logoff();
   };
 
   const handleDrawerOpen = () =>
