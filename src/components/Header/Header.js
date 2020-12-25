@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {
-  makeStyles,
-  AppBar,
-  MenuItem,
-  Link,
-  useMediaQuery,
-} from '@material-ui/core';
+import React, { useCallback, useEffect, useState } from 'react';
+import { AppBar, MenuItem, Link, useMediaQuery } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import request from 'utils/axiosConfig';
 import {
@@ -19,56 +13,12 @@ import { clearSessionData } from 'utils/cookies';
 import Auth from 'utils/auth';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    flexGrow: 1,
-  },
-  header: {
-    boxShadow: 'none',
-    backgroundColor: '#400CCC',
-    paddingLeft: '10px',
-    '@media (min-width: 1055px)': {
-      paddingRight: '79px',
-      paddingLeft: '118px',
-    },
-  },
-  drawerChoice: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: 14,
-    fontWeight: 600,
-    color: '#232735',
-    width: 190,
-    height: 40,
-    padding: '8px, 0',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  accountChoice: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: 14,
-    fontWeight: 600,
-    color: '#232735',
-    padding: 0,
-    margin: '8px 22px',
-  },
-  logOutIcon: { fontSize: 16, marginRight: 5 },
-}));
+import useStyles from './Header.styles';
 
 function Header() {
-  const {
-    root,
-    header,
-
-    drawerChoice,
-
-    accountChoice,
-    logOutIcon,
-  } = useStyles();
-
+  const { root, header, drawerChoice, accountChoice, logOutIcon } = useStyles();
   const isLoggedIn = Auth.isLoggedIn();
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
-
   const [state, setState] = useState({
     menuHeaders: DEFAULT_COMMON_MENU.menuHeaders,
     utilities: [],
@@ -77,6 +27,7 @@ function Header() {
     anchorEl: false,
     drawerOpen: false,
   });
+
   const history = useHistory();
 
   const {
@@ -118,20 +69,20 @@ function Header() {
     }
   }, [history, isLoggedIn]);
 
-  const logoutHandler = () => {
-    Auth.logoff();
-  };
-
-  const handleDrawerOpen = () =>
+  const handleDrawerOpen = useCallback(() => {
     setState((prevState) => ({ ...prevState, drawerOpen: true }));
-  const handleDrawerClose = () =>
+  }, []);
+  const handleDrawerClose = useCallback(() => {
     setState((prevState) => ({ ...prevState, drawerOpen: false }));
-  const handleAccountOpen = (e) =>
+  }, []);
+  const handleAccountOpen = useCallback((e) => {
     setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
-  const handleAccountClose = () =>
+  }, []);
+  const handleAccountClose = useCallback(() => {
     setState((prevState) => ({ ...prevState, anchorEl: null }));
+  }, []);
 
-  const getDrawerChoices = () => {
+  const getDrawerChoices = useCallback(() => {
     if (menuHeaders && menuHeaders.length) {
       let filteredChoices = menuHeaders;
 
@@ -157,9 +108,11 @@ function Header() {
         </Link>
       ));
     }
-  };
+  }, [drawerChoice, handleDrawerClose, isLoggedIn, menuHeaders]);
 
-  const getAccountChoices = () => {
+  const getAccountChoices = useCallback(() => {
+    const logoutHandler = () => Auth.logoff();
+
     if (utilities && utilities.length) {
       return utilities.map(({ id, href: to, color, label }) => {
         return (
@@ -188,7 +141,15 @@ function Header() {
         );
       });
     }
-  };
+  }, [
+    accountChoice,
+    drawerChoice,
+    handleAccountClose,
+    handleDrawerClose,
+    isMobile,
+    logOutIcon,
+    utilities,
+  ]);
 
   return (
     <header className={root} id="app-header">
