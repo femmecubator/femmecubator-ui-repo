@@ -110,9 +110,12 @@ function Header() {
     }
   }, [drawerChoice, handleDrawerClose, isLoggedIn, menuHeaders]);
 
-  const getAccountChoices = useCallback(() => {
-    const logoutHandler = () => Auth.logoff();
+  const acctChoicesHandler = useCallback(() => {
+    handleAccountClose();
+    handleDrawerClose();
+  }, [handleAccountClose, handleDrawerClose]);
 
+  const getAccountChoices = useCallback(() => {
     if (utilities && utilities.length) {
       return utilities.map(({ id, href: to, color, label }) => {
         if (to === '/login?logout=true') {
@@ -121,7 +124,7 @@ function Header() {
               key={id}
               {...{
                 className: isMobile ? drawerChoice : accountChoice,
-                onClick: logoutHandler,
+                onClick: () => Auth.logoff(),
               }}
             >
               <ExitToAppIcon className={logOutIcon} />
@@ -138,9 +141,7 @@ function Header() {
               to,
               color,
               style: { textDecoration: 'none' },
-              onClick: () => {
-                handleAccountClose(), handleDrawerClose();
-              },
+              onClick: acctChoicesHandler,
             }}
           >
             <MenuItem className={isMobile ? drawerChoice : accountChoice}>
@@ -153,11 +154,10 @@ function Header() {
   }, [
     accountChoice,
     drawerChoice,
-    handleAccountClose,
-    handleDrawerClose,
     isMobile,
     logOutIcon,
     utilities,
+    acctChoicesHandler,
   ]);
 
   return (
