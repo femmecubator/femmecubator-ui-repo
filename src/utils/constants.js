@@ -1,5 +1,5 @@
 const DEFAULT_COMMON_MENU = {
-  headers: [
+  menuHeaders: [
     {
       id: 1,
       label: 'What We Do',
@@ -18,6 +18,7 @@ const DEFAULT_COMMON_MENU = {
     {
       id: 4,
       label: 'Join Us',
+      color: '#B9EBEC',
       href: '/register',
     },
   ],
@@ -29,6 +30,7 @@ const API_PATH = {
   REGISTER: '/api/register',
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
+  ROOT: '/',
 };
 
 const METHOD_TYPE = {
@@ -54,6 +56,7 @@ const ROUTES_LABEL = {
   ABOUT: 'whatWeDo',
   RESOURCES: 'resources',
   THREADS: 'threads',
+  SETTINGS: 'settings',
 };
 
 const ROUTES = [
@@ -111,11 +114,19 @@ const ROUTES = [
     label: ROUTES_LABEL.THREADS,
     path: '/threads',
   },
+  {
+    id: 10,
+    isProtected: true,
+    label: ROUTES_LABEL.SETTINGS,
+    path: '/settings',
+  },
 ];
 
 const ACTION_TYPE = {
   UPDATE_UI_VIEW: 'UPDATE_UI_VIEW',
 };
+
+const MOBILE_MEDIA_QUERY = '(max-width:799px)';
 
 export {
   ANALYTICS_TYPE,
@@ -125,4 +136,5 @@ export {
   ROUTES_LABEL,
   ACTION_TYPE,
   METHOD_TYPE,
+  MOBILE_MEDIA_QUERY,
 };

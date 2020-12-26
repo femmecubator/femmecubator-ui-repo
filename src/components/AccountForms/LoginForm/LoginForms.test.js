@@ -1,25 +1,23 @@
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { GlobalProvider } from 'context/global';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from 'context/auth';
 import LoginForm from './';
+import AuthMock from '../../../utils/auth';
 
+jest.mock('../../../utils/auth');
 describe('<LoginForm />', () => {
   const mockOnSubmit = jest.fn();
 
+  beforeAll(() => {
+    AuthMock.isLoggedIn.mockImplementation(() => false);
+  });
+
   beforeEach(() => {
-    jest.resetAllMocks();
     render(
-      <AuthProvider>
-        <GlobalProvider>
-          <Router>
-            <LoginForm testOnSubmit={mockOnSubmit} />
-          </Router>
-        </GlobalProvider>
-      </AuthProvider>
+      <Router>
+        <LoginForm testOnSubmit={mockOnSubmit} />
+      </Router>
     );
   });
 

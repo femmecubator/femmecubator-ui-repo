@@ -1,5 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Mentors, Listings, Volunteer, About, Resources, Threads } from 'stubs';
+import {
+  Mentors,
+  Listings,
+  Volunteer,
+  About,
+  Resources,
+  Threads,
+  Settings,
+} from 'stubs';
 import Home from 'components/Home/Home';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
 import LoginForm from 'components/AccountForms/LoginForm';
@@ -14,6 +22,7 @@ const {
   ABOUT,
   RESOURCES,
   THREADS,
+  SETTINGS,
 } = ROUTES_LABEL;
 
 export default class ComponentFactory {
@@ -37,6 +46,8 @@ export default class ComponentFactory {
         return Resources;
       case THREADS:
         return Threads;
+      case SETTINGS:
+        return Settings;
       default:
         throw new Error('Route undefined!');
     }

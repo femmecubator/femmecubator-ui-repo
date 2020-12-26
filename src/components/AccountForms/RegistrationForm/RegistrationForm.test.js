@@ -2,126 +2,114 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import RegistrationForm from './index';
 import { act } from 'react-dom/test-utils';
-import { GlobalProvider } from 'context/global';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from 'context/auth';
+import AuthMock from '../../../utils/auth';
 
+jest.mock('../../../utils/auth');
+const mockOnSubmit = jest.fn();
 describe('<RegistrationForm />', () => {
-  it('should check if the submit button handler has been called', async () => {
-    const mockOnSubmit = jest.fn();
-
-    const { getByTestId } = render(
-      <AuthProvider>
-        <GlobalProvider>
-          <Router>
-            <RegistrationForm mockOnSubmit={mockOnSubmit} />
-          </Router>
-        </GlobalProvider>
-      </AuthProvider>
+  beforeAll(() => {
+    AuthMock.isLoggedIn.mockImplementation(() => false);
+  });
+  beforeEach(() => {
+    render(
+      <Router>
+        <RegistrationForm mockOnSubmit={mockOnSubmit} />
+      </Router>
     );
+  });
+
+  it('should check if the submit button handler has been called', async () => {
     await act(async () => {
-      fireEvent.input(getByTestId('firstName'), { target: { value: 'John' } });
-      fireEvent.input(getByTestId('lastName'), { target: { value: 'Doe' } });
-      fireEvent.input(getByTestId('prefLoc'), { target: { value: 'NY' } });
-      fireEvent.input(getByTestId('title'), {
+      fireEvent.input(screen.getByTestId('firstName'), {
+        target: { value: 'John' },
+      });
+      fireEvent.input(screen.getByTestId('lastName'), {
+        target: { value: 'Doe' },
+      });
+      fireEvent.input(screen.getByTestId('prefLoc'), {
+        target: { value: 'NY' },
+      });
+      fireEvent.input(screen.getByTestId('title'), {
         target: { value: 'Software Engineer' },
       });
-      fireEvent.input(getByTestId('email'), {
+      fireEvent.input(screen.getByTestId('email'), {
         target: { value: 'johndoe@gmail.com' },
       });
-      fireEvent.input(getByTestId('userName'), {
+      fireEvent.input(screen.getByTestId('userName'), {
         target: { value: 'john.doe' },
       });
-      fireEvent.input(getByTestId('password'), {
+      fireEvent.input(screen.getByTestId('password'), {
         target: { value: 'JDoe12345!' },
       });
-      fireEvent.input(getByTestId('retypePassword'), {
+      fireEvent.input(screen.getByTestId('retypePassword'), {
         target: { value: 'JDoe12345!' },
       });
     });
 
     await act(async () => {
-      fireEvent.submit(getByTestId('submit'));
+      fireEvent.submit(screen.getByTestId('submit'));
     });
     expect(mockOnSubmit).toHaveBeenCalled();
   });
 
   it('should validate errors for required fields', async () => {
-    const mockOnSubmit = jest.fn();
-    const { getByTestId, container } = render(
-      <AuthProvider>
-        <GlobalProvider>
-          <Router>
-            <RegistrationForm onSubmit={mockOnSubmit} />
-          </Router>
-        </GlobalProvider>
-      </AuthProvider>
-    );
-
     await act(async () => {
-      fireEvent.submit(getByTestId('submit'));
+      fireEvent.submit(screen.getByTestId('submit'));
     });
     const passwordError = await screen.findAllByText('Password is required');
 
-    expect(container.innerHTML).toMatch('First name is required');
-    expect(container.innerHTML).toMatch('Last name is required');
-    expect(container.innerHTML).toMatch('Preferred Location is required');
-    expect(container.innerHTML).toMatch('Title is required');
-    expect(container.innerHTML).toMatch('Email is required');
-    expect(container.innerHTML).toMatch('User name is required');
+    screen.getByText(/first name is required/i);
+    screen.getByText(/first name is required/i);
+    screen.getByText(/preferred location is required/i);
+    screen.getByText(/title is required/i);
+    screen.getByText(/email is required/i);
+    screen.getByText(/user name is required/i);
     expect(passwordError).toHaveLength(2);
   });
 
   it('should validate error for fields with invalid format', async () => {
-    const mockOnSubmit = jest.fn();
-
-    const { getByTestId, container } = render(
-      <AuthProvider>
-        <GlobalProvider>
-          <Router>
-            <RegistrationForm onSubmit={mockOnSubmit} />
-          </Router>
-        </GlobalProvider>
-      </AuthProvider>
-    );
     await act(async () => {
-      fireEvent.input(getByTestId('firstName'), { target: { value: '1234' } });
-      fireEvent.input(getByTestId('lastName'), { target: { value: '1234' } });
-      fireEvent.input(getByTestId('prefLoc'), { target: { value: '11' } });
-      fireEvent.input(getByTestId('title'), {
-        target: { value: 'Software Engineer1' },
+      fireEvent.input(screen.getByTestId('firstName'), {
+        target: { value: '1234' },
       });
-      fireEvent.input(getByTestId('email'), {
+      fireEvent.input(screen.getByTestId('lastName'), {
+        target: { value: '1234' },
+      });
+      fireEvent.input(screen.getByTestId('prefLoc'), {
+        target: { value: '1234' },
+      });
+      fireEvent.input(screen.getByTestId('title'), {
+        target: { value: '1234' },
+      });
+      fireEvent.input(screen.getByTestId('email'), {
         target: { value: 'johndoe' },
       });
-      fireEvent.input(getByTestId('userName'), {
+      fireEvent.input(screen.getByTestId('userName'), {
         target: { value: 'john.doe1@' },
       });
 
-      fireEvent.input(getByTestId('password'), {
+      fireEvent.input(screen.getByTestId('password'), {
         target: { value: 'a1234567' },
       });
-      fireEvent.input(getByTestId('retypePassword'), {
+      fireEvent.input(screen.getByTestId('retypePassword'), {
         target: { value: 'a1234567!' },
       });
     });
 
     await act(async () => {
-      fireEvent.submit(getByTestId('submit'));
+      fireEvent.submit(screen.getByTestId('submit'));
     });
 
     const onlyLetters = await screen.findAllByText(
-      'Must only contain letters (A-Z, a-z)'
+      /must only contain letters/i
     );
-
-    expect(container.innerHTML).toMatch(
-      'Must only contain letters and spaces(A-Z, a-z)'
+    screen.getByText(/invalid email format/i);
+    screen.getByText(
+      /only contains alphanumeric characters, underscore and dot/i
     );
-    expect(container.innerHTML).toMatch('Invalid email format');
-    expect(container.innerHTML).toMatch(
-      'Only contains alphanumeric characters, underscore and dot'
-    );
-    expect(container.innerHTML).toMatch('Invalid password: (A-z 0-9 @$!%*?%)');
-    expect(onlyLetters).toHaveLength(3);
+    screen.getByText(/invalid password format/i);
+    screen.getByText(/passwords do not match./i);
+    expect(onlyLetters).toHaveLength(4);
   });
 });

@@ -18,11 +18,10 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-import { useAuth } from 'context/auth';
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
-import { updateAuth } from 'context/actionCreators';
 import { event } from 'react-ga';
+import Auth from 'utils/auth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -125,9 +124,10 @@ const useStyles = makeStyles((theme) => ({
 const FORM_TITLE = 'Create account';
 const FORM_SUBTITLE = 'Have an existing account?';
 const MIN_CHARS = 'Must be more than 1 character';
-const ONLY_LETTERS = 'Must only contain letters (A-Z, a-z)';
-const ONLY_LETTERS_WS = 'Must only contain letters and spaces(A-Z, a-z)';
+const ONLY_LETTERS = 'Must only contain letters';
+const ONLY_LETTERS_WS = 'Must only contain letters and spaces';
 const MIN_8CHARS = 'Must be more than 8 characters';
+const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
 
 const RegistrationSchema = yup.object().shape({
   firstName: yup
@@ -172,7 +172,7 @@ const RegistrationSchema = yup.object().shape({
     .min(8, MIN_8CHARS)
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Invalid password: (A-z 0-9 @$!%*?%)'
+      INVALID_PASSWORD_FORMAT
     ),
   retypePassword: yup
     .string()
@@ -180,9 +180,9 @@ const RegistrationSchema = yup.object().shape({
     .min(8, MIN_8CHARS)
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Invalid password: (A-z 0-9 @$!%*?%)'
+      INVALID_PASSWORD_FORMAT
     )
-    .oneOf([yup.ref('password'), null], "Passwords don't match."),
+    .oneOf([yup.ref('password'), null], 'Passwords do not match.'),
 });
 
 const RegistrationForm = ({ mockOnSubmit }) => {
@@ -192,11 +192,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     resolver: yupResolver(RegistrationSchema),
   });
   const isMobile = useMediaQuery('(max-width:1023px)');
-  const {
-    dispatch,
-    auth,
-    authState: { isLoggedIn },
-  } = useAuth();
   const [showPassword, setShowPassword] = useState({
     password: false,
     retypePassword: false,
@@ -213,7 +208,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         action: 'Created an Account',
       };
       inProd && event(options);
-      dispatch(updateAuth(auth.checkCookie()));
       history.push('/mentors');
     } catch ({ err }) {
       const message =
@@ -648,7 +642,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
 
   return (
     <>
-      {isLoggedIn ? (
+      {Auth.isLoggedIn() ? (
         <Redirect
           to={{
             pathname: '/mentors',
