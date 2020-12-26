@@ -8,7 +8,7 @@ export default class Auth {
 
   static logoff() {
     clearSessionData();
-    window.location.replace(API_PATH.LOGIN_PAGE);
+    window.location.replace(API_PATH.ROOT);
   }
 
   static timedOut() {

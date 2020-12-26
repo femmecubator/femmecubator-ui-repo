@@ -30,6 +30,7 @@ const API_PATH = {
   REGISTER: '/api/register',
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
+  ROOT: '/',
 };
 
 const METHOD_TYPE = {

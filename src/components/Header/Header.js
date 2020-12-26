@@ -115,6 +115,21 @@ function Header() {
 
     if (utilities && utilities.length) {
       return utilities.map(({ id, href: to, color, label }) => {
+        if (to === '/login?logout=true') {
+          return (
+            <MenuItem
+              key={id}
+              {...{
+                className: isMobile ? drawerChoice : accountChoice,
+                onClick: logoutHandler,
+              }}
+            >
+              <ExitToAppIcon className={logOutIcon} />
+              {label}
+            </MenuItem>
+          );
+        }
+
         return (
           <Link
             key={id}
@@ -128,13 +143,7 @@ function Header() {
               },
             }}
           >
-            <MenuItem
-              className={isMobile ? drawerChoice : accountChoice}
-              onClick={to === '/login?logout=true' ? logoutHandler : null}
-            >
-              {to === '/login?logout=true' && (
-                <ExitToAppIcon className={logOutIcon} />
-              )}
+            <MenuItem className={isMobile ? drawerChoice : accountChoice}>
               {label}
             </MenuItem>
           </Link>
