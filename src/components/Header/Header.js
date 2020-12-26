@@ -65,6 +65,7 @@ function Header() {
         history.push(API_PATH.LOGIN_PAGE);
       }
     };
+
     if (isLoggedIn) fetchHeaderData();
   }, [history, isLoggedIn]);
 
@@ -123,7 +124,7 @@ function Header() {
               key={id}
               {...{
                 className: isMobile ? drawerChoice : accountChoice,
-                onClick: () => Auth.logoff(),
+                onClick: Auth.logoff,
               }}
             >
               <ExitToAppIcon className={logOutIcon} />
