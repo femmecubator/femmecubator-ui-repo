@@ -34,10 +34,7 @@ describe('<Header />', () => {
 
     render(
       <Router>
-        <Header>
-          <DesktopHeader />
-          <MobileHeader />
-        </Header>
+        <Header />
       </Router>
     );
   });
