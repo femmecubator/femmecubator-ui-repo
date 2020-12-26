@@ -40,33 +40,32 @@ function Header() {
   } = state;
 
   useEffect(() => {
-    if (isLoggedIn) {
-      request
-        .get(API_PATH.COMMON_MENU)
-        .then(
-          ({
+    const fetchHeaderData = async () => {
+      try {
+        const response = await request.get(API_PATH.COMMON_MENU);
+        const {
+          data: {
             data: {
-              data: {
-                headers: menuHeaders = [],
-                utilities = [],
-                userName = '',
-                title = '',
-              },
+              headers: menuHeaders = [],
+              utilities = [],
+              userName = '',
+              title = '',
             },
-          }) =>
-            setState((prevState) => ({
-              ...prevState,
-              menuHeaders,
-              utilities,
-              userName,
-              title,
-            }))
-        )
-        .catch(() => {
-          clearSessionData();
-          history.push(API_PATH.LOGIN_PAGE);
-        });
-    }
+          },
+        } = await response;
+        setState((prevState) => ({
+          ...prevState,
+          menuHeaders,
+          utilities,
+          userName,
+          title,
+        }));
+      } catch (error) {
+        clearSessionData();
+        history.push(API_PATH.LOGIN_PAGE);
+      }
+    };
+    if (isLoggedIn) fetchHeaderData();
   }, [history, isLoggedIn]);
 
   const handleDrawerOpen = useCallback(() => {
