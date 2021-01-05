@@ -11,6 +11,7 @@ import { withRouter } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { initialize, pageview } from 'react-ga';
+import Timeout from './components/Timeout/Timeout';
 
 if (process.env.NODE_ENV === 'production') {
   initialize(process.env.REACT_APP_TRACKING_ID);
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <Timeout />
       <Header />
       <ErrorBoundary>
         <AppRouter />

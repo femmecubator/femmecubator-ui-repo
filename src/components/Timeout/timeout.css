@@ -1,0 +1,82 @@
+.modal-background {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 1000;
+  font-family: Open Sans, sans-serif;
+}
+
+.modal {
+  position: relative;
+  background: white;
+  width: 38rem;
+  height: 28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 28vh auto;
+}
+
+.modal__center-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal__center-div__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__center-div__content__p-head {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  color: rgb(80, 80, 80);
+}
+
+.modal__center-div__content__p-timer {
+  font-size: 21px;
+  font-weight: 600;
+  text-align: center;
+  color: rgb(0, 98, 255);
+}
+
+.modal__center-div__content__p-text {
+  text-align: center;
+  color: rgb(80, 80, 80);
+}
+
+.modal__center-div__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.modal__center-div__buttons__button {
+  margin-right: 1rem;
+  padding: .5rem 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 3px;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.modal__center-div__buttons__button:hover {
+  filter: brightness(1.2);
+  transition: 300ms ease-in-out;
+}
+
+.button-logoff {
+  background: gray;
+  margin-right: 1rem;
+}
+
+.button-continue {
+  background: rgb(56, 132, 255);
+  margin-left: 1rem;
+}
