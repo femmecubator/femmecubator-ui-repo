@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const color = {
   white: '#ffffff',
   primaryDark: '#4F4F4F',
-  secondaryDark: '#828282',
+  secondaryDark: '#767676',
   primaryAccent: '#026FE4',
   primaryError: '#EB5757',
   secondaryError: '#FFEAEA',

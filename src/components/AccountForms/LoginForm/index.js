@@ -74,7 +74,10 @@ const LoginForm = ({ testOnSubmit }) => {
   const content = (
     <div className={classes.root}>
       <Paper classes={{ root: classes.paperContainer }}>
-        <LoginHero className={classes.heroImage} />
+        <LoginHero
+          className={classes.heroImage}
+          aria-label="Woman working on computer"
+        />
         <div className={classes.loginFormContainer}>
           {errors.server && (
             <div className={`${classes.alert} ${classes.error}`}>
