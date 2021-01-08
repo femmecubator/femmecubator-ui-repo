@@ -13,7 +13,7 @@ function isAuthCookiesExists() {
 
 function clearSessionData() {
   const options = {
-    domain: '.femmecubator.com',
+    domain: '.femmecubator.com' || '.ondigitalocean.app',
     path: '/',
   };
 
