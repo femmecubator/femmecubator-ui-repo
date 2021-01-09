@@ -8,24 +8,27 @@ const onClickButtonModal = jest.fn();
 describe('<RegistrationSuccess />', () => {
   const titleText = 'This is the title';
   const bodyText = 'This is the body';
+  const button = (
+    <Button
+      {...{
+        variant: 'contained',
+        color: 'primary',
+        onClick: onClickButtonModal,
+      }}
+    >
+      Go to Main Page
+    </Button>
+  );
 
   beforeEach(() => {
     render(
       <RegistrationSuccess
-        openModal={true}
-        titleText={titleText}
-        bodyText={bodyText}
-        button={
-          <Button
-            {...{
-              variant: 'contained',
-              color: 'primary',
-              onClick: onClickButtonModal,
-            }}
-          >
-            Go to Main Page
-          </Button>
-        }
+        {...{
+          openModal: true,
+          titleText: titleText,
+          bodyText: bodyText,
+          button: button,
+        }}
       />
     );
   });
