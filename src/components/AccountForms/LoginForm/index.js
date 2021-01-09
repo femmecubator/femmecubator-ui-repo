@@ -78,7 +78,10 @@ const LoginForm = ({ testOnSubmit }) => {
           className={classes.heroImage}
           aria-label="Woman working on computer"
         />
-        <div className={classes.loginFormContainer}>
+        <div
+          className={classes.loginFormContainer}
+          data-testid="loginFormContainer"
+        >
           {errors.server && (
             <div className={`${classes.alert} ${classes.error}`}>
               <Error />
@@ -107,6 +110,9 @@ const LoginForm = ({ testOnSubmit }) => {
                 autoComplete: 'email',
                 error: !isEmpty(errors.email),
                 helperText: errors.email && errors.email.message,
+                InputProps: {
+                  inputProps: { 'data-testid': 'email' },
+                },
                 FormHelperTextProps: {
                   classes: {
                     root: classes.helperText,
@@ -153,9 +159,12 @@ const LoginForm = ({ testOnSubmit }) => {
               Forgot Password
             </Link>
             <Button
-              type="submit"
-              className={`${classes.button} ${classes.signIn}`}
-              onClick={() => clearErrors('server')}
+              {...{
+                type: 'submit',
+                className: `${classes.button} ${classes.signIn}`,
+                onClick: () => clearErrors('server'),
+                'data-testid': 'loginButton',
+              }}
             >
               SIGN IN
             </Button>
