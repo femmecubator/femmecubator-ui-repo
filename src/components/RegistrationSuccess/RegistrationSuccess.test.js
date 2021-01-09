@@ -6,14 +6,10 @@ import { Button } from '@material-ui/core';
 const onClickButtonModal = jest.fn();
 
 describe('<RegistrationSuccess />', () => {
-  it('should display the modal', () => {
-    render(<RegistrationSuccess openModal={true} />);
-    expect(screen.getByTestId('registration-success-modal')).toBeTruthy();
-  });
+  const titleText = 'This is the title';
+  const bodyText = 'This is the body';
 
-  it('should render logos, title, body, and button correctly', () => {
-    const titleText = 'This is the title';
-    const bodyText = 'This is the body';
+  beforeEach(() => {
     render(
       <RegistrationSuccess
         openModal={true}
@@ -32,7 +28,13 @@ describe('<RegistrationSuccess />', () => {
         }
       />
     );
+  });
 
+  it('should display the modal', () => {
+    expect(screen.getByTestId('registration-success-modal')).toBeTruthy();
+  });
+
+  it('should render logos, title, body, and button correctly', () => {
     screen.getByTestId('modal-logo-femmecubator');
     screen.getByTestId('modal-logo-check-circle');
     screen.getByRole('heading', {

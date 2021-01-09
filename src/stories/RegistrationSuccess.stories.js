@@ -10,9 +10,7 @@ export const Registration_Success = () => {
   return (
     <>
       <div style={{ color: '#E5E5E5' }}>
-        <GlobalProvider>
-          <RegistrationSuccess />
-        </GlobalProvider>
+        <RegistrationSuccess />
       </div>
     </>
   );

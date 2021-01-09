@@ -31,31 +31,36 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function RegistrationSuccess(props) {
-  const { titleText, bodyText, button, openModal } = props;
+export default function RegistrationSuccess({
+  titleText = '',
+  bodyText = '',
+  button = null,
+  openModal = false,
+}) {
   const classes = useStyles();
-
   return (
     <Dialog
-      open={openModal}
-      maxWidth="xs"
-      classes={{
-        paper: classes.dialogWrapper,
+      {...{
+        open: openModal,
+        maxWidth: 'xs',
+        classes: { paper: classes.dialogWrapper },
+        TransitionComponent: Transition,
+        disableBackdropClick: true,
+        disableEscapeKeyDown: true,
+        'data-testid': 'registration-success-modal',
       }}
-      TransitionComponent={Transition}
-      disableBackdropClick
-      disableEscapeKeyDown
-      data-testid="registration-success-modal"
     >
       <FemmecubatorLogo
         alt="Femmecubator logo"
         data-testid="modal-logo-femmecubator"
       />
       <CheckCircle
-        fill="#57D9A3"
-        className={classes.checkCircle}
-        alt="green check mark"
-        data-testid="modal-logo-check-circle"
+        {...{
+          fill: '#57D9A3',
+          className: classes.checkCircle,
+          alt: 'green check mark',
+          'data-testid': 'modal-logo-check-circle',
+        }}
       />
       <DialogTitle disableTypography>
         <Typography variant="h4">{titleText}</Typography>
