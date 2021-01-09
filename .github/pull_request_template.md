@@ -6,5 +6,6 @@ closes#
 - [ ] I made sure mobile view looks good
 - [ ] I made sure mobile landscape view looks good
 - [ ] I have added unit test coverage
+	- [ ] Unit test coverage not applicable
 
 ### Additional Notes
