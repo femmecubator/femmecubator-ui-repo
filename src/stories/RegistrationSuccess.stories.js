@@ -1,6 +1,5 @@
 import React from 'react';
 import RegistrationSuccess from 'components/RegistrationSuccess';
-import { GlobalProvider } from 'context/global';
 export default {
   title: 'Registration Success',
   component: RegistrationSuccess,

@@ -25,9 +25,9 @@ describe('<RegistrationSuccess />', () => {
       <RegistrationSuccess
         {...{
           openModal: true,
-          titleText: titleText,
-          bodyText: bodyText,
-          button: button,
+          titleText,
+          bodyText,
+          button,
         }}
       />
     );
