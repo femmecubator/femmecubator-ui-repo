@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import errorIllustration from '../../assets/images/errorIllustration.svg';
 import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 const errorStyles = makeStyles(() => ({
   centered: {
     margin: '0 auto',
@@ -12,6 +12,9 @@ const errorStyles = makeStyles(() => ({
       marginTop: '15%',
       width: '90%',
     },
+  },
+  gridCenter: {
+    textAlign: 'center',
   },
   errorText: {
     fontFamily: 'Open Sans, sans-serif',
@@ -44,43 +47,52 @@ const errorStyles = makeStyles(() => ({
 
 const gutterBottom = true;
 function ErrorFallback() {
-  const { image, errorText, normalText, successIcon, centered } = errorStyles();
+  const {
+    image,
+    errorText,
+    normalText,
+    successIcon,
+    gridCenter,
+    centered,
+  } = errorStyles();
   const { reload } = window.location;
   const altText = 'Working Woman on her desk looking a bit tired';
   return (
-    <div className={centered}>
-      <img
-        {...{
-          'data-testid': 'errorIllustration',
-          className: image,
-          src: errorIllustration,
-          alt: altText,
-        }}
-      />
-      <Typography {...{ className: errorText, variant: 'h2', gutterBottom }}>
-        We're having trouble loading this page.
-      </Typography>
-      <Typography
-        {...{
-          variant: 'subtitle1',
-          component: 'p',
-          gutterBottom,
-          className: normalText,
-        }}
-      >
-        Try again or do a quick reset.
-      </Typography>
-      <Button
-        data-testid="reloadButton"
-        {...{
-          variant: 'contained',
-          className: successIcon,
-          onClick: reload.bind(window.location),
-        }}
-      >
-        Try Again
-      </Button>
-    </div>
+    <Grid item xs={12} className={gridCenter}>
+      <div className={centered}>
+        <img
+          {...{
+            'data-testid': 'errorIllustration',
+            className: image,
+            src: errorIllustration,
+            alt: altText,
+          }}
+        />
+        <Typography {...{ className: errorText, variant: 'h2', gutterBottom }}>
+          We're having trouble loading this page.
+        </Typography>
+        <Typography
+          {...{
+            variant: 'subtitle1',
+            component: 'p',
+            gutterBottom,
+            className: normalText,
+          }}
+        >
+          Try again or do a quick reset.
+        </Typography>
+        <Button
+          data-testid="reloadButton"
+          {...{
+            variant: 'contained',
+            className: successIcon,
+            onClick: reload.bind(window.location),
+          }}
+        >
+          Try Again
+        </Button>
+      </div>
+    </Grid>
   );
 }
 
