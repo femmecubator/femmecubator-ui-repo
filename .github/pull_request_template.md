@@ -1,5 +1,5 @@
 ### Ticket
-closes#
+closes #
 
 ### Checklist
 - [ ] There are no warnings in the browser console
