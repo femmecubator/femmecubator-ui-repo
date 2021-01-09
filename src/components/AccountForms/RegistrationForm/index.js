@@ -22,6 +22,7 @@ import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
 import { event } from 'react-ga';
 import Auth from 'utils/auth';
+import RegistrationSuccess from '../../RegistrationSuccess';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,6 +120,12 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     width: '14.875em',
   },
+  buttonModal: {
+    backgroundColor: '#026FE4',
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
 }));
 
 const FORM_TITLE = 'Create account';
@@ -187,7 +194,7 @@ const RegistrationSchema = yup.object().shape({
 
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors, setError } = useForm({
+  const { register, handleSubmit, errors, setError, watch } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
   });
@@ -196,7 +203,11 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     password: false,
     retypePassword: false,
   });
+  const [openModal, setOpenModal] = useState(false);
+  const watchEmail = watch('email', '');
   const history = useHistory();
+  const modalTitleText = "You're All Set!";
+  const modalBodyText = `We have just created your account! Don't forget to verify through your email at ${watchEmail}`;
 
   const onSubmit = async (data) => {
     try {
@@ -208,7 +219,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         action: 'Created an Account',
       };
       inProd && event(options);
-      history.push('/mentors');
+      setOpenModal(true);
     } catch ({ err }) {
       const message =
         err[`${Object.keys(err).toString()}`]?.message || 'Registration error';
@@ -217,6 +228,11 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         message,
       });
     }
+  };
+
+  const onClickButtonModal = () => {
+    setOpenModal(false);
+    history.push('/mentors');
   };
 
   const handleClickShowPassword = (key) => {
@@ -642,7 +658,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
 
   return (
     <>
-      {Auth.isLoggedIn() ? (
+      {Auth.isLoggedIn() && !openModal ? (
         <Redirect
           to={{
             pathname: '/mentors',
@@ -651,6 +667,25 @@ const RegistrationForm = ({ mockOnSubmit }) => {
       ) : (
         content
       )}
+      <RegistrationSuccess
+        {...{
+          openModal: openModal,
+          titleText: modalTitleText,
+          bodyText: modalBodyText,
+          button: (
+            <Button
+              {...{
+                variant: 'contained',
+                color: 'primary',
+                className: classes.buttonModal,
+                onClick: onClickButtonModal,
+              }}
+            >
+              Go to Main Page
+            </Button>
+          ),
+        }}
+      ></RegistrationSuccess>
     </>
   );
 };
