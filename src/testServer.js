@@ -2,10 +2,6 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
 const server = setupServer(
-  rest.get('http://local.femmecubator.com:3000', (_req, res, ctx) => {
-    return res(ctx.status(200));
-  }),
-
   rest.get(
     'http://local.femmecubator.com:3001/api/commonMenu',
     (_req, res, ctx) => {
