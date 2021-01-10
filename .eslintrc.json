@@ -24,11 +24,19 @@
   "plugins": ["react"],
   "rules": {
     "no-undef": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-restricted-syntax": [
+      "error",
+      {
+          "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+          "message": "Unexpected property on console object was called"
+      }
+    ],
     "no-unused-vars": "warn",
     "semi": "warn",
     "react/display-name": "off",
 	// "react/jsx-indent": ["error", 4],
-	"react/no-unescaped-entities": 0,
+	  "react/no-unescaped-entities": 0,
     "react/jsx-filename-extension": [
       1,
       {
