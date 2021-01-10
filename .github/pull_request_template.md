@@ -5,7 +5,11 @@ closes #
 - [ ] There are no warnings in the browser console
 - [ ] I made sure mobile portrait view looks good
 - [ ] I made sure mobile landscape view looks good
-- [ ] I have added unit test coverage
+- [ ] I added unit test coverage
+	- [ ] I added integration test coverage
 	- [ ] Unit test coverage not applicable
+
+### To Do
+- [ ] 
 
 ### Additional Notes
