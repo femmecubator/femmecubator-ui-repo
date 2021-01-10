@@ -23,7 +23,7 @@ test('able to login', async () => {
   );
   expect(header).toBe('Welcome back!');
 
-  const email = process.env.QA_EMAIL;
+  const email = process.env.TEAM_EMAIL;
   await page.type('input[data-testid="email"]', email);
   const emailInput = await page.$eval(
     'input[data-testid="email"]',
@@ -31,7 +31,7 @@ test('able to login', async () => {
   );
   expect(emailInput).toBe(email);
 
-  const password = process.env.QA_PASSWORD;
+  const password = process.env.TEAM_PASSWORD;
   await page.type('input[data-testid="password"]', password);
   const passwordInput = await page.$eval(
     'input[data-testid="password"]',
