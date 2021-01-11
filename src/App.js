@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { mockServer } from './mock/mockServer';
 import Header from './components/Header/Header';
+import Timeout from './components/Timeout/Timeout';
 import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 import { withRouter } from 'react-router';
@@ -31,10 +32,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <ErrorBoundary>
-        <AppRouter />
-      </ErrorBoundary>
+      <Timeout>
+        <Header />
+        <ErrorBoundary>
+          <AppRouter />
+        </ErrorBoundary>
+      </Timeout>
     </div>
   );
 }
