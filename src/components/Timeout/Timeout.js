@@ -20,6 +20,10 @@ const useStyle = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '28vh auto',
+    '@media (max-width: 600px)': {
+      width: '92vw',
+      height: '45vh',
+    },
   },
   modal__center_div: {
     display: 'flex',
@@ -104,7 +108,6 @@ export default function Timeout(props) {
     if (isLoggedIn && !idle) {
       interval = setInterval(() => {
         time.current += 1000;
-        console.log(time.current);
         if (time.current === idleTime) {
           setIdle(true);
           clearInterval(interval);
