@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Auth from '../../utils/auth';
 import { makeStyles } from '@material-ui/core';
+import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
 
 const useStyle = makeStyles({
   modal_background: {
@@ -163,38 +164,40 @@ const Modal = ({ countdownTime, setIdle, logoff, timedOut }) => {
 
   return (
     <div className={classes.modal_background}>
-      <article className={classes.modal}>
-        <div className={classes.modal__center_div}>
-          <div className={classes.modal__center_div__content}>
-            <p className={classes.modal__center_div__content__p_head}>
-              Your online session
-            </p>
-            <p className={classes.modal__center_div__content__p_head}>
-              will expire soon
-            </p>
-            <p className={classes.modal__center_div__content__p_timer}>
-              {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
-            </p>
-            <p className={classes.modal__center_div__content__p_text}>
-              Choose continue to keep working or log off.
-            </p>
+      <TrapFocus open isEnabled={() => true} getDoc={() => document}>
+        <article className={classes.modal} tabIndex={1}>
+          <div className={classes.modal__center_div}>
+            <div className={classes.modal__center_div__content}>
+              <p className={classes.modal__center_div__content__p_head}>
+                Your online session
+              </p>
+              <p className={classes.modal__center_div__content__p_head}>
+                will expire soon
+              </p>
+              <p className={classes.modal__center_div__content__p_timer}>
+                {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
+              </p>
+              <p className={classes.modal__center_div__content__p_text}>
+                Choose continue to keep working or log off.
+              </p>
+            </div>
+            <div className={classes.modal__center_div__buttons}>
+              <span
+                className={classes.modal__center_div__buttons__button_logoff}
+                onClick={() => logoff()}
+              >
+                Log Off
+              </span>
+              <span
+                className={classes.modal__center_div__buttons__button_continue}
+                onClick={() => setIdle(false)}
+              >
+                Continue
+              </span>
+            </div>
           </div>
-          <div className={classes.modal__center_div__buttons}>
-            <span
-              className={classes.modal__center_div__buttons__button_logoff}
-              onClick={() => logoff()}
-            >
-              Log Off
-            </span>
-            <span
-              className={classes.modal__center_div__buttons__button_continue}
-              onClick={() => setIdle(false)}
-            >
-              Continue
-            </span>
-          </div>
-        </div>
-      </article>
+        </article>
+      </TrapFocus>
     </div>
   );
 };
