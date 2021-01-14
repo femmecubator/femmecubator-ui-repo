@@ -89,7 +89,7 @@ const useStyle = makeStyles({
   },
 });
 
-export default function Timeout(props) {
+export default function Timeout({ children }) {
   //track idle time in background
   const idleTime = parseInt(process.env.REACT_APP_IDLETIME);
   const countdownTime = parseInt(process.env.REACT_APP_COUNTDOWNTIME);
@@ -125,13 +125,15 @@ export default function Timeout(props) {
     <div onMouseOver={() => reset()} onKeyPress={() => reset()}>
       {idle && (
         <Modal
-          countdownTime={countdownTime}
-          setIdle={setIdle}
-          logoff={logoff}
-          timedOut={timedOut}
+          {...{
+            countdownTime: countdownTime,
+            setIdle: setIdle,
+            logoff: logoff,
+            timedOut: timedOut,
+          }}
         />
       )}
-      {props.children}
+      {children}
     </div>
   );
 }
@@ -184,7 +186,7 @@ const Modal = ({ countdownTime, setIdle, logoff, timedOut }) => {
             <div className={classes.modal__center_div__buttons}>
               <span
                 className={classes.modal__center_div__buttons__button_logoff}
-                onClick={() => logoff()}
+                onClick={logoff}
               >
                 Log Off
               </span>
