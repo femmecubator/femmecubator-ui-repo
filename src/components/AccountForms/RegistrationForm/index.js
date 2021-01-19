@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,21 +9,20 @@ import {
   Button,
   Grid,
   InputAdornment,
+  useMediaQuery,
+  IconButton,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import { GlobalContext } from 'context/global';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
-import { useAuth } from 'context/auth';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
-import { updateAuth } from 'context/actionCreators';
 import { event } from 'react-ga';
+import Auth from 'utils/auth';
+import RegistrationSuccess from '../../RegistrationSuccess';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,11 +91,12 @@ const useStyles = makeStyles((theme) => ({
     color: '#550CCC',
   },
   button: {
-    [theme.breakpoints.up(799)]: {
-      marginTop: '48px',
-      float: 'right',
-      marginRight: '16.25em',
+    [theme.breakpoints.up(824)]: {
+      marginLeft: '46%',
     },
+    marginTop: '48px',
+    display: 'flex',
+    justifyContent: 'flex-end',
     backgroundColor: '#026FE4',
     color: '#FFFFFF',
   },
@@ -120,14 +120,21 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     width: '14.875em',
   },
+  buttonModal: {
+    backgroundColor: '#026FE4',
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
 }));
 
 const FORM_TITLE = 'Create account';
 const FORM_SUBTITLE = 'Have an existing account?';
 const MIN_CHARS = 'Must be more than 1 character';
-const ONLY_LETTERS = 'Must only contain letters (A-Z, a-z)';
-const ONLY_LETTERS_WS = 'Must only contain letters and spaces(A-Z, a-z)';
+const ONLY_LETTERS = 'Must only contain letters';
+const ONLY_LETTERS_WS = 'Must only contain letters and spaces';
 const MIN_8CHARS = 'Must be more than 8 characters';
+const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
 
 const RegistrationSchema = yup.object().shape({
   firstName: yup
@@ -172,7 +179,7 @@ const RegistrationSchema = yup.object().shape({
     .min(8, MIN_8CHARS)
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Invalid password: (A-z 0-9 @$!%*?%)'
+      INVALID_PASSWORD_FORMAT
     ),
   retypePassword: yup
     .string()
@@ -180,44 +187,52 @@ const RegistrationSchema = yup.object().shape({
     .min(8, MIN_8CHARS)
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Invalid password: (A-z 0-9 @$!%*?%)'
+      INVALID_PASSWORD_FORMAT
     )
-    .oneOf([yup.ref('password'), null], "Passwords don't match."),
+    .oneOf([yup.ref('password'), null], 'Passwords do not match.'),
 });
 
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setError, watch } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
   });
-  const {
-    globalState: { isMobile },
-  } = useContext(GlobalContext);
-  const {
-    dispatch,
-    auth,
-    authState: { isLoggedIn },
-  } = useAuth();
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const [showPassword, setShowPassword] = useState({
     password: false,
     retypePassword: false,
   });
+  const [openModal, setOpenModal] = useState(false);
+  const watchEmail = watch('email', '');
   const history = useHistory();
+  const modalTitleText = "You're All Set!";
+  const modalBodyText = `We have just created your account! Don't forget to verify through your email at ${watchEmail}`;
 
-  const onSubmit = (data) => {
-    request.post(API_PATH.REGISTER, data).then(({ status }) => {
-      if (status === 200) {
-        const inProd = process.env.NODE_ENV === 'production';
-        const options = {
-          category: 'onSubmit',
-          action: 'Created an Account',
-        };
-        inProd && event(options);
-        dispatch(updateAuth(auth.checkCookie()));
-        history.push('/mentors');
-      }
-    });
+  const onSubmit = async (data) => {
+    try {
+      await request.post(API_PATH.REGISTER, data);
+
+      const inProd = process.env.NODE_ENV === 'production';
+      const options = {
+        category: 'onSubmit',
+        action: 'Created an Account',
+      };
+      inProd && event(options);
+      setOpenModal(true);
+    } catch ({ err }) {
+      const message =
+        err[`${Object.keys(err).toString()}`]?.message || 'Registration error';
+      setError(Object.keys(err).toString(), {
+        type: 'manual',
+        message,
+      });
+    }
+  };
+
+  const onClickButtonModal = () => {
+    setOpenModal(false);
+    history.push('/mentors');
   };
 
   const handleClickShowPassword = (key) => {
@@ -318,7 +333,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
-                        id: 'username',
+                        id: 'userName',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'userName' },
                         label: 'Username',
@@ -349,9 +364,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                                 }}
                               >
                                 {showPassword.password ? (
-                                  <Visibility />
-                                ) : (
                                   <VisibilityOff />
+                                ) : (
+                                  <Visibility />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -382,9 +397,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                                 }}
                               >
                                 {showPassword.retypePassword ? (
-                                  <Visibility />
-                                ) : (
                                   <VisibilityOff />
+                                ) : (
+                                  <Visibility />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -567,9 +582,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           }}
                         >
                           {showPassword.password ? (
-                            <Visibility />
-                          ) : (
                             <VisibilityOff />
+                          ) : (
+                            <Visibility />
                           )}
                         </IconButton>
                       </InputAdornment>
@@ -601,9 +616,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           }}
                         >
                           {showPassword.retypePassword ? (
-                            <Visibility />
-                          ) : (
                             <VisibilityOff />
+                          ) : (
+                            <Visibility />
                           )}
                         </IconButton>
                       </InputAdornment>
@@ -643,7 +658,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
 
   return (
     <>
-      {isLoggedIn ? (
+      {Auth.isLoggedIn() && !openModal ? (
         <Redirect
           to={{
             pathname: '/mentors',
@@ -652,6 +667,25 @@ const RegistrationForm = ({ mockOnSubmit }) => {
       ) : (
         content
       )}
+      <RegistrationSuccess
+        {...{
+          openModal: openModal,
+          titleText: modalTitleText,
+          bodyText: modalBodyText,
+          button: (
+            <Button
+              {...{
+                variant: 'contained',
+                color: 'primary',
+                className: classes.buttonModal,
+                onClick: onClickButtonModal,
+              }}
+            >
+              Go to Main Page
+            </Button>
+          ),
+        }}
+      ></RegistrationSuccess>
     </>
   );
 };

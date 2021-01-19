@@ -13,7 +13,7 @@ function isAuthCookiesExists() {
 
 function clearSessionData() {
   const options = {
-    domain: '.femmecubator.com',
+    domain: process.env.REACT_APP_DOMAIN || '.femmecubator.com',
     path: '/',
   };
 

@@ -1,12 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { API_PATH } from 'utils/constants';
 import { event } from 'react-ga';
 import request from 'utils/axiosConfig';
-import { useAuth } from '../../../context/auth';
-import { GlobalContext } from 'context/global';
 import isEmpty from 'lodash/isEmpty';
-import { updateAuth } from 'context/actionCreators';
 import { Link, useHistory, useLocation, Redirect } from 'react-router-dom';
 import useStyles from './LoginForm.styles';
 import {
@@ -15,9 +12,11 @@ import {
   InputAdornment,
   IconButton,
   Button,
+  useMediaQuery,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
+import Auth from 'utils/auth';
 
 const FORM_TITLE = 'Welcome back!';
 
@@ -29,12 +28,14 @@ const emailRequirements = {
   },
 };
 
+const passwordRequirements = {
+  required: 'Password is required',
+};
+
 const LoginForm = ({ testOnSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, errors } = useForm();
-  const {
-    globalState: { isMobile },
-  } = useContext(GlobalContext);
+  const { register, handleSubmit, errors, setError, clearErrors } = useForm();
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const history = useHistory();
   const { search } = useLocation();
   const timedOut = /true/i.test(new URLSearchParams(search).get('timedOut'));
@@ -42,25 +43,24 @@ const LoginForm = ({ testOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const {
-    dispatch,
-    auth,
-    authState: { isLoggedIn },
-  } = useAuth();
-
-  const onSubmit = (credentials) => {
-    const inProduction = process.env.NODE_ENV === 'production';
-    const options = {
-      category: 'onSubmit',
-      action: 'Logged In',
-    };
-    request.post(API_PATH.LOGIN, credentials).then(({ status }) => {
-      if (status === 200) {
-        inProduction && event(options);
-        dispatch(updateAuth(auth.checkCookie()));
-        history.push('/mentors');
+  const onSubmit = async (credentials) => {
+    try {
+      await request.post(API_PATH.LOGIN, credentials);
+      const inProduction = process.env.NODE_ENV === 'production';
+      const options = {
+        category: 'onSubmit',
+        action: 'Logged In',
+      };
+      inProduction && event(options);
+      history.push('/mentors');
+    } catch ({ status, data: { err } }) {
+      if (status === 401 || status === 403) {
+        setError('server', {
+          type: 'auth',
+          message: err,
+        });
       }
-    });
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -74,12 +74,15 @@ const LoginForm = ({ testOnSubmit }) => {
   const content = (
     <div className={classes.root}>
       <Paper classes={{ root: classes.paperContainer }}>
-        <LoginHero className={classes.heroImage} />
+        <LoginHero
+          className={classes.heroImage}
+          aria-label="Woman working on computer"
+        />
         <div className={classes.loginFormContainer}>
-          {!isEmpty(errors) && !isMobile && (
+          {errors.server && (
             <div className={`${classes.alert} ${classes.error}`}>
               <Error />
-              <p role="alert">Sorry, invalid email or password. Try again?</p>
+              <p role="alert">{errors.server.message}</p>
             </div>
           )}
           {isEmpty(errors) && timedOut && (
@@ -103,7 +106,7 @@ const LoginForm = ({ testOnSubmit }) => {
                 name: 'email',
                 autoComplete: 'email',
                 error: !isEmpty(errors.email),
-                helperText: errors.email && 'Invalid email format',
+                helperText: errors.email && errors.email.message,
                 FormHelperTextProps: {
                   classes: {
                     root: classes.helperText,
@@ -117,12 +120,12 @@ const LoginForm = ({ testOnSubmit }) => {
                 label: 'Password',
                 variant: 'outlined',
                 className: classes.loginInput,
-                inputRef: register({ required: true }),
+                inputRef: register(passwordRequirements),
                 name: 'password',
                 autoComplete: 'current-password',
                 type: showPassword ? 'text' : 'password',
                 error: !isEmpty(errors.password),
-                helperText: errors.password && 'Enter a password',
+                helperText: errors.password && errors.password.message,
                 InputProps: {
                   inputProps: { 'data-testid': 'password' },
                   endAdornment: (
@@ -134,7 +137,7 @@ const LoginForm = ({ testOnSubmit }) => {
                           onClick: handleClickShowPassword,
                         }}
                       >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   ),
@@ -152,6 +155,7 @@ const LoginForm = ({ testOnSubmit }) => {
             <Button
               type="submit"
               className={`${classes.button} ${classes.signIn}`}
+              onClick={() => clearErrors('server')}
             >
               SIGN IN
             </Button>
@@ -170,7 +174,7 @@ const LoginForm = ({ testOnSubmit }) => {
 
   return (
     <>
-      {isLoggedIn ? (
+      {Auth.isLoggedIn() ? (
         <Redirect
           to={{
             pathname: '/mentors',

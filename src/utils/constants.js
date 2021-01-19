@@ -1,39 +1,25 @@
 const DEFAULT_COMMON_MENU = {
-  headers: [
+  menuHeaders: [
     {
       id: 1,
-      label: 'Listings',
-      href: '/listings',
+      label: 'What We Do',
+      href: '/about',
     },
     {
       id: 2,
-      label: 'Mentors',
-      href: '/mentors',
+      label: 'Resources',
+      href: '/resources',
     },
     {
       id: 3,
-      label: 'Home',
-      href: '/',
-    },
-    {
-      id: 4,
-      label: 'Get Involved',
-      href: '/volunteer',
-    },
-    {
-      id: 5,
       label: 'Log In',
       href: '/login',
     },
     {
-      id: 6,
-      label: 'Sign Up',
+      id: 4,
+      label: 'Join Us',
+      color: '#B9EBEC',
       href: '/register',
-    },
-    {
-      id: 7,
-      label: 'Donate',
-      href: '/donate',
     },
   ],
 };
@@ -44,6 +30,7 @@ const API_PATH = {
   REGISTER: '/api/register',
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
+  ROOT: '/',
 };
 
 const METHOD_TYPE = {
@@ -66,6 +53,10 @@ const ROUTES_LABEL = {
   REGISTER: 'register',
   LISTINGS: 'listings',
   VOLUNTEER: 'volunteer',
+  ABOUT: 'whatWeDo',
+  RESOURCES: 'resources',
+  THREADS: 'threads',
+  SETTINGS: 'settings',
 };
 
 const ROUTES = [
@@ -105,11 +96,37 @@ const ROUTES = [
     label: ROUTES_LABEL.VOLUNTEER,
     path: '/volunteer',
   },
+  {
+    id: 7,
+    isProtected: false,
+    label: ROUTES_LABEL.ABOUT,
+    path: '/about',
+  },
+  {
+    id: 8,
+    isProtected: false,
+    label: ROUTES_LABEL.RESOURCES,
+    path: '/resources',
+  },
+  {
+    id: 9,
+    isProtected: true,
+    label: ROUTES_LABEL.THREADS,
+    path: '/threads',
+  },
+  {
+    id: 10,
+    isProtected: true,
+    label: ROUTES_LABEL.SETTINGS,
+    path: '/settings',
+  },
 ];
 
 const ACTION_TYPE = {
   UPDATE_UI_VIEW: 'UPDATE_UI_VIEW',
 };
+
+const MOBILE_MEDIA_QUERY = '(max-width:799px)';
 
 export {
   ANALYTICS_TYPE,
@@ -119,4 +136,5 @@ export {
   ROUTES_LABEL,
   ACTION_TYPE,
   METHOD_TYPE,
+  MOBILE_MEDIA_QUERY,
 };
