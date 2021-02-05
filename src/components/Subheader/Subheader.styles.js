@@ -1,40 +1,53 @@
 import { makeStyles } from '@material-ui/core';
 const subheaderColors = {
-  mentors: 'pink',
-  threads: 'yellow',
+  mentors: '#BB6BD9',
+  threads: '#719AF5',
+};
+const font = {
+  fontFamily: 'Open Sans, sans-serif',
+  color: 'white',
+  margin: '.5rem',
 };
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    // flexWrap: 'wrap',
-    fontFamily: 'Open Sans, sans-serif',
-  },
   subheaderContainer: {
     display: 'flex',
-    height: '100px',
-    width: '100%',
-    // position: 'relative',
-    // alignitems: 'center',
-    border: 'solid 1px red',
+    minHeight: '100px',
+    minWidth: '100%',
   },
   subheader: {
     display: 'flex',
     flexDirection: 'row',
-    flexShrink: '2',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    border: 'solid 1px blue',
+    justifyContent: 'space-between',
     height: '100px',
     width: '100%',
     backgroundColor: ({ variant }) => subheaderColors[variant],
     top: '64px',
     borderRadius: '0px',
-    cursor: 'pointer',
+    padding: '0rem 1.5rem 0rem 7rem',
+    overflow: 'hidden',
+  },
+  subheaderItems: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   subheaderIcon: {
     height: '100%',
-    width: '7rem',
-    border: 'solid 1px blue',
+    width: '10rem',
+    margin: '1rem 0 0 0',
+  },
+  mainText: {
+    ...font,
+    fontSize: '28px',
+    fontWeight: '700',
+    lineHeight: '38px',
+  },
+  subText: {
+    ...font,
+    fontSize: '15px',
+    lineHeight: '29px',
   },
 }));
 

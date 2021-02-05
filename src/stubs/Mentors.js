@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Subheader from '../components/Subheader/Subheader.js';
 
 const Mentors = () => {
