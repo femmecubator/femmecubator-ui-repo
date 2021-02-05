@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useStyles from '../Subheader/Subheader.styles.js';
-//import classes from '*.module.css';
 
 export default function Subheader(props) {
-  const { variant, children, ...rest } = props;
-  const classes = useStyles();
-
-  console.log(classes, 'props', props);
+  const { variant, mainLabel, subLabel, image } = props;
+  const classes = useStyles({ variant });
+  const { subheaderContainer, subheader, subheaderIcon } = classes;
+  console.log(classes[variant]);
   return (
     //   subheaderContainer to be used as parent container for subheader
-    <div className={(`Subheader ${variant}`, classes.subheader)} {...rest}>
-      {/* <div className={classes.subheaderIcon}> */}
-      {/* <img src="" alt="" /> */}
-      {/* on click you want the compnent to return false and then not show if it false should be done in the parent component*/}
-      {/* </div> */}
-      {/* <div>{children}</div> */}
-      {/* <div>finer text</div> */}
-      {children}
+    <div className={subheaderContainer}>
+      <div className={subheader}>
+        <div className={subheaderIcon}>{image}</div>
+        {/* on click you want the compnent to return false and then not show if it false should be done in the parent component*/}
+        <div>{mainLabel}</div>
+        <div>{subLabel}</div>
+      </div>
     </div>
   );
 }
