@@ -8,6 +8,7 @@ const font = {
   color: 'white',
   margin: '.5rem',
 };
+
 const useStyles = makeStyles((theme) => ({
   subheaderContainer: {
     display: 'flex',
