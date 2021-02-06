@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   subheaderIcon: {
-    height: '100%',
-    width: '10rem',
-    margin: '1rem 0 0 0',
+    height: '90%',
+    width: '9.5rem',
+    margin: '1.2rem 0 0 0',
   },
   mainText: {
     ...font,
@@ -48,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
     ...font,
     fontSize: '15px',
     lineHeight: '29px',
+    padding: '.7rem 0 0 0',
+    margin: '0 0 0 1rem',
+  },
+  closeIcon: {
+    color: 'white',
+    cursor: 'pointer',
   },
 }));
 
