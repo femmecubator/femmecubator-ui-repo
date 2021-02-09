@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@axe-core/react": "^4.1.1",
     "@babel/core": "^7.12.3",
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@storybook/addon-essentials": "^6.0.28",
