@@ -1,7 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 const subheaderColors = {
-  mentors: '#a454c2',
-  threads: '#719AF5',
+  mentors: {
+    screen: '#a454c2',
+    mobile: '#57D9A3',
+  },
+  threads: {
+    screen: '#719AF5',
+    mobile: '#BB6BD9',
+  },
 };
 const font = {
   fontFamily: 'Open Sans, sans-serif',
@@ -9,7 +15,7 @@ const font = {
   margin: '.5rem',
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   subheaderContainer: {
     display: 'flex',
     minHeight: '100px',
@@ -19,13 +25,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+
     height: '90px',
     width: '100%',
-    backgroundColor: ({ variant }) => subheaderColors[variant],
+    backgroundColor: ({ variant, isMobile }) =>
+      isMobile
+        ? subheaderColors[variant].mobile
+        : subheaderColors[variant].screen,
     top: '64px',
     borderRadius: '0px',
-    padding: '0rem 1.5rem 0rem 10rem',
+    // paddingLeft: '11%',
     overflow: 'hidden',
   },
   subheaderItems: {
@@ -41,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mainText: {
     ...font,
-    fontSize: '28px',
+    fontSize: 'clamp(18px, 2.5vw, 28px)',
     fontWeight: '700',
     lineHeight: '35px',
   },
@@ -53,8 +63,12 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 0 0 1.2rem',
   },
   closeIcon: {
+    position: 'absolute',
+    right: '1%',
+    top: '19%',
     cursor: 'pointer',
-    padding: '0 0 2rem 0',
+    background: 'none',
+    border: 'none',
   },
 }));
 
