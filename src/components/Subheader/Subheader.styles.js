@@ -35,7 +35,6 @@ const useStyles = makeStyles(() => ({
         : subheaderColors[variant].screen,
     top: '64px',
     borderRadius: '0px',
-    // paddingLeft: '11%',
     overflow: 'hidden',
   },
   subheaderItems: {
@@ -46,7 +45,7 @@ const useStyles = makeStyles(() => ({
   },
   subheaderIcon: {
     height: '90%',
-    width: '9.5rem',
+    width: 'clamp(9rem, 10vw, 9.5rem)',
     margin: '.5rem 0 0 0',
   },
   mainText: {
@@ -65,7 +64,7 @@ const useStyles = makeStyles(() => ({
   closeIcon: {
     position: 'absolute',
     right: '1%',
-    top: '19%',
+    top: ({ isMobile }) => (isMobile ? 'auto' : '15%'),
     cursor: 'pointer',
     background: 'none',
     border: 'none',
