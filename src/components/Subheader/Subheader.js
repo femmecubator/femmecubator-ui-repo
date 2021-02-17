@@ -32,7 +32,11 @@ export default function Subheader(props) {
             <div className={mainText}>{mainLabel}</div>
             {isMobile ? null : <div className={subText}>{subLabel}</div>}
           </div>
-          <button onClick={testClick || handleClick} className={closeIcon}>
+          <button
+            onClick={testClick || handleClick}
+            className={closeIcon}
+            title="closeSubheader"
+          >
             <CloseIcon />
           </button>
         </div>
