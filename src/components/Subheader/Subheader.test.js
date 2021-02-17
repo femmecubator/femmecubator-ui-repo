@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 jest.mock('../../utils/auth');
 console.error = jest.fn();
-const properties = { variant: '', mainLabel: '' };
+const properties = { variant: 'mentors', mainLabel: '' };
 const handleClick = jest.fn();
 
 describe('<Subheader/>', () => {
