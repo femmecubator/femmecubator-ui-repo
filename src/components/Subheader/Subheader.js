@@ -4,8 +4,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-export default function Subheader(props) {
-  const { variant, mainLabel, subLabel, image, testClick } = props;
+export default function Subheader({
+  variant,
+  mainLabel,
+  subLabel,
+  image,
+  testClick,
+}) {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const classes = useStyles({ variant, isMobile });
   const [showSubheader, setSubheader] = useState(true);
