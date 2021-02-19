@@ -1,10 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 const subheaderColors = {
   mentors: '#a454c2',
-  threads: {
-    screen: '#719AF5',
-    mobile: '#BB6BD9',
-  },
+  threads: '#719AF5',
 };
 const font = {
   fontFamily: 'Open Sans, sans-serif',
