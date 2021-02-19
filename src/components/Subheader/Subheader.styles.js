@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
   },
   subText: {
     ...font,
-    fontSize: '15px',
+    fontSize: '19px',
     lineHeight: '29px',
     padding: '.5rem 0 0 0',
     margin: '0 0 0 1.2rem',
