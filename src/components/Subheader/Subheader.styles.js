@@ -6,7 +6,7 @@ const subheaderColors = {
 const font = {
   fontFamily: 'Open Sans, sans-serif',
   color: 'white',
-  margin: '.5rem',
+  // margin: '.5rem',
 };
 
 const useStyles = makeStyles(() => ({
@@ -20,7 +20,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-
     height: '90px',
     width: '100%',
     backgroundColor: ({ variant }) => subheaderColors[variant],
@@ -41,7 +40,7 @@ const useStyles = makeStyles(() => ({
   },
   mainText: {
     ...font,
-    fontSize: 'clamp(18px, 2.5vw, 28px)',
+    fontSize: 'clamp(23.5px, 2.5vw, 28px)',
     fontWeight: '700',
     lineHeight: '35px',
   },
@@ -50,7 +49,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '19px',
     lineHeight: '29px',
     padding: '.5rem 0 0 0',
-    margin: '0 0 0 1.2rem',
+    margin: '0 7.5rem 0 1.2rem',
   },
   closeIcon: {
     position: 'absolute',
