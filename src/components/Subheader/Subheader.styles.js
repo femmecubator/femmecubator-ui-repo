@@ -6,7 +6,6 @@ const subheaderColors = {
 const font = {
   fontFamily: 'Open Sans, sans-serif',
   color: 'white',
-  // margin: '.5rem',
 };
 
 const useStyles = makeStyles(() => ({
