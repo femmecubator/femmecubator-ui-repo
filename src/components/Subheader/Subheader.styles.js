@@ -55,7 +55,7 @@ const useStyles = makeStyles(() => ({
   closeIcon: {
     position: 'absolute',
     right: '1%',
-    top: ({ isMobile }) => (isMobile ? 'inherit' : '12%'),
+    top: ({ isMobile }) => (isMobile ? 'inherit' : '4.5rem'),
     cursor: 'pointer',
     background: 'none',
     border: 'none',
