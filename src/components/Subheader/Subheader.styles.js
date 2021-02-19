@@ -1,9 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 const subheaderColors = {
-  mentors: {
-    screen: '#a454c2',
-    mobile: '#57D9A3',
-  },
+  mentors: '#a454c2',
   threads: {
     screen: '#719AF5',
     mobile: '#BB6BD9',
@@ -29,10 +26,7 @@ const useStyles = makeStyles(() => ({
 
     height: '90px',
     width: '100%',
-    backgroundColor: ({ variant, isMobile }) =>
-      isMobile
-        ? subheaderColors[variant].mobile
-        : subheaderColors[variant].screen,
+    backgroundColor: ({ variant }) => subheaderColors[variant],
     top: '64px',
     borderRadius: '0px',
     overflow: 'hidden',
@@ -64,7 +58,7 @@ const useStyles = makeStyles(() => ({
   closeIcon: {
     position: 'absolute',
     right: '1%',
-    top: ({ isMobile }) => (isMobile ? 'auto' : '15%'),
+    top: ({ isMobile }) => (isMobile ? 'inherit' : '12%'),
     cursor: 'pointer',
     background: 'none',
     border: 'none',
