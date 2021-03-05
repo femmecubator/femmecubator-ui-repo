@@ -1,8 +1,19 @@
 import React from 'react';
+import { getTokenCookie } from '../../utils/cookies';
 import jwt_decode from 'jwt-decode';
 
 const ViewContainer = () => {
-  return <div>hello world</div>;
+  const { role_id, ...rest } = jwt_decode(getTokenCookie());
+
+  return (
+    <>
+      {role_id === 0 ? (
+        <div>Mentor Dashboard</div>
+      ) : (
+        <div>Mentee Dashboard</div>
+      )}
+    </>
+  );
 };
 
 export default ViewContainer;
