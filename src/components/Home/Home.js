@@ -73,7 +73,8 @@ const BlueOutlineButton = withStyles({
     height: '45px',
     padding: '10px 21px',
     marginTop: 'auto',
-    color: '#016EE3',
+    // color: '#016EE3',
+    color: '#015ec1',
     boxShadow: 'none',
     '&:hover': {
       background: '#550CCC',
@@ -677,7 +678,7 @@ export default function Home() {
               <Typography
                 {...{
                   'aria-label': 'Register for webmaking workathon',
-                  'aria-required': true,
+                  // 'aria-required': true,
                   variant: 'h3',
                   className: registerWebmaking,
                 }}
