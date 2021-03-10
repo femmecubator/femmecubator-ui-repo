@@ -74,7 +74,7 @@ const BlueOutlineButton = withStyles({
     padding: '10px 21px',
     marginTop: 'auto',
     // color: '#016EE3',
-    color: '#015ec1',
+    color: '#0263ca',
     boxShadow: 'none',
     '&:hover': {
       background: '#550CCC',
@@ -569,7 +569,7 @@ export default function Home() {
         <Grid container>
           {isProgress ? (
             <Grid className={inProgress} item xs={12}>
-              <Typography variant="h3" className={inProgressHeader}>
+              <Typography variant="h2" className={inProgressHeader}>
                 Thanks so much for stopping by!
               </Typography>
               <Typography
