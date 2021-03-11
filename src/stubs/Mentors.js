@@ -10,10 +10,10 @@ const Mentors = () => {
     image: <SubheaderIcon />,
   };
   return (
-    <>
+    <main>
       <Subheader {...subheaderProperties} />
       Mentors
-    </>
+    </main>
   );
 };
 
