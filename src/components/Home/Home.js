@@ -565,7 +565,7 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={root}>
+      <main className={root}>
         <Grid container>
           {isProgress ? (
             <Grid className={inProgress} item xs={12}>
@@ -903,7 +903,7 @@ export default function Home() {
           </Grid>
         </Grid>
         <Footer />
-      </div>
+      </main>
     </ThemeProvider>
   );
 }
