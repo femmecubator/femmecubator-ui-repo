@@ -677,7 +677,6 @@ export default function Home() {
               <Typography
                 {...{
                   'aria-label': 'Register for webmaking workathon',
-                  // 'aria-required': true,
                   variant: 'h3',
                   className: registerWebmaking,
                 }}
