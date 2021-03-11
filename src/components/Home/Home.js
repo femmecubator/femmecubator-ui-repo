@@ -73,7 +73,6 @@ const BlueOutlineButton = withStyles({
     height: '45px',
     padding: '10px 21px',
     marginTop: 'auto',
-    // color: '#016EE3',
     color: '#0263ca',
     boxShadow: 'none',
     '&:hover': {
