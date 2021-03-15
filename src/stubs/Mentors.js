@@ -1,6 +1,7 @@
 import React from 'react';
 import Subheader from '../components/Subheader/Subheader.js';
 import { ReactComponent as SubheaderIcon } from '../components/Subheader/assets/SubheaderIcon.svg';
+import Directory from '../components/Directory/index';
 
 const Mentors = () => {
   const subheaderProperties = {
@@ -13,6 +14,7 @@ const Mentors = () => {
     <main>
       <Subheader {...subheaderProperties} />
       Mentors
+      <Directory></Directory>
     </main>
   );
 };
