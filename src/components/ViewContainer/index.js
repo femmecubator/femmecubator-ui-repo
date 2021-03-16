@@ -3,7 +3,7 @@ import { getTokenCookie } from '../../utils/cookies';
 import jwt_decode from 'jwt-decode';
 
 const ViewContainer = () => {
-  const { role_id, ...rest } = jwt_decode(getTokenCookie());
+  const { role_id } = jwt_decode(getTokenCookie());
 
   return (
     <>
