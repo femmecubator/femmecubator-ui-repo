@@ -31,6 +31,7 @@ const API_PATH = {
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
   ROOT: '/',
+  FORGOT: '/api/forgot',
 };
 
 const METHOD_TYPE = {
@@ -57,6 +58,8 @@ const ROUTES_LABEL = {
   RESOURCES: 'resources',
   THREADS: 'threads',
   SETTINGS: 'settings',
+  RESET: 'reset',
+  FORGOT: 'forgot',
 };
 
 const ROUTES = [
@@ -119,6 +122,18 @@ const ROUTES = [
     isProtected: true,
     label: ROUTES_LABEL.SETTINGS,
     path: '/settings',
+  },
+  {
+    id: 11,
+    isProtected: false,
+    label: ROUTES_LABEL.RESET,
+    path: '/reset',
+  },
+  {
+    id: 12,
+    isProtected: false,
+    label: ROUTES_LABEL.FORGOT,
+    path: '/forgot',
   },
 ];
 

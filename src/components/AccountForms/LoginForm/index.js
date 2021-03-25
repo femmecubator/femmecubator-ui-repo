@@ -146,7 +146,7 @@ const LoginForm = ({ testOnSubmit }) => {
                 },
               }}
             />
-            <Link className={classes.forgotPasswordLink} to="/">
+            <Link className={classes.forgotPasswordLink} to="/forgot">
               Forgot Password
             </Link>
             <Button

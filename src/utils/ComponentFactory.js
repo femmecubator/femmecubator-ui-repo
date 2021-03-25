@@ -11,7 +11,9 @@ import {
 import Home from 'components/Home/Home';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
 import LoginForm from 'components/AccountForms/LoginForm';
+import ResetForm from 'components/AccountForms/ResetForm';
 import { ROUTES_LABEL } from 'utils/constants';
+import ForgotForm from 'components/AccountForms/ForgotForm';
 const {
   HOME,
   MENTORS,
@@ -23,6 +25,8 @@ const {
   RESOURCES,
   THREADS,
   SETTINGS,
+  RESET,
+  FORGOT,
 } = ROUTES_LABEL;
 
 export default class ComponentFactory {
@@ -48,6 +52,10 @@ export default class ComponentFactory {
         return Threads;
       case SETTINGS:
         return Settings;
+      case RESET:
+        return ResetForm;
+      case FORGOT:
+        return ForgotForm;
       default:
         throw new Error('Route undefined!');
     }
