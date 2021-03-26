@@ -337,7 +337,6 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
     </>
   );
 };
-
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
   const {
