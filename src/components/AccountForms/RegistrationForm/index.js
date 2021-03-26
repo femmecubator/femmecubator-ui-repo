@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +11,10 @@ import {
   InputAdornment,
   useMediaQuery,
   IconButton,
+  InputLabel,
+  Chip,
 } from '@material-ui/core';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
@@ -66,24 +69,26 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     lineHeight: '38px',
     letterSpacing: '0em',
-    textAlign: 'center',
+    marginLeft: '20px',
+    marginBottom: '15px',
   },
   formSubtitle: {
-    textAlign: 'center',
+    // textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
     fontSize: '16px',
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: '24px',
     letterSpacing: '0px',
-    paddingBottom: '25px',
+    paddingBottom: '15px',
+    marginLeft: '20px',
   },
   inputSpacing: {
     marginTop: '8px',
+    marginLeft: '20px',
   },
   textFieldSpacing: {
-    marginLeft: '8px',
-    width: '14.875em',
+    width: '16.875em',
   },
   schoolIcon: {
     height: '56.11px',
@@ -92,13 +97,17 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     [theme.breakpoints.up(824)]: {
-      marginLeft: '46%',
+      marginLeft: '20px',
     },
-    marginTop: '48px',
+    marginTop: '28px',
+    marginBottom: '28px',
     display: 'flex',
     justifyContent: 'flex-end',
     backgroundColor: '#026FE4',
     color: '#FFFFFF',
+    fontWeight: 'bold',
+    padding: '10px 20px',
+    fontSize: '18px',
   },
   registrationFormContainer: {
     [theme.breakpoints.between(768, 1024)]: { width: '40.5625em' },
@@ -118,13 +127,88 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2.5em',
   },
   textField: {
-    width: '14.875em',
+    width: '16.875em',
   },
   buttonModal: {
     backgroundColor: '#026FE4',
     color: '#FFFFFF',
     fontWeight: 'bold',
     textTransform: 'uppercase',
+  },
+  chipStyle: {
+    height: 'auto',
+    padding: '8px 12px',
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    color: '#FFF',
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    width: 'auto',
+    borderColor: ' #026FE4',
+    borderRadius: '30px',
+    backgroundColor: '#026FE4',
+    '&:hover': {
+      backgroundColor: '#026FE4 !important',
+      borderColor: ' #026FE4',
+    },
+    '&:first-child': {
+      marginRight: '5px',
+    },
+    '&:focus': {
+      backgroundColor: '#026FE4 !important',
+      borderColor: ' #026FE4',
+    },
+  },
+  checkIcon: {
+    color: '#FFF',
+  },
+  chipDivStyle: {
+    display: 'flex',
+    padding: ' 21px 0px',
+  },
+  chipOutline: {
+    height: 'auto',
+    padding: '8px 12px',
+    border: '3px solid #757575',
+    borderRadius: '30px',
+    color: '#757575',
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    '&:hover': {
+      backgroundColor: '#026FE4 !important',
+      color: 'white',
+      borderColor: ' #026FE4',
+    },
+    '&:first-child': {
+      marginRight: '5px',
+    },
+    '&:focus': {
+      backgroundColor: '#026FE4 !important',
+      borderColor: ' #026FE4',
+    },
+  },
+  inputLabel: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: '400',
+    lineHeight: '24px',
+  },
+  termsLabel: {
+    color: '#4F4F4F',
+    fontSize: '14px',
+    fontStyle: 'normal',
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: '700',
+    lineHeight: '24px',
+    marginTop: '19px',
+    display: 'inline-block',
+    padding: '2px',
   },
 }));
 
@@ -147,11 +231,8 @@ const RegistrationSchema = yup.object().shape({
     .required('Last name is required')
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
-  prefLoc: yup
-    .string()
-    .required('Preferred Location is required')
-    .min(2, MIN_CHARS)
-    .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
+  //not so sure if this is accurate, i don't know how to test it
+  role_id: yup.string().required('Select Mentee or Mentor'),
   title: yup
     .string()
     .required('Title is required')
@@ -165,14 +246,14 @@ const RegistrationSchema = yup.object().shape({
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Invalid email format'
     ),
-  userName: yup
-    .string()
-    .required('User name is required')
-    .min(2, MIN_CHARS)
-    .matches(
-      /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
-      'Only contains alphanumeric characters, underscore and dot'
-    ),
+  // userName: yup
+  //   .string()
+  //   .required('User name is required')
+  //   .min(2, MIN_CHARS)
+  //   .matches(
+  //     /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
+  //     'Only contains alphanumeric characters, underscore and dot'
+  //   ),
   password: yup
     .string()
     .required('Password is required')
@@ -192,9 +273,83 @@ const RegistrationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords do not match.'),
 });
 
+const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
+  const classes = useStyles();
+  const watchRole = watch('role_id', '');
+  useEffect(() => {
+    register('role_id');
+    return () => unregister('role_id');
+  }, [register, unregister]);
+  return (
+    <>
+      <div className={classes.inputSpacing}>
+        <InputLabel className={classes.inputLabel}>
+          I want to sign up as:{' '}
+        </InputLabel>
+        <div className={classes.chipDivStyle}>
+          <Chip
+            {...{
+              className:
+                watchRole === 1 ? classes.chipStyle : classes.chipOutline,
+              size: 'small',
+              id: '0',
+              label: 'Mentee',
+              variant: 'outlined',
+              name: 'role_id',
+              onClick: () =>
+                setValue('role_id', 1, {
+                  shouldDirty: true,
+                  shouldValidate: true,
+                }),
+              icon:
+                watchRole === 1 ? (
+                  <CheckCircleOutlineIcon className={classes.checkIcon} />
+                ) : null,
+            }}
+          />
+          <Chip
+            {...{
+              className:
+                watchRole === 0 ? classes.chipStyle : classes.chipOutline,
+              size: 'small',
+              id: '1',
+              label: 'Mentor',
+              name: 'role_id',
+              variant: 'outlined',
+              onClick: () =>
+                setValue('role_id', 0, {
+                  shouldDirty: true,
+                  shouldValidate: true,
+                }),
+              icon:
+                watchRole === 0 ? (
+                  <CheckCircleOutlineIcon className={classes.checkIcon} />
+                ) : null,
+            }}
+          />
+        </div>
+        {!isEmpty(errors.role_id) && (
+          // need to make this look better
+          <div style={{ color: 'red' }}>Error: {errors.role_id?.message}</div>
+        )}
+        <br />
+      </div>
+    </>
+  );
+};
+
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors, setError, watch } = useForm({
+  const {
+    register,
+    unregister,
+    handleSubmit,
+    errors,
+    setValue,
+    setError,
+    watch,
+    getValues,
+  } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
   });
@@ -218,12 +373,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         category: 'onSubmit',
         action: 'Created an Account',
       };
+      //eslint-disable-next-line
+      console.log('form values######', getValues());
       inProd && event(options);
       setOpenModal(true);
-    } catch ({ err }) {
-      const message =
-        err[`${Object.keys(err).toString()}`]?.message || 'Registration error';
-      setError(Object.keys(err).toString(), {
+    } catch ({ data: { message } }) {
+      setError('email', {
         type: 'manual',
         message,
       });
@@ -256,7 +411,10 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   noValidate
                   onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
                 >
-                  <div>
+                  <div className={classes.inputSpacing}>
+                    <ChipComponent
+                      {...{ register, unregister, setValue, errors, watch }}
+                    />
                     <TextField
                       {...{
                         id: 'firstName',
@@ -271,6 +429,8 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           errors.firstName && errors.firstName.message,
                       }}
                     />
+                  </div>
+                  <div className={classes.inputSpacing}>
                     <TextField
                       {...{
                         id: 'lastName',
@@ -285,28 +445,14 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       }}
                     />
                   </div>
-                  <div className={classes.inputSpacing}>
-                    <TextField
-                      {...{
-                        id: 'prefLoc',
-                        className: classes.textField,
-                        inputProps: { 'data-testid': 'prefLoc' },
-                        label: 'Preferred Location',
-                        variant: 'outlined',
-                        inputRef: register,
-                        name: 'prefLoc',
-                        error: !isEmpty(errors.prefLoc),
-                        helperText: errors.prefLoc && errors.prefLoc.message,
-                      }}
-                    />
-                  </div>
+
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
                         id: 'title',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'title' },
-                        label: 'Title',
+                        label: 'Job Title',
                         variant: 'outlined',
                         inputRef: register,
                         name: 'title',
@@ -330,21 +476,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       }}
                     />
                   </div>
-                  <div className={classes.inputSpacing}>
-                    <TextField
-                      {...{
-                        id: 'userName',
-                        className: classes.textField,
-                        inputProps: { 'data-testid': 'userName' },
-                        label: 'Username',
-                        variant: 'outlined',
-                        inputRef: register,
-                        name: 'userName',
-                        error: !isEmpty(errors.userName),
-                        helperText: errors.userName && errors.userName.message,
-                      }}
-                    />
-                  </div>
+
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
@@ -379,8 +511,11 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         inputRef: register,
                         error: !isEmpty(errors.password),
                         helperText: errors.password && errors.password.message,
+                        className: 'style-password',
                       }}
                     />
+                  </div>
+                  <div className={classes.inputSpacing}>
                     <TextField
                       {...{
                         id: 'retypePassword',
@@ -417,6 +552,17 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           errors.retypePassword.message,
                       }}
                     />
+                  </div>
+                  <div className={classes.inputSpacing}>
+                    <InputLabel className={classes.termsLabel}>
+                      By creating this you agree to the
+                    </InputLabel>
+                    <InputLabel
+                      className={classes.termsLabel}
+                      style={{ color: '#026FE4' }}
+                    >
+                      Terms of Service
+                    </InputLabel>
                   </div>
                   <div>
                     <Button
@@ -657,7 +803,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   }
 
   return (
-    <main>
+    <>
       {Auth.isLoggedIn() && !openModal ? (
         <Redirect
           to={{
@@ -686,7 +832,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           ),
         }}
       ></RegistrationSuccess>
-    </main>
+    </>
   );
 };
 
