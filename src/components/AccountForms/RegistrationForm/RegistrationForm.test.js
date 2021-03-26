@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import RegistrationForm from './index';
 import { act } from 'react-dom/test-utils';
@@ -112,4 +112,4 @@ describe('<RegistrationForm />', () => {
     screen.getByText(/passwords do not match./i);
     expect(onlyLetters).toHaveLength(4);
   });
-}); */
+});
