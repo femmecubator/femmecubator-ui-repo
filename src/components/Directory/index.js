@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './MentorCard/card';
+import MentorCard from './MentorCard/MentorCard';
 import Subheader from '../Subheader/Subheader';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 const index = () => {
@@ -14,7 +14,7 @@ const index = () => {
       <Subheader {...subheaderProperties} />
       <div className="search">Search Bar</div>
       <div className="MentorCardContainter">
-        <Card />
+        <MentorCard />
       </div>
     </section>
   );
