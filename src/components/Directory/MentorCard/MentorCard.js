@@ -8,16 +8,16 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-const MentorCard = () => {
+const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio }) => {
   const classes = useStyles();
-  const { root, avatar, booking } = classes;
+  const { root, avatar, booking, initials } = classes;
 
   return (
     <Card className={root} variant="outlined">
       <CardHeader
         avatar={
           <Avatar aria-label="Mentor Avatar" className={avatar}>
-            UserINitial
+            {initials}
           </Avatar>
         }
         action={
@@ -30,18 +30,13 @@ const MentorCard = () => {
             Book Me
           </Button>
         }
-        title="MENTOR NAME HERE"
-        subheader="MENTOR IN UX/DEV"
+        title={mentorName}
+        subheader={jobTitle}
       />
       <Divider />
       <CardContent>
-        <Typography variant="h6">Mentor Specialties</Typography>
-        <Typography variant="body1">
-          Lorem ipsum testing lines limited to an awesomely composed lead
-          sentence or series of posts. Snappy, judgy, tyrannical. Compassionate
-          or narcissistic. It's a placeholder limited to 280 char text to a max
-          of 5 lines then get truncated w/ 3 dot ellipses...
-        </Typography>
+        <Typography variant="h6">{mentorSkills}</Typography>
+        <Typography variant="body1">{bio}</Typography>
       </CardContent>
     </Card>
   );
