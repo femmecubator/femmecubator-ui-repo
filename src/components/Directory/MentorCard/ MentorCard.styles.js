@@ -2,11 +2,19 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 360,
+    maxWidth: 410,
     marginLeft: '2rem',
+    variant: ({ isMobile }) => (isMobile ? 'none' : 'outlined'),
   },
   booking: {
-    marginTop: '10%',
+    maxHeight: '30px',
+    marginTop: '20%',
+    borderColor: '#026FE4',
+    color: '#026FE4',
+  },
+  jobField: {
+    color: '#026FE4',
+    fontWeight: '550 !important',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -16,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   skillList: {
-    fontWeight: '700',
-    lineHeight: '35px',
+    fontWeight: '600',
+  },
+  mentorNameField: {
+    fontWeight: '550 !important',
   },
   // expandOpen: {
   //   transform: 'rotate(180deg)',
@@ -30,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   // },
   avatar: {
     //   Background color is dependent on what is passed down
+    fontSize: '14px',
     backgroundColor: '#934ed4',
   },
 }));

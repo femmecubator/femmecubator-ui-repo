@@ -7,13 +7,22 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
-  const classes = useStyles();
-  const { root, avatar, booking, skillList } = classes;
+  const isMobile = useMediaQuery('(max-width:767px)');
+  const classes = useStyles({ isMobile });
+  const {
+    root,
+    avatar,
+    booking,
+    skillList,
+    jobField,
+    mentorNameField,
+  } = classes;
 
   return (
-    <Card className={root} variant="outlined">
+    <Card className={root}>
       <CardHeader
         avatar={
           <Avatar aria-label="Mentor Avatar" className={avatar}>
@@ -21,24 +30,27 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
           </Avatar>
         }
         action={
-          <Button
-            aria-label="Booking"
-            className={booking}
-            variant="outlined"
-            color="primary"
-          >
+          <Button aria-label="Booking" className={booking} variant="outlined">
             Book Me
           </Button>
         }
-        title={mentorName}
-        subheader={jobTitle}
+        title={
+          <Typography variant="subtitle1" className={mentorNameField}>
+            {mentorName}
+          </Typography>
+        }
+        subheader={
+          <Typography variant="caption" className={jobField}>
+            {jobTitle}
+          </Typography>
+        }
       />
-      <Divider />
+      {isMobile ? null : <Divider />}
       <CardContent>
-        <Typography variant="subtitle2" className={skillList}>
+        <Typography variant="body2" className={skillList} gutterBottom>
           {mentorSkills}
         </Typography>
-        <Typography variant="body2">{bio}</Typography>
+        <Typography variant="caption">{bio}</Typography>
       </CardContent>
     </Card>
   );
