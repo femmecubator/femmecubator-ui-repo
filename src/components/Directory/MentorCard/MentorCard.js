@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio }) => {
+const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
   const classes = useStyles();
-  const { root, avatar, booking, initials } = classes;
+  const { root, avatar, booking, skillList } = classes;
 
   return (
     <Card className={root} variant="outlined">
@@ -35,8 +35,10 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio }) => {
       />
       <Divider />
       <CardContent>
-        <Typography variant="h6">{mentorSkills}</Typography>
-        <Typography variant="body1">{bio}</Typography>
+        <Typography variant="subtitle2" className={skillList}>
+          {mentorSkills}
+        </Typography>
+        <Typography variant="body2">{bio}</Typography>
       </CardContent>
     </Card>
   );

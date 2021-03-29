@@ -15,10 +15,21 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
+  skillList: {
+    fontWeight: '700',
+    lineHeight: '35px',
+  },
   // expandOpen: {
   //   transform: 'rotate(180deg)',
+  //   use the below to convert items verticaly
+  //   '@media (max-width: 799px)': {
+  //     height: '218px',
+  //     flexDirection: 'column',
+  //     padding: '10px 10px',
+  //   },
   // },
   avatar: {
+    //   Background color is dependent on what is passed down
     backgroundColor: '#934ed4',
   },
 }));

@@ -11,7 +11,6 @@ export const Template = (args) => <MentorCard {...args} />;
 export const PrimaryCard = Template.bind({});
 
 PrimaryCard.args = {
-  // arguments you want to pass to the child component
   mentorName: 'Amanda Powell',
   jobTitle: 'UX Design Mentor',
   mentorSkills:
