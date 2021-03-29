@@ -2,13 +2,8 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    minHeight: 200,
+    maxWidth: 360,
     marginLeft: '2rem',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
   },
   booking: {
     marginTop: '10%',

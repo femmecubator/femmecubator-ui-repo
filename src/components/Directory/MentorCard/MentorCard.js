@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const MentorCard = () => {
   const classes = useStyles();
@@ -34,7 +35,13 @@ const MentorCard = () => {
       />
       <Divider />
       <CardContent>
-        <div>MORE INFOR ON MENTOR HERE</div>
+        <Typography variant="h6">Mentor Specialties</Typography>
+        <Typography variant="body1">
+          Lorem ipsum testing lines limited to an awesomely composed lead
+          sentence or series of posts. Snappy, judgy, tyrannical. Compassionate
+          or narcissistic. It's a placeholder limited to 280 char text to a max
+          of 5 lines then get truncated w/ 3 dot ellipses...
+        </Typography>
       </CardContent>
     </Card>
   );
