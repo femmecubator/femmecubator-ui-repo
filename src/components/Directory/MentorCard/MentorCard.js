@@ -11,7 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
-  const classes = useStyles({ isMobile });
+  const classes = useStyles({ isMobile, jobTitle });
   const {
     root,
     avatar,
@@ -19,6 +19,7 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
     skillList,
     jobField,
     mentorNameField,
+    bioSection,
   } = classes;
 
   return (
@@ -50,7 +51,9 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
         <Typography variant="body2" className={skillList} gutterBottom>
           {mentorSkills}
         </Typography>
-        <Typography variant="caption">{bio}</Typography>
+        <Typography variant="caption" className={bioSection}>
+          {bio}
+        </Typography>
       </CardContent>
     </Card>
   );

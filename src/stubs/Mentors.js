@@ -6,7 +6,7 @@ const Mentors = () => {
   return (
     <main>
       <Directory />
-      Mentors
+      Mentors List Goes here
     </main>
   );
 };
