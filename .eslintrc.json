@@ -25,7 +25,7 @@
   "plugins": ["react", "jsx-a11y"],
   "rules": {
     "no-undef": "off",
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": "1",
     "no-restricted-syntax": [
       "error",
       {
