@@ -72,7 +72,7 @@ const LoginForm = ({ testOnSubmit }) => {
   };
 
   const content = (
-    <div className={classes.root}>
+    <main className={classes.root}>
       <Paper classes={{ root: classes.paperContainer }}>
         <LoginHero
           className={classes.heroImage}
@@ -169,7 +169,7 @@ const LoginForm = ({ testOnSubmit }) => {
           </Button>
         </div>
       </Paper>
-    </div>
+    </main>
   );
 
   return (

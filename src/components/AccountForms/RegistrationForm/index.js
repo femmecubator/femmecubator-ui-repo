@@ -657,7 +657,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   }
 
   return (
-    <>
+    <main>
       {Auth.isLoggedIn() && !openModal ? (
         <Redirect
           to={{
@@ -686,7 +686,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           ),
         }}
       ></RegistrationSuccess>
-    </>
+    </main>
   );
 };
 
