@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputSpacing: {
     marginTop: '8px',
-    marginLeft: '20px',
+    marginLeft: '10px', //3.30.21 - changed from 20px to left align item
   },
   textFieldSpacing: {
     width: '16.875em',
@@ -284,7 +284,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
     <>
       <div className={classes.inputSpacing}>
         <InputLabel className={classes.inputLabel}>
-          I want to sign up as:{' '}
+          I want to sign up as a:{' '}
         </InputLabel>
         <div className={classes.chipDivStyle}>
           <Chip
@@ -448,21 +448,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
-                        id: 'title',
-                        className: classes.textField,
-                        inputProps: { 'data-testid': 'title' },
-                        label: 'Job Title',
-                        variant: 'outlined',
-                        inputRef: register,
-                        name: 'title',
-                        error: !isEmpty(errors.title),
-                        helperText: errors.title && errors.title.message,
-                      }}
-                    />
-                  </div>
-                  <div className={classes.inputSpacing}>
-                    <TextField
-                      {...{
                         id: 'email',
                         className: classes.textField,
                         inputProps: { 'data-testid': 'email' },
@@ -472,6 +457,22 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         name: 'email',
                         error: !isEmpty(errors.email),
                         helperText: errors.email && errors.email.message,
+                      }}
+                    />
+                  </div>
+
+                  <div className={classes.inputSpacing}>
+                    <TextField
+                      {...{
+                        id: 'title',
+                        className: classes.textField,
+                        inputProps: { 'data-testid': 'title' },
+                        label: 'Job Title',
+                        variant: 'outlined',
+                        inputRef: register,
+                        name: 'title',
+                        error: !isEmpty(errors.title),
+                        helperText: errors.title && errors.title.message,
                       }}
                     />
                   </div>
@@ -595,7 +596,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                     >
                       Are you thinking of going into Design or Development
                       career tracks? Easily book time with mentors who can help
-                      with portfolio reviews, practice interview and
+                      with portfolio reviews, practice interviews, and
                       whiteboarding sessions.
                     </Typography>
                   </div>
@@ -636,6 +637,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
             style={{ paddingLeft: '1.5625em', paddingRight: '1.5625em' }}
           >
             <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
+              {/* Add chip component for mentor/mentee selection here */}
               <TextField
                 {...{
                   id: 'firstName',
@@ -664,32 +666,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
-                  id: 'prefLoc',
-                  label: 'Preferred Location',
-                  variant: 'outlined',
-                  name: 'prefLoc',
-                  inputRef: register,
-                  error: !isEmpty(errors.prefLoc),
-                  helperText: errors.prefLoc && errors.prefLoc.message,
-                  fullWidth: true,
-                  className: classes.mobileInputField,
-                }}
-              />
-              <TextField
-                {...{
-                  id: 'title',
-                  label: 'Title',
-                  variant: 'outlined',
-                  name: 'title',
-                  inputRef: register,
-                  error: !isEmpty(errors.title),
-                  helperText: errors.title && errors.title.message,
-                  fullWidth: true,
-                  className: classes.mobileInputField,
-                }}
-              />
-              <TextField
-                {...{
                   id: 'email',
                   label: 'Email',
                   variant: 'outlined',
@@ -703,13 +679,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
-                  id: 'userName',
-                  label: 'User name',
+                  id: 'title',
+                  label: 'Job Title',
                   variant: 'outlined',
-                  name: 'userName',
+                  name: 'title',
                   inputRef: register,
-                  error: !isEmpty(errors.userName),
-                  helperText: errors.userName && errors.userName.message,
+                  error: !isEmpty(errors.title),
+                  helperText: errors.title && errors.title.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
                 }}
