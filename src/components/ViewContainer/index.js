@@ -7,7 +7,7 @@ const ViewContainer = () => {
 
   return (
     <>
-      {role_id === 0 ? (
+      {parseInt(role_id) === 0 ? (
         <div>Mentor Dashboard</div>
       ) : (
         <div>Mentee Dashboard</div>
