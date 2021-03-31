@@ -528,7 +528,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         },
                         label: 'Password',
                         variant: 'outlined',
-                        className: classes.textFieldSpacing, //3.31.31 Sherouk updated className to match other fields. Was previously 'password-style', which isn't in stylesheet
+                        className: classes.textFieldSpacing, //3.31.31 Sherouk updated className to match other fields. Was previously 'style-password', which isn't in stylesheet
                         name: 'password',
                         type: showPassword.password ? 'text' : 'password',
                         inputRef: register,
