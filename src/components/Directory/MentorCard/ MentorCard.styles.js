@@ -1,17 +1,11 @@
 import { makeStyles } from '@material-ui/core';
 const avatarColors = [
-  '#934ed4',
-  '#BB6BD9',
-  '#ABF5D1',
-  '#e4fbff',
-  '#b8b5ff',
-  '#93329e',
-  '#98acf8',
-  '#550CCC',
-  '#026FE4',
-  '#26A8D1',
-  '#6a097d',
-  '#026FE4',
+  '#FF7452',
+  '#FFAB00',
+  '#D4EE9C',
+  '#00C7E6',
+  '#719AF5',
+  '#CABEE9',
 ];
 
 const useStyles = makeStyles((theme) => ({
