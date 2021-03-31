@@ -72,6 +72,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20px',
     marginBottom: '15px',
   },
+  formMobileTitle: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '28px',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    lineHeight: '38px',
+    letterSpacing: '0em',
+    marginLeft: '35px', //3.31.21 - added mobile style to adjust marginLeft
+    marginBottom: '15px',
+  },
   formSubtitle: {
     // textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
@@ -82,6 +92,16 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0px',
     paddingBottom: '15px',
     marginLeft: '20px',
+  },
+  formMobileSubtitle: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '24px',
+    letterSpacing: '0px',
+    paddingBottom: '15px',
+    marginLeft: '35px', //3.31.21 - added mobile style to adjust marginLeft
   },
   inputSpacing: {
     marginTop: '8px',
@@ -167,6 +187,7 @@ const useStyles = makeStyles((theme) => ({
   chipDivStyle: {
     display: 'flex',
     padding: ' 21px 0px',
+    marginLeft: '-5px',
   },
   chipOutline: {
     height: 'auto',
@@ -623,12 +644,19 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           <Grid item xs={12} style={{ marginTop: '1.5625em' }}>
             <Typography
               variant="h2"
-              className={classes.formTitle}
+              className={
+                classes.formMobileTitle
+              } /* 3.31.21 - Sherouk created mobile class for form title to adjust marginLeft*/
               nowrap="true"
             >
               {FORM_TITLE}
             </Typography>
-            <Typography variant="body2" className={classes.formSubtitle}>
+            <Typography
+              variant="body2"
+              className={
+                classes.formMobileSubtitle
+              } /* 3.31.21 - Sherouk created mobile class for form subtitle to adjust marginLeft */
+            >
               {FORM_SUBTITLE} <Link to="/login">Login</Link>
             </Typography>
           </Grid>
@@ -638,7 +666,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
             style={{ paddingLeft: '1.5625em', paddingRight: '1.5625em' }}
           >
             <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
-              {/* Add chip component for mentor/mentee selection here */}
+              {/* Mentor and Mentee selection */}
               <ChipComponent
                 {...{ register, unregister, setValue, errors, watch }}
               />
