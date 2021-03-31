@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: () => {
       return avatarColors[Math.floor(Math.random() * avatarColors.length)];
     },
+    color: 'black',
   },
   booking: {
     maxHeight: '30px',

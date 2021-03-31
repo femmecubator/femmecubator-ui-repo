@@ -36,7 +36,7 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
           </Button>
         }
         title={
-          <Typography variant="subtitle1" className={mentorNameField}>
+          <Typography variant="body1" className={mentorNameField}>
             {mentorName}
           </Typography>
         }
