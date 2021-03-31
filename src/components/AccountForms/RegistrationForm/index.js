@@ -198,6 +198,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: '400',
     lineHeight: '24px',
+    //marginLeft: '-10px',
   },
   termsLabel: {
     color: '#4F4F4F',
@@ -638,6 +639,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           >
             <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
               {/* Add chip component for mentor/mentee selection here */}
+              <ChipComponent
+                {...{ register, unregister, setValue, errors, watch }}
+              />
               <TextField
                 {...{
                   id: 'firstName',
