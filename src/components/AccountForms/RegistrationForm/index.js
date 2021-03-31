@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     lineHeight: '38px',
     letterSpacing: '0em',
-    marginLeft: '35px', //3.31.21 - added mobile style to adjust marginLeft
+    marginLeft: '35px', // 3.31.21 - added mobile style to adjust marginLeft
     marginBottom: '15px',
   },
   formSubtitle: {
@@ -101,11 +101,11 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     letterSpacing: '0px',
     paddingBottom: '15px',
-    marginLeft: '35px', //3.31.21 - added mobile style to adjust marginLeft
+    marginLeft: '35px', // 3.31.21 - added mobile style to adjust marginLeft
   },
   inputSpacing: {
     marginTop: '8px',
-    marginLeft: '10px', //3.30.21 - changed from 20px to left align item
+    marginLeft: '10px', // 3.30.21 - changed from 20px to left align item
   },
   textFieldSpacing: {
     width: '16.875em',
@@ -219,7 +219,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: '400',
     lineHeight: '24px',
-    //marginLeft: '-10px',
+    // marginLeft: '-10px',
   },
   termsLabel: {
     color: '#4F4F4F',
@@ -253,7 +253,7 @@ const RegistrationSchema = yup.object().shape({
     .required('Last name is required')
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
-  //not so sure if this is accurate, i don't know how to test it
+  // not so sure if this is accurate, i don't know how to test it
   role_id: yup.string().required('Select Mentee or Mentor'),
   title: yup
     .string()
@@ -394,7 +394,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         category: 'onSubmit',
         action: 'Created an Account',
       };
-      //eslint-disable-next-line
+      // eslint-disable-next-line
       console.log('form values######', getValues());
       inProd && event(options);
       setOpenModal(true);
@@ -528,7 +528,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         },
                         label: 'Password',
                         variant: 'outlined',
-                        className: classes.textFieldSpacing, //3.31.31 Sherouk updated className to match other fields. Was previously 'style-password', which isn't in stylesheet
+                        className: classes.textFieldSpacing, // 3.31.31 Sherouk updated className to match other fields. Was previously 'style-password', which isn't in stylesheet
                         name: 'password',
                         type: showPassword.password ? 'text' : 'password',
                         inputRef: register,
@@ -646,7 +646,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               variant="h2"
               className={
                 classes.formMobileTitle
-              } /* 3.31.21 - Sherouk created mobile class for form title to adjust marginLeft*/
+              } /* 3.31.21 - Sherouk created mobile class for form title to adjust marginLeft */
               nowrap="true"
             >
               {FORM_TITLE}
