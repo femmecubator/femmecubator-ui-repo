@@ -11,10 +11,13 @@ import {
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+
 import useStyles from './MentorOnboardingModal.styles';
+import skillsHook from './CustomizedHook';
 
 const MentorOnboardingModal = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
+
   const styles = useStyles({
     isMobile: isMobile,
   });
@@ -404,7 +407,7 @@ const MentorOnboardingModal = () => {
     },
   ];
 
-  // form
+  //form
   const [form, setForm] = useState({
     bio: '',
     skills: '',
@@ -442,34 +445,34 @@ const MentorOnboardingModal = () => {
         <h4 className={styles.container}>Add a Bio (128 char)</h4>
         <TextField
           id="outlined-multiline-flexible"
-          label="Your Bio"
           multiline
           rowsMax={3}
           variant="outlined"
           className={styles.textField}
-          placeholder="Narwhal prism snackwave pop-up, wayfarers kinfolk asymmetrical poke. Flexitarian cliche williamsburg drinking vinegar shabby chic slow-carb pug semiotics pop-up. Cliche williamsburg drinking vinegar shabby."
+          placeholder="Add bio here."
           name="bio"
           type="text"
           value={form.bio}
           onChange={handleChange}
         />
-        <h4 className={styles.container}>
+        {/* <h4 className={styles.container}>
           Skills (eg. tech stack, anything you can offer help with.)
-        </h4>
-        <TextField
+        </h4> */}
+        {skillsHook()}
+        {/* <TextField
           id="outlined-basic"
-          label="React,js, Node.js, Ruby on Rails"
           variant="outlined"
           className={styles.textField}
+          placeholder="React,js, Node.js, Ruby on Rails"
           name="skills"
           type="text"
           value={form.skills}
           onChange={handleChange}
-        />
+        /> */}
         <h4 className={styles.container}>Phone</h4>
         <TextField
           id="outlined-basic"
-          label="718-777-4545"
+          placeholder="718-777-4545"
           variant="outlined"
           className={styles.textField}
           name="phone"
