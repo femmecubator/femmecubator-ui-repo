@@ -41,7 +41,6 @@ const ForgotForm = () => {
       if (res.status === 200) setStatus('success');
     } catch ({ status, data: { err } }) {
       if (status === 404) {
-        console.log(err);
         setError('email', {
           type: 'not found',
           message: err.message,
@@ -49,8 +48,6 @@ const ForgotForm = () => {
       }
     }
   };
-
-  console.log(errors);
 
   let content = (
     <Paper className={classes.paperContainer}>

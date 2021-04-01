@@ -54,18 +54,15 @@ const ResetForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRetype, setShowRetype] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  // const onSubmit = (data) => {
+  // };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
-    console.log(showPassword);
   };
 
   const handleClickShowRetypePassword = () => {
     setShowRetype(!showRetype);
-    console.log(showRetype);
   };
 
   let content = (
