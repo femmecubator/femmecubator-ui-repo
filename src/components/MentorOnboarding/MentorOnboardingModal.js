@@ -22,6 +22,13 @@ const MentorOnboardingModal = () => {
     isMobile: isMobile,
   });
 
+  // for select
+  const [age, setAge] = React.useState('');
+
+  const handleAge = (event) => {
+    setAge(event.target.value);
+  };
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -455,20 +462,7 @@ const MentorOnboardingModal = () => {
           value={form.bio}
           onChange={handleChange}
         />
-        {/* <h4 className={styles.container}>
-          Skills (eg. tech stack, anything you can offer help with.)
-        </h4> */}
         {skillsHook()}
-        {/* <TextField
-          id="outlined-basic"
-          variant="outlined"
-          className={styles.textField}
-          placeholder="React,js, Node.js, Ruby on Rails"
-          name="skills"
-          type="text"
-          value={form.skills}
-          onChange={handleChange}
-        /> */}
         <h4 className={styles.container}>Phone</h4>
         <TextField
           id="outlined-basic"
