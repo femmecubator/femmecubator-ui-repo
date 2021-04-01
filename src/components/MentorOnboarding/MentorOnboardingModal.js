@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Modal, TextField, Button } from '@material-ui/core';
+import { Modal, TextField, Button, useMediaQuery } from '@material-ui/core';
 import useStyles from './MentorOnboardingModal.styles';
 
 const MentorOnboardingModal = () => {
-  const styles = useStyles();
+  const isMobile = useMediaQuery('(max-width:1023px)');
+  const styles = useStyles({
+    isMobile: isMobile,
+  });
 
   const [modal, setModal] = useState(true);
 
@@ -23,11 +26,12 @@ const MentorOnboardingModal = () => {
         <h4 className={styles.container}>Add a Bio (128 char)</h4>
         <TextField
           id="filled-multiline-flexible"
-          label="Your Bio Here"
+          label="Your Bio"
           multiline
           rowsMax={3}
           variant="filled"
           className={styles.textField}
+          placeholder="Narwhal prism snackwave pop-up, wayfarers kinfolk asymmetrical poke. Flexitarian cliche williamsburg drinking vinegar shabby chic slow-carb pug semiotics pop-up. Cliche williamsburg drinking vinegar shabby."
         />
         <br />
         <h4 className={styles.container}>
