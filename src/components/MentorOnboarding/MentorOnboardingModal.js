@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { Modal, TextField, Button, useMediaQuery } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './MentorOnboardingModal.styles';
 
 const MentorOnboardingModal = () => {
@@ -7,6 +12,18 @@ const MentorOnboardingModal = () => {
   const styles = useStyles({
     isMobile: isMobile,
   });
+  // // for dropdown currency
+  // const [currency, setCurrency] = React.useState('EUR');
+  // const handleChange = (event) => {
+  //   setCurrency(event.target.value);
+  // };
+
+  // for select
+  const [age, setAge] = React.useState('');
+
+  const handleAge = (event) => {
+    setAge(event.target.value);
+  };
 
   const [modal, setModal] = useState(true);
 
@@ -53,12 +70,37 @@ const MentorOnboardingModal = () => {
         />
         <br />
         <h4 className={styles.container}>Your Time Zone</h4>
-        <TextField
-          id="filled-basic"
-          label="Time zone"
+        <FormControl variant="filled" className={styles.formControl}>
+          <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="demo-simple-select-filled"
+            value={age}
+            onChange={handleAge}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+        {/* <TextField
+          id="filled-select-currency"
+          label="Select"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select your currency"
           variant="filled"
           // className={styles.textField}
-        />
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField> */}
         <br />
         <h4 className={styles.container}>Add a google meet:</h4>
         <TextField

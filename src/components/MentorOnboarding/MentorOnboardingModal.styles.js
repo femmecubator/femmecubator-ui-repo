@@ -9,9 +9,19 @@ const color = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: ({ isMobile }) => ({
-    // margin: isMobile ? '0' : '5% 0',
-  }),
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
   modal: {
     position: 'absolute',
     borderRadius: '4px',
