@@ -47,7 +47,7 @@ const Index = () => {
             aria-controls="Directory Tab"
             textColor="inherit"
           />
-          <Tab label="Calender" className={directoryTab} />
+          <Tab label="Calender" />
         </Tabs>
 
         <div className={mentorListContainer} value={selectedTab} index={0}>

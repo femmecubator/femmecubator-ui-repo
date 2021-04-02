@@ -23,7 +23,7 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
   } = classes;
 
   return (
-    <Card className={root}>
+    <Card className={root} raised={true}>
       <CardHeader
         avatar={
           <Avatar aria-label="Mentor Avatar" className={avatar}>
