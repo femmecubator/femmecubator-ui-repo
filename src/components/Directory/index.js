@@ -26,7 +26,7 @@ const Index = () => {
   };
   const isMobile = useMediaQuery('(max-width:1023px)');
   const classes = useStyles({ isMobile });
-  const { root, search } = classes;
+  const { root, mentorListContainer, search } = classes;
   const [selectedTab, setSelectedTab] = useState(0);
   const handleChange = (e, newVal) => setSelectedTab(newVal);
 
@@ -39,12 +39,15 @@ const Index = () => {
         value={selectedTab}
         onChange={handleChange}
         aria-label="Mentor Directory Tabs"
+        className={root}
       >
         <Tab label="Directory" id="Directory" aria-controls="Directory Tab" />
         <Tab label="Calender" />
       </Tabs>
-      <Divider variant="inset" />
-      <div className={root} value={selectedTab} index={0}>
+
+      <div className={mentorListContainer} value={selectedTab} index={0}>
+        <Divider />
+
         {selectedTab === 0 ? (
           <>
             <MentorCard {...testInfo} />
