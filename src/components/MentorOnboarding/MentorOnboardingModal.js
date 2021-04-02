@@ -405,6 +405,7 @@ const MentorOnboardingModal = () => {
 
   const [timezone, setTimezone] = React.useState([]);
 
+  // TEST: NOT RIHT
   const handleTimezone = (event) => {
     let updatedTimezone = [];
     timeZoneData.map((item, index) => {
