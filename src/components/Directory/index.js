@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MentorCard from './MentorCard/MentorCard';
 import Subheader from '../Subheader/Subheader';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
@@ -26,26 +26,35 @@ const Index = () => {
   };
   const isMobile = useMediaQuery('(max-width:1023px)');
   const classes = useStyles({ isMobile });
-  const { root } = classes;
+  const { root, search } = classes;
+  const [selectedTab, setSelectedTab] = useState(0);
+  const handleChange = (e, newVal) => setSelectedTab(newVal);
+
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
+      <div className={search}>Search Bar</div>
 
       <Tabs
-        value="Directory"
-        // onChange={handleChange}
+        value={selectedTab}
+        onChange={handleChange}
         aria-label="Mentor Directory Tabs"
       >
-        <Tab label="Directory" />
-        {/* <Tab label="Calender" {...a11yProps(1)} /> */}
+        <Tab label="Directory" id="Directory" aria-controls="Directory Tab" />
+        <Tab label="Calender" />
       </Tabs>
-      <div className="search">Search Bar</div>
       <Divider variant="inset" />
-      <div className={root}>
-        <MentorCard {...testInfo} />
-        <MentorCard {...testInfo} />
-        <MentorCard {...testInfo} />
-        <MentorCard {...testInfo} />
+      <div className={root} value={selectedTab} index={0}>
+        {selectedTab === 0 ? (
+          <>
+            <MentorCard {...testInfo} />
+            <MentorCard {...testInfo} />
+            <MentorCard {...testInfo} />
+            <MentorCard {...testInfo} />
+          </>
+        ) : (
+          <h1>CALANEDER WOULD GO HERE'</h1>
+        )}
       </div>
     </section>
   );

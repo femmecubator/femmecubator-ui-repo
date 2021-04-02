@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
     // flexGrow: '3',
     // justifyContent: 'space-around',
   },
+  search: {
+    border: 'solid 2px blue',
+  },
 }));
 
 export default useStyles;
