@@ -34,30 +34,36 @@ const Index = () => {
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
       <div className={search}>Search Bar</div>
+      <div className={root}>
+        <Tabs
+          value={selectedTab}
+          onChange={handleChange}
+          aria-label="Mentor Directory Tabs"
+          TabIndicatorProps={{ style: { background: '#550CCC' } }}
+        >
+          <Tab
+            label="Directory"
+            id="Directory"
+            aria-controls="Directory Tab"
+            textColor="inherit"
+          />
+          <Tab label="Calender" className={directoryTab} />
+        </Tabs>
 
-      <Tabs
-        value={selectedTab}
-        onChange={handleChange}
-        aria-label="Mentor Directory Tabs"
-        className={root}
-      >
-        <Tab label="Directory" id="Directory" aria-controls="Directory Tab" />
-        <Tab label="Calender" />
-      </Tabs>
+        <div className={mentorListContainer} value={selectedTab} index={0}>
+          <Divider />
 
-      <div className={mentorListContainer} value={selectedTab} index={0}>
-        <Divider />
-
-        {selectedTab === 0 ? (
-          <>
-            <MentorCard {...testInfo} />
-            <MentorCard {...testInfo} />
-            <MentorCard {...testInfo} />
-            <MentorCard {...testInfo} />
-          </>
-        ) : (
-          <h1>CALANEDER WOULD GO HERE'</h1>
-        )}
+          {selectedTab === 0 ? (
+            <>
+              <MentorCard {...testInfo} />
+              <MentorCard {...testInfo} />
+              <MentorCard {...testInfo} />
+              <MentorCard {...testInfo} />
+            </>
+          ) : (
+            <h1>CALANEDER WOULD GO HERE'</h1>
+          )}
+        </div>
       </div>
     </section>
   );
