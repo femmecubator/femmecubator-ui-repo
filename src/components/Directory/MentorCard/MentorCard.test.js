@@ -4,6 +4,7 @@ import MentorCard from './MentorCard';
 
 // describe accepts 2 arguments a string and a function
 // MentorCard should have a Mentors name/ icon/ and bio
+// when running test your specific file npm run test <filename>
 afterEach(cleanup);
 const properties = {
   mentorName: 'Amanda Powell',
@@ -15,5 +16,8 @@ const properties = {
   initials: 'AP',
 };
 describe('<MentorCard>', () => {
-  render(<MentorCard {...properties} />);
+  test('Render Mentor Card', () => {
+    console.log(expect(properties.mentorName).toBeTruthy());
+    render(<MentorCard {...properties} />);
+  });
 });

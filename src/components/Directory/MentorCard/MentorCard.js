@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useStyles from './ MentorCard.styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -21,7 +22,11 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
     mentorNameField,
     bioSection,
   } = classes;
-
+  const handleClick = (e) => {
+    e.preventDefault();
+    // open modal for scheduling;
+    alert('BOOKING WILL BE SCHEDULED');
+  };
   return (
     <Card className={root} raised={true}>
       <CardHeader
@@ -31,7 +36,13 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
           </Avatar>
         }
         action={
-          <Button aria-label="Booking" className={booking} variant="outlined">
+          <Button
+            aria-label="Booking"
+            className={booking}
+            variant="outlined"
+            onClick={handleClick}
+            role="button"
+          >
             Book Me
           </Button>
         }
@@ -57,6 +68,13 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
       </CardContent>
     </Card>
   );
+};
+MentorCard.propTypes = {
+  mentorName: PropTypes.string.isRequired,
+  jobTitle: PropTypes.string.isRequired,
+  mentorSkills: PropTypes.string.isRequired,
+  bio: PropTypes.string.isRequired,
+  initials: PropTypes.string.isRequired,
 };
 
 export default MentorCard;
