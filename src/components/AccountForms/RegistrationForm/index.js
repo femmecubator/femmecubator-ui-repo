@@ -3,6 +3,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Alert from '@material-ui/lab/Alert';
 import {
   Typography,
   TextField,
@@ -350,11 +351,12 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
             }}
           />
         </div>
-        {!isEmpty(errors.role_id) && (
+        {!isEmpty(errors.role) && (
           // need to make this look better
-          <div style={{ color: 'red' }}>Error: {errors.role_id?.message}</div>
+          <Alert severity="error" style={{ width: '17em' }}>
+            Error: {errors.role?.message}
+          </Alert>
         )}
-        <br />
       </div>
     </>
   );
