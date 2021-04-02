@@ -27,18 +27,18 @@ describe('<RegistrationForm />', () => {
       fireEvent.input(screen.getByTestId('lastName'), {
         target: { value: 'Doe' },
       });
-      fireEvent.input(screen.getByTestId('prefLoc'), {
+      /* fireEvent.input(screen.getByTestId('prefLoc'), {
         target: { value: 'NY' },
-      });
+      }); */
       fireEvent.input(screen.getByTestId('title'), {
         target: { value: 'Software Engineer' },
       });
       fireEvent.input(screen.getByTestId('email'), {
         target: { value: 'johndoe@gmail.com' },
       });
-      fireEvent.input(screen.getByTestId('userName'), {
+      /* fireEvent.input(screen.getByTestId('userName'), {
         target: { value: 'john.doe' },
-      });
+      }); */
       fireEvent.input(screen.getByTestId('password'), {
         target: { value: 'JDoe12345!' },
       });
