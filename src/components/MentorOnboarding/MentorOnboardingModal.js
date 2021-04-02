@@ -405,19 +405,6 @@ const MentorOnboardingModal = () => {
 
   const [timezone, setTimezone] = React.useState([]);
 
-  // TEST: NOT RIHT
-  const handleTimezone = (event) => {
-    let updatedTimezone = [];
-    timeZoneData.map((item, index) => {
-      updatedTimezone.push({
-        key: item.key + 1,
-        name: item.name,
-        value: item.value,
-      });
-    });
-    setTimezone(updatedTimezone);
-  };
-
   const body = (
     <form className={styles.root} noValidate autoComplete="off">
       <div className={styles.modal}>
@@ -466,7 +453,7 @@ const MentorOnboardingModal = () => {
             id="demo-simple-select-outlined"
             value={timezone}
             className={styles.textField}
-            onChange={handleTimezone}
+            // onChange={}
           >
             <MenuItem value="">
               <em>None</em>
