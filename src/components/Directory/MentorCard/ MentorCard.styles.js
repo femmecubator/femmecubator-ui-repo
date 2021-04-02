@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   booking: {
     maxHeight: '30px',
-    marginTop: '20%',
+    marginTop: '10%',
     borderColor: '#026FE4',
     color: '#026FE4',
   },
