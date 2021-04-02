@@ -161,7 +161,7 @@ function Header() {
   ]);
 
   return (
-    <header className={root} id="app-header">
+    <div className={root} id="app-header">
       <AppBar position="static" className={header}>
         {isMobile ? (
           <MobileHeader
@@ -189,7 +189,7 @@ function Header() {
           />
         )}
       </AppBar>
-    </header>
+    </div>
   );
 }
 

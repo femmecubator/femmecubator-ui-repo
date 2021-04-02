@@ -73,7 +73,7 @@ const BlueOutlineButton = withStyles({
     height: '45px',
     padding: '10px 21px',
     marginTop: 'auto',
-    color: '#016EE3',
+    color: '#0263ca',
     boxShadow: 'none',
     '&:hover': {
       background: '#550CCC',
@@ -564,11 +564,11 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={root}>
+      <main className={root}>
         <Grid container>
           {isProgress ? (
             <Grid className={inProgress} item xs={12}>
-              <Typography variant="h3" className={inProgressHeader}>
+              <Typography variant="h2" className={inProgressHeader}>
                 Thanks so much for stopping by!
               </Typography>
               <Typography
@@ -677,7 +677,6 @@ export default function Home() {
               <Typography
                 {...{
                   'aria-label': 'Register for webmaking workathon',
-                  'aria-required': true,
                   variant: 'h3',
                   className: registerWebmaking,
                 }}
@@ -902,7 +901,7 @@ export default function Home() {
           </Grid>
         </Grid>
         <Footer />
-      </div>
+      </main>
     </ThemeProvider>
   );
 }
