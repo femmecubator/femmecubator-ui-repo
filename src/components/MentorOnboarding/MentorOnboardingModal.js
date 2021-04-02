@@ -456,7 +456,6 @@ const MentorOnboardingModal = () => {
           className={styles.textField}
         />
         <br />
-        {/* TIMEZONEEEEE HEREEEEEEEEEEEEEEEEEE */}
         <h4 className={styles.container}>Your Time Zone</h4>
         <FormControl variant="outlined" className={styles.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">
@@ -472,9 +471,11 @@ const MentorOnboardingModal = () => {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {timeZoneData.map(({ offset, name }) => (
+              <MenuItem key={offset} value={offset}>
+                {name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 

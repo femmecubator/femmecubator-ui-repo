@@ -7,7 +7,8 @@
     "airbnb/hooks",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -21,10 +22,10 @@
     "sourceType": "module"
   },
   "parser": "babel-eslint",
-  "plugins": ["react"],
+  "plugins": ["react", "jsx-a11y"],
   "rules": {
     "no-undef": "off",
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": "warn",
     "no-restricted-syntax": [
       "error",
       {
