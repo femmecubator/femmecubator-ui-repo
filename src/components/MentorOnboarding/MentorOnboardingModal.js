@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Modal,
   TextField,
@@ -8,7 +8,6 @@ import {
 } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './MentorOnboardingModal.styles';
 
@@ -403,10 +402,28 @@ const MentorOnboardingModal = () => {
     },
   ];
 
-  const [timezone, setTimezone] = React.useState([]);
+  // form
+  const [form, setForm] = useState({
+    bio: '',
+    skills: '',
+  });
+
+  const submit = (e) => {
+    e.preventDefault();
+    // props.handleSubmit(form)
+  };
+  console.log(form);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const body = (
-    <form className={styles.root} noValidate autoComplete="off">
+    <form
+      className={styles.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={submit}
+    >
       <div className={styles.modal}>
         <div align="center">
           <h2 className={styles.h2}>Almost there!</h2>
@@ -423,8 +440,11 @@ const MentorOnboardingModal = () => {
           variant="outlined"
           className={styles.textField}
           placeholder="Narwhal prism snackwave pop-up, wayfarers kinfolk asymmetrical poke. Flexitarian cliche williamsburg drinking vinegar shabby chic slow-carb pug semiotics pop-up. Cliche williamsburg drinking vinegar shabby."
+          name="bio"
+          type="text"
+          value={form.bio}
+          onChange={handleChange}
         />
-        <br />
         <h4 className={styles.container}>
           Skills (eg. tech stack, anything you can offer help with.)
         </h4>
@@ -433,16 +453,22 @@ const MentorOnboardingModal = () => {
           label="React,js, Node.js, Ruby on Rails"
           variant="outlined"
           className={styles.textField}
+          name="skills"
+          type="text"
+          value={form.skills}
+          onChange={handleChange}
         />
-        <br />
         <h4 className={styles.container}>Phone</h4>
         <TextField
           id="outlined-basic"
           label="718-777-4545"
           variant="outlined"
           className={styles.textField}
+          name="phone"
+          type="text"
+          value={form.phone}
+          onChange={handleChange}
         />
-        <br />
         <h4 className={styles.container}>Your Time Zone</h4>
         <FormControl variant="outlined" className={styles.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">
@@ -451,9 +477,11 @@ const MentorOnboardingModal = () => {
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={timezone}
             className={styles.textField}
-            // onChange={}
+            name="timezone"
+            type="text"
+            value={form.timezone}
+            onChange={handleChange}
           >
             <MenuItem value="">
               <em>None</em>
@@ -466,13 +494,16 @@ const MentorOnboardingModal = () => {
           </Select>
         </FormControl>
 
-        <br />
         <h4 className={styles.container}>Add a google meet:</h4>
         <TextField
           id="outlined-basic"
           label="meet.google.com/oer-yjhx-sia"
           variant="outlined"
           className={styles.textField}
+          name="googlemeet"
+          type="text"
+          value={form.googlemeet}
+          onChange={handleChange}
         />
         <Button className={styles.buttonModal}>I'M GOOD TO GO!</Button>
       </div>
