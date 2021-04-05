@@ -44,7 +44,7 @@ describe('<RegistrationForm />', () => {
     })
   });
   
-/*   it.skip('should check if the submit button handler has been called', async () => {
+  it('should check if the submit button handler has been called', async () => {
     await act(async () => {
       fireEvent.input(screen.getByTestId('firstName'), {
         target: { value: 'John' },
@@ -70,7 +70,7 @@ describe('<RegistrationForm />', () => {
       fireEvent.submit(screen.getByTestId('submit'));
     });
     expect(mockOnSubmit).toHaveBeenCalled();
-  }); */
+  });
 
   it('should validate errors for required fields', async () => {
     await act(async () => {
