@@ -43,26 +43,43 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
             onClick={handleClick}
             role="button"
           >
-            Book Me
+            BOOK ME
           </Button>
         }
         title={
-          <Typography variant="body1" className={mentorNameField}>
+          <Typography
+            variant="body1"
+            className={mentorNameField}
+            data-testid="mentorNameField"
+          >
             {mentorName}
           </Typography>
         }
         subheader={
-          <Typography variant="caption" className={jobField}>
+          <Typography
+            variant="caption"
+            className={jobField}
+            data-testid="jobTitleField"
+          >
             {jobTitle}
           </Typography>
         }
       />
       {isMobile ? null : <Divider />}
       <CardContent>
-        <Typography variant="body2" className={skillList} gutterBottom>
+        <Typography
+          variant="body2"
+          className={skillList}
+          gutterBottom
+          data-testid="skillList"
+        >
           {mentorSkills}
         </Typography>
-        <Typography variant="caption" className={bioSection}>
+        <Typography
+          variant="caption"
+          className={bioSection}
+          data-testid="bioSection"
+        >
           {bio}
         </Typography>
       </CardContent>
