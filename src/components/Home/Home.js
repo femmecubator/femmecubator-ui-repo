@@ -7,10 +7,10 @@ import {
 } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core/';
 import Grid from '@material-ui/core/Grid';
-import mainImage from './assets/firstImage.jpg';
 import secondImage from './assets/secondimage.jpg';
 import { ReactComponent as WorkathonSVG } from './assets/Listings.svg';
 import { ReactComponent as MeetOnSlack } from './assets/MeetOnSlack.svg';
+import { ReactComponent as FirstImage } from './assets/firstImage.svg';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import PanToolIcon from '@material-ui/icons/PanTool';
@@ -605,14 +605,7 @@ export default function Home() {
             </div>
           </Grid>
           <Grid className={topImageContainer} item xs={12} sm={6}>
-            <img
-              {...{
-                src: mainImage,
-                className: topImage,
-                alt:
-                  'Three women of color with laptops working together in an open office.',
-              }}
-            />
+            <FirstImage />
           </Grid>
           <Grid className={bookAndContributeContainer} item xs={12}>
             <div className={bookMentorsContainer}>
