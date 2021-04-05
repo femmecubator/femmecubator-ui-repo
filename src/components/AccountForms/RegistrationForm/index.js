@@ -607,7 +607,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                 <div style={{ top: '15%', position: 'relative' }}>
                   <div className="circle">
                     <div className="center">
-                      <SchoolIcon className={classes.schoolIcon} />
+                      <SchoolIcon
+                        className={classes.schoolIcon}
+                        svg
+                        role="img"
+                        aria-label="graduation cap icon"
+                        aria-hidden="false"
+                      />
                     </div>
                   </div>
                   <div>
