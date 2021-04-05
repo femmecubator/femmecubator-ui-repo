@@ -19,6 +19,10 @@ describe('<RegistrationForm />', () => {
     );
   });
 
+  afterEach(() => {
+    cleanup();
+  })
+
   it('should check that titles and mentor and mentee buttons render to page', async () => {
     await act(async () => {
       const formTitle = screen.getByText('Create account');
@@ -31,8 +35,8 @@ describe('<RegistrationForm />', () => {
       expect(loginLink).toBeInTheDocument();
       
       //render(<Chip/>);
-      const chipSelect = screen.getByText('I want to sign up as a:')
-      expect(chipSelect).toBeInTheDocument();
+      const chipSelectText = screen.getByText('I want to sign up as a:')
+      expect(chipSelectText).toBeInTheDocument();
 
       const mentorSelect = screen.getByText('Mentor');
       expect(mentorSelect).toBeInTheDocument();
@@ -44,7 +48,7 @@ describe('<RegistrationForm />', () => {
     })
   });
   
-  it('should check if the submit button handler has been called', async () => {
+  it.skip('should check if the submit button handler has been called', async () => {
     await act(async () => {
       fireEvent.input(screen.getByTestId('firstName'), {
         target: { value: 'John' },
