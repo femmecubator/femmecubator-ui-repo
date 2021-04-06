@@ -52,7 +52,7 @@ const LoginForm = ({ testOnSubmit }) => {
         action: 'Logged In',
       };
       inProduction && event(options);
-      history.push('/mentors');
+      history.push('/dashboard');
     } catch ({ status, data: { err } }) {
       if (status === 401 || status === 403) {
         setError('server', {
