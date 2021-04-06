@@ -48,7 +48,9 @@ const RegistrationSchema = yup.object().shape({
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
   // not so sure if this is accurate, i don't know how to test it
-  role_id: yup.string().required('Select Mentee or Mentor'),
+  role_id: yup
+    .string()
+    .required('Select Mentee or Mentor'),
   title: yup
     .string()
     .required('Title is required')
@@ -62,14 +64,6 @@ const RegistrationSchema = yup.object().shape({
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Invalid email format'
     ),
-  // userName: yup
-  //   .string()
-  //   .required('User name is required')
-  //   .min(2, MIN_CHARS)
-  //   .matches(
-  //     /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
-  //     'Only contains alphanumeric characters, underscore and dot'
-  //   ),
   password: yup
     .string()
     .required('Password is required')
