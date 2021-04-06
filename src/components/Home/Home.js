@@ -595,7 +595,10 @@ export default function Home() {
             </div>
           </Grid>
           <Grid className={topImageContainer} item xs={12} sm={6}>
-            <FirstImage aria-label="Three women of color with laptops working together in an open office." />
+            <FirstImage
+              rel="preload"
+              aria-label="Three women of color with laptops working together in an open office."
+            />
           </Grid>
           <Grid className={bookAndContributeContainer} item xs={12}>
             <div className={bookMentorsContainer}>

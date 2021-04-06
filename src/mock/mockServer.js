@@ -1,7 +1,7 @@
 import { Server } from 'miragejs';
 import { commonMenuData } from './data';
 
-export function mockServer({ environment = 'development' } = {}) {
+export default function mockServer({ environment = 'development' } = {}) {
   const server = new Server({
     environment,
     routes() {
