@@ -119,15 +119,6 @@ const useStyles = makeStyles(() => ({
       order: '-1',
     },
   },
-  topImage: {
-    objectFit: 'cover',
-    width: '100%',
-    height: '476px',
-    '@media (max-width: 799px)': {
-      height: '238px',
-      objectPosition: '0% 34%',
-    },
-  },
   bookAndContributeContainer: {
     height: '330px',
     backgroundColor: '#F2F7FF',
@@ -523,7 +514,6 @@ export default function Home() {
     root,
     introContainer,
     topImageContainer,
-    topImage,
     bookAndContributeContainer,
     workathonContainer,
     ourMissionContainer,
@@ -605,7 +595,7 @@ export default function Home() {
             </div>
           </Grid>
           <Grid className={topImageContainer} item xs={12} sm={6}>
-            <FirstImage />
+            <FirstImage aria-label="Three women of color with laptops working together in an open office." />
           </Grid>
           <Grid className={bookAndContributeContainer} item xs={12}>
             <div className={bookMentorsContainer}>
