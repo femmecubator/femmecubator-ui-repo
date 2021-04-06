@@ -9,6 +9,8 @@ const useStyles = makeStyles(() => ({
     '&:selected $element': {
       color: '#550CCC !important',
     },
+    display: 'flex',
+    flexDirection: 'column',
   },
   mentorListContainer: {
     border: 'solid 2px red',

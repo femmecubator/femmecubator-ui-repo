@@ -5,7 +5,6 @@ import Directory from '../components/Directory/index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
 }));

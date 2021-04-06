@@ -45,6 +45,7 @@ const Index = () => {
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
+      <h2>Office Hours</h2>
       <MentorSearchBar />
       <div className={root}>
         <Tabs
@@ -68,10 +69,13 @@ const Index = () => {
         </Tabs>
 
         <div className={mentorListContainer} value={selectedTab} index={0}>
-          <Divider />
+          {/* <Divider /> */}
 
           {selectedTab === 0 ? (
             <>
+              <MentorCard {...testInfo} />
+              <MentorCard {...testInfo} />
+              <MentorCard {...testInfo} />
               <MentorCard {...testInfo} />
               <MentorCard {...testInfo} />
               <MentorCard {...testInfo} />

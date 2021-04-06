@@ -42,7 +42,7 @@ const MentorCard = ({
     alert('BOOKING WILL BE SCHEDULED');
   };
   return (
-    <Card className={root} raised={true}>
+    <Card className={root} variant="outlined">
       <CardHeader
         avatar={
           <Avatar aria-label="Mentor Avatar" className={avatar}>

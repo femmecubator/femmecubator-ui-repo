@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: '30%',
     variant: ({ isMobile }) => (isMobile ? 'none' : 'outlined'),
+    marginBottom: '1rem',
   },
   avatar: {
     fontSize: '14px',
