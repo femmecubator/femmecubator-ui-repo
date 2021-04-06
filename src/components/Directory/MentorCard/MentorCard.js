@@ -39,8 +39,7 @@ const MentorCard = ({
     e.preventDefault();
     if (onTestClick) onTestClick();
     // open modal for scheduling;
-    // alert('BOOKING WILL BE SCHEDULED');
-    console.log("I've Been Clicked");
+    alert('BOOKING WILL BE SCHEDULED');
   };
   return (
     <Card className={root} raised={true}>
