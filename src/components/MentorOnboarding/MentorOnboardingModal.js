@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   TextField,
   Button,
   useMediaQuery,
   FormControl,
+  Link,
+  Typography,
 } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -406,16 +408,22 @@ const MentorOnboardingModal = () => {
   const [form, setForm] = useState({
     bio: '',
     skills: '',
+    phone: '',
+    timezone: '',
+    googlemeet: '',
   });
 
   const submit = (e) => {
     e.preventDefault();
     // props.handleSubmit(form)
   };
-  console.log(form);
+  // console.log(form);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  // for Link
+  const preventDefault = (event) => event.preventDefault();
 
   const body = (
     <form
@@ -495,7 +503,12 @@ const MentorOnboardingModal = () => {
         </FormControl>
 
         <h4 className={styles.container}>Add a google meet:</h4>
-        <TextField
+        <Typography>
+          <Link href="meet.google.com/oer-yjhx-sia" onClick={preventDefault}>
+            meet.google.com/oer-yjhx-sia
+          </Link>
+        </Typography>
+        {/* <TextField
           id="outlined-basic"
           label="meet.google.com/oer-yjhx-sia"
           variant="outlined"
@@ -504,7 +517,7 @@ const MentorOnboardingModal = () => {
           type="text"
           value={form.googlemeet}
           onChange={handleChange}
-        />
+        /> */}
         <Button className={styles.buttonModal}>I'M GOOD TO GO!</Button>
       </div>
     </form>
