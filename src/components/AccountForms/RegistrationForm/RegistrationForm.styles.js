@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -156,6 +157,13 @@ const useStyles = makeStyles((theme) => ({
   },
   checkIcon: {
     color: '#FFF',
+  },
+  alertBar: {
+    //display: 'flex',
+    width: '17em',
+    padding: '10px 0 0 0',
+    //marginBottom: '1em',
+    marginLeft: '-5px',
   },
   chipDivStyle: {
     display: 'flex',

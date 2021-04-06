@@ -47,7 +47,6 @@ const RegistrationSchema = yup.object().shape({
     .required('Last name is required')
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
-  // not so sure if this is accurate, i don't know how to test it
   role_id: yup.string().required('Select Mentee or Mentor'),
   title: yup
     .string()
@@ -94,6 +93,15 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
         <InputLabel className={classes.inputLabel}>
           I want to sign up as a:{' '}
         </InputLabel>
+        <div className={classes.alertBar}>
+          <Alert
+            severity="error"
+            role="alert"
+            aria-label="error select mentor or mentee"
+          >
+            Error: {errors.role_id?.message}
+          </Alert>
+        </div>
         <div className={classes.chipDivStyle}>
           <Chip
             {...{
@@ -141,13 +149,6 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
           <div style={{ color: 'red' }}>Error: {errors.role_id?.message}</div>
         )}
         <br /> */}
-        <Alert
-          severity="error"
-          role="alert"
-          style={{ width: '17em', marginBottom: '1em', marginLeft: '-0.5em' }}
-        >
-          Error: {errors.role_id?.message}
-        </Alert>
       </div>
     </>
   );
@@ -406,7 +407,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                     <div className="center">
                       <SchoolIcon
                         className={classes.schoolIcon}
-                        svg
                         role="img"
                         aria-label="graduation cap icon"
                         aria-hidden="false"

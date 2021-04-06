@@ -21,7 +21,7 @@ describe('<RegistrationForm />', () => {
 
   afterEach(() => {
     cleanup();
-  })
+  });
 
   it('should check that titles and mentor and mentee buttons render to page', async () => {
     await act(async () => {
@@ -33,8 +33,8 @@ describe('<RegistrationForm />', () => {
 
       const loginLink = screen.getByText('Login');
       expect(loginLink).toBeInTheDocument();
-      
-      const chipSelectText = screen.getByText('I want to sign up as a:')
+
+      const chipSelectText = screen.getByText('I want to sign up as a:');
       expect(chipSelectText).toBeInTheDocument();
 
       const mentorSelect = screen.getByText('Mentor');
@@ -44,11 +44,16 @@ describe('<RegistrationForm />', () => {
       const menteeSelect = screen.getByText('Mentee');
       expect(menteeSelect).toBeInTheDocument();
       fireEvent.click(menteeSelect);
-    })
+    });
   });
-  
-  it.skip('should check if the submit button handler has been called', async () => {
+
+  it('should check if the submit button handler has been called', async () => {
     await act(async () => {
+      fireEvent.click(
+        screen.getByRole('button', {
+          name: /mentor/i,
+        })
+      );
       fireEvent.input(screen.getByTestId('firstName'), {
         target: { value: 'John' },
       });
