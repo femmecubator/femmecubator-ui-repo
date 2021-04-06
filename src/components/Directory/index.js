@@ -8,7 +8,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 const testInfo = {
-  mentorName: 'Amanda Powell',
+  firstName: 'Amanda',
+  lastName: 'Powell',
   jobTitle: 'Coding Mentor',
   mentorSkills:
     'Wireframing, Prototyping, User Research, Customer Journey, Persona',

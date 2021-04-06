@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useStyles from './ MentorCard.styles';
 import Card from '@material-ui/core/Card';
@@ -10,7 +10,19 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
+const MentorCard = ({
+  firstName,
+  lastName,
+  jobTitle,
+  mentorSkills,
+  bio,
+  initials,
+  onTestClick,
+}) => {
+  // useEffect(() => {
+  //   alert('making fetch Request');
+  // });
+
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile, jobTitle });
   const {
@@ -22,10 +34,13 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
     mentorNameField,
     bioSection,
   } = classes;
+
   const handleClick = (e) => {
     e.preventDefault();
+    if (onTestClick) onTestClick();
     // open modal for scheduling;
-    alert('BOOKING WILL BE SCHEDULED');
+    // alert('BOOKING WILL BE SCHEDULED');
+    console.log("I've Been Clicked");
   };
   return (
     <Card className={root} raised={true}>
@@ -52,7 +67,7 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
             className={mentorNameField}
             data-testid="mentorNameField"
           >
-            {mentorName}
+            {firstName} {lastName}
           </Typography>
         }
         subheader={
@@ -87,7 +102,8 @@ const MentorCard = ({ mentorName, jobTitle, mentorSkills, bio, initials }) => {
   );
 };
 MentorCard.propTypes = {
-  mentorName: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   jobTitle: PropTypes.string.isRequired,
   mentorSkills: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,

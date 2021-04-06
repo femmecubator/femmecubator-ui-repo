@@ -2,6 +2,7 @@ import React from 'react';
 import { render, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MentorCard from './MentorCard';
+import { jssPreset } from '@material-ui/styles';
 
 // describe accepts 2 arguments a string and a function
 // MentorCard should have a Mentors name/ icon/ and bio
@@ -11,10 +12,10 @@ import MentorCard from './MentorCard';
 // check that each of these properties exist and show up in the card
 // check if the button can be clicked and is visible
 afterEach(cleanup);
-const handleClick = jest.fn();
 
 const properties = {
-  mentorName: 'Amanda Powell',
+  firstName: 'Amanda',
+  lastName: 'Powell',
   jobTitle: 'Coding Mentor',
   mentorSkills:
     'Wireframing, Prototyping, User Research, Customer Journey, Persona',
@@ -28,7 +29,9 @@ describe('<MentorCard>', () => {
   test('Mentor name is visible', () => {
     render(<MentorCard {...properties} />);
     const mentorName = screen.getByTestId('mentorNameField').textContent;
-    expect(mentorName).toBe(properties.mentorName);
+    expect(mentorName).toEqual(
+      properties.firstName + ' ' + properties.lastName
+    );
   });
   test('Mentor job title is visible', () => {
     render(<MentorCard {...properties} />);
@@ -54,10 +57,10 @@ describe('MentorCard Button', () => {
     expect(bookingButton).toBe('BOOK ME');
   });
   test('Calls onClick prop when called', () => {
-    render(<MentorCard {...properties} />);
-    // const bookingButton = screen.getByRole('button');
+    const handleTestClick = jest.fn();
+    render(<MentorCard {...properties} onTestClick={handleTestClick} />);
     const button = screen.getByRole('button');
     userEvent.click(button);
-    expect(console.error).not.toHaveBeenCalled();
+    expect(handleTestClick).toHaveBeenCalled();
   });
 });
