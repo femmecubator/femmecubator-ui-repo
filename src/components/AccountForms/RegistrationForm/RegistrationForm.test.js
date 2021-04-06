@@ -34,7 +34,6 @@ describe('<RegistrationForm />', () => {
       const loginLink = screen.getByText('Login');
       expect(loginLink).toBeInTheDocument();
       
-      //render(<Chip/>);
       const chipSelectText = screen.getByText('I want to sign up as a:')
       expect(chipSelectText).toBeInTheDocument();
 
