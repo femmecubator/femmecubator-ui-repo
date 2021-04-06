@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MentorCard from './MentorCard/MentorCard';
 import Subheader from '../Subheader/Subheader';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
+import MentorSearchBar from './MentorSearch/MentorSearchBar';
 import useStyles from './Directory.styles';
 import Divider from '@material-ui/core/Divider';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -44,7 +45,7 @@ const Index = () => {
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
-      <div className={search}>Search Bar</div>
+      <MentorSearchBar />
       <div className={root}>
         <Tabs
           value={selectedTab}
