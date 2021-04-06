@@ -417,7 +417,7 @@ const MentorOnboardingModal = () => {
     e.preventDefault();
     // props.handleSubmit(form)
   };
-  // console.log(form);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -508,16 +508,6 @@ const MentorOnboardingModal = () => {
             meet.google.com/oer-yjhx-sia
           </Link>
         </Typography>
-        {/* <TextField
-          id="outlined-basic"
-          label="meet.google.com/oer-yjhx-sia"
-          variant="outlined"
-          className={styles.textField}
-          name="googlemeet"
-          type="text"
-          value={form.googlemeet}
-          onChange={handleChange}
-        /> */}
         <Button className={styles.buttonModal}>I'M GOOD TO GO!</Button>
       </div>
     </form>
