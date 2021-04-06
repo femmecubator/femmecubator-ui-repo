@@ -48,9 +48,7 @@ const RegistrationSchema = yup.object().shape({
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
   // not so sure if this is accurate, i don't know how to test it
-  role_id: yup
-    .string()
-    .required('Select Mentee or Mentor'),
+  role_id: yup.string().required('Select Mentee or Mentor'),
   title: yup
     .string()
     .required('Title is required')
@@ -138,12 +136,18 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
             }}
           />
         </div>
-        {!isEmpty(errors.role) && (
+        {/* {!isEmpty(errors.watchRole) && (
           // need to make this look better
-          <Alert severity="error" style={{ width: '17em' }}>
-            Error: {errors.role?.message}
-          </Alert>
+          <div style={{ color: 'red' }}>Error: {errors.role_id?.message}</div>
         )}
+        <br /> */}
+        <Alert
+          severity="error"
+          role="alert"
+          style={{ width: '17em', marginBottom: '1em', marginLeft: '-0.5em' }}
+        >
+          Error: {errors.role_id?.message}
+        </Alert>
       </div>
     </>
   );
@@ -223,7 +227,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                 >
                   <div className={classes.inputSpacing}>
                     <ChipComponent
-                      {...{ register, unregister, setValue, errors, watch }}
+                      {...{
+                        register,
+                        unregister,
+                        setValue,
+                        errors,
+                        watch,
+                      }}
                     />
                     <TextField
                       {...{
