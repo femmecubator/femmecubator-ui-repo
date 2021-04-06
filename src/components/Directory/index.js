@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MentorCard from './MentorCard/MentorCard';
 import Subheader from '../Subheader/Subheader';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
@@ -25,10 +25,20 @@ const Index = () => {
     subLabel: 'Book 30 mins with a UX Design or Coding Mentor.',
     image: <SubheaderIcon />,
   };
+  useEffect(() => {
+    fetch('http://local.femmecubator.com:3001/api/directory')
+      .then((r) => r.json())
+      .then((data) => {
+        // eslint-disable-next-line no-console
+        console.log('THIS IS THE DATA RETURNED', data);
+      });
+  });
+
   const isMobile = useMediaQuery('(max-width:1023px)');
   const classes = useStyles({ isMobile });
   const { root, mentorListContainer, search } = classes;
   const [selectedTab, setSelectedTab] = useState(0);
+  const [mentorCards, setMentorCards] = useState([]);
   const handleChange = (e, newVal) => setSelectedTab(newVal);
 
   return (
