@@ -25,7 +25,13 @@ const Index = () => {
     image: <SubheaderIcon />,
   };
   const isMobile = useMediaQuery('(max-width:1023px)');
-  const { root, mentorListContainer, directoryHeader, tabs } = useStyles({
+  const {
+    root,
+    mentorListContainer,
+    directoryHeader,
+    directoryTab,
+    tabs,
+  } = useStyles({
     isMobile,
   });
   const [selectedTab, setSelectedTab] = useState(0);
@@ -34,7 +40,6 @@ const Index = () => {
 
   useEffect(() => {
     request.get('/api/directory').then((mentors) => {
-      // eslint-disable-next-line no-console
       setMentorCards(mentors.data);
     });
   }, []);
@@ -78,6 +83,7 @@ const Index = () => {
             id="Directory"
             aria-controls="Directory Tab"
             textColor="inherit"
+            className={directoryTab}
           />
           <Tab
             label="Calender"

@@ -8,10 +8,8 @@ import useStyles from './MentorSearchBar.styles';
 const MentorSearchBar = ({ searchQuery }) => {
   const { searchBar, searchBtn, searchInput } = useStyles();
   const { register, handleSubmit } = useForm();
-  // eslint-disable-next-line no-console
 
   const onSubmit = (data) => {
-    // e.preventDefault();
     searchQuery(data.search);
   };
 
