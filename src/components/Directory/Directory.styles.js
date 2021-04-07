@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   },
   mentorListContainer: {
     overflow: 'scroll',
-    maxHeight: '450px',
+    maxHeight: '430px',
     // Card height changes with the css below
     minHeight: '450px',
     marginTop: '3rem',
