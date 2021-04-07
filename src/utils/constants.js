@@ -51,6 +51,7 @@ const ROUTES_LABEL = {
   MENTORS: 'mentors',
   LOGIN: 'login',
   REGISTER: 'register',
+  DASHBOARD: 'dashboard',
   LISTINGS: 'listings',
   VOLUNTEER: 'volunteer',
   ABOUT: 'whatWeDo',
@@ -119,6 +120,12 @@ const ROUTES = [
     isProtected: true,
     label: ROUTES_LABEL.SETTINGS,
     path: '/settings',
+  },
+  {
+    id: 11,
+    isProtected: true,
+    label: ROUTES_LABEL.DASHBOARD,
+    path: '/dashboard',
   },
 ];
 
