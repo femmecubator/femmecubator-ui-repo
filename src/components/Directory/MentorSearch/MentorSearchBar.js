@@ -21,9 +21,9 @@ const MentorSearchBar = () => {
         id="search"
         label="Search"
         inputRef={register}
-        margin="normal"
         variant="outlined"
         name="search"
+        margin="dense"
         placeholder="Name, Title, Keywords"
         className={searchInput}
         InputProps={{

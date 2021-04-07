@@ -14,15 +14,15 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '20%',
     position: 'absolute',
     right: '0',
-    top: '9.5rem',
-    margin: '1rem',
+    top: '11.7rem',
+    margin: '1.5rem',
     display: 'flex',
     alignItems: 'center',
   },
   searchInput: {
-    margin: '4% 0',
+    // margin: '4% 0',
     minWidth: '70%',
-    height: '45px',
+    // height: '25%',
   },
   searchBtn: {
     root: {
