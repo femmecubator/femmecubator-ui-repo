@@ -25,7 +25,7 @@ const Index = () => {
     image: <SubheaderIcon />,
   };
   const isMobile = useMediaQuery('(max-width:1023px)');
-  const { root, mentorListContainer, directoryHeader } = useStyles({
+  const { root, mentorListContainer, directoryHeader, tabs } = useStyles({
     isMobile,
   });
   const [selectedTab, setSelectedTab] = useState(0);
@@ -48,7 +48,7 @@ const Index = () => {
       <Subheader {...subheaderProperties} />
       <Typography
         className={directoryHeader}
-        variant="h6"
+        variant="h5"
         data-testid="directoryHeader"
         gutterBottom
       >
@@ -60,7 +60,10 @@ const Index = () => {
           value={selectedTab}
           onChange={handleChange}
           aria-label="Mentor Directory Tabs"
-          TabIndicatorProps={{ style: { background: '#550CCC' } }}
+          className={tabs}
+          TabIndicatorProps={{
+            style: { background: '#550CCC' },
+          }}
         >
           <Tab
             label="Directory"
@@ -71,12 +74,11 @@ const Index = () => {
           <Tab
             label="Calender"
             id="Calender"
+            disabled
             aria-controls="Calender Tab"
             tabIndex="0"
           />
         </Tabs>
-        <Divider />
-
         <div className={mentorListContainer} value={selectedTab} index={0}>
           {selectedTab === 0 ? (
             renderMentorCards()

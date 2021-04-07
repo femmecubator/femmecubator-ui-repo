@@ -16,7 +16,7 @@ afterEach(cleanup);
 const properties = {
   firstName: 'Amanda',
   lastName: 'Powell',
-  jobTitle: 'Coding Mentor',
+  title: 'Coding Mentor',
   mentorSkills:
     'Wireframing, Prototyping, User Research, Customer Journey, Persona',
   bio:
@@ -36,7 +36,7 @@ describe('<MentorCard>', () => {
   test('Mentor job title is visible', () => {
     render(<MentorCard {...properties} />);
     const jobTitle = screen.getByTestId('jobTitleField').textContent;
-    expect(jobTitle).toBe(properties.jobTitle);
+    expect(jobTitle).toBe(properties.title);
   });
   test('Mentor Skills is visible', () => {
     render(<MentorCard {...properties} />);

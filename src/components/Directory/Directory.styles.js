@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
   },
   directoryHeader: {
     color: '#495057',
-    marginLeft: '5rem',
+    margin: '2rem 0 0 7.5rem',
     fontWeight: '700',
   },
   mentorListContainer: {
@@ -23,6 +23,10 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     backgroundColor: 'white',
+  },
+  tabs: {
+    borderBottom: '1px #BDBDBD solid',
+    margin: '2rem',
   },
 }));
 

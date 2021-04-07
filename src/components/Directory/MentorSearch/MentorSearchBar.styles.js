@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '20%',
     position: 'absolute',
     right: '0',
-    top: '8.5rem',
+    top: '9.5rem',
     margin: '1rem',
     display: 'flex',
     alignItems: 'center',
