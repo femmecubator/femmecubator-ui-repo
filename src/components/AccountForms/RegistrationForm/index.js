@@ -137,7 +137,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
             }}
           />
         </div>
-        <div className={classes.chipAlert} aria-invalid="true">
+        <div className={classes.chipAlert} aria-label="select mentee or mentor">
           {/* <Alert
             severity="error"
             role="alert"
