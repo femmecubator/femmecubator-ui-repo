@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import request from 'utils/axiosConfig';
 const testInfo = {
   firstName: 'Amanda',
   lastName: 'Powell',
@@ -27,12 +28,10 @@ const Index = () => {
     image: <SubheaderIcon />,
   };
   useEffect(() => {
-    fetch('http://local.femmecubator.com:3001/api/directory')
-      .then((r) => r.json())
-      .then((data) => {
-        // eslint-disable-next-line no-console
-        console.log('THIS IS THE DATA RETURNED', data);
-      });
+    request.get('/api/directory').then((data) => {
+      // eslint-disable-next-line no-console
+      console.log('THIS IS THE DATA RETURNED', data);
+    });
   });
 
   const isMobile = useMediaQuery('(max-width:1023px)');
@@ -67,10 +66,9 @@ const Index = () => {
             tabIndex="0"
           />
         </Tabs>
+        <Divider />
 
         <div className={mentorListContainer} value={selectedTab} index={0}>
-          {/* <Divider /> */}
-
           {selectedTab === 0 ? (
             <>
               <MentorCard {...testInfo} />

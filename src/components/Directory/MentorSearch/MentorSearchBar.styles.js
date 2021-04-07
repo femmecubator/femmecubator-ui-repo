@@ -10,14 +10,26 @@ const avatarColors = [
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
-    border: '#026FE4 2px solid',
-    minWidth: '35%',
+    minWidth: '45%',
+    maxHeight: '20%',
     position: 'absolute',
     right: '0',
+    top: '9.5rem',
     margin: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  searchInput: {
+    margin: '4% 0',
+    minWidth: '70%',
+    height: '45px',
   },
   searchBtn: {
-    backgroundColor: '#026FE4 !important',
+    root: {
+      height: '45px',
+    },
+    marginLeft: '2%',
+    backgroundColor: '#FF7452 !important',
     color: 'white',
   },
 }));

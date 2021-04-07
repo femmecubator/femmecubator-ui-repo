@@ -3,17 +3,17 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
-    border: 'solid 2px green',
     margin: '0 4.4rem',
     borderBottom: '4px solid #e8e8e8',
     '&:selected $element': {
       color: '#550CCC !important',
     },
+
     display: 'flex',
     flexDirection: 'column',
   },
   mentorListContainer: {
-    border: 'solid 2px red',
+    marginTop: '1.5rem',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
