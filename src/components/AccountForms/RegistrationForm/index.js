@@ -3,7 +3,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
 import useStyles from './RegistrationForm.styles';
 import Paper from '@material-ui/core/Paper';
-import Alert from '@material-ui/lab/Alert';
+//import Alert from '@material-ui/lab/Alert';
 import {
   Typography,
   TextField,
@@ -16,6 +16,7 @@ import {
   Chip,
 } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+//import ErrorIcon from '@material-ui/icons/Error';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
@@ -35,6 +36,7 @@ const ONLY_LETTERS = 'Must only contain letters';
 const ONLY_LETTERS_WS = 'Must only contain letters and spaces';
 const MIN_8CHARS = 'Must be more than 8 characters';
 const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
+const MUST_SELECT_ROLE = 'Select Mentee or Mentor';
 
 const RegistrationSchema = yup.object().shape({
   firstName: yup
@@ -47,7 +49,7 @@ const RegistrationSchema = yup.object().shape({
     .required('Last name is required')
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
-  role_id: yup.string().required('Select Mentee or Mentor'),
+  role_id: yup.string().required(MUST_SELECT_ROLE),
   title: yup
     .string()
     .required('Title is required')
@@ -93,15 +95,6 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
         <InputLabel className={classes.inputLabel}>
           I want to sign up as a:{' '}
         </InputLabel>
-        <div className={classes.alertBar}>
-          <Alert
-            severity="error"
-            role="alert"
-            aria-label="error select mentor or mentee"
-          >
-            Error: {errors.role_id?.message}
-          </Alert>
-        </div>
         <div className={classes.chipDivStyle}>
           <Chip
             {...{
@@ -144,11 +137,22 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
             }}
           />
         </div>
+        <div className={classes.chipAlert} aria-invalid="true">
+          {/* <Alert
+            severity="error"
+            role="alert"
+            aria-label="error select mentee or mentor"
+          >
+            {errors.role_id?.message}
+          </Alert> */}
+          {errors.role_id?.message}
+        </div>
+        {/*{!isEmpty(errors.watchRole) && errors.role_id?.message}*/}
         {/* {!isEmpty(errors.watchRole) && (
           // need to make this look better
           <div style={{ color: 'red' }}>Error: {errors.role_id?.message}</div>
-        )}
-        <br /> */}
+        )} */}
+        <br />
       </div>
     </>
   );

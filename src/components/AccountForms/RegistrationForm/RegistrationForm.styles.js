@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import '@fontsource/roboto';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -157,16 +158,19 @@ const useStyles = makeStyles((theme) => ({
   checkIcon: {
     color: '#FFF',
   },
-  alertBar: {
-    //display: 'flex',
-    width: '17em',
-    padding: '10px 0 0 0',
+  chipAlert: {
+    display: 'flex',
+    color: '#f44336',
+    fontFamily: 'Roboto',
+    fontSize: '12px',
+    //width: '17em',
+    //padding: '10px 0 0 0',
     //marginBottom: '1em',
-    marginLeft: '-5px',
+    marginLeft: '5px',
   },
   chipDivStyle: {
     display: 'flex',
-    padding: ' 21px 0px',
+    padding: ' 21px 0px 10px 0px',
     marginLeft: '-5px',
   },
   chipOutline: {
