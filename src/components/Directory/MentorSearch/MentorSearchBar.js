@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '@material-ui/core/TextField';
+import { TextField, InputAdornment } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './MentorSearchBar.styles';
 
 const MentorSearchBar = () => {
-  // const classes = useStyles();
   const { searchBar, searchBtn, searchInput } = useStyles();
   const { register, handleSubmit } = useForm();
   // eslint-disable-next-line no-console
@@ -26,8 +26,16 @@ const MentorSearchBar = () => {
         name="search"
         placeholder="Name, Title, Keywords"
         className={searchInput}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
       />
-      <Button type="submit" variant="contained" className={searchBtn}>
+
+      <Button type="submit" variant="contained" className={searchBtn} select>
         Search
       </Button>
     </form>

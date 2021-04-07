@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '20%',
     position: 'absolute',
     right: '0',
-    top: '9.5rem',
+    top: '8.5rem',
     margin: '1rem',
     display: 'flex',
     alignItems: 'center',
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       height: '45px',
     },
     marginLeft: '2%',
-    backgroundColor: '#FF7452 !important',
+    backgroundColor: '#026FE4 !important',
     color: 'white',
   },
 }));

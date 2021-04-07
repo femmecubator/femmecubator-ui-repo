@@ -4,21 +4,18 @@ import Subheader from '../Subheader/Subheader';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 import MentorSearchBar from './MentorSearch/MentorSearchBar';
 import useStyles from './Directory.styles';
-import Divider from '@material-ui/core/Divider';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+// import Divider from '@material-ui/core/Divider';
+// import useMediaQuery from '@material-ui/core/useMediaQuery';
+// import Tabs from '@material-ui/core/Tabs';
+// import Tab from '@material-ui/core/Tab';
+import {
+  Typography,
+  Tab,
+  Tabs,
+  useMediaQuery,
+  Divider,
+} from '@material-ui/core';
 import request from 'utils/axiosConfig';
-const testInfo = {
-  firstName: 'Amanda',
-  lastName: 'Powell',
-  jobTitle: 'Coding Mentor',
-  mentorSkills:
-    'Wireframing, Prototyping, User Research, Customer Journey, Persona',
-  bio:
-    'Lorem ipsum testing lines limited to an awesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic. It is a placeholderawesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic.Snappy, judgy, tyrannical. Compassionate or narcissistic.Lorem ipsum testing lines limited to an awesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic. It is a placeholderawesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic.Snappy, judgy, tyrannical. Compassionate or narcissistic.Lorem ipsum testing lines limited to an awesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic. It is a placeholderawesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic.Snappy, judgy, tyrannical. Compassionate or narcissistic. It is a placeholder  limited to 280 char text to a max of 5 Compassionate or narcissistic. It is a placeholder  limited to 280 char text to a max of 5 ',
-  initials: 'AP',
-};
 
 const Index = () => {
   const subheaderProperties = {
@@ -27,24 +24,36 @@ const Index = () => {
     subLabel: 'Book 30 mins with a UX Design or Coding Mentor.',
     image: <SubheaderIcon />,
   };
-  useEffect(() => {
-    request.get('/api/directory').then((data) => {
-      // eslint-disable-next-line no-console
-      console.log('THIS IS THE DATA RETURNED', data);
-    });
-  });
-
   const isMobile = useMediaQuery('(max-width:1023px)');
-  const classes = useStyles({ isMobile });
-  const { root, mentorListContainer, search } = classes;
+  const { root, mentorListContainer, directoryHeader } = useStyles({
+    isMobile,
+  });
   const [selectedTab, setSelectedTab] = useState(0);
   const [mentorCards, setMentorCards] = useState([]);
   const handleChange = (e, newVal) => setSelectedTab(newVal);
 
+  useEffect(() => {
+    request.get('/api/directory').then((mentors) => {
+      // eslint-disable-next-line no-console
+      setMentorCards(mentors.data);
+    });
+  }, []);
+
+  const renderMentorCards = () =>
+    mentorCards.map((mentorObject) => (
+      <MentorCard {...mentorObject} key={mentorObject._id} />
+    ));
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
-      <h2>Office Hours</h2>
+      <Typography
+        className={directoryHeader}
+        variant="h6"
+        data-testid="directoryHeader"
+        gutterBottom
+      >
+        Office Hours
+      </Typography>
       <MentorSearchBar />
       <div className={root}>
         <Tabs
@@ -70,15 +79,7 @@ const Index = () => {
 
         <div className={mentorListContainer} value={selectedTab} index={0}>
           {selectedTab === 0 ? (
-            <>
-              <MentorCard {...testInfo} />
-              <MentorCard {...testInfo} />
-              <MentorCard {...testInfo} />
-              <MentorCard {...testInfo} />
-              <MentorCard {...testInfo} />
-              <MentorCard {...testInfo} />
-              <MentorCard {...testInfo} />
-            </>
+            renderMentorCards()
           ) : (
             <h1>CALANEDER WOULD GO HERE'</h1>
           )}

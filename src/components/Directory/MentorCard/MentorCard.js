@@ -13,7 +13,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 const MentorCard = ({
   firstName,
   lastName,
-  jobTitle,
+  title,
   mentorSkills,
   bio,
   initials,
@@ -24,7 +24,7 @@ const MentorCard = ({
   // });
 
   const isMobile = useMediaQuery('(max-width:767px)');
-  const classes = useStyles({ isMobile, jobTitle });
+  const classes = useStyles({ isMobile });
   const {
     root,
     avatar,
@@ -75,7 +75,7 @@ const MentorCard = ({
             className={jobField}
             data-testid="jobTitleField"
           >
-            {jobTitle}
+            {title}
           </Typography>
         }
       />
@@ -103,7 +103,7 @@ const MentorCard = ({
 MentorCard.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  jobTitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   mentorSkills: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
   initials: PropTypes.string.isRequired,

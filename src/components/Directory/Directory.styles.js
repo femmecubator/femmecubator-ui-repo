@@ -12,15 +12,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  directoryHeader: {
+    color: '#495057',
+    marginLeft: '5rem',
+    fontWeight: '700',
+  },
   mentorListContainer: {
     marginTop: '1.5rem',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     backgroundColor: 'white',
-  },
-  search: {
-    border: 'solid 2px blue',
   },
 }));
 
