@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
   mentorListContainer: {
     overflow: 'scroll',
     maxHeight: '450px',
+    minHeight: '450px',
     marginTop: '3rem',
     display: 'flex',
     flexWrap: 'wrap',
