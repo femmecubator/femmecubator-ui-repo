@@ -20,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   searchInput: {
-    // margin: '4% 0',
     minWidth: '70%',
-    // height: '25%',
   },
   searchBtn: {
     root: {

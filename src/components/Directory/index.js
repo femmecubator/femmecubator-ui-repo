@@ -43,6 +43,14 @@ const Index = () => {
     mentorCards.map((mentorObject) => (
       <MentorCard {...mentorObject} key={mentorObject._id} />
     ));
+  const searchMentorCards = (queryString) => {
+    // with this search through the mentor cards to re render what is needed
+    const filteredMentorList = mentorCards.filter((mentorObj) => {
+      const objs = Object.values(mentorObj).join(' ').toLowerCase();
+      return objs.includes(queryString.toLowerCase());
+    });
+    setMentorCards(filteredMentorList);
+  };
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
@@ -54,7 +62,7 @@ const Index = () => {
       >
         Office Hours
       </Typography>
-      <MentorSearchBar />
+      <MentorSearchBar searchQuery={searchMentorCards} />
       <div className={root}>
         <Tabs
           value={selectedTab}

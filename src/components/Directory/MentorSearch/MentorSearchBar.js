@@ -5,11 +5,15 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './MentorSearchBar.styles';
 
-const MentorSearchBar = () => {
+const MentorSearchBar = ({ searchQuery }) => {
   const { searchBar, searchBtn, searchInput } = useStyles();
   const { register, handleSubmit } = useForm();
   // eslint-disable-next-line no-console
-  const onSubmit = (data) => console.log('IT WORKED', data);
+
+  const onSubmit = (data) => {
+    // e.preventDefault();
+    searchQuery(data.search);
+  };
 
   return (
     <form
@@ -35,7 +39,7 @@ const MentorSearchBar = () => {
         }}
       />
 
-      <Button type="submit" variant="contained" className={searchBtn} select>
+      <Button type="submit" variant="contained" className={searchBtn}>
         Search
       </Button>
     </form>
