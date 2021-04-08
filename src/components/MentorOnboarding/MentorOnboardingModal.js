@@ -19,7 +19,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import useStyles from './MentorOnboardingModal.styles';
 
-// headings
+// headings & validation
 const BIO = 'Add a Bio (128 char)';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
 const PHONE = 'Phone';
@@ -27,10 +27,6 @@ const TIME_ZONE = 'Your Time Zone';
 const GOOGLE_MEET = 'Add a google meet:';
 const MIN_CHARS = 'Must be more than 1 character';
 const MAX_CHARS = 'Must be no more than 128 characters';
-const ONLY_LETTERS = 'Must only contain letters';
-const ONLY_LETTERS_WS = 'Must only contain letters and spaces';
-const MIN_8CHARS = 'Must be more than 8 characters';
-const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
 
 const MentorOnboardingModal = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
@@ -490,7 +486,7 @@ const MentorOnboardingModal = () => {
   };
 
   // for Link
-  const preventDefault = (event) => event.preventDefault();
+  const preventDefault = (e) => e.preventDefault();
 
   // for validation
   const OnboardingSchema = yup.object().shape({
@@ -513,6 +509,7 @@ const MentorOnboardingModal = () => {
 
   // STUFF I STILL NEED
   // TESTS
+  // CSS
   // Should show any errors if input is invalid
   // disable submit button if fields are not valid
   // must be WCAG compliant
