@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
+import ChipComponent from './ChipComponent';
 import useStyles from './RegistrationForm.styles';
 import Paper from '@material-ui/core/Paper';
-//import Alert from '@material-ui/lab/Alert';
 import {
   Typography,
   TextField,
@@ -13,10 +13,7 @@ import {
   useMediaQuery,
   IconButton,
   InputLabel,
-  Chip,
 } from '@material-ui/core';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-//import ErrorIcon from '@material-ui/icons/Error';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
@@ -82,81 +79,6 @@ const RegistrationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords do not match.'),
 });
 
-const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
-  const classes = useStyles();
-  const watchRole = watch('role_id', '');
-  useEffect(() => {
-    register('role_id');
-    return () => unregister('role_id');
-  }, [register, unregister]);
-  return (
-    <>
-      <div className={classes.inputSpacing}>
-        <InputLabel className={classes.inputLabel}>
-          I want to sign up as a:{' '}
-        </InputLabel>
-        <div className={classes.chipDivStyle}>
-          <Chip
-            {...{
-              className:
-                watchRole === 1 ? classes.chipStyle : classes.chipOutline,
-              size: 'small',
-              id: '0',
-              label: 'Mentee',
-              variant: 'outlined',
-              name: 'role_id',
-              onClick: () =>
-                setValue('role_id', 1, {
-                  shouldDirty: true,
-                  shouldValidate: true,
-                }),
-              icon:
-                watchRole === 1 ? (
-                  <CheckCircleOutlineIcon className={classes.checkIcon} />
-                ) : null,
-            }}
-          />
-          <Chip
-            {...{
-              className:
-                watchRole === 0 ? classes.chipStyle : classes.chipOutline,
-              size: 'small',
-              id: '1',
-              label: 'Mentor',
-              name: 'role_id',
-              variant: 'outlined',
-              onClick: () =>
-                setValue('role_id', 0, {
-                  shouldDirty: true,
-                  shouldValidate: true,
-                }),
-              icon:
-                watchRole === 0 ? (
-                  <CheckCircleOutlineIcon className={classes.checkIcon} />
-                ) : null,
-            }}
-          />
-        </div>
-        <div className={classes.chipAlert} aria-label="select mentee or mentor">
-          {/* <Alert
-            severity="error"
-            role="alert"
-            aria-label="error select mentee or mentor"
-          >
-            {errors.role_id?.message}
-          </Alert> */}
-          {errors.role_id?.message}
-        </div>
-        {/*{!isEmpty(errors.watchRole) && errors.role_id?.message}*/}
-        {/* {!isEmpty(errors.watchRole) && (
-          // need to make this look better
-          <div style={{ color: 'red' }}>Error: {errors.role_id?.message}</div>
-        )} */}
-        <br />
-      </div>
-    </>
-  );
-};
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
   const {
@@ -167,7 +89,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     setValue,
     setError,
     watch,
-    getValues,
   } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
@@ -192,8 +113,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
         category: 'onSubmit',
         action: 'Created an Account',
       };
-      // eslint-disable-next-line
-      console.log('form values######', getValues());
       inProd && event(options);
       setOpenModal(true);
     } catch ({ data: { message } }) {
@@ -332,7 +251,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         },
                         label: 'Password',
                         variant: 'outlined',
-                        className: classes.textFieldSpacing, // 3.31.31 Sherouk updated className to match other fields. Was previously 'style-password', which isn't in stylesheet
+                        className: classes.textFieldSpacing,
                         name: 'password',
                         type: showPassword.password ? 'text' : 'password',
                         inputRef: register,
@@ -453,19 +372,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           <Grid item xs={12} style={{ marginTop: '1.5625em' }}>
             <Typography
               variant="h2"
-              className={
-                classes.formMobileTitle
-              } /* 3.31.21 - Sherouk created mobile class for form title to adjust marginLeft */
+              className={classes.formMobileTitle}
               nowrap="true"
             >
               {FORM_TITLE}
             </Typography>
-            <Typography
-              variant="body2"
-              className={
-                classes.formMobileSubtitle
-              } /* 3.31.21 - Sherouk created mobile class for form subtitle to adjust marginLeft */
-            >
+            <Typography variant="body2" className={classes.formMobileSubtitle}>
               {FORM_SUBTITLE} <Link to="/login">Login</Link>
             </Typography>
           </Grid>
@@ -475,7 +387,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
             style={{ paddingLeft: '1.5625em', paddingRight: '1.5625em' }}
           >
             <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
-              {/* Mentor and Mentee selection */}
               <ChipComponent
                 {...{ register, unregister, setValue, errors, watch }}
               />

@@ -53,11 +53,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     lineHeight: '38px',
     letterSpacing: '0em',
-    marginLeft: '35px', // 3.31.21 - added mobile style to adjust marginLeft
+    marginLeft: '35px',
     marginBottom: '15px',
   },
   formSubtitle: {
-    // textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
     fontSize: '16px',
     fontStyle: 'normal',
@@ -75,11 +74,11 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     letterSpacing: '0px',
     paddingBottom: '15px',
-    marginLeft: '35px', // 3.31.21 - added mobile style to adjust marginLeft
+    marginLeft: '35px',
   },
   inputSpacing: {
     marginTop: '8px',
-    marginLeft: '10px', // 3.30.21 - changed from 20px to left align item
+    marginLeft: '10px',
   },
   textFieldSpacing: {
     width: '16.875em',
@@ -163,9 +162,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#f44336',
     fontFamily: 'Roboto',
     fontSize: '12px',
-    //width: '17em',
-    //padding: '10px 0 0 0',
-    //marginBottom: '1em',
     marginLeft: '5px',
   },
   chipDivStyle: {
@@ -203,7 +199,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: '400',
     lineHeight: '24px',
-    // marginLeft: '-10px',
   },
   termsLabel: {
     color: '#4F4F4F',

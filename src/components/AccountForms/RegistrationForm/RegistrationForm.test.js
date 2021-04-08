@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, cleanup } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import RegistrationForm from './index';
 import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -17,10 +17,6 @@ describe('<RegistrationForm />', () => {
         <RegistrationForm mockOnSubmit={mockOnSubmit} />
       </Router>
     );
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   it('should check that titles and mentor and mentee buttons render to page', async () => {
