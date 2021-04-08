@@ -39,7 +39,8 @@ const MentorCard = ({
     e.preventDefault();
     if (onTestClick) return onTestClick();
     // open modal for scheduling;
-    alert('BOOKING WILL BE SCHEDULED');
+    // eslint-disable-next-line no-console
+    console.log('BOOKING WILL BE SCHEDULED');
   };
   return (
     <Card className={root}>
@@ -51,11 +52,13 @@ const MentorCard = ({
         }
         action={
           <Button
-            aria-label="Booking"
-            className={booking}
-            variant="outlined"
-            onClick={handleClick}
-            role="button"
+            {...{
+              'aria-label': 'Booking',
+              className: booking,
+              variant: 'outlined',
+              onClick: handleClick,
+              role: 'button',
+            }}
           >
             BOOK ME
           </Button>
