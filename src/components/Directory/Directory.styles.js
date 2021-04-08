@@ -12,8 +12,9 @@ const useStyles = makeStyles(() => ({
   },
   directoryHeader: {
     color: '#495057',
+    fontSize: '25px',
     margin: '1rem 0 0 5rem',
-    fontWeight: '700',
+    fontWeight: '600',
   },
   mentorListContainer: {
     overflow: 'scroll',

@@ -61,7 +61,7 @@ const Index = () => {
       <Subheader {...subheaderProperties} />
       <Typography
         className={directoryHeader}
-        variant="h5"
+        variant="h2"
         data-testid="directoryHeader"
         gutterBottom
       >
