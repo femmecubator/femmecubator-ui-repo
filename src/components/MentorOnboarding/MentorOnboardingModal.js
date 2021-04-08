@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import {
+  Paper,
   Modal,
   TextField,
   Button,
@@ -8,33 +10,38 @@ import {
   Link,
   Typography,
 } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import useStyles from './MentorOnboardingModal.styles';
-import skillsHook from './CustomizedHook';
+
+// headings
+const BIO = 'Add a Bio (128 char)';
+const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
+const PHONE = 'Phone';
+const TIME_ZONE = 'Your Time Zone';
+const GOOGLE_MEET = 'Add a google meet:';
+const MIN_CHARS = 'Must be more than 1 character';
+const MAX_CHARS = 'Must be no more than 128 characters';
+const ONLY_LETTERS = 'Must only contain letters';
+const ONLY_LETTERS_WS = 'Must only contain letters and spaces';
+const MIN_8CHARS = 'Must be more than 8 characters';
+const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
 
 const MentorOnboardingModal = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
-
   const styles = useStyles({
     isMobile: isMobile,
   });
 
-  // for select
-  const [age, setAge] = React.useState('');
-
-  const handleAge = (event) => {
-    setAge(event.target.value);
-  };
-
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -413,8 +420,60 @@ const MentorOnboardingModal = () => {
       name: 'Pacific/Kiritimati',
     },
   ];
+  const topSkills = [
+    { title: 'Algorithms' },
+    { title: 'Analytical Skills' },
+    { title: 'Big Data' },
+    { title: 'Calculating' },
+    { title: 'Compiling Statistics' },
+    { title: 'Data Analytics' },
+    { title: 'Data Mining' },
+    { title: 'Database Design' },
+    { title: 'Database Management' },
+    { title: 'Documentation' },
+    { title: 'Modeling' },
+    { title: 'Modification' },
+    { title: 'Needs Analysis' },
+    { title: 'Quantitative Research' },
+    { title: 'Quantitative Reports' },
+    { title: 'Statistical Analysis' },
+    { title: 'Applications' },
+    { title: 'Configuration' },
+    { title: 'Debugging' },
+    { title: 'Development' },
+    { title: 'Design' },
+    { title: 'Hardware' },
+    { title: 'Information Technology' },
+    { title: 'Network Architecture' },
+    { title: 'Networking' },
+    { title: 'Operating Systems' },
+    { title: 'Security' },
+    { title: 'Servers' },
+    { title: 'Software' },
+    { title: 'Storage' },
+    { title: 'Technical Support' },
+    { title: 'Testing' },
+    { title: 'Tools' },
+    { title: 'Systems Analysis' },
+    { title: 'Troubleshooting' },
+    { title: 'Usability' },
+    { title: 'Engineering' },
+    { title: 'Performance Review' },
+    { title: 'Programming' },
+    { title: 'Project Planning' },
+    { title: 'Quality Control' },
+    { title: 'Task Management' },
+    { title: 'Blogging' },
+    { title: 'Digital Media' },
+    { title: 'Social Media Platforms' },
+    { title: 'Web Analytics' },
+    { title: 'Research' },
+    { title: 'Technical Documentation' },
+    { title: 'Facebook' },
+    { title: 'Facebook' },
+  ];
 
-  //form
+  // for form
   const [form, setForm] = useState({
     bio: '',
     skills: '',
@@ -422,12 +481,10 @@ const MentorOnboardingModal = () => {
     timezone: '',
     googlemeet: '',
   });
-
-  const submit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     // props.handleSubmit(form)
   };
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -435,54 +492,112 @@ const MentorOnboardingModal = () => {
   // for Link
   const preventDefault = (event) => event.preventDefault();
 
+  // for validation
+  const OnboardingSchema = yup.object().shape({
+    bio: yup
+      .string()
+      .required('Bio is required')
+      .min(2, MIN_CHARS)
+      .max(128, MAX_CHARS),
+    skills: yup.string().required('One skill is required'),
+    phone: yup.string().required('Phone is required'),
+    // phone field should be auto formatted (controlled field)
+    timezone: yup.string().required('Timezone is required'),
+    googlemeet: yup.string().required('Google meet is required'),
+    // google meet link field should start with (google.meet.com/)
+  });
+  const { register, handleSubmit } = useForm({
+    revalidateMode: 'onChange',
+    resolver: yupResolver(OnboardingSchema),
+  });
+
+  // STUFF I STILL NEED
+  // TESTS
+  // Should show any errors if input is invalid
+  // disable submit button if fields are not valid
+  // must be WCAG compliant
+  // must be mobile responsive
+  // cross browser compatible excluding IE
   const body = (
+    // <Paper styles={{ root: styles.paperContainer }}>
     <form
       className={styles.root}
       noValidate
       autoComplete="off"
-      onSubmit={submit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className={styles.modal}>
         <div align="center">
           <h2 className={styles.h2}>Almost there!</h2>
-          <h4 className={styles.container}>
+          <h5 className={styles.subtitle}>
             We'll need to confirm a few things about you.
-          </h4>
+          </h5>
         </div>
-        <h4 className={styles.container}>Add a Bio (128 char)</h4>
+        <Typography variant="h4" className={styles.container}>
+          {BIO}
+        </Typography>
         <TextField
-          id="outlined-multiline-flexible"
-          multiline
-          rowsMax={3}
-          variant="outlined"
-          className={styles.textField}
-          placeholder="Add bio here."
-          name="bio"
-          type="text"
-          value={form.bio}
-          onChange={handleChange}
+          {...{
+            id: 'outlined-multiline-flexible',
+            multiline: true,
+            rowsMax: 4,
+            variant: 'outlined',
+            className: styles.textField,
+            placeholder: 'Add bio here.',
+            name: 'bio',
+            type: 'text',
+            value: form.bio,
+            onChange: { handleChange },
+            inputRef: register,
+          }}
         />
-        {skillsHook()}
-        <h4 className={styles.container}>Phone</h4>
+        <Typography variant="h4" className={styles.container}>
+          {SKILLS}
+        </Typography>
+        <Autocomplete
+          multiple
+          id="tags-outlined"
+          options={topSkills}
+          getOptionLabel={(option) => option.title}
+          defaultValue={[topSkills[0]]}
+          filterSelectedOptions
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="outlined"
+              className={styles.textField}
+              placeholder="Select Skills"
+            />
+          )}
+        />
+        <Typography variant="h4" className={styles.container}>
+          {PHONE}
+        </Typography>
         <TextField
-          id="outlined-basic"
-          placeholder="718-777-4545"
-          variant="outlined"
-          className={styles.textField}
-          name="phone"
-          type="text"
-          value={form.phone}
-          onChange={handleChange}
+          {...{
+            id: 'outlined-basic',
+            placeholder: '718-777-4545',
+            variant: 'outlined',
+            className: styles.textField,
+            name: 'phone',
+            type: 'text',
+            value: form.phone,
+            onChange: { handleChange },
+            inputRef: register,
+          }}
         />
-        <h4 className={styles.container}>Your Time Zone</h4>
-        <FormControl variant="outlined" className={styles.formControl}>
+        <Typography variant="h4" className={styles.container}>
+          {TIME_ZONE}
+        </Typography>
+        <FormControl variant="outlined" className={styles.textField}>
           <InputLabel id="demo-simple-select-outlined-label">
             GMT + 5, New York
           </InputLabel>
           <Select
+            placeholder="GMT + 5, New York"
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            className={styles.textField}
+            // className={styles.textField}
             name="timezone"
             type="text"
             value={form.timezone}
@@ -498,16 +613,23 @@ const MentorOnboardingModal = () => {
             ))}
           </Select>
         </FormControl>
-
-        <h4 className={styles.container}>Add a google meet:</h4>
+        <Typography variant="h4" className={styles.container}>
+          {GOOGLE_MEET}
+        </Typography>
         <Typography>
-          <Link href="meet.google.com/oer-yjhx-sia" onClick={preventDefault}>
+          <Link
+            href="meet.google.com/oer-yjhx-sia"
+            onClick={preventDefault}
+            className={styles.textField}
+            name="googlemeet"
+          >
             meet.google.com/oer-yjhx-sia
           </Link>
         </Typography>
         <Button className={styles.buttonModal}>I'M GOOD TO GO!</Button>
       </div>
     </form>
+    // </Paper>
   );
 
   return (
