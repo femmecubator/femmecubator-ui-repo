@@ -17,7 +17,7 @@ const AboutContainer = () => {
           <AboutContentContainer />
         </Grid>
       </Grid>
-      <Footer />z
+      <Footer />
     </>
   );
 };
