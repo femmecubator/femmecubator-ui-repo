@@ -3,6 +3,7 @@ import AboutBanner from './AboutBanner';
 import AboutContentContainer from './AboutContentContainer';
 import AboutSideBar from './AboutSideBar';
 import { Grid } from '@material-ui/core';
+import Footer from 'components/Footer/Footer';
 
 const AboutContainer = () => {
   return (
@@ -16,6 +17,7 @@ const AboutContainer = () => {
           <AboutContentContainer />
         </Grid>
       </Grid>
+      <Footer />z
     </>
   );
 };
