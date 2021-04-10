@@ -5,21 +5,23 @@ const useStyles = makeStyles(() => ({
     height: 233,
     margin: 0,
     position: 'relative',
+    '&::before': {
+      content: `''`,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      zIndex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    },
     '& img': {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
       objectPosition: '0 45%',
+      position: 'relative',
     },
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   title: {
     position: 'absolute',
@@ -31,6 +33,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: '28px',
     textTransform: 'uppercase',
+    zIndex: 2,
   },
 }));
 

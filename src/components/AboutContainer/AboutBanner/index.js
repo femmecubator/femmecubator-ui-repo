@@ -5,13 +5,12 @@ import { Typography } from '@material-ui/core';
 import { AboutContext } from '../AboutContext';
 
 const AboutBanner = () => {
-  const { container, overlay, title } = useStyles();
+  const { container, title } = useStyles();
   const [selected] = useContext(AboutContext);
 
   return (
     <figure className={container}>
       <img src={TwoWomenImage} alt="Two women of color working" />
-      <div className={overlay} aria-hidden="true"></div>
       <Typography variant="h2" className={title}>
         {selected}
       </Typography>
