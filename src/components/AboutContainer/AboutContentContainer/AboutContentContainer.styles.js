@@ -22,6 +22,25 @@ const useStyles = makeStyles(() => ({
       marginRight: 0,
     },
   },
+  blue: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: 700,
+    fontSize: 18,
+    color: '#026FE4',
+  },
+  photosContainer: {
+    margin: '10px 0 40px',
+  },
+  photoContainer: {
+    width: 300,
+    height: 300,
+    '& img': {
+      objectFit: 'cover',
+      width: '100%',
+      height: '100%',
+      borderRadius: 10,
+    },
+  },
 }));
 
 export default useStyles;

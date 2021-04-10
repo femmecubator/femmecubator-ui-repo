@@ -7,7 +7,6 @@ const useStyles = makeStyles(() => ({
     padding: '55px 30px 0 55px',
   },
   menuOption: {
-    listStyleType: 'none',
     cursor: 'pointer',
     textTransform: 'uppercase',
     color: '#828282',

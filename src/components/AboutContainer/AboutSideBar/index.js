@@ -17,16 +17,13 @@ const AboutSideBar = () => {
       if (label === 'Get Involved') history.push('/volunteer');
       setSelected(label);
     };
+    const isSelected = selected === label;
 
     return (
       <Link key={label} {...{ underline: 'none', onClick: handleClick }}>
-        <li
-          className={`${menuOption} ${
-            selected === label && selectedMenuOption
-          }`}
-        >
-          {label} {selected === label && <ChevronRightIcon className={arrow} />}
-        </li>
+        <div className={`${menuOption} ${isSelected && selectedMenuOption}`}>
+          {label} {isSelected && <ChevronRightIcon className={arrow} />}
+        </div>
       </Link>
     );
   });

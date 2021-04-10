@@ -11,7 +11,7 @@ const AboutBanner = () => {
   return (
     <figure className={container}>
       <img src={TwoWomenImage} alt="Two women of color working" />
-      <div className={overlay} ariaHidden="true"></div>
+      <div className={overlay} aria-hidden="true"></div>
       <Typography variant="h2" className={title}>
         {selected}
       </Typography>
