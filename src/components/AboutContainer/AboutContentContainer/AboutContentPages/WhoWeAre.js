@@ -21,18 +21,22 @@ const WhoWeAre = () => {
   const { photoContainer } = useStyles();
 
   const getImages = () => {
-    const images = [];
+    const formattedImages = [];
+    const catPngs = [
+      'https://i.ibb.co/LtxhtWs/Screen-Shot-2021-04-10-at-3-47-10-PM.png',
+      'https://i.ibb.co/fMdtQgb/Screen-Shot-2021-04-10-at-4-06-56-PM.png',
+      'https://i.ibb.co/yV4JYWz/Screen-Shot-2021-04-10-at-4-07-04-PM.png',
+    ];
+
     for (let i = 0; i < 6; i++) {
-      images.push(
+      let catIdx = i % catPngs.length;
+      formattedImages.push(
         <Grid key={i} item className={photoContainer}>
-          <img
-            src="https://i.ibb.co/LtxhtWs/Screen-Shot-2021-04-10-at-3-47-10-PM.png"
-            alt="Cat"
-          />
+          <img src={catPngs[catIdx]} alt="Cat" />
         </Grid>
       );
     }
-    return images;
+    return formattedImages;
   };
 
   return (
