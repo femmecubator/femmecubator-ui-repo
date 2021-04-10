@@ -28,7 +28,7 @@ const AboutSideBar = () => {
     );
   });
 
-  return <nav className={container}>{options}</nav>;
+  return <aside className={container}>{options}</aside>;
 };
 
 export default AboutSideBar;
