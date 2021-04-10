@@ -1,13 +1,14 @@
-import { React, useState } from 'react';
+import { React, useContext } from 'react';
 import useStyles from './AboutSideBar.styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Link } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { AboutContext } from '../AboutContext';
 
 const AboutSideBar = () => {
   const { container, menuOption, selectedMenuOption, arrow } = useStyles();
-  const [selected, setSelected] = useState('What We Do');
   const history = useHistory();
+  const [selected, setSelected] = useContext(AboutContext);
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
 
