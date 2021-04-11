@@ -5,8 +5,6 @@ const color = {
   primaryAccent: '#026FE4',
   gray: '#4F4F4F',
   gray6: '#F2F2F2',
-  gray3: '#949494',
-  gray2: '4F4F4F',
   primaryError: '#EB5757',
   secondaryError: '#FFEAEA',
   primaryWarning: '#F2994A',
@@ -16,8 +14,11 @@ const color = {
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
       width: '25ch',
+      border: 'none',
+    },
+    '& .MuiSelect-outlined': {
+      border: 'none',
     },
   },
   skills: {
@@ -26,23 +27,6 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
   },
-  // paperContainer: ({ isMobile }) => ({
-  //   // margin: 'auto',
-  //   //   padding: isMobile ? '2rem 1.5625em' : '2rem',
-  //   //   width: isMobile ? 'auto' : 'fit-content',
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   padding: '60px',
-  //   //   fontFamily: 'Open Sans, sans-serif',
-  //   //   boxShadow: isMobile && 'none',
-  // }),
-  // formControl: {
-  //   margin: theme.spacing(1),
-  //   minWidth: 120,
-  // },
-  // selectEmpty: {
-  //   marginTop: theme.spacing(2),
-  // },
   modal: {
     position: 'fixed',
     borderRadius: '4px',
@@ -55,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     transform: 'translate(-50%, -30%)',
   },
-  container: {
-    color: color.gray2,
+  h4Heading: {
+    color: color.gray,
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: 'bold',
+    fontWeight: '700',
     fontSize: '16px',
     lineHeight: '50px',
     boxSizing: 'border-box',
@@ -68,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     display: 'flex',
     border: '1px solid',
-    borderColor: color.gray3,
+    borderColor: color.gray,
     backgroundColor: color.gray6,
     minWidth: '100%',
     boxSizing: 'border-box',
@@ -77,13 +61,12 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonModal: {
     width: 'fit-content',
-    height: '32px',
+    height: '44px',
     backgroundColor: color.primaryAccent,
     color: color.white,
     position: 'absolute',
     top: '680px',
     left: '250px',
-    padding: '3.5px 21px',
     fontSize: '18px',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: '600',
@@ -91,15 +74,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  subtitle: {
-    color: color.gray3,
+  subheading: {
+    color: color.gray,
     marginTop: '-25px',
+    fontSize: '16px',
+    fontWeight: '400',
   },
-  h2: {
+  heading: {
     color: color.primaryAccent,
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: 'bold',
+    fontWeight: '800',
     fontSize: '28px',
     lineHeight: '38px',
   },

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
-  Paper,
   Modal,
   TextField,
   Button,
@@ -13,7 +12,6 @@ import {
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -27,12 +25,19 @@ const TIME_ZONE = 'Your Time Zone';
 const GOOGLE_MEET = 'Add a google meet:';
 const MIN_CHARS = 'Must be more than 1 character';
 const MAX_CHARS = 'Must be no more than 128 characters';
+const PHONE_VAL = 'Phone number is not valid';
 
 const MentorOnboardingModal = () => {
-  const isMobile = useMediaQuery('(max-width:1023px)');
-  const styles = useStyles({
-    isMobile: isMobile,
-  });
+  // const isMobile = useMediaQuery('(max-width:1023px)');
+  const {
+    root,
+    modal,
+    h4Heading,
+    textField,
+    buttonModal,
+    subheading,
+    heading,
+  } = useStyles();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -496,7 +501,14 @@ const MentorOnboardingModal = () => {
       .min(2, MIN_CHARS)
       .max(128, MAX_CHARS),
     skills: yup.string().required('One skill is required'),
-    phone: yup.string().required('Phone is required'),
+    phone: yup
+      .string()
+      .required('Phone number is required')
+      .min(8)
+      .matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        PHONE_VAL
+      ),
     // phone field should be auto formatted (controlled field)
     timezone: yup.string().required('Timezone is required'),
     googlemeet: yup.string().required('Google meet is required'),
@@ -512,34 +524,34 @@ const MentorOnboardingModal = () => {
   // CSS
   // Should show any errors if input is invalid
   // disable submit button if fields are not valid
-  // must be WCAG compliant
+  // must be WCAG compliant - andi guy site
   // must be mobile responsive
   // cross browser compatible excluding IE
   const body = (
-    // <Paper styles={{ root: styles.paperContainer }}>
     <form
-      className={styles.root}
+      className={root}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className={styles.modal}>
+      <div className={modal}>
         <div align="center">
-          <h2 className={styles.h2}>Almost there!</h2>
-          <h5 className={styles.subtitle}>
+          <h2 className={heading}>Almost there!</h2>
+          <h5 className={subheading}>
             We'll need to confirm a few things about you.
           </h5>
         </div>
-        <Typography variant="h4" className={styles.container}>
+        <Typography variant="h4" className={h4Heading}>
           {BIO}
         </Typography>
         <TextField
           {...{
             id: 'outlined-multiline-flexible',
             multiline: true,
-            rowsMax: 4,
+            rows: 3,
+            rowsMax: 3,
             variant: 'outlined',
-            className: styles.textField,
+            className: textField,
             placeholder: 'Add bio here.',
             name: 'bio',
             type: 'text',
@@ -548,7 +560,7 @@ const MentorOnboardingModal = () => {
             inputRef: register,
           }}
         />
-        <Typography variant="h4" className={styles.container}>
+        <Typography variant="h4" className={h4Heading}>
           {SKILLS}
         </Typography>
         <Autocomplete
@@ -562,12 +574,12 @@ const MentorOnboardingModal = () => {
             <TextField
               {...params}
               variant="outlined"
-              className={styles.textField}
+              className={textField}
               placeholder="Select Skills"
             />
           )}
         />
-        <Typography variant="h4" className={styles.container}>
+        <Typography variant="h4" className={h4Heading}>
           {PHONE}
         </Typography>
         <TextField
@@ -575,7 +587,7 @@ const MentorOnboardingModal = () => {
             id: 'outlined-basic',
             placeholder: '718-777-4545',
             variant: 'outlined',
-            className: styles.textField,
+            className: textField,
             name: 'phone',
             type: 'text',
             value: form.phone,
@@ -583,25 +595,22 @@ const MentorOnboardingModal = () => {
             inputRef: register,
           }}
         />
-        <Typography variant="h4" className={styles.container}>
+        <Typography variant="h4" className={h4Heading}>
           {TIME_ZONE}
         </Typography>
-        <FormControl variant="outlined" className={styles.textField}>
-          <InputLabel id="demo-simple-select-outlined-label">
-            GMT + 5, New York
-          </InputLabel>
+        <FormControl variant="outlined">
           <Select
-            placeholder="GMT + 5, New York"
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            // className={styles.textField}
             name="timezone"
             type="text"
+            className={textField}
+            displayEmpty
             value={form.timezone}
             onChange={handleChange}
           >
-            <MenuItem value="">
-              <em>None</em>
+            <MenuItem value="" disabled>
+              Select a time zone
             </MenuItem>
             {timeZoneData.map(({ offset, name }) => (
               <MenuItem key={offset} value={offset}>
@@ -610,27 +619,29 @@ const MentorOnboardingModal = () => {
             ))}
           </Select>
         </FormControl>
-        <Typography variant="h4" className={styles.container}>
+        <Typography variant="h4" className={h4Heading}>
           {GOOGLE_MEET}
         </Typography>
-        <Typography>
-          <Link
-            href="meet.google.com/oer-yjhx-sia"
-            onClick={preventDefault}
-            className={styles.textField}
-            name="googlemeet"
-          >
-            meet.google.com/oer-yjhx-sia
-          </Link>
-        </Typography>
-        <Button className={styles.buttonModal}>I'M GOOD TO GO!</Button>
+        <TextField
+          {...{
+            id: 'outlined-basic',
+            placeholder: 'Add google meet link',
+            variant: 'outlined',
+            className: textField,
+            name: 'phone',
+            type: 'text',
+            value: form.phone,
+            onChange: { handleChange },
+            inputRef: register,
+          }}
+        />
+        <Button className={buttonModal}>I'M GOOD TO GO!</Button>
       </div>
     </form>
-    // </Paper>
   );
 
   return (
-    <div className={styles}>
+    <div>
       <button type="button" onClick={handleOpen}>
         Open Modal
       </button>
