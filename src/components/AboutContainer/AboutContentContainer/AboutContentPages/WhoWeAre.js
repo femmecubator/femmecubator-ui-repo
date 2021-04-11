@@ -7,11 +7,9 @@ const PhotoSection = ({ text, images }) => {
   const { title, photosContainer } = useStyles();
   return (
     <>
-      <Typography variant="h2" className={title}>
-        {text}
-      </Typography>
+      <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
       <hr />
-      <Grid container spacing={3} className={photosContainer}>
+      <Grid container {...{ spacing: 3, className: photosContainer }}>
         {images}
       </Grid>
     </>
