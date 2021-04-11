@@ -18,7 +18,7 @@ const PhotoSection = ({ text, images }) => {
 
 PhotoSection.propTypes = {
   text: PropTypes.string,
-  images: PropTypes.array,
+  images: PropTypes.arrayOf(PropTypes.element),
 };
 
 const WhoWeAre = () => {
