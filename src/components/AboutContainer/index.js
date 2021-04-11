@@ -10,7 +10,7 @@ const AboutContainer = () => {
 
   return (
     <>
-      <AboutBanner selected={selected} />
+      <AboutBanner text={selected} />
       <Grid
         container
         {...{ direction: 'row', justify: 'center', alignItems: 'flex-start' }}
