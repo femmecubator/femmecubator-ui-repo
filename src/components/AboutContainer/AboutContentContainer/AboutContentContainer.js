@@ -6,27 +6,27 @@ import { PropTypes } from 'prop-types';
 const AboutContentContainer = ({ selected }) => {
   const { container, content } = useStyles();
 
-  const getPage = () => {
-    let page;
+  const page = (() => {
+    let result;
     switch (selected) {
       case 'What We Do':
-        page = <WhatWeDo />;
+        result = <WhatWeDo />;
         break;
       case 'Who We Are':
-        page = <WhoWeAre />;
+        result = <WhoWeAre />;
         break;
       case 'Programs':
-        page = <Programs />;
+        result = <Programs />;
         break;
       default:
         <WhatWeDo />;
     }
-    return page;
-  };
+    return result;
+  })();
 
   return (
     <section className={container}>
-      <article className={content}>{getPage()}</article>
+      <article className={content}>{page}</article>
     </section>
   );
 };
