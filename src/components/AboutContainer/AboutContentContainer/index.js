@@ -33,8 +33,8 @@ const AboutContentContainer = ({ selected }) => {
   );
 };
 
-export default AboutContentContainer;
-
 AboutContentContainer.propTypes = {
   selected: PropTypes.string,
 };
+
+export default AboutContentContainer;

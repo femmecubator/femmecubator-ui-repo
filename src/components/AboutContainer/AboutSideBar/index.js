@@ -30,9 +30,9 @@ const AboutSideBar = ({ selected, setSelected }) => {
   return <nav className={container}>{options}</nav>;
 };
 
-export default AboutSideBar;
-
 AboutSideBar.propTypes = {
   selected: PropTypes.string,
   setSelected: PropTypes.func,
 };
+
+export default AboutSideBar;

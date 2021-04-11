@@ -15,8 +15,8 @@ const AboutBanner = ({ text }) => {
   );
 };
 
-export default AboutBanner;
-
 AboutBanner.propTypes = {
   text: PropTypes.string,
 };
+
+export default AboutBanner;
