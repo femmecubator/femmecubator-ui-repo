@@ -1,8 +1,9 @@
 import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
+import { PropTypes } from 'prop-types';
 
-const PhotoSection = ({ text, getImagesFn }) => {
+const PhotoSection = ({ text, images }) => {
   const { title, photosContainer } = useStyles();
   return (
     <>
@@ -11,17 +12,22 @@ const PhotoSection = ({ text, getImagesFn }) => {
       </Typography>
       <hr />
       <Grid container spacing={3} className={photosContainer}>
-        {getImagesFn()}
+        {images}
       </Grid>
     </>
   );
 };
 
+PhotoSection.propTypes = {
+  text: PropTypes.string,
+  images: PropTypes.array,
+};
+
 const WhoWeAre = () => {
   const { photoContainer } = useStyles();
 
-  const getImages = () => {
-    const formattedImages = [];
+  const images = (() => {
+    const result = [];
     const catPngs = [
       'https://i.ibb.co/LtxhtWs/Screen-Shot-2021-04-10-at-3-47-10-PM.png',
       'https://i.ibb.co/fMdtQgb/Screen-Shot-2021-04-10-at-4-06-56-PM.png',
@@ -30,19 +36,19 @@ const WhoWeAre = () => {
 
     for (let i = 0; i < 6; i++) {
       let catIdx = i % catPngs.length;
-      formattedImages.push(
+      result.push(
         <Grid key={i} item className={photoContainer}>
           <img src={catPngs[catIdx]} alt="Cat" />
         </Grid>
       );
     }
-    return formattedImages;
-  };
+    return result;
+  })();
 
   return (
     <>
-      <PhotoSection text="AppDev Volunteer Team" getImagesFn={getImages} />
-      <PhotoSection text="Operations Team" getImagesFn={getImages} />
+      <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
+      <PhotoSection {...{ text: 'Operations Team', images }} />
     </>
   );
 };

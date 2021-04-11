@@ -1,17 +1,16 @@
-import { React, useContext } from 'react';
+import React from 'react';
 import TwoWomenImage from './two-women.jpg';
 import useStyles from './AboutBanner.styles';
 import { Typography } from '@material-ui/core';
-import { AboutContext } from '../AboutContext';
+import PropTypes from 'prop-types';
 
-const AboutBanner = () => {
+const AboutBanner = ({ selected }) => {
   const { container, title } = useStyles();
-  const [selected] = useContext(AboutContext);
 
   return (
     <figure className={container}>
-      <img src={TwoWomenImage} alt="Two women of color working" />
-      <Typography variant="h2" className={title}>
+      <img {...{ src: TwoWomenImage, alt: 'Two women of color working' }} />
+      <Typography {...{ variant: 'h2', className: title }}>
         {selected}
       </Typography>
     </figure>
@@ -19,3 +18,7 @@ const AboutBanner = () => {
 };
 
 export default AboutBanner;
+
+AboutBanner.propTypes = {
+  selected: PropTypes.string,
+};

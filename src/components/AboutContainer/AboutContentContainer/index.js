@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import useStyles from './AboutContentContainer.styles';
 import WhatWeDo from './AboutContentPages/WhatWeDo';
-import { AboutContext } from '../AboutContext';
 import WhoWeAre from './AboutContentPages/WhoWeAre';
 import Programs from './AboutContentPages/Programs';
+import { PropTypes } from 'prop-types';
 
-const AboutContentContainer = () => {
+const AboutContentContainer = ({ selected }) => {
   const { container, content } = useStyles();
-  const [selected] = useContext(AboutContext);
 
   const getPage = () => {
     let page;
@@ -35,3 +34,7 @@ const AboutContentContainer = () => {
 };
 
 export default AboutContentContainer;
+
+AboutContentContainer.propTypes = {
+  selected: PropTypes.string,
+};

@@ -1,25 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AboutBanner from './AboutBanner';
 import AboutContentContainer from './AboutContentContainer';
 import AboutSideBar from './AboutSideBar';
 import { Grid } from '@material-ui/core';
 import Footer from 'components/Footer/Footer';
-import { AboutMenuOptionProvider } from './AboutContext';
 
 const AboutContainer = () => {
+  const [selected, setSelected] = useState('What We Do');
+
   return (
-    <AboutMenuOptionProvider>
-      <AboutBanner />
-      <Grid container direction="row" justify="center" alignItems="flex-start">
+    <>
+      <AboutBanner selected={selected} />
+      <Grid
+        container
+        {...{ direction: 'row', justify: 'center', alignItems: 'flex-start' }}
+      >
         <Grid item xs={2}>
-          <AboutSideBar />
+          <AboutSideBar {...{ selected, setSelected }} />
         </Grid>
         <Grid item xs={10}>
-          <AboutContentContainer />
+          <AboutContentContainer selected={selected} />
         </Grid>
       </Grid>
       <Footer />
-    </AboutMenuOptionProvider>
+    </>
   );
 };
 
