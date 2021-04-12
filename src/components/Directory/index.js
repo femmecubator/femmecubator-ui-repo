@@ -27,8 +27,9 @@ const Index = () => {
   });
   const [selectedTab, setSelectedTab] = useState(0);
   const [mentorCards, setMentorCards] = useState([]);
+  const [query, setQuery] = useState('');
+
   const handleChange = (e, newVal) => setSelectedTab(newVal);
-  // eslint-disable-next-line no-console
 
   useEffect(() => {
     request.get('/api/directory').then((mentors) => {
@@ -37,19 +38,21 @@ const Index = () => {
   }, []);
 
   const renderMentorCards = () =>
-    mentorCards.map((mentorObject) => (
+    searchMentorCards().map((mentorObject) => (
       <MentorCard {...mentorObject} key={mentorObject._id} />
     ));
-  const searchMentorCards = (queryString) => {
-    // with this search through the mentor cards to re render what is needed
-    const filteredMentorList = mentorCards.filter((mentorObj) => {
-      const objs = Object.values(mentorObj).join(' ').toLowerCase();
-      return objs.includes(queryString.toLowerCase());
-    });
-    console.log('filtered Cards', filteredMentorList);
-    console.log('all mentor cards', mentorCards);
-    // setMentorCards([mentorCards[1]]);
+
+  const searchMentorCards = () => {
+    if (query) {
+      const filteredMentorList = mentorCards.filter((mentorObj) => {
+        const objs = Object.values(mentorObj).join(' ').toLowerCase();
+        return objs.includes(query.toLowerCase());
+      });
+      return filteredMentorList;
+    }
+    return mentorCards;
   };
+
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
@@ -61,7 +64,7 @@ const Index = () => {
       >
         Office Hours
       </Typography>
-      <MentorSearchBar searchQuery={searchMentorCards} />
+      <MentorSearchBar setQuery={setQuery} />
       <div className={root}>
         <Tabs
           value={selectedTab}

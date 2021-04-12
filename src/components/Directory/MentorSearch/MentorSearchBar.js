@@ -5,12 +5,12 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './MentorSearchBar.styles';
 
-const MentorSearchBar = ({ searchQuery }) => {
+const MentorSearchBar = ({ setQuery }) => {
   const { searchBar, searchBtn, searchInput } = useStyles();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    searchQuery(data.search);
+    setQuery(data.search);
   };
 
   return (
