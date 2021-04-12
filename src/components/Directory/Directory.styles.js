@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
-    margin: '0 2rem',
+    margin: ({ isMobile }) => (isMobile ? '0' : '0 2rem'),
   },
   directoryTab: {
     fontWeight: '600',
@@ -18,9 +18,7 @@ const useStyles = makeStyles(() => ({
   },
   mentorListContainer: {
     overflow: 'scroll',
-    maxHeight: '430px',
-    // Card height changes with the css below
-    minHeight: '450px',
+    maxHeight: ({ isMobile }) => (isMobile ? '65vh' : '72vh'),
     marginTop: '3rem',
     display: 'flex',
     flexWrap: 'wrap',

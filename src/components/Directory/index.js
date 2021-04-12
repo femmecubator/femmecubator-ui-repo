@@ -56,14 +56,16 @@ const Index = () => {
   return (
     <section aria-label="Mentor Directory">
       <Subheader {...subheaderProperties} />
-      <Typography
-        className={directoryHeader}
-        variant="h2"
-        data-testid="directoryHeader"
-        gutterBottom
-      >
-        Office Hours
-      </Typography>
+      {isMobile ? null : (
+        <Typography
+          className={directoryHeader}
+          variant="h2"
+          data-testid="directoryHeader"
+          gutterBottom
+        >
+          Office Hours
+        </Typography>
+      )}
       <MentorSearchBar setQuery={setQuery} />
       <div className={root}>
         <Tabs

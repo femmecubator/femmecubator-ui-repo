@@ -10,9 +10,10 @@ const avatarColors = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: '30%',
+    width: '413px',
     variant: ({ isMobile }) => (isMobile ? 'none' : 'outlined'),
     marginBottom: '1rem',
+    maxHeight: '258px',
   },
   avatar: {
     fontSize: '14px',
