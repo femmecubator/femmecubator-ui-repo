@@ -2,7 +2,12 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: 'white',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'space-evenly',
+  },
+  mentorDirectory: {
+    // backgroundColor: 'white',
     margin: ({ isMobile }) => (isMobile ? '0' : '0 2rem'),
   },
   directoryTab: {
@@ -18,7 +23,7 @@ const useStyles = makeStyles(() => ({
   },
   mentorListContainer: {
     overflow: 'scroll',
-    maxHeight: ({ isMobile }) => (isMobile ? '65vh' : '72vh'),
+    maxHeight: ({ isMobile }) => (isMobile ? '65vh' : '70vh'),
     marginTop: '3rem',
     display: 'flex',
     flexWrap: 'wrap',
@@ -27,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
   tabs: {
     borderBottom: '1px #BDBDBD solid',
-    margin: '1.2rem 2rem 2rem 2rem',
+    margin: ({ isMobile }) => (isMobile ? '1rem' : '1.2rem 2rem 2rem 2rem'),
   },
 }));
 

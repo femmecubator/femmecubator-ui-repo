@@ -18,6 +18,7 @@ const Index = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     root,
+    mentorDirectory,
     mentorListContainer,
     directoryHeader,
     directoryTab,
@@ -54,7 +55,7 @@ const Index = () => {
   };
 
   return (
-    <section aria-label="Mentor Directory">
+    <section aria-label="Mentor Directory" className={root}>
       <Subheader {...subheaderProperties} />
       {isMobile ? null : (
         <Typography
@@ -67,7 +68,7 @@ const Index = () => {
         </Typography>
       )}
       <MentorSearchBar setQuery={setQuery} />
-      <div className={root}>
+      <div className={mentorDirectory}>
         <Tabs
           value={selectedTab}
           onChange={handleChange}
