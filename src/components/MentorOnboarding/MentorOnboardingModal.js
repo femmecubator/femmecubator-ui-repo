@@ -6,7 +6,6 @@ import {
   Button,
   useMediaQuery,
   FormControl,
-  Link,
   Typography,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -490,9 +489,6 @@ const MentorOnboardingModal = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // for Link
-  const preventDefault = (e) => e.preventDefault();
-
   // for validation
   const OnboardingSchema = yup.object().shape({
     bio: yup
@@ -521,12 +517,11 @@ const MentorOnboardingModal = () => {
 
   // STUFF I STILL NEED
   // TESTS
-  // CSS
   // Should show any errors if input is invalid
   // disable submit button if fields are not valid
   // must be WCAG compliant - andi guy site
   // must be mobile responsive
-  // cross browser compatible excluding IE
+
   const body = (
     <form
       className={root}
