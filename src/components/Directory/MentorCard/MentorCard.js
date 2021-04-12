@@ -19,10 +19,6 @@ const MentorCard = ({
   initials,
   onTestClick,
 }) => {
-  // useEffect(() => {
-  //   alert('making fetch Request');
-  // });
-
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {

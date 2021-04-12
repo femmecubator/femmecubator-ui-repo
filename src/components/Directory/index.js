@@ -4,17 +4,8 @@ import Subheader from '../Subheader/Subheader';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 import MentorSearchBar from './MentorSearch/MentorSearchBar';
 import useStyles from './Directory.styles';
-// import Divider from '@material-ui/core/Divider';
-// import useMediaQuery from '@material-ui/core/useMediaQuery';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
-import {
-  Typography,
-  Tab,
-  Tabs,
-  useMediaQuery,
-  Divider,
-} from '@material-ui/core';
+
+import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
 import request from 'utils/axiosConfig';
 
 const Index = () => {
@@ -37,6 +28,7 @@ const Index = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [mentorCards, setMentorCards] = useState([]);
   const handleChange = (e, newVal) => setSelectedTab(newVal);
+  // eslint-disable-next-line no-console
 
   useEffect(() => {
     request.get('/api/directory').then((mentors) => {
@@ -54,7 +46,9 @@ const Index = () => {
       const objs = Object.values(mentorObj).join(' ').toLowerCase();
       return objs.includes(queryString.toLowerCase());
     });
-    setMentorCards(filteredMentorList);
+    console.log('filtered Cards', filteredMentorList);
+    console.log('all mentor cards', mentorCards);
+    // setMentorCards([mentorCards[1]]);
   };
   return (
     <section aria-label="Mentor Directory">

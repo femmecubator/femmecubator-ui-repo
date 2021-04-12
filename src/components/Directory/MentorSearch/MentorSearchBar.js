@@ -15,29 +15,35 @@ const MentorSearchBar = ({ searchQuery }) => {
 
   return (
     <form
-      className={searchBar}
-      label="search"
-      onSubmit={handleSubmit(onSubmit)}
+      {...{
+        className: searchBar,
+        label: 'search',
+        onSubmit: handleSubmit(onSubmit),
+      }}
     >
       <TextField
-        id="search"
-        label="Search"
-        inputRef={register}
-        variant="outlined"
-        name="search"
-        margin="dense"
-        placeholder="Name, Title, Keywords"
-        className={searchInput}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
+        {...{
+          id: 'search',
+          label: 'Search',
+          inputRef: register,
+          variant: 'outlined',
+          name: 'search',
+          margin: 'dense',
+          placeholder: 'Name, Title, Keywords',
+          className: searchInput,
+          InputProps: {
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          },
         }}
       />
 
-      <Button type="submit" variant="contained" className={searchBtn}>
+      <Button
+        {...{ type: 'submit', variant: 'contained', className: searchBtn }}
+      >
         Search
       </Button>
     </form>
