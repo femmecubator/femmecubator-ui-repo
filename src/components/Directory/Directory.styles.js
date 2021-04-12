@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'space-evenly',
   },
   mentorDirectory: {
     backgroundColor: 'white',
@@ -25,7 +22,7 @@ const useStyles = makeStyles(() => ({
   mentorListContainer: {
     overflow: 'scroll',
     maxHeight: ({ isMobile }) => (isMobile ? '65vh' : '70vh'),
-    marginTop: '3rem',
+    marginTop: ({ isMobile }) => (isMobile ? '0' : '3rem'),
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',

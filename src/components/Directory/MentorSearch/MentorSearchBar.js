@@ -45,7 +45,7 @@ const MentorSearchBar = ({ setQuery }) => {
       <Button
         {...{ type: 'submit', variant: 'contained', className: searchBtn }}
       >
-        Search
+        {isMobile ? <SearchIcon /> : 'Search'}
       </Button>
     </form>
   );
