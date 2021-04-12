@@ -7,12 +7,15 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
   const classes = useStyles();
   const watchRole = watch('role_id', '');
-  const handleClick = (event) => {
-    setValue('role_id', 1, {
-      shouldDirty: true,
-      shouldValidate: true,
+  const handleClick =
+    ('onClick',
+    (event) => {
+      const id = event.currentTarget.id;
+      setValue('role_id', id, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
     });
-  };
   useEffect(() => {
     register('role_id');
     return () => unregister('role_id');
@@ -35,7 +38,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
               name: 'role_id',
               onClick: handleClick,
               icon:
-                watchRole === 1 ? (
+                watchRole !== 1 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
                 ) : null,
             }}
@@ -49,13 +52,9 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
               label: 'Mentor',
               name: 'role_id',
               variant: 'outlined',
-              onClick: () =>
-                setValue('role_id', 0, {
-                  shouldDirty: true,
-                  shouldValidate: true,
-                }),
+              onClick: handleClick,
               icon:
-                watchRole === 0 ? (
+                watchRole !== 0 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
                 ) : null,
             }}
