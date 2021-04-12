@@ -10,13 +10,14 @@ const avatarColors = [
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
-    minWidth: '45%',
+    minWidth: '45vw',
     maxHeight: '20%',
-    position: 'absolute',
+    position: ({ isMobile }) => (isMobile ? 'relative' : 'absolute'),
     right: '0',
-    top: '12rem',
+    top: ({ isMobile }) => (isMobile ? '0' : '12rem'),
     display: 'flex',
     alignItems: 'center',
+    margin: ({ isMobile }) => (isMobile ? '.5rem' : '.7rem'),
   },
   searchInput: {
     minWidth: '73%',

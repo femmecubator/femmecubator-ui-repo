@@ -2,12 +2,13 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
+    backgroundColor: 'white',
     // display: 'flex',
     // flexDirection: 'column',
     // justifyContent: 'space-evenly',
   },
   mentorDirectory: {
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
     margin: ({ isMobile }) => (isMobile ? '0' : '0 2rem'),
   },
   directoryTab: {

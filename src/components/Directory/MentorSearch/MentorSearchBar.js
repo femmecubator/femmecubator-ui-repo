@@ -1,12 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { TextField, InputAdornment } from '@material-ui/core';
+import { TextField, InputAdornment, useMediaQuery } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './MentorSearchBar.styles';
 
 const MentorSearchBar = ({ setQuery }) => {
-  const { searchBar, searchBtn, searchInput } = useStyles();
+  const isMobile = useMediaQuery('(max-width:769px)');
+  const { searchBar, searchBtn, searchInput } = useStyles({ isMobile });
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
@@ -32,7 +33,7 @@ const MentorSearchBar = ({ setQuery }) => {
           placeholder: 'Name, Title, Keywords',
           className: searchInput,
           InputProps: {
-            startAdornment: (
+            startAdornment: isMobile ? null : (
               <InputAdornment position="start">
                 <SearchIcon />
               </InputAdornment>
