@@ -50,6 +50,4 @@ const MentorSearchBar = ({ searchQuery }) => {
   );
 };
 
-const searchSamples = ['Coding', 'UI/UX', 'Web Development', 'Web Design'];
-
 export default MentorSearchBar;
