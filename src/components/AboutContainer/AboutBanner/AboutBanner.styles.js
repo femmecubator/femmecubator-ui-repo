@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
       transform: 'translate(-50%, -50%)',
     },
     '@media (max-width: 490px)': {
-      fontSize: '20px',
+      fontSize: '24px',
     },
   },
 }));
