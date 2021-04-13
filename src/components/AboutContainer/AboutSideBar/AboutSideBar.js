@@ -4,10 +4,19 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Link } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
+import { useMediaQuery } from '@material-ui/core';
+import { MOBILE_MEDIA_QUERY } from 'utils/constants';
 
 const AboutSideBar = ({ selected, setSelected }) => {
-  const { container, menuOption, selectedMenuOption, arrow } = useStyles();
+  const {
+    container,
+    choicesContainer,
+    menuOption,
+    selectedMenuOption,
+    arrow,
+  } = useStyles();
   const history = useHistory();
+  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
 
@@ -27,7 +36,12 @@ const AboutSideBar = ({ selected, setSelected }) => {
     );
   });
 
-  return <nav className={container}>{options}</nav>;
+  return (
+    <nav className={container}>
+      <section className={choicesContainer}>{options}</section>
+      {isMobile && <hr />}
+    </nav>
+  );
 };
 
 AboutSideBar.propTypes = {

@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   container: {
     height: 233,
+    '@media (max-width: 799px)': {
+      height: 125,
+    },
     margin: 0,
     position: 'relative',
     '&::before': {
@@ -34,6 +37,13 @@ const useStyles = makeStyles(() => ({
     fontSize: '28px',
     textTransform: 'uppercase',
     zIndex: 2,
+    '@media (max-width: 799px)': {
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
+    '@media (max-width: 490px)': {
+      fontSize: '20px',
+    },
   },
 }));
 

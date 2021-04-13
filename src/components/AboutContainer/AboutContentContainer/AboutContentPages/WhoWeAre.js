@@ -1,14 +1,24 @@
 import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, useMediaQuery } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
+import { MOBILE_MEDIA_QUERY } from 'utils/constants';
 
 const PhotoSection = ({ text, images }) => {
   const { title, photosContainer } = useStyles();
+  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
+
   return (
     <>
       <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
-      <Grid container {...{ spacing: 3, className: photosContainer }}>
+      <Grid
+        container
+        {...{
+          spacing: 3,
+          className: photosContainer,
+          justify: isMobile ? 'center' : 'flex-start',
+        }}
+      >
         {images}
       </Grid>
     </>

@@ -5,7 +5,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'white',
   },
   body: {
-    display: 'flex',
+    '@media (min-width: 799px)': {
+      display: 'flex',
+    },
   },
 }));
 export default useStyles;

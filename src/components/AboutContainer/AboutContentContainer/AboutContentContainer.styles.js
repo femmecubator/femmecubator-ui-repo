@@ -4,6 +4,9 @@ const useStyles = makeStyles(() => ({
   container: {
     padding: '29px 64px 180px 36px',
     borderLeft: '1px solid #828282',
+    '@media (max-width: 799px)': {
+      paddingTop: 0,
+    },
   },
   title: {
     color: '#026FE4',
