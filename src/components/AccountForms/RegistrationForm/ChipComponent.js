@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useStyles from './RegistrationForm.styles';
+import useStyles from './ChipComponent.styles';
 import './registration.css';
 import { InputLabel, Chip } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
@@ -46,8 +46,9 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
           <Chip
             {...{
               className:
-                watchRole === 0 ? classes.chipStyle : classes.chipOutline,
+                watchRole === 1 ? classes.chipStyle : classes.chipOutline,
               size: 'small',
+              clickable: true,
               id: '1',
               label: 'Mentor',
               name: 'role_id',
