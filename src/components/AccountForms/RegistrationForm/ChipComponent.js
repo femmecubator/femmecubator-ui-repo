@@ -38,7 +38,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
               name: 'role_id',
               onClick: handleClick,
               icon:
-                watchRole !== 1 ? (
+                watchRole != 1 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
                 ) : null,
             }}
@@ -54,7 +54,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
               variant: 'outlined',
               onClick: handleClick,
               icon:
-                watchRole !== 0 ? (
+                watchRole != 0 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
                 ) : null,
             }}
