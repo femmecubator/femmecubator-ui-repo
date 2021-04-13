@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useStyles from './ChipComponent.styles';
+import useStyles from './RegistrationForm.styles';
 import './registration.css';
 import { InputLabel, Chip } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
