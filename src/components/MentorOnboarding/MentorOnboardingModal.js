@@ -48,12 +48,6 @@ const MentorOnboardingModal = () => {
     setOpen(false);
   };
 
-  // for timezone select
-  const [selected, setSelected] = useState(true);
-  function handleSelect() {
-    setSelected(false);
-  }
-
   const onSubmit = (data, e) => {
     console.log(data);
   };
@@ -94,6 +88,10 @@ const MentorOnboardingModal = () => {
   });
 
   // for select timezone
+  const [selected, setSelected] = useState(true);
+  function handleSelect() {
+    setSelected(false);
+  }
   useEffect(() => {
     register('timezone');
     return () => unregister('timezone');
