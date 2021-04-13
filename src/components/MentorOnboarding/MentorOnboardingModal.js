@@ -188,9 +188,6 @@ const MentorOnboardingModal = () => {
               handleSelect();
             }}
           >
-            {/* <MenuItem selected={true} type="hidden">
-            TESTING
-          </MenuItem> */}
             {timeZoneData.map(({ offset, name }) => (
               <MenuItem key={name} value={offset}>
                 {offset} {name}
