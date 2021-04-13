@@ -23,7 +23,8 @@ import MentorSearchBar from './MentorSearchBar';
 // check if the user input can be mimicked and sent
 // check if submit function can be called
 describe('<MentorSearhBar/>', () => {
-  // test("Testing Search..", () => {
-  //     render (<MentorSearchBar/>);
-  // })
+  test('Testing Search..', () => {
+    render(<MentorSearchBar />);
+    expect(1).toEqual(1);
+  });
 });
