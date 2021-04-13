@@ -9,7 +9,6 @@ const WhatWeDo = () => {
       <Typography variant="h2" className={title}>
         A mentorship community
       </Typography>
-      <hr />
       <section>
         <h3>Technology needs more women of color at the table.</h3>
         <p>
@@ -33,17 +32,6 @@ const WhatWeDo = () => {
           Developers and UX Designers to social good projects through
           mentorship. Volunteers and mentees accepted into the program gain
           experience building digital products in an agile-driven environment.
-        </p>
-      </section>
-      <br />
-      <section>
-        <h3>Spring, and Fall AppDev Program</h3>
-        <p>
-          In 2021, Femmecubator will open its doors to 10 women of color who are
-          aspiring in UX Designers and Web Developers. In this 3-month program,
-          they will be immersed in the product development process while
-          building social good projects and will have access to mentors in the
-          field.
         </p>
       </section>
     </>

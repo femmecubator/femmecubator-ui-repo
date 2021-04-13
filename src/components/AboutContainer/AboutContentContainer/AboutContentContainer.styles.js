@@ -3,13 +3,14 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   container: {
     padding: '29px 64px 180px 36px',
+    borderLeft: '1px solid #828282',
   },
   title: {
     color: '#026FE4',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 700,
     fontSize: 28,
-    marginBottom: 10,
+    marginBottom: 15,
   },
   content: {
     fontFamily: 'Open Sans, sans-serif',

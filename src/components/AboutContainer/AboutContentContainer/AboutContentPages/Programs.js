@@ -3,15 +3,17 @@ import { Link, Typography } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 
 const Programs = () => {
+  const cohort = 'Spring 2021';
+  const appDeadline = 'January 1st 2021';
+
   const { title, blue } = useStyles();
   return (
     <>
       <Typography variant="h2" className={title}>
         Upcoming Programs & Events
       </Typography>
-      <hr />
       <section>
-        <h3>Spring 2021 Cohort</h3>
+        <h3>{cohort} Cohort</h3>
         <h4 className={blue}>
           Are you an aspiring software engineer ready to dive into building
           applications in a team environment? Ever wonder what it takes to make
@@ -70,7 +72,7 @@ const Programs = () => {
           <Link href="mailto:volunteers@femmecubator.com">
             volunteers@femmecubator.com
           </Link>
-          . Application is open until January 1st 2021.
+          . Application is open until {appDeadline}.
         </p>
       </section>
     </>

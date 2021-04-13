@@ -2,8 +2,6 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   container: {
-    backgroundColor: '#F2F7FF',
-    height: '100vh',
     padding: '55px 30px 0 55px',
   },
   menuOption: {
@@ -18,14 +16,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     position: 'relative',
     '&:hover': {
-      color: '#026FE4',
+      color: '#400CCC',
     },
   },
   selectedMenuOption: {
-    color: '#026FE4',
+    color: '#400CCC',
   },
   arrow: {
-    color: '#026FE4',
+    color: '#400CCC',
     position: 'absolute',
     top: '50%',
     right: 0,

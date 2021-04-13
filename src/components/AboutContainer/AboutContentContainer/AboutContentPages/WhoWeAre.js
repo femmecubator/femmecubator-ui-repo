@@ -8,7 +8,6 @@ const PhotoSection = ({ text, images }) => {
   return (
     <>
       <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
-      <hr />
       <Grid container {...{ spacing: 3, className: photosContainer }}>
         {images}
       </Grid>
