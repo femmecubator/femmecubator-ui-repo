@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { mockServer } from './mock/mockServer';
+
 import Header from './components/Header/Header';
 import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 if (process.env.REACT_APP_MOCK_API_TRUE) {
+  const mockServer = require('./mock/mockServer');
   mockServer();
 }
 

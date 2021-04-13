@@ -11,6 +11,10 @@ function isAuthCookiesExists() {
   return !!cookies.get('SESSIONID');
 }
 
+function getTokenCookie() {
+  return cookies.get('TOKEN');
+}
+
 function clearSessionData() {
   const options = {
     domain: process.env.REACT_APP_DOMAIN || '.femmecubator.com',
@@ -22,4 +26,4 @@ function clearSessionData() {
   }
 }
 
-export { isAuthCookiesExists, clearSessionData };
+export { isAuthCookiesExists, getTokenCookie, clearSessionData };
