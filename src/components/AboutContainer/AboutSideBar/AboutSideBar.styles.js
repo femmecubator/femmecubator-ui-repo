@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   container: {
     padding: '55px 30px 0 55px',
+    minWidth: 150,
+    '@media (min-width: 1055px)': {
+      minWidth: 180,
+    },
   },
   menuOption: {
     cursor: 'pointer',
