@@ -17,9 +17,9 @@ const properties = {
 
 const handleTestClick = jest.fn();
 
-beforeEach(() => {
-  render(<MentorCard {...properties} onTestClick={handleTestClick} />);
-});
+beforeEach(() =>
+  render(<MentorCard {...properties} onTestClick={handleTestClick} />)
+);
 
 describe('<MentorCard>', () => {
   test('Mentor name is visible', () => {
@@ -29,7 +29,6 @@ describe('<MentorCard>', () => {
     );
   });
   test('Mentor job title is visible', () => {
-    // render(<MentorCard {...properties} />);
     const jobTitle = screen.getByTestId('jobTitleField').textContent;
     expect(jobTitle).toBe(properties.title);
   });

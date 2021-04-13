@@ -4,9 +4,8 @@ import userEvent from '@testing-library/user-event';
 import MentorSearchBar from './MentorSearchBar';
 
 const mockOnSubmit = jest.fn();
-beforeEach(() => {
-  render(<MentorSearchBar mockOnSubmit={mockOnSubmit} />);
-});
+beforeEach(() => render(<MentorSearchBar mockOnSubmit={mockOnSubmit} />));
+
 describe('<MentorSearhBar/>', () => {
   test('Search Button is Present', () => {
     const submitButton = screen.getByRole('button');
