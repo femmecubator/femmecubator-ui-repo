@@ -41,6 +41,7 @@ const MentorSearchBar = ({ setQuery, mockOnSubmit }) => {
             endAdornment: isMobile ? (
               <Button
                 {...{
+                  'aria-label': 'search',
                   type: 'submit',
                   variant: 'contained',
                   className: searchBtn,
@@ -54,7 +55,11 @@ const MentorSearchBar = ({ setQuery, mockOnSubmit }) => {
       />
       {isMobile ? null : (
         <Button
-          {...{ type: 'submit', variant: 'contained', className: searchBtn }}
+          {...{
+            type: 'submit',
+            variant: 'contained',
+            className: searchBtn,
+          }}
         >
           Search
         </Button>

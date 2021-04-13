@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import useStyles from './ MentorCard.styles';
 import Card from '@material-ui/core/Card';
@@ -34,9 +34,7 @@ const MentorCard = ({
   const handleClick = (e) => {
     e.preventDefault();
     if (onTestClick) return onTestClick();
-    // open modal for scheduling;
-    // eslint-disable-next-line no-console
-    console.log('BOOKING WILL BE SCHEDULED');
+    console.log('BOOKING FOR THIS MENTOR OPENS UP');
   };
   return (
     <Card className={root}>
