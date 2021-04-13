@@ -12,7 +12,11 @@ beforeEach(() => render(<Index />));
 // tests must ensure that Directory tab exsists
 
 describe('<Directory/>', () => {
-  test('renders Director', () => {
-    expect(1).toBeTruthy();
+  test('renders Director', async () => {
+    // await act(async () => {
+
+    // })
+    const directoryHeader = screen.getByTestId('directoryHeader');
+    expect(directoryHeader.textContent).toBe('Office Hours');
   });
 });
