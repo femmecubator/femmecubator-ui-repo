@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './MentorSearchBar.styles';
 
-const MentorSearchBar = ({ setQuery }) => {
+const MentorSearchBar = ({ setQuery, mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:769px)');
   const { searchBar, searchBtn, searchInput } = useStyles({ isMobile });
   const { register, handleSubmit } = useForm();
@@ -19,7 +19,7 @@ const MentorSearchBar = ({ setQuery }) => {
       {...{
         className: searchBar,
         label: 'search',
-        onSubmit: handleSubmit(onSubmit),
+        onSubmit: handleSubmit(mockOnSubmit || onSubmit),
       }}
     >
       <TextField
@@ -39,7 +39,6 @@ const MentorSearchBar = ({ setQuery }) => {
               </InputAdornment>
             ),
             endAdornment: isMobile ? (
-              // <InputAdornment position="end">
               <Button
                 {...{
                   type: 'submit',
@@ -49,8 +48,7 @@ const MentorSearchBar = ({ setQuery }) => {
               >
                 <SearchIcon />
               </Button>
-            ) : // </InputAdornment>
-            null,
+            ) : null,
           },
         }}
       />
