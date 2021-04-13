@@ -1,17 +1,7 @@
 import React from 'react';
-import { render, cleanup, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MentorCard from './MentorCard';
-import { jssPreset } from '@material-ui/styles';
-
-// describe accepts 2 arguments a string and a function
-// MentorCard should have a Mentors name/ icon/ and bio
-// when running test your specific file npm run test <filename>
-// each testing needs its own rendered item/ set up the enviornment so that that section can be tested start with a render
-// than you can set up expectations of what you want to see.
-// check that each of these properties exist and show up in the card
-// check if the button can be clicked and is visible
-afterEach(cleanup);
 
 const properties = {
   firstName: 'Amanda',
@@ -25,26 +15,29 @@ const properties = {
   _id: 'asdf1234',
 };
 
+const handleTestClick = jest.fn();
+
+beforeEach(() => {
+  render(<MentorCard {...properties} onTestClick={handleTestClick} />);
+});
+
 describe('<MentorCard>', () => {
   test('Mentor name is visible', () => {
-    render(<MentorCard {...properties} />);
     const mentorName = screen.getByTestId('mentorNameField').textContent;
     expect(mentorName).toEqual(
       properties.firstName + ' ' + properties.lastName
     );
   });
   test('Mentor job title is visible', () => {
-    render(<MentorCard {...properties} />);
+    // render(<MentorCard {...properties} />);
     const jobTitle = screen.getByTestId('jobTitleField').textContent;
     expect(jobTitle).toBe(properties.title);
   });
   test('Mentor Skills is visible', () => {
-    render(<MentorCard {...properties} />);
     const skillList = screen.getByTestId('skillList').textContent;
     expect(skillList).toBe(properties.mentorSkills);
   });
   test('Mentor bio section is visible', () => {
-    render(<MentorCard {...properties} />);
     const bio = screen.getByTestId('bioSection').textContent;
     expect(bio).toBe(properties.bio);
   });
@@ -52,13 +45,10 @@ describe('<MentorCard>', () => {
 
 describe('MentorCard Button', () => {
   test('Button visible', () => {
-    render(<MentorCard {...properties} />);
     const bookingButton = screen.getByRole('button').textContent;
     expect(bookingButton).toBe('BOOK ME');
   });
   test('Calls onClick prop when called', () => {
-    const handleTestClick = jest.fn();
-    render(<MentorCard {...properties} onTestClick={handleTestClick} />);
     const button = screen.getByRole('button');
     userEvent.click(button);
     expect(handleTestClick).toHaveBeenCalled();

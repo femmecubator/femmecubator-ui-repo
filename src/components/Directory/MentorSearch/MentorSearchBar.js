@@ -38,15 +38,29 @@ const MentorSearchBar = ({ setQuery }) => {
                 <SearchIcon />
               </InputAdornment>
             ),
+            endAdornment: isMobile ? (
+              // <InputAdornment position="end">
+              <Button
+                {...{
+                  type: 'submit',
+                  variant: 'contained',
+                  className: searchBtn,
+                }}
+              >
+                <SearchIcon />
+              </Button>
+            ) : // </InputAdornment>
+            null,
           },
         }}
       />
-
-      <Button
-        {...{ type: 'submit', variant: 'contained', className: searchBtn }}
-      >
-        {isMobile ? <SearchIcon /> : 'Search'}
-      </Button>
+      {isMobile ? null : (
+        <Button
+          {...{ type: 'submit', variant: 'contained', className: searchBtn }}
+        >
+          Search
+        </Button>
+      )}
     </form>
   );
 };

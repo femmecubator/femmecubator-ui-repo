@@ -10,23 +10,21 @@ const avatarColors = [
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
+    display: 'flex',
+    alignItems: 'center',
     minWidth: '45vw',
     maxHeight: '20%',
     position: ({ isMobile }) => (isMobile ? 'relative' : 'absolute'),
     right: '0',
     top: ({ isMobile }) => (isMobile ? '0' : '12rem'),
-    display: 'flex',
-    alignItems: 'center',
     margin: ({ isMobile }) => (isMobile ? '.5rem' : '.7rem'),
   },
   searchInput: {
-    minWidth: '73%',
+    minWidth: ({ isMobile }) => (isMobile ? '80%' : '73%'),
   },
   searchBtn: {
-    root: {
-      height: '45px',
-    },
-    marginLeft: '2%',
+    marginLeft: ({ isMobile }) => (isMobile ? '0' : '2%'),
+    minWidth: ({ isMobile }) => (isMobile ? '25%' : '17%'),
     backgroundColor: '#026FE4 !important',
     color: 'white',
   },
