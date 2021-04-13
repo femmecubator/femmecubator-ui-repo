@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Modal, TextField, useMediaQuery, Typography } from '@material-ui/core';
+import {
+  Modal,
+  TextField,
+  useMediaQuery,
+  Typography,
+  FormControl,
+  InputLabel,
+} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -40,6 +47,12 @@ const MentorOnboardingModal = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  // for timezone select
+  const [selected, setSelected] = useState(true);
+  function handleSelect() {
+    setSelected(false);
+  }
 
   const onSubmit = (data, e) => {
     console.log(data);
@@ -163,20 +176,33 @@ const MentorOnboardingModal = () => {
         <Typography variant="h4" className={h4Heading}>
           {TIME_ZONE}
         </Typography>
-        <Select
-          name="timezone"
-          defaultValue=""
-          className={textField}
-          onChange={(e) =>
-            setValue('timezone', e.target.value, { shouldDirty: true })
-          }
-        >
-          {timeZoneData.map(({ offset, name }) => (
-            <MenuItem key={offset} value={offset}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl variant="outlined" className={textField}>
+          <InputLabel
+            // onChange={handleSelect}
+            shrink={false}
+            htmlFor="timezone placeholder"
+          >
+            {selected ? 'Select a time zone' : ''}
+          </InputLabel>
+          <Select
+            name="timezone"
+            defaultValue=""
+            className={textField}
+            onChange={(e) => {
+              setValue('timezone', e.target.value, { shouldDirty: true });
+              handleSelect();
+            }}
+          >
+            {/* <MenuItem selected={true} type="hidden">
+            TESTING
+          </MenuItem> */}
+            {timeZoneData.map(({ offset, name }) => (
+              <MenuItem key={name} value={offset}>
+                {offset} {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Typography variant="h4" className={h4Heading}>
           {GOOGLE_MEET}
