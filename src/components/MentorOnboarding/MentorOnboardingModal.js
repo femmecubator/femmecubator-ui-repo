@@ -177,17 +177,12 @@ const MentorOnboardingModal = () => {
           {TIME_ZONE}
         </Typography>
         <FormControl variant="outlined" className={textField}>
-          <InputLabel
-            // onChange={handleSelect}
-            shrink={false}
-            htmlFor="timezone placeholder"
-          >
+          <InputLabel shrink={false} htmlFor="timezone placeholder">
             {selected ? 'Select a time zone' : ''}
           </InputLabel>
           <Select
             name="timezone"
             defaultValue=""
-            className={textField}
             onChange={(e) => {
               setValue('timezone', e.target.value, { shouldDirty: true });
               handleSelect();
