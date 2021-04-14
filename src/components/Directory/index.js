@@ -8,7 +8,7 @@ import useStyles from './Directory.styles';
 import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
 import request from 'utils/axiosConfig';
 
-const Index = () => {
+const Directory = () => {
   const subheaderProperties = {
     variant: 'mentors',
     mainLabel: 'Connect with a Mentor',
@@ -86,7 +86,7 @@ const Index = () => {
             className={directoryTab}
           />
           <Tab
-            label="Calender"
+            label="Calendar"
             id="Calender"
             disabled
             aria-controls="Calender Tab"
@@ -97,7 +97,7 @@ const Index = () => {
           {selectedTab === 0 ? (
             renderMentorCards()
           ) : (
-            <h1>CALANEDER WOULD GO HERE'</h1>
+            <h1>CALANDER WOULD GO HERE'</h1>
           )}
         </div>
       </div>
@@ -105,4 +105,15 @@ const Index = () => {
   );
 };
 
-export default Index;
+// loop through this so that it renders in tabs
+// const directoryTabs = [
+//   { directory: renderMentorCards(), className: 'directoryTab' },
+//   {
+//     calender: 'renderCalender',
+//     className: 'calenderTab',
+//     tabIndex: '0',
+//     disabled: true,
+//   },
+// ];
+
+export default Directory;
