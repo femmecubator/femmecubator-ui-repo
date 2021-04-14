@@ -10,7 +10,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
   const handleClick =
     ('onClick',
     (event) => {
-      const id = event.currentTarget.id;
+      const id = parseInt(event.currentTarget.id);
       setValue('role_id', id, {
         shouldDirty: true,
         shouldValidate: true,
@@ -30,16 +30,15 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
           <Chip
             {...{
               className:
-                watchRole == 1 ? classes.chipStyle : classes.chipOutline,
+                watchRole === 0 ? classes.chipStyle : classes.chipOutline,
               size: 'small',
-              clickable: true,
-              id: '1',
+              id: '0',
               label: 'Mentee',
               variant: 'outlined',
               name: 'role_id',
               onClick: handleClick,
               icon:
-                watchRole == 1 ? (
+                watchRole === 0 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
                 ) : null,
             }}
@@ -47,16 +46,15 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
           <Chip
             {...{
               className:
-                watchRole == 2 ? classes.chipStyle : classes.chipOutline,
+                watchRole === 1 ? classes.chipStyle : classes.chipOutline,
               size: 'small',
-              clickable: true,
-              id: '2',
+              id: '1',
               label: 'Mentor',
               name: 'role_id',
               variant: 'outlined',
               onClick: handleClick,
               icon:
-                watchRole == 2 ? (
+                watchRole === 1 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
                 ) : null,
             }}
