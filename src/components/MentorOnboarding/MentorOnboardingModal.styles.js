@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       width: '25ch',
       border: 'none',
+      backgroundColor: color.white,
     },
     '& .MuiSelect-outlined': {
       border: 'none',
@@ -23,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormHelperText-root': {
       backgroundColor: color.white,
     },
+    // '& Mui-FormControl-root': {
+    //   backgroundColor: color.white,
+    // },
     // '& .MuiFormHelperText-contained': {
     //   backgroundColor: color.white,
     // },
