@@ -20,6 +20,20 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiSelect-outlined': {
       border: 'none',
     },
+    '& .MuiFormHelperText-root': {
+      backgroundColor: color.white,
+    },
+    // '& .MuiFormHelperText-contained': {
+    //   backgroundColor: color.white,
+    // },
+    // '& .Mui-error': {
+    //   backgroundColor: color.white,
+    // },
+  },
+  helperText: {
+    position: 'absolute',
+    top: '55px',
+    fontFamily: 'Open Sans, sans-serif',
   },
   skills: {
     width: 500,
@@ -65,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: color.primaryAccent,
     color: color.white,
     position: 'absolute',
-    top: '680px',
+    top: '720px',
     left: '250px',
     fontSize: '18px',
     fontFamily: 'Open Sans, sans-serif',

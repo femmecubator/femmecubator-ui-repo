@@ -7,6 +7,7 @@ import {
   Typography,
   FormControl,
   InputLabel,
+  FormHelperText,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -17,6 +18,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import useStyles from './MentorOnboardingModal.styles';
 import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
+import { isEmpty } from 'lodash';
 
 // headings & validation
 const BIO = 'Add a Bio (128 char)';
@@ -27,6 +29,7 @@ const GOOGLE_MEET = 'Add a google meet:';
 const MIN_CHARS = 'Must be more than 1 character';
 const MAX_CHARS = 'Must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
+const GOOGLE_MEET_VAL = 'google meet link is required';
 
 const MentorOnboardingModal = () => {
   // const isMobile = useMediaQuery('(max-width:1023px)');
@@ -38,6 +41,7 @@ const MentorOnboardingModal = () => {
     buttonModal,
     subheading,
     heading,
+    helperText,
   } = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -68,10 +72,11 @@ const MentorOnboardingModal = () => {
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
         PHONE_VAL
       ),
-    // phone field should be auto formatted (controlled field)
     timezone: yup.string().required('Timezone is required'),
-    googlemeet: yup.string().required('Google meet is required'),
-    // google meet link field should start with (google.meet.com/)
+    googlemeet: yup
+      .string()
+      .required('Google meet is required')
+      .matches(/^(meet\.google\.com\/(?:\w+-\w+-\w+))?$/, GOOGLE_MEET_VAL),
   });
   const {
     unregister,
@@ -84,7 +89,7 @@ const MentorOnboardingModal = () => {
     getValues,
   } = useForm({
     revalidateMode: 'onChange',
-    // resolver: yupResolver(OnboardingSchema),
+    resolver: yupResolver(OnboardingSchema),
   });
 
   // for select timezone
@@ -99,12 +104,11 @@ const MentorOnboardingModal = () => {
 
   // STUFF I STILL NEED
   // TESTS
-  // Should show any errors if input is invalid
   // disable submit button if fields are not valid
   // must be WCAG compliant - andi guy site
   // must be mobile responsive
 
-  const body = (
+  const formContent = (
     <form className={root} onSubmit={handleSubmit(onSubmit)}>
       <div className={modal}>
         <div align="center">
@@ -127,6 +131,8 @@ const MentorOnboardingModal = () => {
             placeholder: 'Add bio here.',
             name: 'bio',
             inputRef: register,
+            error: !isEmpty(errors.bio),
+            helperText: errors.bio && errors.bio.message,
           }}
         />
         <Typography variant="h4" className={h4Heading}>
@@ -153,6 +159,8 @@ const MentorOnboardingModal = () => {
                 variant: 'outlined',
                 className: textField,
                 placeholder: 'Select Skills',
+                error: !isEmpty(errors.skills),
+                helperText: errors.skills && errors.skills.message,
               }}
             />
           )}
@@ -169,6 +177,8 @@ const MentorOnboardingModal = () => {
             name: 'phone',
             type: 'text',
             inputRef: register,
+            error: !isEmpty(errors.phone),
+            helperText: errors.phone && errors.phone.message,
           }}
         />
         <Typography variant="h4" className={h4Heading}>
@@ -181,6 +191,8 @@ const MentorOnboardingModal = () => {
           <Select
             name="timezone"
             defaultValue=""
+            error={!isEmpty(errors.timezone)}
+            helperText={errors.timezone && errors.timezone.message}
             onChange={(e) => {
               setValue('timezone', e.target.value, { shouldDirty: true });
               handleSelect();
@@ -206,6 +218,8 @@ const MentorOnboardingModal = () => {
             name: 'googlemeet',
             type: 'text',
             inputRef: register,
+            error: !isEmpty(errors.googlemeet),
+            helperText: errors.googlemeet && errors.googlemeet.message,
           }}
         />
         <button type="submit" className={buttonModal}>
@@ -221,7 +235,7 @@ const MentorOnboardingModal = () => {
         Open Modal
       </button>
       <Modal open={open} onClose={handleClose}>
-        {body}
+        {formContent}
       </Modal>
     </div>
   );
