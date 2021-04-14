@@ -13,9 +13,11 @@ const AboutSideBar = ({ selected, setSelected }) => {
   const {
     container,
     choicesContainer,
+    xsChoicesContainer,
     menuOption,
     selectedMenuOption,
     arrow,
+    scrollMenuIcon,
   } = useStyles();
   const history = useHistory();
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
@@ -42,11 +44,13 @@ const AboutSideBar = ({ selected, setSelected }) => {
   return (
     <nav className={container}>
       {isXsMobile ? (
-        <ScrollMenu
-          data={options}
-          arrowLeft={<ChevronLeftIcon />}
-          arrowRight={<ChevronRightIcon />}
-        />
+        <section className={xsChoicesContainer}>
+          <ScrollMenu
+            data={options}
+            arrowLeft={<ChevronLeftIcon className={scrollMenuIcon} />}
+            arrowRight={<ChevronRightIcon className={scrollMenuIcon} />}
+          />
+        </section>
       ) : (
         <section className={choicesContainer}>{options}</section>
       )}

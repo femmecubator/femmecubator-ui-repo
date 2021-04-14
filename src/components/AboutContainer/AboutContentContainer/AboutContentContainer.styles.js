@@ -15,6 +15,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 28,
     marginBottom: 15,
+    '@media (max-width: 490px)': {
+      fontSize: 21,
+    },
   },
   content: {
     fontFamily: 'Open Sans, sans-serif',

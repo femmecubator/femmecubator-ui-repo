@@ -41,8 +41,8 @@ const useStyles = makeStyles(() => ({
       left: '50%',
       transform: 'translate(-50%, -50%)',
     },
-    '@media (max-width: 490px)': {
-      fontSize: '24px',
+    '@media (max-width: 370px)': {
+      fontSize: 24,
     },
   },
 }));

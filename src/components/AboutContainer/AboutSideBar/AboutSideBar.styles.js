@@ -9,9 +9,17 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 490px)': {
       padding: '15px 15px 0',
     },
+  },
+  xsChoicesContainer: {
     '& div': {
       outline: 'none',
     },
+  },
+  scrollMenuIcon: {
+    color: '#828282',
+    margin: '3px 5px 0',
+    backgroundColor: '#f2f2f2',
+    borderRadius: '50%',
   },
   choicesContainer: {
     minWidth: 150,
@@ -38,7 +46,8 @@ const useStyles = makeStyles(() => ({
       color: '#400CCC',
     },
     '@media (max-width: 490px)': {
-      marginRight: 20,
+      marginRight: 48,
+      marginLeft: -35,
     },
   },
   selectedMenuOption: {
