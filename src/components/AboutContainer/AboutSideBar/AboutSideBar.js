@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { useMediaQuery } from '@material-ui/core';
 import { MOBILE_MEDIA_QUERY } from 'utils/constants';
+import ScrollMenu from 'react-horizontal-scrolling-menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const AboutSideBar = ({ selected, setSelected }) => {
   const {
@@ -40,11 +42,15 @@ const AboutSideBar = ({ selected, setSelected }) => {
   return (
     <nav className={container}>
       {isXsMobile ? (
-        'xsmall mobile menu'
+        <ScrollMenu
+          data={options}
+          arrowLeft={<ChevronLeftIcon />}
+          arrowRight={<ChevronRightIcon />}
+        />
       ) : (
         <section className={choicesContainer}>{options}</section>
       )}
-      {isMobile && <hr />}
+      {isMobile && !isXsMobile && <hr />}
     </nav>
   );
 };

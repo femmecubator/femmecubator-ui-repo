@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 490px)': {
       padding: '15px 15px 0',
     },
+    '& div': {
+      outline: 'none',
+    },
   },
   choicesContainer: {
     minWidth: 150,
@@ -18,9 +21,6 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 799px)': {
       display: 'flex',
       justifyContent: 'space-between',
-    },
-    '@media (max-width: 490px)': {
-      display: 'block',
     },
   },
   menuOption: {
@@ -38,8 +38,7 @@ const useStyles = makeStyles(() => ({
       color: '#400CCC',
     },
     '@media (max-width: 490px)': {
-      display: 'block',
-      textAlign: 'center',
+      marginRight: 20,
     },
   },
   selectedMenuOption: {
