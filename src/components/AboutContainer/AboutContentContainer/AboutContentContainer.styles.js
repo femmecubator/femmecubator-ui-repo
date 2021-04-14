@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     borderLeft: '1px solid #828282',
     '@media (max-width: 799px)': {
       paddingTop: 0,
+      borderLeft: 0,
     },
   },
   title: {

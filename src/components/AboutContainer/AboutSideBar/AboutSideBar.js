@@ -17,6 +17,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
   } = useStyles();
   const history = useHistory();
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
+  const isXsMobile = useMediaQuery('(max-width:490px)');
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
 
@@ -38,7 +39,11 @@ const AboutSideBar = ({ selected, setSelected }) => {
 
   return (
     <nav className={container}>
-      <section className={choicesContainer}>{options}</section>
+      {isXsMobile ? (
+        'xsmall mobile menu'
+      ) : (
+        <section className={choicesContainer}>{options}</section>
+      )}
       {isMobile && <hr />}
     </nav>
   );
