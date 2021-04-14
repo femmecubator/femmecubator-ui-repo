@@ -300,7 +300,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   </div>
                   <div className={classes.inputSpacing}>
                     <InputLabel className={classes.termsLabel}>
-                      By creating this you agree to the
+                      By creating this account you agree to the
                     </InputLabel>
                     <InputLabel
                       className={classes.termsLabel}
