@@ -41,9 +41,9 @@ describe('<RegistrationSuccess />', () => {
     screen.getByTestId('modal-logo-femmecubator');
     screen.getByTestId('modal-logo-check-circle');
     screen.getByRole('heading', {
-      name: (content) => content === titleText,
+      name: content => content === titleText,
     });
-    screen.getByText((content) => content === bodyText);
+    screen.getByText(content => content === bodyText);
     fireEvent.click(
       screen.getByRole('button', {
         name: /go to main page/i,
