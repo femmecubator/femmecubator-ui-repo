@@ -33,7 +33,15 @@ const AboutSideBar = ({ selected, setSelected }) => {
     const isSelected = selected === label;
 
     return (
-      <Link key={label} {...{ underline: 'none', onClick: handleClick }}>
+      <Link
+        key={label}
+        {...{
+          href: '#',
+          underline: 'none',
+          onClick: handleClick,
+          'aria-label': label,
+        }}
+      >
         <div className={`${menuOption} ${isSelected && selectedMenuOption}`}>
           {label} {isSelected && <ChevronRightIcon className={arrow} />}
         </div>

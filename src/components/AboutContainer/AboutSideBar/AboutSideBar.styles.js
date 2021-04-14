@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   scrollMenuIcon: {
-    color: '#828282',
+    color: '#767676',
     margin: '3px 5px 0',
     backgroundColor: '#f2f2f2',
     borderRadius: '50%',
@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   menuOption: {
     cursor: 'pointer',
     textTransform: 'uppercase',
-    color: '#828282',
+    color: '#767676',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 700,
     fontSize: '14px',
