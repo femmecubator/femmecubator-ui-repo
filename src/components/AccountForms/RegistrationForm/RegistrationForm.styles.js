@@ -211,6 +211,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-block',
     padding: '2px',
   },
-})); 
+}));
 
 export default useStyles;
