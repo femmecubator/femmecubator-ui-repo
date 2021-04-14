@@ -10,7 +10,14 @@ const AboutBanner = ({ text }) => {
   return (
     <figure className={container}>
       <img {...{ src: TwoWomenImage, alt: 'Two women of color working' }} />
-      <Typography {...{ variant: 'h2', className: title, 'aria-label': text }}>
+      <Typography
+        {...{
+          variant: 'h2',
+          className: title,
+          'aria-label': text,
+          'data-testid': 'title',
+        }}
+      >
         {text}
       </Typography>
     </figure>

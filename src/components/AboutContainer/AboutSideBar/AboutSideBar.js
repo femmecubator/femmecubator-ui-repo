@@ -40,6 +40,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
           underline: 'none',
           onClick: handleClick,
           'aria-label': label,
+          'data-testid': label,
         }}
       >
         <div className={`${menuOption} ${isSelected && selectedMenuOption}`}>
