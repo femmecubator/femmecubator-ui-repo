@@ -12,7 +12,7 @@ import { initialize, pageview } from 'react-ga';
 if (process.env.NODE_ENV === 'production') {
   initialize(process.env.REACT_APP_TRACKING_ID);
   const history = createBrowserHistory();
-  history.listen((location) => {
+  history.listen(location => {
     pageview(location.pathname + location.search);
   });
 }

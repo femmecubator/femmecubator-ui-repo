@@ -24,7 +24,7 @@ import { event } from 'react-ga';
 import Auth from 'utils/auth';
 import RegistrationSuccess from '../../RegistrationSuccess';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -209,7 +209,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   const modalTitleText = "You're All Set!";
   const modalBodyText = `We have just created your account! Don't forget to verify through your email at ${watchEmail}`;
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     try {
       await request.post(API_PATH.REGISTER, data);
 
@@ -235,8 +235,8 @@ const RegistrationForm = ({ mockOnSubmit }) => {
     history.push('/mentors');
   };
 
-  const handleClickShowPassword = (key) => {
-    setShowPassword((prevState) => ({ ...prevState, [key]: !prevState[key] }));
+  const handleClickShowPassword = key => {
+    setShowPassword(prevState => ({ ...prevState, [key]: !prevState[key] }));
   };
 
   let content = (
