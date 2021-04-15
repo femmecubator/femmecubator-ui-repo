@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import MentorSearchBar from './MentorSearchBar';
+import MentorSearchBar from './';
 
 const mockOnSubmit = jest.fn();
 beforeEach(() => render(<MentorSearchBar mockOnSubmit={mockOnSubmit} />));
