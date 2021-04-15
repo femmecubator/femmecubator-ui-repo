@@ -20,18 +20,18 @@ describe('<AboutContainer />', () => {
   });
 
   it('should display navigation bar with correct options', () => {
-    optionLabels.forEach((optionLabel) => screen.getByTestId(optionLabel));
+    optionLabels.forEach(optionLabel => screen.getByTestId(optionLabel));
   });
 
   it('should fire a click event for all menu options', () => {
-    optionLabels.forEach((optionLabel) => {
+    optionLabels.forEach(optionLabel => {
       const optionLink = screen.getByTestId(optionLabel);
       fireEvent.click(optionLink);
     });
   });
 
   it('should display corresponding title when an option is clicked', () => {
-    optionLabels.forEach((optionLabel) => {
+    optionLabels.forEach(optionLabel => {
       const optionLink = screen.getByTestId(optionLabel);
       const title = screen.getByTestId('title');
       fireEvent.click(optionLink);

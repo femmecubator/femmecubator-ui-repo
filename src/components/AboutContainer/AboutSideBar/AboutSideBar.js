@@ -22,7 +22,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
 
-  const options = optionLabels.map((label) => {
+  const options = optionLabels.map(label => {
     const handleClick = () => {
       if (label === 'Get Involved') history.push('/volunteer');
       setSelected(label);
