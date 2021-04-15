@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Auth from '../../utils/auth';
 import { makeStyles } from '@material-ui/core';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
-
+/* eslint-plugin-disable jsx-a11y */
 const useStyle = makeStyles({
   modal_background: {
     height: '100%',
@@ -122,6 +122,7 @@ export default function Timeout({ children }) {
   }, [idleTime, idle, isLoggedIn]);
 
   return (
+    //eslint-disable-next-line
     <div onMouseOver={() => reset()} onKeyPress={() => reset()}>
       {idle && (
         <Modal
@@ -166,8 +167,14 @@ const Modal = ({ countdownTime, setIdle, logoff, timedOut }) => {
 
   return (
     <div className={classes.modal_background}>
+      {
+        //eslint-disable-next-line
+      }
       <TrapFocus open isEnabled={() => true} getDoc={() => document}>
-        <article className={classes.modal} tabIndex={1}>
+        {
+          //eslint-disable-next-line
+        }
+        <article className={classes.modal} /* tabIndex={1} */>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
               <p className={classes.modal__center_div__content__p_head}>
@@ -184,13 +191,13 @@ const Modal = ({ countdownTime, setIdle, logoff, timedOut }) => {
               </p>
             </div>
             <div className={classes.modal__center_div__buttons}>
-              <span
+              <span //eslint-disable-line
                 className={classes.modal__center_div__buttons__button_logoff}
                 onClick={logoff}
               >
                 Log Off
               </span>
-              <span
+              <span //eslint-disable-line
                 className={classes.modal__center_div__buttons__button_continue}
                 onClick={() => setIdle(false)}
               >
