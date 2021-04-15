@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { mockServer } from './mock/mockServer';
+
 import Header from './components/Header/Header';
 import Timeout from './components/Timeout/Timeout';
 import AppRouter from 'routes/AppRouter';
@@ -13,11 +13,12 @@ import { initialize, pageview } from 'react-ga';
 if (process.env.NODE_ENV === 'production') {
   initialize(process.env.REACT_APP_TRACKING_ID);
   const history = createBrowserHistory();
-  history.listen((location) => {
+  history.listen(location => {
     pageview(location.pathname + location.search);
   });
 }
 if (process.env.REACT_APP_MOCK_API_TRUE) {
+  const mockServer = require('./mock/mockServer');
   mockServer();
 }
 
