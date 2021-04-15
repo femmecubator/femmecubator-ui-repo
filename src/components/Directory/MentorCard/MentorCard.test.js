@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import MentorCard from './MentorCard';
+import MentorCard from '.';
 
 const properties = {
   firstName: 'Amanda',

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
+    height: '100vh',
   },
   mentorDirectory: {
     backgroundColor: 'white',

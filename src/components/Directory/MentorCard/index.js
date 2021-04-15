@@ -31,11 +31,12 @@ const MentorCard = ({
     bioSection,
   } = classes;
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     e.preventDefault();
     if (onTestClick) return onTestClick();
     console.log('BOOKING FOR THIS MENTOR OPENS UP');
   };
+
   return (
     <Card className={root}>
       <CardHeader
@@ -59,18 +60,22 @@ const MentorCard = ({
         }
         title={
           <Typography
-            variant="body1"
-            className={mentorNameField}
-            data-testid="mentorNameField"
+            {...{
+              variant: 'body1',
+              className: mentorNameField,
+              'data-testid': 'mentorNameField',
+            }}
           >
             {firstName} {lastName}
           </Typography>
         }
         subheader={
           <Typography
-            variant="caption"
-            className={jobField}
-            data-testid="jobTitleField"
+            {...{
+              variant: 'caption',
+              className: jobField,
+              'data-testid': 'jobTitleField',
+            }}
           >
             {title}
           </Typography>
@@ -79,17 +84,21 @@ const MentorCard = ({
       {isMobile ? null : <Divider light={false} />}
       <CardContent>
         <Typography
-          variant="body2"
-          className={skillList}
-          gutterBottom
-          data-testid="skillList"
+          {...{
+            variant: 'body2',
+            className: skillList,
+            'data-testid': 'skillList',
+            gutterBottom: true,
+          }}
         >
           {mentorSkills}
         </Typography>
         <Typography
-          variant="caption"
-          className={bioSection}
-          data-testid="bioSection"
+          {...{
+            variant: 'caption',
+            className: bioSection,
+            'data-testid': 'bioSection',
+          }}
         >
           {bio}
         </Typography>

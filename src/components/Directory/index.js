@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import MentorCard from './MentorCard/MentorCard';
+import MentorCard from './MentorCard';
 import Subheader from '../Subheader/Subheader';
-import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
-import MentorSearchBar from './MentorSearch/MentorSearchBar';
+import MentorSearchBar from './MentorSearch';
 import useStyles from './Directory.styles';
-
+import EmptyDirectory from './EmptyDirectory';
 import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
+import { emptySearch, directoryTabs, subheaderProperties } from './utils';
 import request from 'utils/axiosConfig';
 
 const Directory = () => {
-  const subheaderProperties = {
-    variant: 'mentors',
-    mainLabel: 'Connect with a Mentor',
-    subLabel: 'Book 30 mins with a UX Design or Coding Mentor.',
-    image: <SubheaderIcon />,
-  };
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     root,
@@ -33,19 +27,24 @@ const Directory = () => {
   const handleChange = (e, newVal) => setSelectedTab(newVal);
 
   useEffect(() => {
-    request.get('/api/directory').then((mentors) => {
+    request.get('/api/directory').then(mentors => {
       setMentorCards(mentors.data);
     });
   }, []);
 
-  const renderMentorCards = () =>
-    searchMentorCards().map((mentorObject) => (
-      <MentorCard {...mentorObject} key={mentorObject._id} />
-    ));
+  const tabDisplayOptions = {
+    0: () => {
+      const mentorList = searchMentorCards();
+      if (mentorList.length < 1) return <EmptyDirectory {...emptySearch} />;
+      return mentorList.map(mentorObject => (
+        <MentorCard {...mentorObject} key={mentorObject._id} />
+      ));
+    },
+  };
 
   const searchMentorCards = () => {
     if (query) {
-      const filteredMentorList = mentorCards.filter((mentorObj) => {
+      const filteredMentorList = mentorCards.filter(mentorObj => {
         const objs = Object.values(mentorObj).join(' ').toLowerCase();
         return objs.includes(query.toLowerCase());
       });
@@ -54,15 +53,18 @@ const Directory = () => {
     return mentorCards;
   };
 
+  const renderTabs = () =>
+    directoryTabs(directoryTab).map(tab => <Tab {...tab} key={tab.label} />);
   return (
     <section aria-label="Mentor Directory" className={root}>
       <Subheader {...subheaderProperties} />
       {isMobile ? null : (
         <Typography
-          className={directoryHeader}
-          variant="h2"
-          data-testid="directoryHeader"
-          gutterBottom
+          {...{
+            className: directoryHeader,
+            variant: 'h2',
+            'data-testid': 'directoryHeader',
+          }}
         >
           Office Hours
         </Typography>
@@ -78,42 +80,14 @@ const Directory = () => {
             style: { background: '#550CCC' },
           }}
         >
-          <Tab
-            label="Directory"
-            id="Directory"
-            aria-controls="Directory Tab"
-            textColor="inherit"
-            className={directoryTab}
-          />
-          <Tab
-            label="Calendar"
-            id="Calender"
-            disabled
-            aria-controls="Calender Tab"
-            tabIndex="0"
-          />
+          {renderTabs()}
         </Tabs>
         <div className={mentorListContainer} value={selectedTab} index={0}>
-          {selectedTab === 0 ? (
-            renderMentorCards()
-          ) : (
-            <h1>CALANDER WOULD GO HERE'</h1>
-          )}
+          {tabDisplayOptions[selectedTab]()}
         </div>
       </div>
     </section>
   );
 };
-
-// loop through this so that it renders in tabs
-// const directoryTabs = [
-//   { directory: renderMentorCards(), className: 'directoryTab' },
-//   {
-//     calender: 'renderCalender',
-//     className: 'calenderTab',
-//     tabIndex: '0',
-//     disabled: true,
-//   },
-// ];
 
 export default Directory;

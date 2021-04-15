@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { makeStyles } from '@material-ui/core';
 const avatarColors = [
   '#FF7452',
@@ -8,7 +9,7 @@ const avatarColors = [
   '#CABEE9',
 ];
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '413px',
     variant: ({ isMobile }) => (isMobile ? 'none' : 'outlined'),
@@ -28,13 +29,6 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#026FE4',
     color: '#026FE4',
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
   jobField: {
     color: '#026FE4',
     fontWeight: '550 !important',
@@ -53,15 +47,6 @@ const useStyles = makeStyles((theme) => ({
     '-webkitBoxOrient': 'vertical',
   },
 
-  // expandOpen: {
-  //   transform: 'rotate(180deg)',
-  //   use the below to convert items verticaly
-  //   '@media (max-width: 799px)': {
-  //     height: '218px',
-  //     flexDirection: 'column',
-  //     padding: '10px 10px',
-  //   },
-  // },
 }));
 
 export default useStyles;

@@ -1,14 +1,6 @@
 import { makeStyles } from '@material-ui/core';
-const avatarColors = [
-  '#FF7452',
-  '#FFAB00',
-  '#D4EE9C',
-  '#00C7E6',
-  '#719AF5',
-  '#CABEE9',
-];
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   searchBar: {
     display: 'flex',
     alignItems: 'center',
@@ -18,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     right: '0',
     top: ({ isMobile }) => (isMobile ? '0' : '12rem'),
     margin: ({ isMobile }) => (isMobile ? '.5rem' : '.7rem'),
+    zIndex: 2,
   },
   searchInput: {
     minWidth: ({ isMobile }) => (isMobile ? '80%' : '73%'),

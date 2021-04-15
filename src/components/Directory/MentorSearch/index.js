@@ -10,7 +10,7 @@ const MentorSearchBar = ({ setQuery, mockOnSubmit }) => {
   const { searchBar, searchBtn, searchInput } = useStyles({ isMobile });
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     setQuery(data.search);
   };
 
