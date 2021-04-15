@@ -36,7 +36,7 @@ describe('<Home />', () => {
 
   it('should fire a click event for all buttons', () => {
     const buttons = screen.getAllByRole('button');
-    buttons.forEach((bttn) => {
+    buttons.forEach(bttn => {
       fireEvent.click(bttn);
     });
   });
