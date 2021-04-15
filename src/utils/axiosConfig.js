@@ -14,8 +14,8 @@ const request = axios.create({
   res.status(404).json({ err: "You are not authorized to do that." })
 */
 request.interceptors.response.use(
-  response => response,
-  error => Promise.reject(error.response)
+  (response) => response,
+  (error) => Promise.reject(error.response)
 );
 
 export default request;

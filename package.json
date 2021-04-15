@@ -85,8 +85,7 @@
     "prettier": "^2.2.1"
   },
   "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
+    "singleQuote": true
   },
   "config": {
     "ghooks": {

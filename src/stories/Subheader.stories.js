@@ -8,7 +8,7 @@ export default {
   component: Subheader,
 };
 
-export const Template = args => <Subheader {...args} />;
+export const Template = (args) => <Subheader {...args} />;
 
 export const PrimaryA = Template.bind({});
 

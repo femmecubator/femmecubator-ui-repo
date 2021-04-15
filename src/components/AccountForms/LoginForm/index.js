@@ -43,7 +43,7 @@ const LoginForm = ({ testOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const onSubmit = async credentials => {
+  const onSubmit = async (credentials) => {
     try {
       await request.post(API_PATH.LOGIN, credentials);
       const inProduction = process.env.NODE_ENV === 'production';
