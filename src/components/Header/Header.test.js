@@ -3,8 +3,6 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import Header from 'components/Header/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { DEFAULT_COMMON_MENU } from 'utils/constants';
-import MobileHeader from './MobileHeader';
-import DesktopHeader from './DesktopHeader';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -30,7 +28,7 @@ describe('<Header />', () => {
     const setState = jest
       .fn()
       .mockImplementationOnce((prevState = initState) => prevState);
-    useStateMock.mockImplementation((initState) => [initState, setState]);
+    useStateMock.mockImplementation(initState => [initState, setState]);
 
     render(
       <Router>
