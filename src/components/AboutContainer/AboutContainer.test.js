@@ -1,18 +1,15 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AboutContainer from './AboutContainer';
-import { act } from 'react-dom/test-utils';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('<AboutContainer />', () => {
   beforeEach(() => {
-    act(() => {
-      render(
-        <Router>
-          <AboutContainer />
-        </Router>
-      );
-    });
+    render(
+      <Router>
+        <AboutContainer />
+      </Router>
+    );
   });
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
