@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link, Typography } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
+import { COHORT, APP_DEADLINE } from 'utils/constants';
 
 const Programs = () => {
-  const cohort = 'Spring 2021';
-  const appDeadline = 'January 1st 2021';
-
   const { title, blue } = useStyles();
   return (
     <>
@@ -13,7 +11,7 @@ const Programs = () => {
         Upcoming Programs & Events
       </Typography>
       <section>
-        <h3>{cohort} Cohort</h3>
+        <h3>{COHORT} Cohort</h3>
         <h4 className={blue}>
           Are you an aspiring software engineer ready to dive into building
           applications in a team environment? Ever wonder what it takes to make
@@ -72,7 +70,7 @@ const Programs = () => {
           <Link href="mailto:volunteers@femmecubator.com">
             volunteers@femmecubator.com
           </Link>
-          . Application is open until {appDeadline}.
+          . Application is open until {APP_DEADLINE}.
         </p>
       </section>
     </>
