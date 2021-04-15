@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MentorCard from './MentorCard';
 import Subheader from '../Subheader/Subheader';
-import MentorSearchBar from './MentorSearch';
+import MentorSearchBar from './MentorSearch/';
 import useStyles from './Directory.styles';
 import EmptyDirectory from './EmptyDirectory';
 import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
