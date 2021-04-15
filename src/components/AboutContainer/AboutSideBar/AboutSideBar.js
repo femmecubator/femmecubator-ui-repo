@@ -1,13 +1,11 @@
 import React from 'react';
 import useStyles from './AboutSideBar.styles';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { Link } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery, Link } from '@material-ui/core';
 import { MOBILE_MEDIA_QUERY } from 'utils/constants';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 
 const AboutSideBar = ({ selected, setSelected }) => {
   const {
@@ -44,7 +42,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
         }}
       >
         <div className={`${menuOption} ${isSelected && selectedMenuOption}`}>
-          {label} {isSelected && <ChevronRightIcon className={arrow} />}
+          {label} {isSelected && <ChevronRight className={arrow} />}
         </div>
       </Link>
     );
@@ -56,8 +54,8 @@ const AboutSideBar = ({ selected, setSelected }) => {
         <section className={xsChoicesContainer}>
           <ScrollMenu
             data={options}
-            arrowLeft={<ChevronLeftIcon className={scrollMenuIcon} />}
-            arrowRight={<ChevronRightIcon className={scrollMenuIcon} />}
+            arrowLeft={<ChevronLeft className={scrollMenuIcon} />}
+            arrowRight={<ChevronRight className={scrollMenuIcon} />}
           />
         </section>
       ) : (
