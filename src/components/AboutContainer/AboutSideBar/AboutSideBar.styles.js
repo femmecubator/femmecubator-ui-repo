@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
     '@media (min-width: 1055px)': {
       minWidth: 180,
     },
-    '@media (max-width: 799px)': {
+    '@media (max-width: 798px)': {
       display: 'flex',
       justifyContent: 'space-between',
     },
@@ -59,7 +59,7 @@ const useStyles = makeStyles(() => ({
     top: '50%',
     right: 0,
     transform: 'translate(0, -50%)',
-    '@media (max-width: 799px)': {
+    '@media (max-width: 798px)': {
       display: 'none',
     },
   },

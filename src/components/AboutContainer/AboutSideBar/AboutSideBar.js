@@ -3,7 +3,6 @@ import useStyles from './AboutSideBar.styles';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { useMediaQuery, Link } from '@material-ui/core';
-import { MOBILE_MEDIA_QUERY } from 'utils/constants';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 
@@ -18,7 +17,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
     scrollMenuIcon,
   } = useStyles();
   const history = useHistory();
-  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
+  const isMobile = useMediaQuery('(max-width: 798px)');
   const isXsMobile = useMediaQuery('(max-width:490px)');
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
