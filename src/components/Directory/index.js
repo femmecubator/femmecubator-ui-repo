@@ -27,9 +27,11 @@ const Directory = () => {
   const handleChange = (e, newVal) => setSelectedTab(newVal);
 
   useEffect(() => {
-    request.get('/api/directory').then(mentors => {
-      setMentorCards(mentors.data);
-    });
+    async function fetchData() {
+      const { data } = await request.get('/api/directory');
+      setMentorCards(data);
+    }
+    fetchData();
   }, []);
 
   const tabDisplayOptions = {
@@ -82,7 +84,13 @@ const Directory = () => {
         >
           {renderTabs()}
         </Tabs>
-        <div className={mentorListContainer} value={selectedTab} index={0}>
+        <div
+          {...{
+            className: mentorListContainer,
+            value: selectedTab,
+            index: 0,
+          }}
+        >
           {tabDisplayOptions[selectedTab]()}
         </div>
       </div>
