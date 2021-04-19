@@ -1,110 +1,13 @@
-import { Modal } from '@material-ui/core';
+import { Modal, useMediaQuery } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core';
+import useStyles from './ModalPopup.styles';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
 import Auth from '../../utils/auth';
 
-const useStyle = makeStyles({
-  modal_background: {
-    height: '100%',
-    width: '100%',
-    position: 'fixed',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    zIndex: '1000',
-    fontFamily: 'Open Sans, sans-serif',
-  },
-  modal: {
-    position: 'relative',
-    background: 'white',
-    width: '38rem',
-    height: '28rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '28vh auto',
-    '@media (max-width: 600px)': {
-      width: '92vw',
-      height: '45vh',
-    },
-  },
-  modal__center_div: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  modal__center_div__content: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  modal__center_div__content__p_head: {
-    fontSize: '24px',
-    fontWeight: '700',
-    margin: '0',
-    textAlign: 'center',
-    color: 'rgb(80, 80, 80)',
-  },
-  modal__center_div__content__p_timer: {
-    fontSize: '21px',
-    fontWeight: '600',
-    textAlign: 'center',
-    color: 'rgb(0, 98, 255)',
-  },
-  modal__center_div__content__p_text: {
-    textAlign: 'center',
-    color: 'rgb(80, 80, 80)',
-  },
-  modal__center_div__buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '1.5rem',
-  },
-  modal__center_div__buttons__button_logoff: {
-    padding: '.5rem 1rem',
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    color: 'white',
-    borderRadius: '3px',
-    transition: '200ms ease-in-out',
-    cursor: 'pointer',
-    background: 'gray',
-    marginRight: '1rem',
-    '&:hover': {
-      filter: 'brightness(1.2)',
-      transition: '300ms ease-in-out',
-    },
-  },
-  modal__center_div__buttons__button_continue: {
-    padding: '.5rem 1rem',
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    color: 'white',
-    borderRadius: '3px',
-    transition: '200ms ease-in-out',
-    cursor: 'pointer',
-    background: 'rgb(56, 132, 255)',
-    marginLeft: '1rem',
-    '&:hover': {
-      filter: 'brightness(1.2)',
-      transition: '300ms ease-in-out',
-    },
-  },
-});
-//track idle time in background
-/* const idleTime = parseInt(process.env.REACT_APP_IDLETIME);
-const countdownTime = parseInt(process.env.REACT_APP_COUNTDOWNTIME);
-
-const { logoff, timedOut } = Auth;
-const isLoggedIn = Auth.isLoggedIn();
-
-const [idle, setIdle] = useState(false);
-const time = useRef(0);
-
-function reset() {
-  time.current = 0;
-} */
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
-  const classes = useStyle();
+  const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width:1023px)');
 
   const [minutes, setMinutes] = useState(Math.floor(countdownTime / 60000));
   const [seconds, setSeconds] = useState((countdownTime / 1000) % 60);
