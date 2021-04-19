@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Auth from '../../utils/auth';
-import ModalPopup from './ModalPopup';
+import { Modal } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
-//import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import Auth from '../../utils/auth';
+
 const useStyle = makeStyles({
   modal_background: {
     height: '100%',
@@ -88,58 +89,20 @@ const useStyle = makeStyles({
     },
   },
 });
+//track idle time in background
+/* const idleTime = parseInt(process.env.REACT_APP_IDLETIME);
+const countdownTime = parseInt(process.env.REACT_APP_COUNTDOWNTIME);
 
-const Timeout = ({ children }) => {
-  //track idle time in background
-  const idleTime = parseInt(process.env.REACT_APP_IDLETIME);
-  const countdownTime = parseInt(process.env.REACT_APP_COUNTDOWNTIME);
+const { logoff, timedOut } = Auth;
+const isLoggedIn = Auth.isLoggedIn();
 
-  const { logoff, timedOut } = Auth;
-  const isLoggedIn = Auth.isLoggedIn();
+const [idle, setIdle] = useState(false);
+const time = useRef(0);
 
-  const [idle, setIdle] = useState(false);
-  const time = useRef(0);
-
-  function reset() {
-    time.current = 0;
-  }
-
-  useEffect(() => {
-    let interval;
-    if (isLoggedIn && !idle) {
-      interval = setInterval(() => {
-        time.current += 1000;
-        if (time.current === idleTime) {
-          setIdle(true);
-          clearInterval(interval);
-        }
-      }, 1000);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [idleTime, idle, isLoggedIn]);
-
-  return (
-    //eslint-disable-next-line
-    <div onMouseOver={() => reset()} onKeyPress={() => reset()}>
-      {idle && (
-        <ModalPopup
-          {...{
-            countdownTime: countdownTime,
-            setIdle: setIdle,
-            logoff: logoff,
-            timedOut: timedOut,
-          }}
-        />
-      )}
-      {children}
-    </div>
-  );
-};
-
-/* const Modal = ({ countdownTime, setIdle, logoff, timedOut }) => {
+function reset() {
+  time.current = 0;
+} */
+const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
   const classes = useStyle();
 
@@ -174,8 +137,8 @@ const Timeout = ({ children }) => {
         {
           //eslint-disable-next-line
         }
-        <article className={classes.modal} tabIndex={1} >
-          /*<div className={classes.modal__center_div}>
+        <article className={classes.modal} /* tabIndex={1} */>
+          <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
               <p className={classes.modal__center_div__content__p_head}>
                 Your online session
@@ -209,5 +172,6 @@ const Timeout = ({ children }) => {
       </TrapFocus>
     </div>
   );
-}; */
-export default Timeout;
+};
+
+export default ModalPopup;
