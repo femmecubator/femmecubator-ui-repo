@@ -40,7 +40,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
         {
           //eslint-disable-next-line
         }
-        <article className={classes.modal} /* tabIndex={1} */>
+        <article className={classes.modal} tabIndex={-1}>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
               <p className={classes.modal__center_div__content__p_head}>

@@ -11,7 +11,7 @@ const Timeout = ({ children }) => {
   const isLoggedIn = Auth.isLoggedIn();
 
   const [idle, setIdle] = useState(false);
-  //const time = useRef(0);
+  const time = useRef(0);
 
   function reset() {
     time.current = 0;
