@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Auth from '../../utils/auth';
 import { makeStyles } from '@material-ui/core';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
-/* eslint-plugin-disable jsx-a11y */
 const useStyle = makeStyles({
   modal_background: {
     height: '100%',
