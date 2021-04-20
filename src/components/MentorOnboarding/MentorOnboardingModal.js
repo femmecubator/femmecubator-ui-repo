@@ -7,7 +7,6 @@ import {
   Typography,
   FormControl,
   InputLabel,
-  FormHelperText,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -32,7 +31,7 @@ const PHONE_VAL = 'Phone number is not valid';
 const GOOGLE_MEET_VAL = 'google meet link is required';
 
 const MentorOnboardingModal = () => {
-  // const isMobile = useMediaQuery('(max-width:1023px)');
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     root,
     modal,
@@ -41,8 +40,9 @@ const MentorOnboardingModal = () => {
     buttonModal,
     subheading,
     heading,
-    helperText,
-  } = useStyles();
+  } = useStyles({
+    isMobile: isMobile,
+  });
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -56,7 +56,6 @@ const MentorOnboardingModal = () => {
     console.log(data);
   };
 
-  // for validation
   const OnboardingSchema = yup.object().shape({
     bio: yup
       .string()
@@ -84,8 +83,6 @@ const MentorOnboardingModal = () => {
     handleSubmit,
     errors,
     setValue,
-    setError,
-    watch,
     getValues,
   } = useForm({
     revalidateMode: 'onChange',
@@ -101,12 +98,6 @@ const MentorOnboardingModal = () => {
     register('timezone');
     return () => unregister('timezone');
   }, [register, unregister]);
-
-  // STUFF I STILL NEED
-  // TESTS
-  // disable submit button if fields are not valid
-  // must be WCAG compliant - andi guy site
-  // must be mobile responsive
 
   const formContent = (
     <form className={root} onSubmit={handleSubmit(onSubmit)}>

@@ -11,8 +11,8 @@ const color = {
   secondaryWarning: '#FBF1D0',
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const useStyles = makeStyles((theme, isMobile) => ({
+  root: ({ isMobile }) => ({
     '& .MuiTextField-root': {
       width: '25ch',
       border: 'none',
@@ -24,16 +24,7 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormHelperText-root': {
       backgroundColor: color.white,
     },
-    // '& Mui-FormControl-root': {
-    //   backgroundColor: color.white,
-    // },
-    // '& .MuiFormHelperText-contained': {
-    //   backgroundColor: color.white,
-    // },
-    // '& .Mui-error': {
-    //   backgroundColor: color.white,
-    // },
-  },
+  }),
   helperText: {
     position: 'absolute',
     top: '55px',
@@ -46,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   modal: {
+    [theme.breakpoints.between(600, 800)]: { width: '30em' },
     position: 'fixed',
     borderRadius: '4px',
     width: '631px',
@@ -58,10 +50,11 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translate(-50%, -30%)',
   },
   h4Heading: {
+    // [theme.breakpoints.between(600, 800)]: { width: '30em' },
     color: color.gray,
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '700',
+    fontWeight: '800',
     fontSize: '16px',
     lineHeight: '50px',
     boxSizing: 'border-box',
@@ -78,19 +71,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '-10px',
   },
   buttonModal: {
+    [theme.breakpoints.up(800)]: {
+      marginLeft: '35%',
+    },
+    marginLeft: '30%',
     width: 'fit-content',
     height: '44px',
     backgroundColor: color.primaryAccent,
     color: color.white,
-    position: 'absolute',
-    top: '720px',
-    left: '250px',
+    padding: '3.5px 21px',
     fontSize: '18px',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: '600',
-    marginTop: '10px',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: '30px',
   },
   subheading: {
     color: color.gray,
