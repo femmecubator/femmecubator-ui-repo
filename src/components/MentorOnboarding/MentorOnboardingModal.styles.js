@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme, isMobile) => ({
     position: 'fixed',
     borderRadius: '4px',
     width: '631px',
-    height: '800px',
+    height: '810px',
     left: '354px',
     top: '300px',
     backgroundColor: color.white,
