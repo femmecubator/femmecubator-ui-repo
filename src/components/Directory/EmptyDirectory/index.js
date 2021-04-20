@@ -32,9 +32,7 @@ const EmptyDirectory = ({ mainLabel, subLabel, options }) => {
       >
         {subLabel}
       </Typography>
-      <ul className={optionsContainer} data-testid="optionsContainer">
-        {renderOptions()}
-      </ul>
+      <ul className={optionsContainer}>{renderOptions()}</ul>
     </Card>
   );
 };
