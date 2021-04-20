@@ -12,13 +12,29 @@ const EmptyDirectory = ({ mainLabel, subLabel, options }) => {
 
   return (
     <Card className={bannerContainer} variant="outlined">
-      <Typography className={mainText} variant="h2" align="center">
+      <Typography
+        {...{
+          className: mainText,
+          variant: 'h2',
+          align: 'center',
+          'data-testid': 'mainText',
+        }}
+      >
         {mainLabel}
       </Typography>
-      <Typography className={subText} variant="body1" align="center">
+      <Typography
+        {...{
+          className: subText,
+          variant: 'body1',
+          align: 'center',
+          'data-testid': 'subText',
+        }}
+      >
         {subLabel}
       </Typography>
-      <ul className={optionsContainer}>{renderOptions()}</ul>
+      <ul className={optionsContainer} data-testid="optionsContainer">
+        {renderOptions()}
+      </ul>
     </Card>
   );
 };
