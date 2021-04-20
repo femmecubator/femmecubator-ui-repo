@@ -31,9 +31,9 @@ const Directory = () => {
       const { data } = await request.get('/api/directory');
       setMentorCards(data);
     }
-
     fetchData();
   }, []);
+
   const tabDisplayOptions = {
     0: () => {
       const mentorList = searchMentorCards();

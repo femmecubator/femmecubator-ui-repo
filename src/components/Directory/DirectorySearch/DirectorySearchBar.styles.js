@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     minWidth: '45vw',
+
     maxHeight: '20%',
     position: ({ isMobile }) => (isMobile ? 'relative' : 'absolute'),
     right: '0',
@@ -13,13 +14,14 @@ const useStyles = makeStyles(() => ({
     zIndex: 2,
   },
   searchInput: {
-    minWidth: ({ isMobile }) => (isMobile ? '80%' : '73%'),
+    minWidth: ({ isMobile }) => (isMobile ? '99%' : '73%'),
   },
   searchBtn: {
     marginLeft: ({ isMobile }) => (isMobile ? '0' : '2%'),
     minWidth: ({ isMobile }) => (isMobile ? '25%' : '17%'),
     backgroundColor: '#026FE4 !important',
     color: 'white',
+    minHeight: '40px',
   },
 }));
 

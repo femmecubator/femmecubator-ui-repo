@@ -34,7 +34,7 @@ const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
           className: searchInput,
           InputProps: {
             startAdornment: isMobile ? null : (
-              <InputAdornment position="start">
+              <InputAdornment position="start" f>
                 <SearchIcon />
               </InputAdornment>
             ),
@@ -50,6 +50,9 @@ const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
                 <SearchIcon />
               </Button>
             ) : null,
+            style: {
+              paddingRight: 0,
+            },
           },
         }}
       />
