@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './DirectorySearchBar.styles';
 
 const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
-  const isMobile = useMediaQuery('(max-width:769px)');
+  const isMobile = useMediaQuery('(max-width:1029px)');
   const { searchBar, searchBtn, searchInput } = useStyles({ isMobile });
   const { register, handleSubmit } = useForm();
 
@@ -34,7 +34,7 @@ const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
           className: searchInput,
           InputProps: {
             startAdornment: isMobile ? null : (
-              <InputAdornment position="start" f>
+              <InputAdornment position="start">
                 <SearchIcon />
               </InputAdornment>
             ),
