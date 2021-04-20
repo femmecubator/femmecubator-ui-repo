@@ -20,7 +20,6 @@ import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
 import { isEmpty } from 'lodash';
 
-// headings & validation
 const BIO = 'Add a Bio (128 char)';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
 const PHONE = 'Phone';
@@ -91,7 +90,6 @@ const MentorOnboardingModal = () => {
     resolver: yupResolver(OnboardingSchema),
   });
 
-  // for select timezone
   const [selected, setSelected] = useState(true);
   function handleSelect() {
     setSelected(false);
