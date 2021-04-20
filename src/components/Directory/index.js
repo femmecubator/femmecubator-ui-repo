@@ -30,9 +30,10 @@ const Directory = () => {
     async function fetchData() {
       const { data } = await request.get('/api/directory');
       setMentorCards(data);
+      console.log('FROM THE TEST', mentorCards);
     }
     fetchData();
-  }, []);
+  }, [mentorCards]);
 
   const tabDisplayOptions = {
     0: () => {
@@ -89,6 +90,7 @@ const Directory = () => {
             className: mentorListContainer,
             value: selectedTab,
             index: 0,
+            'data-testid': 'mentorListContainer',
           }}
         >
           {tabDisplayOptions[selectedTab]()}

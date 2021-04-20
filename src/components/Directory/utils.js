@@ -1,9 +1,6 @@
 import React from 'react';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
-// import useStyles from './Directory.styles';
-// const { directoryTab } = useStyles({
-//   isMobile,
-// });
+
 export const subheaderProperties = {
   variant: 'mentors',
   mainLabel: 'Connect with a Mentor',
@@ -33,3 +30,15 @@ export const directoryTabs = tabClass => [
     disabled: true,
   },
 ];
+
+export const mockMentorProps = {
+  firstName: 'Amanda',
+  lastName: 'Powell',
+  title: 'Coding Mentor',
+  mentorSkills:
+    'Wireframing, Prototyping, User Research, Customer Journey, Persona',
+  bio:
+    'Lorem ipsum testing lines limited to an awesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic. It is a placeholderawesomely composed lead sentence or series of posts. Snappy, judgy, tyrannical. Compassionate or narcissistic.Snappy, judgy, tyrannical. Compassionate or narcissistic. It is a placeholder  limited to 280 char text to a max of 5 Compassionate or narcissistic. It is a placeholder  limited to 280 char text to a max of 5 ',
+  initials: 'AP',
+  _id: 'asdf1234',
+};
