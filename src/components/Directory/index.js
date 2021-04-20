@@ -29,14 +29,11 @@ const Directory = () => {
   useEffect(() => {
     async function fetchData() {
       const { data } = await request.get('/api/directory');
-
       setMentorCards(data);
     }
 
     fetchData();
   }, []);
-  console.log('FROM THE TEST', mentorCards);
-
   const tabDisplayOptions = {
     0: () => {
       const mentorList = searchMentorCards();
