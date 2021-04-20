@@ -7,6 +7,7 @@ import {
   Typography,
   FormControl,
   InputLabel,
+  FormHelperText,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -40,6 +41,7 @@ const MentorOnboardingModal = () => {
     buttonModal,
     subheading,
     heading,
+    formHelperTxt,
   } = useStyles({
     isMobile: isMobile,
   });
@@ -179,11 +181,11 @@ const MentorOnboardingModal = () => {
           <InputLabel shrink={false} htmlFor="timezone placeholder">
             {selected ? 'Select a time zone' : ''}
           </InputLabel>
+
           <Select
             name="timezone"
             defaultValue=""
             error={!isEmpty(errors.timezone)}
-            helperText={errors.timezone && errors.timezone.message}
             onChange={(e) => {
               setValue('timezone', e.target.value, { shouldDirty: true });
               handleSelect();
@@ -195,6 +197,9 @@ const MentorOnboardingModal = () => {
               </MenuItem>
             ))}
           </Select>
+          <FormHelperText className={formHelperTxt}>
+            {errors.timezone && errors.timezone.message}
+          </FormHelperText>
         </FormControl>
 
         <Typography variant="h4" className={h4Heading}>

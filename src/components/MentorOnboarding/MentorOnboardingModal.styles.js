@@ -20,15 +20,18 @@ const useStyles = makeStyles((theme, isMobile) => ({
     },
     '& .MuiSelect-outlined': {
       border: 'none',
+      backgroundColor: color.white,
     },
     '& .MuiFormHelperText-root': {
       backgroundColor: color.white,
+      marginTop: '5px',
     },
   }),
-  helperText: {
+  formHelperTxt: {
     position: 'absolute',
     top: '55px',
     fontFamily: 'Open Sans, sans-serif',
+    color: 'red',
   },
   skills: {
     width: 500,
@@ -41,7 +44,7 @@ const useStyles = makeStyles((theme, isMobile) => ({
     position: 'fixed',
     borderRadius: '4px',
     width: '631px',
-    height: '780px',
+    height: '800px',
     left: '354px',
     top: '300px',
     backgroundColor: color.white,
@@ -51,6 +54,7 @@ const useStyles = makeStyles((theme, isMobile) => ({
   },
   h4Heading: {
     // [theme.breakpoints.between(600, 800)]: { width: '30em' },
+    marginTop: '4px',
     color: color.gray,
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
@@ -73,7 +77,9 @@ const useStyles = makeStyles((theme, isMobile) => ({
   buttonModal: {
     [theme.breakpoints.up(800)]: {
       marginLeft: '35%',
+      borderRadius: '4px',
     },
+    borderRadius: '4px',
     marginLeft: '30%',
     width: 'fit-content',
     height: '44px',
