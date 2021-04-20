@@ -6,7 +6,7 @@ import useStyles from './Directory.styles';
 import EmptyDirectory from './EmptyDirectory';
 import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
 import { emptySearch, directoryTabs, subheaderProperties } from './utils';
-import request from 'utils/axiosConfig';
+import request from '../../utils/axiosConfig';
 
 const Directory = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');

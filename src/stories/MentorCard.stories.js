@@ -11,8 +11,9 @@ export const Template = args => <MentorCard {...args} />;
 export const PrimaryCard = Template.bind({});
 
 PrimaryCard.args = {
-  mentorName: 'Amanda Powell',
-  jobTitle: 'Coding Mentor',
+  firstName: 'Amanda',
+  lastName: 'Powell',
+  title: 'Coding Mentor',
   mentorSkills:
     'Wireframing, Prototyping, User Research, Customer Journey, Persona',
   bio:
