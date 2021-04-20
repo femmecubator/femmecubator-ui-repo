@@ -18,7 +18,7 @@ const EmptyDirectory = ({ mainLabel, subLabel, options }) => {
       <Typography className={subText} variant="body1" align="center">
         {subLabel}
       </Typography>
-      <div className={optionsContainer}>{renderOptions()}</div>
+      <ul className={optionsContainer}>{renderOptions()}</ul>
     </Card>
   );
 };
