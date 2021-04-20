@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { TextField, InputAdornment, useMediaQuery } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
-import useStyles from './MentorSearchBar.styles';
+import useStyles from './DirectorySearchBar.styles';
 
-const MentorSearchBar = ({ setQuery, mockOnSubmit }) => {
+const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:769px)');
   const { searchBar, searchBtn, searchInput } = useStyles({ isMobile });
   const { register, handleSubmit } = useForm();
@@ -68,4 +68,4 @@ const MentorSearchBar = ({ setQuery, mockOnSubmit }) => {
   );
 };
 
-export default MentorSearchBar;
+export default DirectorySearchBar;
