@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { makeStyles } from '@material-ui/core';
+import { font } from '../utils';
 const avatarColors = [
   '#FF7452',
   '#FFAB00',
@@ -17,36 +18,44 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '258px',
   },
   avatar: {
+    ...font,
     fontSize: '14px',
     backgroundColor: () => {
       return avatarColors[Math.floor(Math.random() * avatarColors.length)];
     },
+    fontWeight: '600',
     color: 'black',
   },
   booking: {
+    ...font,
+    fontWeight: '600',
     maxHeight: '30px',
     marginTop: '10%',
     borderColor: '#026FE4',
     color: '#026FE4',
   },
   jobField: {
+    ...font,
     color: '#026FE4',
-    fontWeight: '550 !important',
+    fontWeight: '700 !important',
   },
   mentorNameField: {
-    fontWeight: '550 !important',
+    ...font,
+    fontWeight: '600 !important',
   },
   skillList: {
-    fontWeight: '600',
+    ...font,
+    fontWeight: '700',
   },
   bioSection: {
+    ...font,
+    fontWeight: '400',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
     '-webkitLineClamp': 5,
     '-webkitBoxOrient': 'vertical',
   },
-
 }));
 
 export default useStyles;

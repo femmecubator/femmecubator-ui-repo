@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 
+const font = {
+  fontFamily: 'Open Sans, sans-serif',
+  fontWeight: '700',
+};
 const useStyles = makeStyles(() => ({
   root: {
+    ...font,
     backgroundColor: 'white',
     height: '100vh',
   },
@@ -10,15 +15,15 @@ const useStyles = makeStyles(() => ({
     margin: ({ isMobile }) => (isMobile ? '0' : '0 2rem'),
   },
   directoryTab: {
-    fontWeight: '600',
+    ...font,
     color: '#550CCC',
     fontSize: '20px',
   },
   directoryHeader: {
+    ...font,
     color: '#495057',
     fontSize: '25px',
     margin: '1rem 0 0 5rem',
-    fontWeight: '600',
   },
   mentorListContainer: {
     overflow: 'scroll',

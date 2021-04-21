@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-
+import { font } from '../utils';
 const useStyles = makeStyles(() => ({
   searchBar: {
     display: 'flex',
@@ -17,6 +17,8 @@ const useStyles = makeStyles(() => ({
     minWidth: ({ isMobile }) => (isMobile ? '99%' : '73%'),
   },
   searchBtn: {
+    ...font,
+    fontWeight: '700',
     marginLeft: ({ isMobile }) => (isMobile ? '0' : '2%'),
     minWidth: ({ isMobile }) => (isMobile ? '25%' : '17%'),
     backgroundColor: '#026FE4 !important',
