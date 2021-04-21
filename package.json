@@ -29,7 +29,7 @@
     "start:local:frontend": "cd ../femmecubator-ui-repo && npm start",
     "start-local": "run-p start:local:* -- --watch",
     "start:mock": "cross-env REACT_APP_MOCK_API_TRUE=true npm start",
-    "build": "react-scripts build",
+    "build": "npm install --force && react-scripts build",
     "storybook": "start-storybook -p 6006 -s public --no-dll",
     "build-storybook": "build-storybook -s public --no-dll",
     "test": "react-scripts test",
