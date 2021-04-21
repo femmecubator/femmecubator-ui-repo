@@ -7,21 +7,16 @@ const AboutContentContainer = ({ selected }) => {
   const { container, content } = useStyles();
 
   const page = () => {
-    let result;
     switch (selected) {
       case 'What We Do':
-        result = <WhatWeDo />;
-        break;
+        return <WhatWeDo />;
       case 'Who We Are':
-        result = <WhoWeAre />;
-        break;
+        return <WhoWeAre />;
       case 'Programs':
-        result = <Programs />;
-        break;
+        return <Programs />;
       default:
-        <WhatWeDo />;
+        return <WhatWeDo />;
     }
-    return result;
   };
 
   return (
