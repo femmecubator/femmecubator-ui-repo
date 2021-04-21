@@ -30,7 +30,7 @@ const MAX_CHARS = 'Must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
 const GOOGLE_MEET_VAL = 'google meet link is required';
 
-const MentorOnboardingModal = () => {
+const MentorOnboardingModal = ({ mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     root,
@@ -99,8 +99,16 @@ const MentorOnboardingModal = () => {
     return () => unregister('timezone');
   }, [register, unregister]);
 
+  const timezoneMenu = (array) => {
+    return array.map(({ offset, name }) => (
+      <MenuItem key={name} value={offset}>
+        {offset} {name}
+      </MenuItem>
+    ));
+  };
+
   const formContent = (
-    <form className={root} onSubmit={handleSubmit(onSubmit)}>
+    <form className={root} onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
       <div className={modal}>
         <div align="center">
           <h2 className={heading}>Almost there!</h2>
@@ -140,8 +148,6 @@ const MentorOnboardingModal = () => {
               'skills',
               newValue.map((option) => option.title)
             );
-
-            console.log(getValues('skills'));
           }}
           renderInput={(params) => (
             <TextField
@@ -176,11 +182,12 @@ const MentorOnboardingModal = () => {
           {TIME_ZONE}
         </Typography>
         <FormControl variant="outlined" className={textField}>
-          <InputLabel shrink={false} htmlFor="timezone placeholder">
+          <InputLabel shrink={false} htmlFor="timezone">
             {selected ? 'Select a time zone' : ''}
           </InputLabel>
 
           <Select
+            data-testid="timezone"
             name="timezone"
             defaultValue=""
             error={!isEmpty(errors.timezone)}
@@ -189,11 +196,7 @@ const MentorOnboardingModal = () => {
               handleSelect();
             }}
           >
-            {timeZoneData.map(({ offset, name }) => (
-              <MenuItem key={name} value={offset}>
-                {offset} {name}
-              </MenuItem>
-            ))}
+            {timezoneMenu(timeZoneData)}
           </Select>
           <FormHelperText className={formHelperTxt}>
             {errors.timezone && errors.timezone.message}

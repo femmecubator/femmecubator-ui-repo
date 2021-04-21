@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme, isMobile) => ({
     '& .MuiFormHelperText-root': {
       backgroundColor: color.white,
       marginTop: '5px',
+      outline: 'none',
     },
   }),
   formHelperTxt: {
@@ -66,9 +67,6 @@ const useStyles = makeStyles((theme, isMobile) => ({
   },
   textField: {
     display: 'flex',
-    border: '1px solid',
-    borderColor: color.gray,
-    backgroundColor: color.gray6,
     minWidth: '100%',
     boxSizing: 'border-box',
     borderRadius: '4px',
