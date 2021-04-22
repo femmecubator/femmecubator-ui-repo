@@ -1,8 +1,6 @@
-//import { Modal, useMediaQuery } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
-//import Auth from '../../utils/auth';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
@@ -33,13 +31,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
 
   return (
     <div className={classes.modal_background}>
-      {
-        //eslint-disable-next-line
-      }
       <TrapFocus open isEnabled={() => true} getDoc={() => document}>
-        {
-          //eslint-disable-next-line
-        }
         <article className={classes.modal} tabIndex={-1}>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
@@ -57,15 +49,21 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
               </p>
             </div>
             <div className={classes.modal__center_div__buttons}>
-              <span //eslint-disable-line
+              <span
                 className={classes.modal__center_div__buttons__button_logoff}
                 onClick={logoff}
+                onKeyPress={logoff}
+                role="button"
+                tabIndex="-1"
               >
                 Log Off
               </span>
-              <span //eslint-disable-line
+              <span
                 className={classes.modal__center_div__buttons__button_continue}
                 onClick={() => setIdle(false)}
+                onKeyPress={() => setIdle(false)}
+                role="button"
+                tabIndex="0"
               >
                 Continue
               </span>

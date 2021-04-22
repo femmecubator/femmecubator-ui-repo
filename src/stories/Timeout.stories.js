@@ -7,10 +7,6 @@ export default {
   component: Timeout,
 };
 
-/* const Template = args => <ModalPopup {...args} />;
-export const Modal = Template.bind({});
-Modal.args = {}; */
-
 export const Modal = () => {
   return (
     <div>
