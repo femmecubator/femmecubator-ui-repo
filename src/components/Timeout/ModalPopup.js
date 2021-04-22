@@ -1,13 +1,13 @@
-import { Modal, useMediaQuery } from '@material-ui/core';
+//import { Modal, useMediaQuery } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
-import Auth from '../../utils/auth';
+//import Auth from '../../utils/auth';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
   const classes = useStyles();
-  const isMobile = useMediaQuery('(max-width:1023px)');
+  //const isMobile = useMediaQuery('(max-width:1023px)');
 
   const [minutes, setMinutes] = useState(Math.floor(countdownTime / 60000));
   const [seconds, setSeconds] = useState((countdownTime / 1000) % 60);
