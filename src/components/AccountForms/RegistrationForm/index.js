@@ -25,6 +25,7 @@ import { API_PATH } from 'utils/constants';
 import { event } from 'react-ga';
 import Auth from 'utils/auth';
 import RegistrationSuccess from '../../RegistrationSuccess';
+import TermsOfService from 'components/TermsOfService/TermsOfService';
 
 const FORM_TITLE = 'Create account';
 const FORM_SUBTITLE = 'Have an existing account?';
@@ -299,15 +300,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                     />
                   </div>
                   <div className={classes.inputSpacing}>
-                    <InputLabel className={classes.termsLabel}>
-                      By creating this account you agree to the
-                    </InputLabel>
-                    <InputLabel
-                      className={classes.termsLabel}
-                      style={{ color: '#026FE4' }}
-                    >
-                      Terms of Service
-                    </InputLabel>
+                    <TermsOfService />
                   </div>
                   <div>
                     <Button
@@ -510,6 +503,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   type: showPassword.retypePassword ? 'text' : 'password',
                 }}
               />
+              <div>
+                <TermsOfService />
+              </div>
               <Grid item sm={12} className={classes.buttonGrid}>
                 <Button
                   {...{
