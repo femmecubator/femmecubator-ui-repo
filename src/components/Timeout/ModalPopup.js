@@ -31,8 +31,14 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
 
   return (
     <div className={classes.modal_background}>
-      <TrapFocus open isEnabled={() => true} getDoc={() => document}>
-        <article className={classes.modal} tabIndex={-1}>
+      <TrapFocus
+        open
+        isEnabled={() => true}
+        getDoc={() => document}
+        tabIndex="0"
+        aria-label="session timeout popup"
+      >
+        <article className={classes.modal}>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
               <p className={classes.modal__center_div__content__p_head}>
@@ -54,7 +60,8 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
                 onClick={logoff}
                 onKeyPress={logoff}
                 role="button"
-                tabIndex="-1"
+                aria-label="log off"
+                tabIndex="0"
               >
                 Log Off
               </span>
@@ -63,6 +70,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
                 onClick={() => setIdle(false)}
                 onKeyPress={() => setIdle(false)}
                 role="button"
+                aria-label="continue"
                 tabIndex="0"
               >
                 Continue

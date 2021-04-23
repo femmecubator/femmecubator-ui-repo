@@ -40,6 +40,8 @@ const Timeout = ({ children }) => {
       onKeyPress={() => reset()}
       role="textbox"
       tabIndex="0"
+      aria-label="session timeout"
+      //aria-label="popup"
     >
       {idle && (
         <ModalPopup
