@@ -1,6 +1,3 @@
-import React from 'react';
-import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
-
 export const font = {
   fontFamily: 'Open Sans, sans-serif',
 };
@@ -9,7 +6,6 @@ export const subheaderProperties = {
   variant: 'mentors',
   mainLabel: 'Connect with a Mentor',
   subLabel: 'Book 30 mins with a UX Design or Coding Mentor.',
-  image: <SubheaderIcon />,
 };
 
 export const emptySearch = {

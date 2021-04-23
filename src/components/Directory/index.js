@@ -6,6 +6,7 @@ import useStyles from './Directory.styles';
 import EmptyDirectory from './EmptyDirectory';
 import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
 import { emptySearch, directoryTabs, subheaderProperties } from './utils';
+import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 import request from '../../utils/axiosConfig';
 
 const Directory = () => {
@@ -59,7 +60,7 @@ const Directory = () => {
     directoryTabs(directoryTab).map(tab => <Tab {...tab} key={tab.label} />);
   return (
     <section aria-label="Mentor Directory" className={root}>
-      <Subheader {...subheaderProperties} />
+      <Subheader {...{ ...subheaderProperties, image: <SubheaderIcon /> }} />
       {isMobile ? null : (
         <Typography
           {...{
@@ -77,7 +78,7 @@ const Directory = () => {
           {...{
             value: selectedTab,
             onChange: handleChange,
-            'aria-label': 'Mentor Direcotry Tabs',
+            'aria-label': 'Mentor Directory Tabs',
             className: tabs,
             TabIndicatorProps: {
               style: {

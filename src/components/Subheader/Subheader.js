@@ -24,7 +24,7 @@ export default function Subheader({
     closeIcon,
   } = classes;
   const handleClick = () => setSubheader(!showSubheader);
-
+  console.log(variant, subLabel, image);
   return (
     <div className={subheaderContainer}>
       {showSubheader ? (
