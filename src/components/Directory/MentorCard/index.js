@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useStyles from './ MentorCard.styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {
+  Card,
+  CardHeader,
+  Divider,
+  Avatar,
+  Button,
+  CardContent,
+  Typography,
+  useMediaQuery,
+} from '@material-ui/core/';
 
 const MentorCard = ({
   firstName,

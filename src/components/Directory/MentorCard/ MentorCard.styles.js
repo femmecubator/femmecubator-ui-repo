@@ -10,7 +10,7 @@ const avatarColors = [
   '#CABEE9',
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '413px',
     variant: ({ isMobile }) => (isMobile ? 'none' : 'outlined'),
