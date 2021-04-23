@@ -74,12 +74,16 @@ const Directory = () => {
       <DirectorySearchBar setQuery={setQuery} />
       <div className={mentorDirectory}>
         <Tabs
-          value={selectedTab}
-          onChange={handleChange}
-          aria-label="Mentor Directory Tabs"
-          className={tabs}
-          TabIndicatorProps={{
-            style: { background: '#550CCC' },
+          {...{
+            value: selectedTab,
+            onChange: handleChange,
+            'aria-label': 'Mentor Direcotry Tabs',
+            className: tabs,
+            TabIndicatorProps: {
+              style: {
+                background: '#550CCC',
+              },
+            },
           }}
         >
           {renderTabs()}
