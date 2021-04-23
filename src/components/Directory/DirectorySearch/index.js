@@ -1,7 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { TextField, InputAdornment, useMediaQuery } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import {
+  TextField,
+  InputAdornment,
+  useMediaQuery,
+  Button,
+} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './DirectorySearchBar.styles';
 
