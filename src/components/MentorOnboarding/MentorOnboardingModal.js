@@ -99,7 +99,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     return () => unregister('timezone');
   }, [register, unregister]);
 
-  const timezoneMenu = (array) => {
+  const timezoneMenu = array => {
     return array.map(({ offset, name }) => (
       <MenuItem key={name} value={offset}>
         {offset} {name}
@@ -141,15 +141,15 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
         <Autocomplete
           multiple
           options={topSkills}
-          getOptionLabel={(option) => option.title}
+          getOptionLabel={option => option.title}
           filterSelectedOptions
           onChange={(event, newValue) => {
             setValue(
               'skills',
-              newValue.map((option) => option.title)
+              newValue.map(option => option.title)
             );
           }}
-          renderInput={(params) => (
+          renderInput={params => (
             <TextField
               {...{
                 ...params,
@@ -191,7 +191,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
             name="timezone"
             defaultValue=""
             error={!isEmpty(errors.timezone)}
-            onChange={(e) => {
+            onChange={e => {
               setValue('timezone', e.target.value, { shouldDirty: true });
               handleSelect();
             }}
