@@ -24,16 +24,22 @@ const Directory = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [mentorCards, setMentorCards] = useState([]);
   const [query, setQuery] = useState('');
-
   const handleChange = (e, newVal) => setSelectedTab(newVal);
+  const [errorResponse, setErrorResponse] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await request.get('/api/directory');
-      setMentorCards(data);
+      try {
+        const { data } = await request.get('/api/directory');
+        setMentorCards(data);
+      } catch (e) {
+        setErrorResponse(true);
+      }
     }
     fetchData();
   }, []);
+
+  if (errorResponse) throw Error(errorResponse);
 
   const tabDisplayOptions = {
     0: () => {
