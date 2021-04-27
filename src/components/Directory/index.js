@@ -30,7 +30,7 @@ const Directory = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await request.get('/api/directoy');
+        const { data } = await request.get('/api/directory');
         setMentorCards(data);
       } catch (e) {
         setErrorResponse(true);
