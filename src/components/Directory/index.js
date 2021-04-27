@@ -30,7 +30,7 @@ const Directory = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await request.get('/api/directory');
+        const { data } = await request.get('/api/directoy');
         setMentorCards(data);
       } catch (e) {
         setErrorResponse(true);
@@ -39,7 +39,7 @@ const Directory = () => {
     fetchData();
   }, []);
 
-  if (errorResponse) throw Error(errorResponse);
+  if (errorResponse) throw Error('BAD API REQUEST');
 
   const tabDisplayOptions = {
     0: () => {
