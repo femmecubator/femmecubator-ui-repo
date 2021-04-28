@@ -35,12 +35,12 @@ const Timeout = ({ children }) => {
 
   return (
     <div
-    onMouseOver={() => reset()}
-    onFocus={() => reset()}
-    onKeyPress={() => reset()}
-    role="textbox"
-    tabIndex="0"
-    aria-label="session timeout"
+      onMouseOver={() => reset()}
+      onFocus={() => reset()}
+      onKeyPress={() => reset()}
+      role="textbox"
+      tabIndex="0"
+      aria-label="session timeout"
     >
       {idle && (
         <ModalPopup

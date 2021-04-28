@@ -77,8 +77,8 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
     <div className={classes.modal_background}>
       <Modal
         open={open}
-        isEnabled={() => true}
-        getDoc={() => document}
+        //isEnabled={() => true}
+        //getDoc={() => document}
         disableAutoFocus={false}
         disableBackdropClick={true}
         disableEnforceFocus={false}
