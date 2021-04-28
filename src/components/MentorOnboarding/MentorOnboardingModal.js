@@ -45,15 +45,9 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [open, setOpen] = useState(true);
 
-  const onSubmit = (data, e) => {
+  const onSubmit = data => {
     console.log(data);
   };
 
@@ -228,12 +222,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
-      <Modal open={open} onClose={handleClose}>
-        {formContent}
-      </Modal>
+      <Modal open={open}>{formContent}</Modal>
     </div>
   );
 };
