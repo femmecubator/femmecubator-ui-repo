@@ -30,6 +30,28 @@ const MAX_CHARS = 'Must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
 const GOOGLE_MEET_VAL = 'google meet link is required';
 
+const OnboardingSchema = yup.object().shape({
+  bio: yup
+    .string()
+    .required('Bio is required')
+    .min(2, MIN_CHARS)
+    .max(128, MAX_CHARS),
+  skills: yup.string().required('One skill is required'),
+  phone: yup
+    .string()
+    .required('Phone number is required')
+    .min(8)
+    .matches(
+      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+      PHONE_VAL
+    ),
+  timezone: yup.string().required('Timezone is required'),
+  googlemeet: yup
+    .string()
+    .required('Google meet is required')
+    .matches(/^(meet\.google\.com\/(?:\w+-\w+-\w+))?$/, GOOGLE_MEET_VAL),
+});
+
 const MentorOnboardingModal = ({ mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
@@ -51,27 +73,6 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     console.log(data);
   };
 
-  const OnboardingSchema = yup.object().shape({
-    bio: yup
-      .string()
-      .required('Bio is required')
-      .min(2, MIN_CHARS)
-      .max(128, MAX_CHARS),
-    skills: yup.string().required('One skill is required'),
-    phone: yup
-      .string()
-      .required('Phone number is required')
-      .min(8)
-      .matches(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        PHONE_VAL
-      ),
-    timezone: yup.string().required('Timezone is required'),
-    googlemeet: yup
-      .string()
-      .required('Google meet is required')
-      .matches(/^(meet\.google\.com\/(?:\w+-\w+-\w+))?$/, GOOGLE_MEET_VAL),
-  });
   const {
     unregister,
     register,
@@ -80,7 +81,6 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     setValue,
     getValues,
   } = useForm({
-    revalidateMode: 'onChange',
     resolver: yupResolver(OnboardingSchema),
   });
 
@@ -100,6 +100,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
       </MenuItem>
     ));
   };
+  console.log(getValues());
 
   const formContent = (
     <form className={root} onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
@@ -140,7 +141,8 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
           onChange={(event, newValue) => {
             setValue(
               'skills',
-              newValue.map(option => option.title)
+              newValue.map(option => option.title),
+              { shouldValidate: true }
             );
           }}
           renderInput={params => (
@@ -162,9 +164,9 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
         <TextField
           {...{
             id: 'phone',
+            className: textField,
             placeholder: '718-777-4545',
             variant: 'outlined',
-            className: textField,
             name: 'phone',
             type: 'text',
             inputRef: register,
