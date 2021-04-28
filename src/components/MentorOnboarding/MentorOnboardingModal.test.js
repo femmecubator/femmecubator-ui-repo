@@ -10,7 +10,7 @@ describe('<MentorOnboardingModal />', () => {
     render(<MentorOnboardingModal mockOnSubmit={mockOnSubmit} />);
   });
 
-  test('should submit with valid inputs', async () => {
+  test.skip('should submit with valid inputs', async () => {
     const openModal = screen.getByText('Open Modal');
 
     userEvent.click(openModal);
