@@ -57,7 +57,6 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     buttonModal,
     subheading,
     heading,
-    formHelperTxt,
   } = useStyles({
     isMobile: isMobile,
   });
@@ -183,13 +182,13 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
             defaultValue=""
             error={!isEmpty(errors.timezone)}
             onChange={e => {
-              setValue('timezone', e.target.value, { shouldDirty: true });
+              setValue('timezone', e.target.value, { shouldValidate: true });
               handleSelect();
             }}
           >
             {timezoneMenu(timeZoneData)}
           </Select>
-          <FormHelperText className={formHelperTxt}>
+          <FormHelperText error>
             {errors.timezone && errors.timezone.message}
           </FormHelperText>
         </FormControl>

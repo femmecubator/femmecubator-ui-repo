@@ -28,12 +28,6 @@ const useStyles = makeStyles((theme, isMobile) => ({
       outline: 'none',
     },
   }),
-  formHelperTxt: {
-    position: 'absolute',
-    top: '55px',
-    fontFamily: 'Open Sans, sans-serif',
-    color: 'red',
-  },
   skills: {
     width: 500,
     '& > * + *': {
