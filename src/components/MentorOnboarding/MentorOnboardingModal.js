@@ -25,17 +25,12 @@ const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
 const PHONE = 'Phone';
 const TIME_ZONE = 'Your Time Zone';
 const GOOGLE_MEET = 'Add a google meet:';
-const MIN_CHARS = 'Must be more than 1 character';
 const MAX_CHARS = 'Must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
 const GOOGLE_MEET_VAL = 'google meet link is required';
 
 const OnboardingSchema = yup.object().shape({
-  bio: yup
-    .string()
-    .required('Bio is required')
-    .min(2, MIN_CHARS)
-    .max(128, MAX_CHARS),
+  bio: yup.string().required('Bio is required').max(128, MAX_CHARS),
   skills: yup.string().required('One skill is required'),
   phone: yup
     .string()
