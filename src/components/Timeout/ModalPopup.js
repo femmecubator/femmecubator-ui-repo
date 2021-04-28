@@ -30,7 +30,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
     return () => clearInterval(timer);
   }, [countdownTime, timedOut]);
 
-  const body = (
+  /*   const body = (
     <article className={classes.modal}>
       <div className={classes.modal__center_div}>
         <div className={classes.modal__center_div__content}>
@@ -71,7 +71,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
         </div>
       </div>
     </article>
-  );
+  ); */
 
   return (
     <div className={classes.modal_background}>
@@ -84,8 +84,8 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
         disableEnforceFocus={false}
         //aria-hidden={false}
       >
-        {body}
-        {/* <article className={classes.modal}>
+        {/*{body}*/}
+        <article className={classes.modal}>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
               <p className={classes.modal__center_div__content__p_head}>
@@ -124,7 +124,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
               </span>
             </div>
           </div>
-        </article> */}
+        </article>
       </Modal>
     </div>
   );
