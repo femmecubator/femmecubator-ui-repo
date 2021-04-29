@@ -4,13 +4,13 @@ import jwt_decode from 'jwt-decode';
 import MentorOnboardingModal from '../MentorOnboarding/MentorOnboardingModal';
 
 const ViewContainer = () => {
-  const { role_id } = jwt_decode(getTokenCookie());
+  const { role_id, bio } = jwt_decode(getTokenCookie());
 
   return (
     <>
       {parseInt(role_id) === 0 ? (
         <div>
-          <MentorOnboardingModal />
+          <MentorOnboardingModal opened={bio ? false : true} />
           Mentor Dashboard
         </div>
       ) : (

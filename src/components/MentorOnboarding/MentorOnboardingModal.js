@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   Modal,
@@ -46,7 +46,7 @@ const OnboardingSchema = yup.object().shape({
     ),
 });
 
-const MentorOnboardingModal = ({ mockOnSubmit }) => {
+const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     root,
@@ -60,10 +60,11 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(opened);
 
   const onSubmit = data => {
     console.log(data);
+    setOpen(false);
   };
 
   const { register, handleSubmit, errors, setValue } = useForm({
@@ -208,11 +209,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     </form>
   );
 
-  return (
-    <div>
-      <Modal open={open}>{formContent}</Modal>
-    </div>
-  );
+  return <Modal open={open}>{formContent}</Modal>;
 };
 
 export default MentorOnboardingModal;
