@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import Modal from '@material-ui/core/Modal';
-//import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import FocusTrap from 'focus-trap-react';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
@@ -75,20 +78,28 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
 
   return (
     <div className={classes.modal_background}>
-      <Modal
-        open={open}
-        //isEnabled={() => true}
-        //getDoc={() => document}
-        disableAutoFocus={false}
-        disableBackdropClick={true}
-        disableEnforceFocus={false}
+      <FocusTrap
+        open
+        role="dialog"
+        isEnabled={() => true}
+        getDoc={() => document}
+        tabIndex="0"
+        //onMouseOver={() => reset()}
+        //onFocus={() => reset()}
+        //onKeyPress={() => reset()}
+        //disableAutoFocus={false}
+        //aria-labelledby="modal-title"
+        //aria-describedby="modal-description"
         //aria-hidden={false}
       >
         {/*{body}*/}
         <article className={classes.modal}>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
-              <p className={classes.modal__center_div__content__p_head}>
+              <p
+                className={classes.modal__center_div__content__p_head}
+                id="modal-title"
+              >
                 Your online session
               </p>
               <p className={classes.modal__center_div__content__p_head}>
@@ -97,35 +108,42 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
               <p className={classes.modal__center_div__content__p_timer}>
                 {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
               </p>
-              <p className={classes.modal__center_div__content__p_text}>
+              <p
+                className={classes.modal__center_div__content__p_text}
+                id="modal-description"
+              >
                 Choose continue to keep working or log off.
               </p>
             </div>
             <div className={classes.modal__center_div__buttons}>
-              <span
-                className={classes.modal__center_div__buttons__button_logoff}
-                onClick={logoff}
-                onKeyPress={logoff}
-                role="button"
-                aria-label="log off"
-                tabIndex="0"
-              >
-                Log Off
-              </span>
-              <span
-                className={classes.modal__center_div__buttons__button_continue}
-                onClick={() => setIdle(false)}
-                onKeyPress={() => setIdle(false)}
-                role="button"
-                aria-label="continue"
-                tabIndex="0"
-              >
-                Continue
-              </span>
+              <>
+                <button
+                  className={classes.modal__center_div__buttons__button_logoff}
+                  onClick={logoff}
+                  onKeyPress={logoff}
+                  //role="button"
+                  aria-label="log off"
+                  tabIndex="0"
+                >
+                  Log Off
+                </button>
+                <button
+                  className={
+                    classes.modal__center_div__buttons__button_continue
+                  }
+                  onClick={() => setIdle(false)}
+                  onKeyPress={() => setIdle(false)}
+                  //role="button"
+                  aria-label="continue"
+                  tabIndex="0"
+                >
+                  Continue
+                </button>
+              </>
             </div>
           </div>
         </article>
-      </Modal>
+      </FocusTrap>
     </div>
   );
 };
