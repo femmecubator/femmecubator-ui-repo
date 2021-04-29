@@ -8,10 +8,10 @@ import {
   FormControl,
   InputLabel,
   FormHelperText,
+  MenuItem,
+  Select,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -66,14 +66,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
     console.log(data);
   };
 
-  const {
-    unregister,
-    register,
-    handleSubmit,
-    errors,
-    setValue,
-    getValues,
-  } = useForm({
+  const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
 
@@ -89,7 +82,6 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
       </MenuItem>
     ));
   };
-  console.log(getValues());
 
   const formContent = (
     <form className={root} onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
@@ -123,29 +115,31 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
         </Typography>
         <input type="hidden" id="skills" name="skills" ref={register} />
         <Autocomplete
-          multiple
-          options={topSkills}
-          getOptionLabel={option => option.title}
-          filterSelectedOptions
-          onChange={(event, newValue) => {
-            setValue(
-              'skills',
-              newValue.map(option => option.title),
-              { shouldValidate: true }
-            );
+          {...{
+            multiple: true,
+            options: topSkills,
+            getOptionLabel: option => option.title,
+            filterSelectedOptions: true,
+            onChange: (event, newValue) => {
+              setValue(
+                'skills',
+                newValue.map(option => option.title),
+                { shouldValidate: true }
+              );
+            },
+            renderInput: params => (
+              <TextField
+                {...{
+                  ...params,
+                  variant: 'outlined',
+                  className: textField,
+                  placeholder: 'Select Skills',
+                  error: !isEmpty(errors.skills),
+                  helperText: errors.skills && errors.skills.message,
+                }}
+              />
+            ),
           }}
-          renderInput={params => (
-            <TextField
-              {...{
-                ...params,
-                variant: 'outlined',
-                className: textField,
-                placeholder: 'Select Skills',
-                error: !isEmpty(errors.skills),
-                helperText: errors.skills && errors.skills.message,
-              }}
-            />
-          )}
         />
         <Typography variant="h4" className={h4Heading}>
           {PHONE}
@@ -173,13 +167,15 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
           </InputLabel>
 
           <Select
-            data-testid="timezone"
-            name="timezone"
-            defaultValue=""
-            error={!isEmpty(errors.timezone)}
-            onChange={e => {
-              setValue('timezone', e.target.value, { shouldValidate: true });
-              handleSelect();
+            {...{
+              'data-testid': 'timezone',
+              name: 'timezone',
+              defaultValue: '',
+              error: !isEmpty(errors.timezone),
+              onChange: e => {
+                setValue('timezone', e.target.value, { shouldValidate: true });
+                handleSelect();
+              },
             }}
           >
             {timezoneMenu(timeZoneData)}
