@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import MentorCard from './MentorCard';
+// const MentorCard = React.lazy(() => import('./MentorCard'));
 import Subheader from '../Subheader/Subheader';
 import DirectorySearchBar from './DirectorySearch';
 import useStyles from './Directory.styles';
 import EmptyDirectory from './EmptyDirectory';
-import { Typography, Tab, Tabs, useMediaQuery } from '@material-ui/core';
+import {
+  CircularProgress,
+  Typography,
+  Tab,
+  Tabs,
+  useMediaQuery,
+} from '@material-ui/core';
 import { emptySearch, directoryTabs, subheaderProperties } from './utils';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 import request from '../../utils/axiosConfig';
@@ -44,7 +51,9 @@ const Directory = () => {
   const tabDisplayOptions = {
     0: () => {
       const mentorList = searchMentorCards();
-      if (mentorList.length < 1) return <EmptyDirectory {...emptySearch} />;
+      if (mentorList.length < 1)
+        // throw new Promise((resolve, reject) => console.log('this should work'));
+        return <EmptyDirectory {...emptySearch} />;
       return mentorList.map(mentorObject => (
         <MentorCard {...mentorObject} key={mentorObject._id} />
       ));
@@ -95,6 +104,7 @@ const Directory = () => {
         >
           {renderTabs()}
         </Tabs>
+
         <div
           {...{
             className: mentorListContainer,
@@ -103,7 +113,9 @@ const Directory = () => {
             'data-testid': 'mentorListContainer',
           }}
         >
+          {/* <Suspense fallback={<CircularProgress />}> */}
           {tabDisplayOptions[selectedTab]()}
+          {/* </Suspense> */}
         </div>
       </div>
     </section>
