@@ -10,6 +10,8 @@ import {
   FormHelperText,
   MenuItem,
   Select,
+  Paper,
+  Button,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
@@ -53,9 +55,11 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
     modal,
     h4Heading,
     textField,
-    buttonModal,
+    modalSubmit,
     subheading,
     heading,
+    inputContainer,
+    formContainer,
   } = useStyles({
     isMobile: isMobile,
   });
@@ -85,36 +89,39 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   };
 
   const formContent = (
-    <form className={root} onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
-      <div className={modal}>
-        <div align="center">
-          <h2 className={heading}>Almost there!</h2>
-          <h5 className={subheading}>
-            We'll need to confirm a few things about you.
-          </h5>
-        </div>
-        <Typography variant="h4" className={h4Heading}>
-          {BIO}
-        </Typography>
-        <TextField
-          {...{
-            id: 'bio',
-            multiline: true,
-            rows: 3,
-            rowsMax: 3,
-            variant: 'outlined',
-            className: textField,
-            placeholder: 'Add bio here.',
-            name: 'bio',
-            inputRef: register,
-            error: !isEmpty(errors.bio),
-            helperText: errors.bio && errors.bio.message,
-          }}
-        />
-        <Typography variant="h4" className={h4Heading}>
-          {SKILLS}
-        </Typography>
-        <input type="hidden" id="skills" name="skills" ref={register} />
+    <form
+      className={formContainer}
+      onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
+    >
+      <div align="center">
+        <h2 className={heading}>Almost there!</h2>
+        <h5 className={subheading}>
+          We'll need to confirm a few things about you.
+        </h5>
+      </div>
+      <Typography variant="h4" className={h4Heading}>
+        {BIO}
+      </Typography>
+      <TextField
+        {...{
+          id: 'bio',
+          multiline: true,
+          rows: 2,
+          rowsMax: 2,
+          variant: 'outlined',
+          className: textField,
+          placeholder: 'Add bio here.',
+          name: 'bio',
+          inputRef: register,
+          error: !isEmpty(errors.bio),
+          helperText: errors.bio && errors.bio.message,
+        }}
+      />
+      <Typography variant="h4" className={h4Heading}>
+        {SKILLS}
+      </Typography>
+      <input type="hidden" id="skills" name="skills" ref={register} />
+      <FormControl className={inputContainer}>
         <Autocomplete
           {...{
             multiple: true,
@@ -142,6 +149,8 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             ),
           }}
         />
+      </FormControl>
+      <FormControl className={inputContainer}>
         <Typography variant="h4" className={h4Heading}>
           {PHONE}
         </Typography>
@@ -158,58 +167,63 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             helperText: errors.phone && errors.phone.message,
           }}
         />
-        <Typography variant="h4" className={h4Heading}>
-          {TIME_ZONE}
-        </Typography>
-        <input type="hidden" id="timezone" name="timezone" ref={register} />
-        <FormControl variant="outlined" className={textField}>
-          <InputLabel shrink={false} htmlFor="timezone">
-            {selected ? 'Select a time zone' : ''}
-          </InputLabel>
+      </FormControl>
+      <input type="hidden" id="timezone" name="timezone" ref={register} />
+      <Typography variant="h4" className={h4Heading}>
+        {TIME_ZONE}
+      </Typography>
+      <FormControl variant="outlined" className={inputContainer}>
+        <InputLabel shrink={false} htmlFor="timezone">
+          {selected ? 'Select a time zone' : ''}
+        </InputLabel>
 
-          <Select
-            {...{
-              'data-testid': 'timezone',
-              name: 'timezone',
-              defaultValue: '',
-              error: !isEmpty(errors.timezone),
-              onChange: e => {
-                setValue('timezone', e.target.value, { shouldValidate: true });
-                handleSelect();
-              },
-            }}
-          >
-            {timezoneMenu(timeZoneData)}
-          </Select>
-          <FormHelperText error>
-            {errors.timezone && errors.timezone.message}
-          </FormHelperText>
-        </FormControl>
-
-        <Typography variant="h4" className={h4Heading}>
-          {GOOGLE_MEET}
-        </Typography>
-        <TextField
+        <Select
           {...{
-            id: 'googlemeet',
-            placeholder: 'Add google meet link',
-            variant: 'outlined',
-            className: textField,
-            name: 'googlemeet',
-            type: 'text',
-            inputRef: register,
-            error: !isEmpty(errors.googlemeet),
-            helperText: errors.googlemeet && errors.googlemeet.message,
+            'data-testid': 'timezone',
+            name: 'timezone',
+            defaultValue: '',
+            displayEmpty: true,
+            error: !isEmpty(errors.timezone),
+            onChange: e => {
+              setValue('timezone', e.target.value, { shouldValidate: true });
+              handleSelect();
+            },
           }}
-        />
-        <button type="submit" className={buttonModal}>
-          I'M GOOD TO GO!
-        </button>
-      </div>
+        >
+          {timezoneMenu(timeZoneData)}
+        </Select>
+        <FormHelperText error>
+          {errors.timezone && errors.timezone.message}
+        </FormHelperText>
+      </FormControl>
+
+      <Typography variant="h4" className={h4Heading}>
+        {GOOGLE_MEET}
+      </Typography>
+      <TextField
+        {...{
+          id: 'googlemeet',
+          placeholder: 'Add google meet link',
+          variant: 'outlined',
+          className: textField,
+          name: 'googlemeet',
+          type: 'text',
+          inputRef: register,
+          error: !isEmpty(errors.googlemeet),
+          helperText: errors.googlemeet && errors.googlemeet.message,
+        }}
+      />
+      <Button type="submit" className={modalSubmit}>
+        I'M GOOD TO GO!
+      </Button>
     </form>
   );
 
-  return <Modal open={open}>{formContent}</Modal>;
+  return (
+    <Modal className={root} open={open}>
+      <Paper className={modal}>{formContent}</Paper>
+    </Modal>
+  );
 };
 
 export default MentorOnboardingModal;
