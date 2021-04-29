@@ -81,10 +81,6 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
   function handleSelect() {
     setSelected(false);
   }
-  useEffect(() => {
-    register('timezone');
-    return () => unregister('timezone');
-  }, [register, unregister]);
 
   const timezoneMenu = array => {
     return array.map(({ offset, name }) => (
@@ -170,6 +166,7 @@ const MentorOnboardingModal = ({ mockOnSubmit }) => {
         <Typography variant="h4" className={h4Heading}>
           {TIME_ZONE}
         </Typography>
+        <input type="hidden" id="timezone" name="timezone" ref={register} />
         <FormControl variant="outlined" className={textField}>
           <InputLabel shrink={false} htmlFor="timezone">
             {selected ? 'Select a time zone' : ''}
