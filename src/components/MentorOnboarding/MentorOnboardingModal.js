@@ -27,7 +27,7 @@ const TIME_ZONE = 'Your Time Zone';
 const GOOGLE_MEET = 'Add a google meet:';
 const MAX_CHARS = 'Must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
-const GOOGLE_MEET_VAL = 'google meet link is required';
+const GOOGLE_MEET_VAL = 'Google meet link is not valid';
 
 const OnboardingSchema = yup.object().shape({
   bio: yup.string().required('Bio is required').max(128, MAX_CHARS),
@@ -44,7 +44,10 @@ const OnboardingSchema = yup.object().shape({
   googlemeet: yup
     .string()
     .required('Google meet is required')
-    .matches(/^(meet\.google\.com\/(?:\w+-\w+-\w+))?$/, GOOGLE_MEET_VAL),
+    .matches(
+      /^(http[s]?:\/\/)?(www\.)?(meet\.google\.com\/(?:\w{3}-\w{4}-\w{3}))?$/,
+      GOOGLE_MEET_VAL
+    ),
 });
 
 const MentorOnboardingModal = ({ mockOnSubmit }) => {
