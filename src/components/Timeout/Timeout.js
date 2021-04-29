@@ -37,9 +37,9 @@ const Timeout = ({ children }) => {
     <div
       onMouseOver={() => reset()}
       onFocus={() => reset()}
-      //onKeyPress={() => reset()}
-      role="document"
-      //tabIndex="0"
+      onKeyPress={() => reset()}
+      role="textbox" //alert?
+      tabIndex="0"
       //disableBackdropClick={true}
       //disableEnforceFocus={false}
       //aria-label="your online session will expire soon"
