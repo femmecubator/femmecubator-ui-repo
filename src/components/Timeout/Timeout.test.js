@@ -6,9 +6,9 @@ import { Timeout } from './Timeout';
 
 'use-strict'
 
-//jest.useFakeTimers();
+jest.useFakeTimers();
 
-it.skip('waits one second before showing the modal popup', () => {
+it('waits before showing the modal popup', () => {
   const mockTimeout = jest.fn(Timeout);
   expect(mockTimeout).not.toBeCalled();
   jest.runAllTimers();
@@ -17,7 +17,7 @@ it.skip('waits one second before showing the modal popup', () => {
   expect(mockTimeout).toHaveBeenCalledTimes(1);
 });
 
-it.skip('renders the modal popup', () => {
+it('renders the modal popup', () => {
   render(<Modal />);
   expect(screen.getByText('Your online session')).toBeInTheDocument();
 });
