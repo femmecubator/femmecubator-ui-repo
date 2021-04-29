@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
-import Modal from '@material-ui/core/Modal';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
 import FocusTrap from 'focus-trap-react';
+import Button from '@material-ui/core/Button';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
@@ -33,49 +30,6 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
     return () => clearInterval(timer);
   }, [countdownTime, timedOut]);
 
-  /*   const body = (
-    <article className={classes.modal}>
-      <div className={classes.modal__center_div}>
-        <div className={classes.modal__center_div__content}>
-          <p className={classes.modal__center_div__content__p_head}>
-            Your online session
-          </p>
-          <p className={classes.modal__center_div__content__p_head}>
-            will expire soon
-          </p>
-          <p className={classes.modal__center_div__content__p_timer}>
-            {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
-          </p>
-          <p className={classes.modal__center_div__content__p_text}>
-            Choose continue to keep working or log off.
-          </p>
-        </div>
-        <div className={classes.modal__center_div__buttons}>
-          <span
-            className={classes.modal__center_div__buttons__button_logoff}
-            onClick={logoff}
-            onKeyPress={logoff}
-            role="button"
-            aria-label="log off"
-            tabIndex="0"
-          >
-            Log Off
-          </span>
-          <span
-            className={classes.modal__center_div__buttons__button_continue}
-            onClick={() => setIdle(false)}
-            onKeyPress={() => setIdle(false)}
-            role="button"
-            aria-label="continue"
-            tabIndex="0"
-          >
-            Continue
-          </span>
-        </div>
-      </div>
-    </article>
-  ); */
-
   return (
     <div className={classes.modal_background}>
       <FocusTrap
@@ -92,7 +46,6 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
         //aria-describedby="modal-description"
         //aria-hidden={false}
       >
-        {/*{body}*/}
         <article className={classes.modal}>
           <div className={classes.modal__center_div}>
             <div className={classes.modal__center_div__content}>
@@ -116,30 +69,24 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
               </p>
             </div>
             <div className={classes.modal__center_div__buttons}>
-              <>
-                <button
-                  className={classes.modal__center_div__buttons__button_logoff}
-                  onClick={logoff}
-                  onKeyPress={logoff}
-                  //role="button"
-                  aria-label="log off"
-                  tabIndex="0"
-                >
-                  Log Off
-                </button>
-                <button
-                  className={
-                    classes.modal__center_div__buttons__button_continue
-                  }
-                  onClick={() => setIdle(false)}
-                  onKeyPress={() => setIdle(false)}
-                  //role="button"
-                  aria-label="continue"
-                  tabIndex="0"
-                >
-                  Continue
-                </button>
-              </>
+              <Button
+                className={classes.modal__center_div__buttons__button_logoff}
+                onClick={logoff}
+                onKeyPress={logoff}
+                aria-label="log off"
+                tabIndex="0"
+              >
+                Log Off
+              </Button>
+              <Button
+                className={classes.modal__center_div__buttons__button_continue}
+                onClick={() => setIdle(false)}
+                onKeyPress={() => setIdle(false)}
+                aria-label="continue"
+                tabIndex="0"
+              >
+                Continue
+              </Button>
             </div>
           </div>
         </article>
