@@ -35,11 +35,7 @@ const OnboardingSchema = yup.object().shape({
   phone: yup
     .string()
     .required('Phone number is required')
-    .min(8)
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      PHONE_VAL
-    ),
+    .matches(/^\+?1?[ .-]?\(?\d{3}\)?[ .-]?\d{3}[ .-]?\d{4}$/, PHONE_VAL),
   timezone: yup.string().required('Timezone is required'),
   googlemeet: yup
     .string()
