@@ -50,20 +50,10 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
       >
         <article className={classes.modal}>
           <div className={classes.modal__center_div}>
-            <div
-              className={classes.modal__center_div__content}
-              aria-live="assertive"
-            >
-              <p
-                className={classes.modal__center_div__content__p_head}
-                id="modal-title"
-                aria-live="assertive"
-              >
+            <div className={classes.modal__center_div__content}>
+              <p className={classes.modal__center_div__content__p_head}>
                 Your online session
-                <p
-                  className={classes.modal__center_div__content__p_head}
-                  aria-live="assertive"
-                ></p>
+                <p className={classes.modal__center_div__content__p_head}></p>
                 will expire soon
               </p>
               <p
@@ -72,10 +62,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
               >
                 {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
               </p>
-              <p
-                className={classes.modal__center_div__content__p_text}
-                id="modal-description"
-              >
+              <p className={classes.modal__center_div__content__p_text}>
                 Choose continue to keep working or log off.
               </p>
             </div>
