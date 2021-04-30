@@ -34,12 +34,14 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
     <div className={classes.modal_background}>
       <FocusTrap
         open
-        role="dialog"
-        isEnabled={() => true}
-        getDoc={() => document}
+        role="region"
+        //aria-live="assertive"
+        //isEnabled={() => true}
+        //getDoc={() => document}
         tabIndex="0"
-        //onMouseOver={() => reset()}
-        //onFocus={() => reset()}
+        onMouseOver={() => reset()}
+        onFocus={() => reset()}
+        //onLoad={() => reset()}
         //onKeyPress={() => reset()}
         //disableAutoFocus={false}
         //aria-labelledby="modal-title"
@@ -48,17 +50,26 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
       >
         <article className={classes.modal}>
           <div className={classes.modal__center_div}>
-            <div className={classes.modal__center_div__content}>
+            <div
+              className={classes.modal__center_div__content}
+              aria-live="assertive"
+            >
               <p
                 className={classes.modal__center_div__content__p_head}
                 id="modal-title"
+                aria-live="assertive"
               >
                 Your online session
-              </p>
-              <p className={classes.modal__center_div__content__p_head}>
+                <p
+                  className={classes.modal__center_div__content__p_head}
+                  aria-live="assertive"
+                ></p>
                 will expire soon
               </p>
-              <p className={classes.modal__center_div__content__p_timer}>
+              <p
+                className={classes.modal__center_div__content__p_timer}
+                aria-live="assertive"
+              >
                 {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
               </p>
               <p

@@ -35,14 +35,14 @@ const Timeout = ({ children }) => {
 
   return (
     <div
-      onMouseOver={() => reset()}
-      onFocus={() => reset()}
-      onKeyPress={() => reset()}
-      role="textbox" //alert?
-      tabIndex="0"
-      //disableBackdropClick={true}
-      //disableEnforceFocus={false}
-      //aria-label="your online session will expire soon"
+    //onMouseOver={() => reset()}
+    //onFocus={() => reset()}
+    //onKeyPress={() => reset()}
+    //role="textbox" //alert?
+    //tabIndex="0"
+    //disableBackdropClick={true}
+    //disableEnforceFocus={false}
+    //aria-label="your online session will expire soon"
     >
       {idle && (
         <ModalPopup
