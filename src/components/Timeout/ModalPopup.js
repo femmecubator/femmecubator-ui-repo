@@ -34,7 +34,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
     <div className={classes.modal_background}>
       <FocusTrap
         open
-        role="dialog"
+        role="region"
         //aria-live="assertive"
         //isEnabled={() => true}
         //getDoc={() => document}
