@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Modal } from '../../stories/Timeout.stories';
 import { Timeout } from './Timeout';
 
-//'use-strict'
+'use-strict'
 
 jest.useFakeTimers();
 
