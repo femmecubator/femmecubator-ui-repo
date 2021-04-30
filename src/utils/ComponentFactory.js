@@ -3,7 +3,6 @@ import {
   Mentors,
   Listings,
   Volunteer,
-  About,
   Resources,
   Threads,
   Settings,
@@ -12,6 +11,7 @@ import Home from 'components/Home/Home';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
 import LoginForm from 'components/AccountForms/LoginForm';
 import ViewContainer from 'components/ViewContainer';
+import AboutContainer from 'components/AboutContainer';
 import { ROUTES_LABEL } from 'utils/constants';
 
 const {
@@ -46,7 +46,7 @@ export default class ComponentFactory {
       case VOLUNTEER:
         return Volunteer;
       case ABOUT:
-        return About;
+        return AboutContainer;
       case RESOURCES:
         return Resources;
       case THREADS:
