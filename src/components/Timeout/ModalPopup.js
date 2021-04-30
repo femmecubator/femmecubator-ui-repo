@@ -58,7 +58,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
               </p>
               <p
                 className={classes.modal__center_div__content__p_timer}
-                aria-live="assertive"
+                //aria-live="assertive"
               >
                 {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
               </p>
