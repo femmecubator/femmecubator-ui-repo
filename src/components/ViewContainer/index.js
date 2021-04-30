@@ -4,7 +4,6 @@ import jwt_decode from 'jwt-decode';
 // import Directory from '../Directory';
 const Directory = React.lazy(() => import('../Directory'));
 import CircularProgress from '@material-ui/core/CircularProgress';
-import LinearProgress from '@material-ui/core/LinearProgress';
 
 const ViewContainer = () => {
   const { role_id } = jwt_decode(getTokenCookie());
