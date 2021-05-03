@@ -29,7 +29,7 @@ const Directory = () => {
     isMobile,
   });
   const [selectedTab, setSelectedTab] = useState(0);
-  const [mentorCards, setMentorCards] = useState(null);
+  const [mentorCards, setMentorCards] = useState([]);
   const [query, setQuery] = useState('');
   const handleChange = (e, newVal) => setSelectedTab(newVal);
   const [errorResponse, setErrorResponse] = useState(false);
@@ -73,7 +73,7 @@ const Directory = () => {
   const renderTabs = () =>
     directoryTabs(directoryTab).map(tab => <Tab {...tab} key={tab.label} />);
 
-  if (mentorCards === null)
+  if (mentorCards.length < 1)
     return <CircularProgress size="10rem" className={loadingIcon} />;
 
   return (
