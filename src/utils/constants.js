@@ -134,6 +134,8 @@ const ACTION_TYPE = {
 };
 
 const MOBILE_MEDIA_QUERY = '(max-width:799px)';
+const COHORT = 'Spring 2021';
+const APP_DEADLINE = 'January 1st 2021';
 
 export {
   ANALYTICS_TYPE,
@@ -144,4 +146,6 @@ export {
   ACTION_TYPE,
   METHOD_TYPE,
   MOBILE_MEDIA_QUERY,
+  COHORT,
+  APP_DEADLINE,
 };
