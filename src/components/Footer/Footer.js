@@ -136,7 +136,7 @@ const Footer = () => {
         <Link
           {...{
             component: RouterLink,
-            to: '/',
+            to: '/about',
             className: quickLinks,
           }}
         >
