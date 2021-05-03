@@ -13,7 +13,6 @@ import {
   Paper,
   Button,
 } from '@material-ui/core';
-import FocusTrap from 'focus-trap-react';
 import FocusTrapOverlay from './FocusTrapOverlay';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
@@ -224,9 +223,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
 
   return (
     <FocusTrapOverlay>
-      <FocusTrap>
-        <Paper className={modal}>{formContent}</Paper>
-      </FocusTrap>
+      <Paper className={modal}>{formContent}</Paper>
     </FocusTrapOverlay>
   );
 };
