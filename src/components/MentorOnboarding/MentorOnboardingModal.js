@@ -184,6 +184,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             name: 'timezone',
             defaultValue: '',
             displayEmpty: true,
+            inputProps: { hidden: true },
             error: !isEmpty(errors.timezone),
             onChange: e => {
               setValue('timezone', e.target.value, { shouldValidate: true });
