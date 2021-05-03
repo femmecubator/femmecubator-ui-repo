@@ -1,6 +1,5 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MentorCard from './MentorCard';
-// const MentorCard = React.lazy(() => import('./MentorCard'));
 import Subheader from '../Subheader/Subheader';
 import DirectorySearchBar from './DirectorySearch';
 import useStyles from './Directory.styles';
@@ -20,6 +19,7 @@ const Directory = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     root,
+    loadingIcon,
     mentorDirectory,
     mentorListContainer,
     directoryHeader,
@@ -29,7 +29,7 @@ const Directory = () => {
     isMobile,
   });
   const [selectedTab, setSelectedTab] = useState(0);
-  const [mentorCards, setMentorCards] = useState([]);
+  const [mentorCards, setMentorCards] = useState(null);
   const [query, setQuery] = useState('');
   const handleChange = (e, newVal) => setSelectedTab(newVal);
   const [errorResponse, setErrorResponse] = useState(false);
@@ -51,8 +51,7 @@ const Directory = () => {
   const tabDisplayOptions = {
     0: () => {
       const mentorList = searchMentorCards();
-      if (mentorList.length < 1)
-        // throw new Promise((resolve, reject) => console.log('this should work'));
+      if (mentorList.length < 1 && query)
         return <EmptyDirectory {...emptySearch} />;
       return mentorList.map(mentorObject => (
         <MentorCard {...mentorObject} key={mentorObject._id} />
@@ -73,6 +72,10 @@ const Directory = () => {
 
   const renderTabs = () =>
     directoryTabs(directoryTab).map(tab => <Tab {...tab} key={tab.label} />);
+
+  if (mentorCards === null)
+    return <CircularProgress size="10rem" className={loadingIcon} />;
+
   return (
     <section aria-label="Mentor Directory" className={root}>
       <Subheader {...{ ...subheaderProperties, image: <SubheaderIcon /> }} />
@@ -113,9 +116,7 @@ const Directory = () => {
             'data-testid': 'mentorListContainer',
           }}
         >
-          {/* <Suspense fallback={<CircularProgress />}> */}
           {tabDisplayOptions[selectedTab]()}
-          {/* </Suspense> */}
         </div>
       </div>
     </section>

@@ -10,6 +10,11 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'white',
     height: '100vh',
   },
+  loadingIcon: {
+    position: 'fixed',
+    left: '45%',
+    top: '50%',
+  },
   mentorDirectory: {
     backgroundColor: 'white',
     margin: ({ isMobile }) => (isMobile ? '0' : '0 2rem'),
