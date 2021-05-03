@@ -14,6 +14,7 @@ import {
   Button,
 } from '@material-ui/core';
 import FocusTrap from 'focus-trap-react';
+import FocusTrapOverlay from './FocusTrapOverlay';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -54,7 +55,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   const {
     root,
     modal,
-    h4Heading,
+    labelText,
     textField,
     modalSubmit,
     subheading,
@@ -100,9 +101,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           We'll need to confirm a few things about you.
         </h5>
       </div>
-      <Typography variant="h4" className={h4Heading}>
+      <label htmlFor="bio" className={labelText}>
         {BIO}
-      </Typography>
+      </label>
       <TextField
         {...{
           id: 'bio',
@@ -118,9 +119,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           helperText: errors.bio && errors.bio.message,
         }}
       />
-      <Typography variant="h4" className={h4Heading}>
+      <label htmlFor="skills" className={labelText}>
         {SKILLS}
-      </Typography>
+      </label>
       <input type="hidden" id="skills" name="skills" ref={register} />
       <FormControl className={inputContainer}>
         <Autocomplete
@@ -129,6 +130,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             options: topSkills,
             getOptionLabel: option => option.title,
             filterSelectedOptions: true,
+            forcePopupIcon: true,
             onChange: (event, newValue) => {
               setValue(
                 'skills',
@@ -152,9 +154,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
         />
       </FormControl>
       <FormControl className={inputContainer}>
-        <Typography variant="h4" className={h4Heading}>
+        <label htmlFor="phone" className={labelText}>
           {PHONE}
-        </Typography>
+        </label>
         <TextField
           {...{
             id: 'phone',
@@ -170,7 +172,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
         />
       </FormControl>
       <input type="hidden" id="timezone" name="timezone" ref={register} />
-      <Typography variant="h4" className={h4Heading}>
+      <Typography variant="h4" className={labelText}>
         {TIME_ZONE}
       </Typography>
       <FormControl variant="outlined" className={inputContainer}>
@@ -198,10 +200,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           {errors.timezone && errors.timezone.message}
         </FormHelperText>
       </FormControl>
-
-      <Typography variant="h4" className={h4Heading}>
+      <label htmlFor="googlemeet" className={labelText}>
         {GOOGLE_MEET}
-      </Typography>
+      </label>
       <TextField
         {...{
           id: 'googlemeet',
@@ -222,11 +223,11 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   );
 
   return (
-    // <Modal className={root} open={open}>
-    <FocusTrap>
-      <Paper className={modal}>{formContent}</Paper>
-    </FocusTrap>
-    // </Modal>
+    <FocusTrapOverlay>
+      <FocusTrap>
+        <Paper className={modal}>{formContent}</Paper>
+      </FocusTrap>
+    </FocusTrapOverlay>
   );
 };
 
