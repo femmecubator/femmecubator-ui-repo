@@ -13,6 +13,7 @@ import {
   Paper,
   Button,
 } from '@material-ui/core';
+import FocusTrap from 'focus-trap-react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -220,9 +221,11 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   );
 
   return (
-    <Modal className={root} open={open}>
+    // <Modal className={root} open={open}>
+    <FocusTrap>
       <Paper className={modal}>{formContent}</Paper>
-    </Modal>
+    </FocusTrap>
+    // </Modal>
   );
 };
 
