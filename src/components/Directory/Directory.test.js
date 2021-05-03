@@ -16,10 +16,8 @@ describe('<Directory/>', () => {
     await act(async () => {
       render(<Directory />);
     });
-    const containerItem = screen.getByTestId('mentorListContainer').firstChild;
-
-    const firstChildText = containerItem.querySelector('h2').textContent;
-    expect(firstChildText).toBe('Yikes! Your search results came back empty.');
+    const loadIcon = screen.getByRole('progressbar');
+    expect(loadIcon).toBeTruthy();
   });
 
   test('Mentor Cards Load', async () => {
