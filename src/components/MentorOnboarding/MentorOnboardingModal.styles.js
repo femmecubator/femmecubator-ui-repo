@@ -12,23 +12,18 @@ const color = {
 };
 
 const useStyles = makeStyles(theme => ({
-  // root: () => ({
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   overflow: 'scroll',
-  //   height: '100%',
-  // }),
-  modal: {
+  modal: ({ isMobile }) => ({
     display: 'flex',
-    flexDirection: 'column',
+    position: 'relative',
+    top: isMobile ? '0' : '50%',
+    transform: isMobile ? 'none' : 'translateY(-50%)',
     justifyContent: 'center',
-    alignItems: 'center',
-    width: '731px',
+    margin: 'auto',
+    width: isMobile ? '100%' : '731px',
+    maxWidth: '100vw',
     backgroundColor: color.white,
     fontFamily: 'Open Sans, sans-serif',
-    padding: theme.spacing(4, 2, 3),
-  },
+  }),
   labelText: {
     color: color.gray,
     fontFamily: 'Open Sans',
@@ -49,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    padding: theme.spacing(4, 2),
   },
   modalSubmit: {
     margin: '25px',

@@ -12,6 +12,7 @@ import {
   Select,
   Paper,
   Button,
+  Popper,
 } from '@material-ui/core';
 import FocusTrapOverlay from './FocusTrapOverlay';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -52,7 +53,6 @@ const OnboardingSchema = yup.object().shape({
 const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
-    root,
     modal,
     labelText,
     textField,
@@ -129,7 +129,6 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             options: topSkills,
             getOptionLabel: option => option.title,
             filterSelectedOptions: true,
-            forcePopupIcon: true,
             onChange: (event, newValue) => {
               setValue(
                 'skills',

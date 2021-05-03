@@ -6,7 +6,13 @@ const FocusTrapOverlay = ({ children }) => {
   const { root } = useStyles();
   return (
     <div className={root}>
-      <FocusTrap>{children}</FocusTrap>
+      <FocusTrap
+        focusTrapOptions={{
+          allowOutsideClick: true,
+        }}
+      >
+        {children}
+      </FocusTrap>
     </div>
   );
 };
