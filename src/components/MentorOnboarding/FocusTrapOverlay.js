@@ -2,9 +2,9 @@ import React from 'react';
 import useStyles from './FocusTrapOverlay.styles';
 import FocusTrap from 'focus-trap-react';
 
-const FocusTrapOverlay = ({ children }) => {
+const FocusTrapOverlay = ({ open, children }) => {
   const { root } = useStyles();
-  return (
+  return open ? (
     <div className={root}>
       <FocusTrap
         focusTrapOptions={{
@@ -14,7 +14,7 @@ const FocusTrapOverlay = ({ children }) => {
         {children}
       </FocusTrap>
     </div>
-  );
+  ) : null;
 };
 
 export default FocusTrapOverlay;

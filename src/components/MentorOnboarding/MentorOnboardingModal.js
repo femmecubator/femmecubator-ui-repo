@@ -72,20 +72,22 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
     setOpen(false);
   };
 
-  const { register, handleSubmit, errors, setValue } = useForm({
+  const { register, handleSubmit, errors, setValue, watch } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
 
-  const [selected, setSelected] = useState(true);
+  const timezoneState = watch('timezone');
+
+  // const [selected, setSelected] = useState(true);
   function handleSelect() {
-    setSelected(false);
+    // setSelected(false);
   }
 
   const timezoneMenu = array => {
     return array.map(({ offset, name }) => (
-      <MenuItem key={name} value={offset}>
+      <option key={name} value={offset}>
         {offset} {name}
-      </MenuItem>
+      </option>
     ));
   };
 
@@ -169,15 +171,11 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           }}
         />
       </FormControl>
-      <input type="hidden" id="timezone" name="timezone" ref={register} />
-      <Typography variant="h4" className={labelText}>
+      <label htmlFor="timezone" className={labelText}>
         {TIME_ZONE}
-      </Typography>
+      </label>
+      <input type="hidden" id="timezone" name="timezone" ref={register} />
       <FormControl variant="outlined" className={inputContainer}>
-        <InputLabel shrink={false} htmlFor="timezone">
-          {selected ? 'Select a time zone' : ''}
-        </InputLabel>
-
         <Select
           {...{
             'data-testid': 'timezone',
@@ -185,13 +183,17 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             defaultValue: '',
             displayEmpty: true,
             inputProps: { hidden: true },
+            native: true,
+            style: { color: timezoneState ? 'black' : 'grey' },
             error: !isEmpty(errors.timezone),
             onChange: e => {
               setValue('timezone', e.target.value, { shouldValidate: true });
-              handleSelect();
             },
           }}
         >
+          <option value="" disabled>
+            Select a time zone
+          </option>
           {timezoneMenu(timeZoneData)}
         </Select>
         <FormHelperText error>
@@ -221,7 +223,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   );
 
   return (
-    <FocusTrapOverlay>
+    <FocusTrapOverlay open={open}>
       <Paper className={modal}>{formContent}</Paper>
     </FocusTrapOverlay>
   );
