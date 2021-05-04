@@ -32,11 +32,7 @@ const useStyles = makeStyles(theme => ({
     padding: '10px 0',
     width: '100%',
   },
-  textField: {
-    display: 'flex',
-    width: '100%',
-  },
-  inputContainer: {
+  inputField: {
     display: 'flex',
     width: '100%',
   },

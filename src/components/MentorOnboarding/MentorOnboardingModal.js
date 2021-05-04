@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  Modal,
-  TextField,
-  useMediaQuery,
-  Typography,
-  FormControl,
-  InputLabel,
-  FormHelperText,
-  MenuItem,
-  Select,
-  Paper,
-  Button,
-  Popper,
-} from '@material-ui/core';
+import { TextField, useMediaQuery, Paper, Button } from '@material-ui/core';
 import FocusTrapOverlay from './FocusTrapOverlay';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import useStyles from './MentorOnboardingModal.styles';
 import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
@@ -55,11 +41,10 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   const {
     modal,
     labelText,
-    textField,
     modalSubmit,
     subheading,
     heading,
-    inputContainer,
+    inputField,
     formContainer,
   } = useStyles({
     isMobile: isMobile,
@@ -77,11 +62,6 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   });
 
   const timezoneState = watch('timezone');
-
-  // const [selected, setSelected] = useState(true);
-  function handleSelect() {
-    // setSelected(false);
-  }
 
   const timezoneMenu = array => {
     return array.map(({ offset, name }) => (
@@ -112,7 +92,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           rows: 2,
           rowsMax: 2,
           variant: 'outlined',
-          className: textField,
+          className: inputField,
           placeholder: 'Add bio here.',
           name: 'bio',
           inputRef: register,
@@ -124,82 +104,74 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
         {SKILLS}
       </label>
       <input type="hidden" id="skills" name="skills" ref={register} />
-      <FormControl className={inputContainer}>
-        <Autocomplete
-          {...{
-            multiple: true,
-            options: topSkills,
-            getOptionLabel: option => option.title,
-            filterSelectedOptions: true,
-            onChange: (event, newValue) => {
-              setValue(
-                'skills',
-                newValue.map(option => option.title),
-                { shouldValidate: true }
-              );
-            },
-            renderInput: params => (
-              <TextField
-                {...{
-                  ...params,
-                  variant: 'outlined',
-                  className: textField,
-                  placeholder: 'Select Skills',
-                  error: !isEmpty(errors.skills),
-                  helperText: errors.skills && errors.skills.message,
-                }}
-              />
-            ),
-          }}
-        />
-      </FormControl>
-      <FormControl className={inputContainer}>
-        <label htmlFor="phone" className={labelText}>
-          {PHONE}
-        </label>
-        <TextField
-          {...{
-            id: 'phone',
-            className: textField,
-            placeholder: '718-777-4545',
-            variant: 'outlined',
-            name: 'phone',
-            type: 'text',
-            inputRef: register,
-            error: !isEmpty(errors.phone),
-            helperText: errors.phone && errors.phone.message,
-          }}
-        />
-      </FormControl>
+      <Autocomplete
+        {...{
+          multiple: true,
+          options: topSkills,
+          getOptionLabel: option => option.title,
+          filterSelectedOptions: true,
+          className: inputField,
+          onChange: (event, newValue) => {
+            setValue(
+              'skills',
+              newValue.map(option => option.title),
+              { shouldValidate: true }
+            );
+          },
+          renderInput: params => (
+            <TextField
+              {...{
+                ...params,
+                variant: 'outlined',
+                placeholder: 'Select Skills',
+                error: !isEmpty(errors.skills),
+                helperText: errors.skills && errors.skills.message,
+              }}
+            />
+          ),
+        }}
+      />
+      <label htmlFor="phone" className={labelText}>
+        {PHONE}
+      </label>
+      <TextField
+        {...{
+          id: 'phone',
+          className: inputField,
+          placeholder: '718-777-4545',
+          variant: 'outlined',
+          name: 'phone',
+          type: 'text',
+          inputRef: register,
+          error: !isEmpty(errors.phone),
+          helperText: errors.phone && errors.phone.message,
+        }}
+      />
       <label htmlFor="timezone" className={labelText}>
         {TIME_ZONE}
       </label>
-      <input type="hidden" id="timezone" name="timezone" ref={register} />
-      <FormControl variant="outlined" className={inputContainer}>
-        <Select
-          {...{
-            'data-testid': 'timezone',
-            name: 'timezone',
-            defaultValue: '',
-            displayEmpty: true,
-            inputProps: { hidden: true },
+      <TextField
+        {...{
+          id: 'timezone',
+          select: true,
+          className: inputField,
+          variant: 'outlined',
+          name: 'timezone',
+          inputRef: register,
+          SelectProps: {
             native: true,
+            defaultValue: '',
             style: { color: timezoneState ? 'black' : 'grey' },
-            error: !isEmpty(errors.timezone),
-            onChange: e => {
-              setValue('timezone', e.target.value, { shouldValidate: true });
-            },
-          }}
-        >
-          <option value="" disabled>
-            Select a time zone
-          </option>
-          {timezoneMenu(timeZoneData)}
-        </Select>
-        <FormHelperText error>
-          {errors.timezone && errors.timezone.message}
-        </FormHelperText>
-      </FormControl>
+          },
+          error: !isEmpty(errors.timezone),
+          helperText: errors.timezone && errors.timezone.message,
+        }}
+      >
+        <option value="" disabled>
+          Select a timezone
+        </option>
+        {timezoneMenu(timeZoneData)}
+      </TextField>
       <label htmlFor="googlemeet" className={labelText}>
         {GOOGLE_MEET}
       </label>
@@ -208,7 +180,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           id: 'googlemeet',
           placeholder: 'Add google meet link',
           variant: 'outlined',
-          className: textField,
+          className: inputField,
           name: 'googlemeet',
           type: 'text',
           inputRef: register,
