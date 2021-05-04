@@ -9,6 +9,7 @@ import useStyles from './MentorOnboardingModal.styles';
 import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
 import { isEmpty } from 'lodash';
+import { ArrowDropDown } from '@material-ui/icons';
 
 const BIO = 'Add a Bio (128 char)';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
@@ -89,12 +90,13 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
         {...{
           id: 'bio',
           multiline: true,
-          rows: 2,
-          rowsMax: 2,
+          rows: 3,
+          rowsMax: 3,
           variant: 'outlined',
           className: inputField,
           placeholder: 'Add bio here.',
           name: 'bio',
+          size: 'small',
           inputRef: register,
           error: !isEmpty(errors.bio),
           helperText: errors.bio && errors.bio.message,
@@ -111,6 +113,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           getOptionLabel: option => option.title,
           filterSelectedOptions: true,
           className: inputField,
+          size: 'small',
           onChange: (event, newValue) => {
             setValue(
               'skills',
@@ -142,6 +145,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           variant: 'outlined',
           name: 'phone',
           type: 'text',
+          size: 'small',
           inputRef: register,
           error: !isEmpty(errors.phone),
           helperText: errors.phone && errors.phone.message,
@@ -150,7 +154,31 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
       <label htmlFor="timezone" className={labelText}>
         {TIME_ZONE}
       </label>
-      <TextField
+      <input type="hidden" id="timezone" name="timezone" ref={register} />
+      <Autocomplete
+        {...{
+          options: timeZoneData,
+          getOptionLabel: ({ offset, name }) => `${offset} ${name}`,
+          className: inputField,
+          size: 'small',
+          onChange: (event, newValue) => {
+            const value = newValue ? newValue.offset : null;
+            setValue('timezone', value, { shouldValidate: true });
+          },
+          renderInput: params => (
+            <TextField
+              {...{
+                ...params,
+                variant: 'outlined',
+                placeholder: 'Select a timezone',
+                error: !isEmpty(errors.timezone),
+                helperText: errors.timezone && errors.timezone.message,
+              }}
+            />
+          ),
+        }}
+      />
+      {/* <TextField
         {...{
           id: 'timezone',
           select: true,
@@ -171,7 +199,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           Select a timezone
         </option>
         {timezoneMenu(timeZoneData)}
-      </TextField>
+      </TextField> */}
       <label htmlFor="googlemeet" className={labelText}>
         {GOOGLE_MEET}
       </label>
@@ -181,6 +209,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           placeholder: 'Add google meet link',
           variant: 'outlined',
           className: inputField,
+          size: 'small',
           name: 'googlemeet',
           type: 'text',
           inputRef: register,
