@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     margin: 'auto',
     width: isMobile ? '100%' : '650px',
+    height: isMobile ? '100%' : 'fit-content',
     maxWidth: '100vw',
     backgroundColor: color.white,
     fontFamily: 'Open Sans, sans-serif',
