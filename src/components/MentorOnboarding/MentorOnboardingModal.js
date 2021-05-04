@@ -37,7 +37,7 @@ const OnboardingSchema = yup.object().shape({
 });
 
 const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
-  const isMobile = useMediaQuery('(max-width:1023px)');
+  const isMobile = useMediaQuery('(max-width:1024px)');
   const {
     modal,
     labelText,

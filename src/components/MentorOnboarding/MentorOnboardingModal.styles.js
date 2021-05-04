@@ -4,11 +4,6 @@ const color = {
   white: '#ffffff',
   primaryAccent: '#026FE4',
   gray: '#4F4F4F',
-  gray6: '#F2F2F2',
-  primaryError: '#EB5757',
-  secondaryError: '#FFEAEA',
-  primaryWarning: '#F2994A',
-  secondaryWarning: '#FBF1D0',
 };
 
 const useStyles = makeStyles(theme => ({
@@ -63,7 +58,6 @@ const useStyles = makeStyles(theme => ({
   heading: {
     margin: '10px',
     color: color.primaryAccent,
-    fontFamily: 'Open Sans',
     fontWeight: '800',
     fontSize: '28px',
   },
