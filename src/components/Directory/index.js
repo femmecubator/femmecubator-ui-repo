@@ -14,7 +14,7 @@ import {
 import { emptySearch, directoryTabs, subheaderProperties } from './utils';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 import request from '../../utils/axiosConfig';
-
+import isEmpty from 'lodash/isEmpty';
 const Directory = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const {
@@ -73,54 +73,54 @@ const Directory = () => {
   const renderTabs = () =>
     directoryTabs(directoryTab).map(tab => <Tab {...tab} key={tab.label} />);
 
-  if (mentorCards.length < 1)
+  if (isEmpty(mentorCards)) {
     return <CircularProgress size="10rem" className={loadingIcon} />;
-
-  return (
-    <section aria-label="Mentor Directory" className={root}>
-      <Subheader {...{ ...subheaderProperties, image: <SubheaderIcon /> }} />
-      {isMobile ? null : (
-        <Typography
-          {...{
-            className: directoryHeader,
-            variant: 'h2',
-            'data-testid': 'directoryHeader',
-          }}
-        >
-          Office Hours
-        </Typography>
-      )}
-      <DirectorySearchBar setQuery={setQuery} />
-      <div className={mentorDirectory}>
-        <Tabs
-          {...{
-            value: selectedTab,
-            onChange: handleChange,
-            'aria-label': 'Mentor Directory Tabs',
-            className: tabs,
-            TabIndicatorProps: {
-              style: {
-                background: '#550CCC',
+  } else
+    return (
+      <section aria-label="Mentor Directory" className={root}>
+        <Subheader {...{ ...subheaderProperties, image: <SubheaderIcon /> }} />
+        {isMobile ? null : (
+          <Typography
+            {...{
+              className: directoryHeader,
+              variant: 'h2',
+              'data-testid': 'directoryHeader',
+            }}
+          >
+            Office Hours
+          </Typography>
+        )}
+        <DirectorySearchBar setQuery={setQuery} />
+        <div className={mentorDirectory}>
+          <Tabs
+            {...{
+              value: selectedTab,
+              onChange: handleChange,
+              'aria-label': 'Mentor Directory Tabs',
+              className: tabs,
+              TabIndicatorProps: {
+                style: {
+                  background: '#550CCC',
+                },
               },
-            },
-          }}
-        >
-          {renderTabs()}
-        </Tabs>
+            }}
+          >
+            {renderTabs()}
+          </Tabs>
 
-        <div
-          {...{
-            className: mentorListContainer,
-            value: selectedTab,
-            index: 0,
-            'data-testid': 'mentorListContainer',
-          }}
-        >
-          {tabDisplayOptions[selectedTab]()}
+          <div
+            {...{
+              className: mentorListContainer,
+              value: selectedTab,
+              index: 0,
+              'data-testid': 'mentorListContainer',
+            }}
+          >
+            {tabDisplayOptions[selectedTab]()}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
 };
 
 export default Directory;
