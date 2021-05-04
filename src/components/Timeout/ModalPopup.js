@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import FocusTrap from 'focus-trap-react';
 import Button from '@material-ui/core/Button';
+//import Dialog from '@material-ui/core/Dialog';
+//import Alert from '@material-ui/lab/Alert';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
@@ -34,33 +36,38 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
     <div className={classes.modal_background}>
       <FocusTrap
         open
-        role="region"
+        //escapeDeactivates={false}
+        //initialFocus={document.getElementById('modal-content')}
         //aria-live="assertive"
-        //isEnabled={() => true}
-        //getDoc={() => document}
-        tabIndex="0"
-        onMouseOver={() => reset()}
-        onFocus={() => reset()}
-        //onLoad={() => reset()}
-        //onKeyPress={() => reset()}
+        isEnabled={() => true}
+        getDoc={() => document}
+        //tabIndex="-1"
+        //onMouseOver={() => reset()}
+        //onFocus={() => reset()}
+        //disableEnforceFocus="false"
+        //onKeyDown={() => reset()}
         //disableAutoFocus={false}
         //aria-labelledby="modal-title"
-        //aria-describedby="modal-description"
-        //aria-hidden={false}
+        //aria-describedby="modalDescription"
       >
         <article className={classes.modal}>
           <div className={classes.modal__center_div}>
-            <div className={classes.modal__center_div__content}>
-              <p className={classes.modal__center_div__content__p_head}>
+            <div
+              className={classes.modal__center_div__content}
+              //id="modal-content"
+              //tabIndex="-1"
+            >
+              <h1 className={classes.modal__center_div__content__p_head}>
                 Your online session
-                <p className={classes.modal__center_div__content__p_head}></p>
+              </h1>
+              <p className={classes.modal__center_div__content__p_head}>
                 will expire soon
               </p>
               <p
                 className={classes.modal__center_div__content__p_timer}
-                aria-live="assertive"
+                //aria-live="polite"
               >
-                {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} secs`}
+                {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} seconds`}
               </p>
               <p className={classes.modal__center_div__content__p_text}>
                 Choose continue to keep working or log off.
