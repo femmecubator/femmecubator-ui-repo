@@ -52,7 +52,7 @@ const Timeout = ({ children }) => {
           }}
         />
       )}
-      {children}
+      <div aria-hidden="true">{children}</div>
     </div>
   );
 };
