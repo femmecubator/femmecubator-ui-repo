@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useStyles from './ MentorCard.styles';
+import useStyles from './MentorCard.styles';
 import {
   Card,
   CardHeader,
