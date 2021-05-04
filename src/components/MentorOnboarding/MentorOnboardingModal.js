@@ -78,9 +78,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
     >
       <div align="center">
         <h2 className={heading}>Almost there!</h2>
-        <h5 className={subheading}>
+        <h3 className={subheading}>
           We'll need to confirm a few things about you.
-        </h5>
+        </h3>
       </div>
       <label htmlFor="bio" className={labelText}>
         {BIO}
@@ -161,7 +161,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           SelectProps: {
             native: true,
             defaultValue: '',
-            style: { color: timezoneState ? 'black' : 'grey' },
+            style: { color: timezoneState ? 'black' : '#767676' },
           },
           error: !isEmpty(errors.timezone),
           helperText: errors.timezone && errors.timezone.message,
@@ -196,7 +196,16 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
 
   return (
     <FocusTrapOverlay open={open}>
-      <Paper className={modal}>{formContent}</Paper>
+      <Paper
+        {...{
+          role: 'dialog',
+          id: 'mentor-onboarding',
+          'aria-label': 'Mentor onboarding modal',
+          className: modal,
+        }}
+      >
+        {formContent}
+      </Paper>
     </FocusTrapOverlay>
   );
 };

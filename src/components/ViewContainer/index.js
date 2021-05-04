@@ -11,7 +11,7 @@ const ViewContainer = () => {
       {parseInt(role_id) === 0 ? (
         <>
           <MentorOnboardingModal opened={bio ? false : true} />
-          <div>Mentor Dashboard</div>
+          <div role="main">Mentor Dashboard</div>
         </>
       ) : (
         <div>Mentee Dashboard</div>
