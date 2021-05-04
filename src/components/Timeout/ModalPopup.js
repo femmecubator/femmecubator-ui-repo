@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import FocusTrap from 'focus-trap-react';
 import Button from '@material-ui/core/Button';
-//import Dialog from '@material-ui/core/Dialog';
-//import Alert from '@material-ui/lab/Alert';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
   //modal with countdown clock
