@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import SchoolIcon from '@material-ui/icons/School';
 import './registration.css';
-import { makeStyles } from '@material-ui/core/styles';
+import ChipComponent from './ChipComponent';
+import useStyles from './RegistrationForm.styles';
 import Paper from '@material-ui/core/Paper';
 import {
   Typography,
@@ -11,6 +12,7 @@ import {
   InputAdornment,
   useMediaQuery,
   IconButton,
+  InputLabel,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Link, Redirect, useHistory } from 'react-router-dom';
@@ -24,110 +26,6 @@ import { event } from 'react-ga';
 import Auth from 'utils/auth';
 import RegistrationSuccess from '../../RegistrationSuccess';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-    justifyContent: 'center',
-    marginTop: '5%',
-  },
-  rootMobile: {
-    justifyContent: 'center',
-  },
-  paperContainer: {
-    position: 'absolute',
-    width: 'auto',
-    height: 'auto',
-  },
-  bookMentor: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: '28px',
-    fontWeight: 700,
-    paddingTop: '20px',
-  },
-  bookMentorDesc: {
-    paddingLeft: '35px',
-    paddingRight: '35px',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
-    fontSize: '16px',
-    lineHeight: '24px',
-    paddingTop: '20px',
-  },
-  formTitle: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: '28px',
-    fontStyle: 'normal',
-    fontWeight: '700',
-    lineHeight: '38px',
-    letterSpacing: '0em',
-    textAlign: 'center',
-  },
-  formSubtitle: {
-    textAlign: 'center',
-    fontFamily: 'Open Sans, sans-serif',
-    fontSize: '16px',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: '24px',
-    letterSpacing: '0px',
-    paddingBottom: '25px',
-  },
-  inputSpacing: {
-    marginTop: '8px',
-  },
-  textFieldSpacing: {
-    marginLeft: '8px',
-    width: '14.875em',
-  },
-  schoolIcon: {
-    height: '56.11px',
-    width: '39.28px',
-    color: '#550CCC',
-  },
-  button: {
-    [theme.breakpoints.up(824)]: {
-      marginLeft: '46%',
-    },
-    marginTop: '48px',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    backgroundColor: '#026FE4',
-    color: '#FFFFFF',
-  },
-  registrationFormContainer: {
-    [theme.breakpoints.between(768, 1024)]: { width: '40.5625em' },
-    position: 'relative',
-    width: '51.5625em',
-    height: '34.25em',
-    marginLeft: '2.5em',
-    marginTop: '2.5em',
-    marginBottom: '2.5em',
-  },
-  mobileInputField: {
-    paddingBottom: '1.25em',
-  },
-  buttonGrid: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '2.5em',
-  },
-  textField: {
-    width: '14.875em',
-  },
-  buttonModal: {
-    backgroundColor: '#026FE4',
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-  },
-}));
-
 const FORM_TITLE = 'Create account';
 const FORM_SUBTITLE = 'Have an existing account?';
 const MIN_CHARS = 'Must be more than 1 character';
@@ -135,6 +33,7 @@ const ONLY_LETTERS = 'Must only contain letters';
 const ONLY_LETTERS_WS = 'Must only contain letters and spaces';
 const MIN_8CHARS = 'Must be more than 8 characters';
 const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
+const MUST_SELECT_ROLE = 'Select Mentee or Mentor';
 
 const RegistrationSchema = yup.object().shape({
   firstName: yup
@@ -147,11 +46,7 @@ const RegistrationSchema = yup.object().shape({
     .required('Last name is required')
     .min(2, MIN_CHARS)
     .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
-  prefLoc: yup
-    .string()
-    .required('Preferred Location is required')
-    .min(2, MIN_CHARS)
-    .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
+  role_id: yup.string().required(MUST_SELECT_ROLE),
   title: yup
     .string()
     .required('Title is required')
@@ -164,14 +59,6 @@ const RegistrationSchema = yup.object().shape({
     .matches(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Invalid email format'
-    ),
-  userName: yup
-    .string()
-    .required('User name is required')
-    .min(2, MIN_CHARS)
-    .matches(
-      /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
-      'Only contains alphanumeric characters, underscore and dot'
     ),
   password: yup
     .string()
@@ -194,7 +81,15 @@ const RegistrationSchema = yup.object().shape({
 
 const RegistrationForm = ({ mockOnSubmit }) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors, setError, watch } = useForm({
+  const {
+    register,
+    unregister,
+    handleSubmit,
+    errors,
+    setValue,
+    setError,
+    watch,
+  } = useForm({
     revalidateMode: 'onChange',
     resolver: yupResolver(RegistrationSchema),
   });
@@ -220,10 +115,8 @@ const RegistrationForm = ({ mockOnSubmit }) => {
       };
       inProd && event(options);
       setOpenModal(true);
-    } catch ({ err }) {
-      const message =
-        err[`${Object.keys(err).toString()}`]?.message || 'Registration error';
-      setError(Object.keys(err).toString(), {
+    } catch ({ data: { message } }) {
+      setError('email', {
         type: 'manual',
         message,
       });
@@ -256,7 +149,16 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                   noValidate
                   onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
                 >
-                  <div>
+                  <div className={classes.inputSpacing}>
+                    <ChipComponent
+                      {...{
+                        register,
+                        unregister,
+                        setValue,
+                        errors,
+                        watch,
+                      }}
+                    />
                     <TextField
                       {...{
                         id: 'firstName',
@@ -271,6 +173,8 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                           errors.firstName && errors.firstName.message,
                       }}
                     />
+                  </div>
+                  <div className={classes.inputSpacing}>
                     <TextField
                       {...{
                         id: 'lastName',
@@ -285,36 +189,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       }}
                     />
                   </div>
-                  <div className={classes.inputSpacing}>
-                    <TextField
-                      {...{
-                        id: 'prefLoc',
-                        className: classes.textField,
-                        inputProps: { 'data-testid': 'prefLoc' },
-                        label: 'Preferred Location',
-                        variant: 'outlined',
-                        inputRef: register,
-                        name: 'prefLoc',
-                        error: !isEmpty(errors.prefLoc),
-                        helperText: errors.prefLoc && errors.prefLoc.message,
-                      }}
-                    />
-                  </div>
-                  <div className={classes.inputSpacing}>
-                    <TextField
-                      {...{
-                        id: 'title',
-                        className: classes.textField,
-                        inputProps: { 'data-testid': 'title' },
-                        label: 'Title',
-                        variant: 'outlined',
-                        inputRef: register,
-                        name: 'title',
-                        error: !isEmpty(errors.title),
-                        helperText: errors.title && errors.title.message,
-                      }}
-                    />
-                  </div>
+
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
@@ -330,21 +205,23 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       }}
                     />
                   </div>
+
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
-                        id: 'userName',
+                        id: 'title',
                         className: classes.textField,
-                        inputProps: { 'data-testid': 'userName' },
-                        label: 'Username',
+                        inputProps: { 'data-testid': 'title' },
+                        label: 'Job Title',
                         variant: 'outlined',
                         inputRef: register,
-                        name: 'userName',
-                        error: !isEmpty(errors.userName),
-                        helperText: errors.userName && errors.userName.message,
+                        name: 'title',
+                        error: !isEmpty(errors.title),
+                        helperText: errors.title && errors.title.message,
                       }}
                     />
                   </div>
+
                   <div className={classes.inputSpacing}>
                     <TextField
                       {...{
@@ -374,6 +251,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         },
                         label: 'Password',
                         variant: 'outlined',
+                        className: classes.textFieldSpacing,
                         name: 'password',
                         type: showPassword.password ? 'text' : 'password',
                         inputRef: register,
@@ -381,6 +259,8 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                         helperText: errors.password && errors.password.message,
                       }}
                     />
+                  </div>
+                  <div className={classes.inputSpacing}>
                     <TextField
                       {...{
                         id: 'retypePassword',
@@ -418,6 +298,17 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                       }}
                     />
                   </div>
+                  <div className={classes.inputSpacing}>
+                    <InputLabel className={classes.termsLabel}>
+                      By creating this account you agree to the
+                    </InputLabel>
+                    <InputLabel
+                      className={classes.termsLabel}
+                      style={{ color: '#026FE4' }}
+                    >
+                      Terms of Service
+                    </InputLabel>
+                  </div>
                   <div>
                     <Button
                       {...{
@@ -437,7 +328,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                 <div style={{ top: '15%', position: 'relative' }}>
                   <div className="circle">
                     <div className="center">
-                      <SchoolIcon className={classes.schoolIcon} />
+                      <SchoolIcon
+                        className={classes.schoolIcon}
+                        role="img"
+                        aria-label="graduation cap icon"
+                        aria-hidden="false"
+                      />
                     </div>
                   </div>
                   <div>
@@ -450,7 +346,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
                     >
                       Are you thinking of going into Design or Development
                       career tracks? Easily book time with mentors who can help
-                      with portfolio reviews, practice interview and
+                      with portfolio reviews, practice interviews, and
                       whiteboarding sessions.
                     </Typography>
                   </div>
@@ -476,12 +372,12 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           <Grid item xs={12} style={{ marginTop: '1.5625em' }}>
             <Typography
               variant="h2"
-              className={classes.formTitle}
+              className={classes.formMobileTitle}
               nowrap="true"
             >
               {FORM_TITLE}
             </Typography>
-            <Typography variant="body2" className={classes.formSubtitle}>
+            <Typography variant="body2" className={classes.formMobileSubtitle}>
               {FORM_SUBTITLE} <Link to="/login">Login</Link>
             </Typography>
           </Grid>
@@ -491,6 +387,9 @@ const RegistrationForm = ({ mockOnSubmit }) => {
             style={{ paddingLeft: '1.5625em', paddingRight: '1.5625em' }}
           >
             <form noValidate onSubmit={handleSubmit(mockOnSubmit || onSubmit)}>
+              <ChipComponent
+                {...{ register, unregister, setValue, errors, watch }}
+              />
               <TextField
                 {...{
                   id: 'firstName',
@@ -519,32 +418,6 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
-                  id: 'prefLoc',
-                  label: 'Preferred Location',
-                  variant: 'outlined',
-                  name: 'prefLoc',
-                  inputRef: register,
-                  error: !isEmpty(errors.prefLoc),
-                  helperText: errors.prefLoc && errors.prefLoc.message,
-                  fullWidth: true,
-                  className: classes.mobileInputField,
-                }}
-              />
-              <TextField
-                {...{
-                  id: 'title',
-                  label: 'Title',
-                  variant: 'outlined',
-                  name: 'title',
-                  inputRef: register,
-                  error: !isEmpty(errors.title),
-                  helperText: errors.title && errors.title.message,
-                  fullWidth: true,
-                  className: classes.mobileInputField,
-                }}
-              />
-              <TextField
-                {...{
                   id: 'email',
                   label: 'Email',
                   variant: 'outlined',
@@ -558,13 +431,13 @@ const RegistrationForm = ({ mockOnSubmit }) => {
               />
               <TextField
                 {...{
-                  id: 'userName',
-                  label: 'User name',
+                  id: 'title',
+                  label: 'Job Title',
                   variant: 'outlined',
-                  name: 'userName',
+                  name: 'title',
                   inputRef: register,
-                  error: !isEmpty(errors.userName),
-                  helperText: errors.userName && errors.userName.message,
+                  error: !isEmpty(errors.title),
+                  helperText: errors.title && errors.title.message,
                   fullWidth: true,
                   className: classes.mobileInputField,
                 }}
@@ -657,7 +530,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   }
 
   return (
-    <main>
+    <>
       {Auth.isLoggedIn() && !openModal ? (
         <Redirect
           to={{
@@ -686,7 +559,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
           ),
         }}
       ></RegistrationSuccess>
-    </main>
+    </>
   );
 };
 
