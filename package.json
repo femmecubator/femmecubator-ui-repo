@@ -23,6 +23,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "resolve-package-json": "^1.4.0",
     "universal-cookie": "^4.0.4",
     "yup": "^0.32.0"
   },
@@ -39,7 +40,7 @@
     "test:ghook": "cross-env CI=true react-scripts test --watch=all",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint -f checkstyle . -o output/eslint/lint-results.xml && eslint -f html . -o output/eslint/eslint-report.html",
+    "lint": "eslint",
     "fix:eslint": "eslint --fix \"**/*.*\"",
     "fix:prettier": "prettier --write \"**/*.*\"",
     "fix": "run-p fix:*"
