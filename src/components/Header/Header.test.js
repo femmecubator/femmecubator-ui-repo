@@ -28,7 +28,7 @@ describe('<Header />', () => {
     const setState = jest
       .fn()
       .mockImplementationOnce((prevState = initState) => prevState);
-    useStateMock.mockImplementation(initState => [initState, setState]);
+    useStateMock.mockImplementation((initState) => [initState, setState]);
 
     render(
       <Router>

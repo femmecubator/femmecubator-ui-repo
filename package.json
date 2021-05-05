@@ -6,24 +6,17 @@
     "@hookform/resolvers": "1.3.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "@storybook/addon-a11y": "^6.2.8",
     "axios": "^0.21.0",
-    "focus-trap": "^6.4.0",
-    "focus-trap-react": "^8.5.0",
-    "jwt-decode": "^3.1.2",
     "lodash": "^4.17.20",
     "msw": "^0.24.1",
-    "npx": "^10.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-ga": "^3.2.0",
     "react-hook-form": "^6.12.1",
-    "react-idle-timer": "^4.6.1",
     "react-material-ui-carousel": "^2.1.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
-    "resolve-package-json": "^1.4.0",
     "universal-cookie": "^4.0.4",
     "yup": "^0.32.0"
   },
@@ -64,11 +57,11 @@
     "@axe-core/react": "^4.1.1",
     "@babel/core": "^7.12.3",
     "@sheerun/mutationobserver-shim": "^0.3.3",
-    "@storybook/addon-essentials": "^6.2.8",
+    "@storybook/addon-essentials": "^6.0.28",
     "@storybook/addon-links": "^6.0.28",
     "@storybook/node-logger": "^6.0.28",
     "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.2.8",
+    "@storybook/react": "^6.0.28",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.5.0",
@@ -90,8 +83,7 @@
     "prettier": "^2.2.1"
   },
   "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
+    "singleQuote": true
   },
   "config": {
     "ghooks": {
