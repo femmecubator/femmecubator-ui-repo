@@ -40,7 +40,7 @@
     "test:ghook": "cross-env CI=true react-scripts test --watch=all",
     "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage --passWithNoTests",
     "eject": "react-scripts eject",
-    "lint": "eslint",
+    "lint": "eslint -f checkstyle . -o output/eslint/lint-results.xml && eslint -f html . -o output/eslint/eslint-report.html",
     "fix:eslint": "eslint --fix \"**/*.*\"",
     "fix:prettier": "prettier --write \"**/*.*\"",
     "fix": "run-p fix:*"
