@@ -4,9 +4,7 @@ import FocusTrap from 'focus-trap-react';
 import Button from '@material-ui/core/Button';
 
 const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
-  //modal with countdown clock
   const classes = useStyles();
-  //const isMobile = useMediaQuery('(max-width:1023px)');
 
   const [minutes, setMinutes] = useState(Math.floor(countdownTime / 60000));
   const [seconds, setSeconds] = useState((countdownTime / 1000) % 60);
@@ -32,39 +30,17 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
 
   return (
     <div className={classes.modal_background}>
-      <FocusTrap
-        open
-        //escapeDeactivates={false}
-        //initialFocus={document.getElementById('modal-content')}
-        //aria-live="assertive"
-        isEnabled={() => true}
-        getDoc={() => document}
-        //tabIndex="-1"
-        //onMouseOver={() => reset()}
-        //onFocus={() => reset()}
-        //disableEnforceFocus="false"
-        //onKeyDown={() => reset()}
-        //disableAutoFocus={false}
-        //aria-labelledby="modal-title"
-        //aria-describedby="modalDescription"
-      >
+      <FocusTrap open isEnabled={() => true} getDoc={() => document}>
         <article className={classes.modal}>
           <div className={classes.modal__center_div}>
-            <div
-              className={classes.modal__center_div__content}
-              //id="modal-content"
-              //tabIndex="-1"
-            >
+            <div className={classes.modal__center_div__content}>
               <h1 className={classes.modal__center_div__content__p_head}>
                 Your online session
               </h1>
               <p className={classes.modal__center_div__content__p_head}>
                 will expire soon
               </p>
-              <p
-                className={classes.modal__center_div__content__p_timer}
-                //aria-live="polite"
-              >
+              <p className={classes.modal__center_div__content__p_timer}>
                 {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} seconds`}
               </p>
               <p className={classes.modal__center_div__content__p_text}>

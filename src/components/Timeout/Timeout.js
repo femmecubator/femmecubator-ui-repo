@@ -34,14 +34,7 @@ const Timeout = ({ children }) => {
   }, [idleTime, idle, isLoggedIn]);
 
   return (
-    <div
-      //onMouseOver={() => reset()}
-      //onFocus={() => reset()}
-      //onKeyPress={() => reset()}
-      //role="alert"
-      aria-live="polite"
-      //tabIndex="-1"
-    >
+    <div aria-live="polite">
       {idle && (
         <ModalPopup
           {...{
@@ -52,7 +45,9 @@ const Timeout = ({ children }) => {
           }}
         />
       )}
-      <div aria-hidden>{children}</div>
+      <div aria-hidden={idle} aria-disabled tabIndex="-1">
+        {children}
+      </div>
     </div>
   );
 };
