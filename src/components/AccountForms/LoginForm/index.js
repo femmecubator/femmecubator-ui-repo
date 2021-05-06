@@ -43,7 +43,7 @@ const LoginForm = ({ testOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const onSubmit = async (credentials) => {
+  const onSubmit = async credentials => {
     try {
       await request.post(API_PATH.LOGIN, credentials);
       const inProduction = process.env.NODE_ENV === 'production';
@@ -52,7 +52,7 @@ const LoginForm = ({ testOnSubmit }) => {
         action: 'Logged In',
       };
       inProduction && event(options);
-      history.push('/mentors');
+      history.push('/dashboard');
     } catch ({ status, data: { err } }) {
       if (status === 401 || status === 403) {
         setError('server', {

@@ -29,14 +29,14 @@ describe('<Home />', () => {
   });
 
   it('should display the top Image', () => {
-    screen.getByRole('img', {
-      name: /Three women of color with laptops working together in an open office./i,
-    });
+    screen.getByLabelText(
+      /Three women of color with laptops working together in an open office./
+    );
   });
 
   it('should fire a click event for all buttons', () => {
     const buttons = screen.getAllByRole('button');
-    buttons.forEach((bttn) => {
+    buttons.forEach(bttn => {
       fireEvent.click(bttn);
     });
   });
