@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { TextField, useMediaQuery, Paper, Button } from '@material-ui/core';
-import FocusTrapOverlay from './FocusTrapOverlay';
+import FocusTrapOverlay from '../FocusTrapOverlay/FocusTrapOverlay';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,7 +9,6 @@ import useStyles from './MentorOnboardingModal.styles';
 import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
 import { isEmpty } from 'lodash';
-import { ArrowDropDown } from '@material-ui/icons';
 
 const BIO = 'Add a Bio (128 char)';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
@@ -54,23 +53,13 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   const [open, setOpen] = useState(opened);
 
   const onSubmit = data => {
-    console.log(data);
+    // PUT/PATCH request to update bio etc.
     setOpen(false);
   };
 
   const { register, handleSubmit, errors, setValue, watch } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
-
-  const timezoneState = watch('timezone');
-
-  const timezoneMenu = array => {
-    return array.map(({ offset, name }) => (
-      <option key={name} value={offset}>
-        {offset} {name}
-      </option>
-    ));
-  };
 
   const formContent = (
     <form
@@ -178,28 +167,6 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           ),
         }}
       />
-      {/* <TextField
-        {...{
-          id: 'timezone',
-          select: true,
-          className: inputField,
-          variant: 'outlined',
-          name: 'timezone',
-          inputRef: register,
-          SelectProps: {
-            native: true,
-            defaultValue: '',
-            style: { color: timezoneState ? 'black' : '#767676' },
-          },
-          error: !isEmpty(errors.timezone),
-          helperText: errors.timezone && errors.timezone.message,
-        }}
-      >
-        <option value="" disabled>
-          Select a timezone
-        </option>
-        {timezoneMenu(timeZoneData)}
-      </TextField> */}
       <label htmlFor="googlemeet" className={labelText}>
         {GOOGLE_MEET}
       </label>
