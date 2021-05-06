@@ -36,7 +36,7 @@ const MentorCard = ({
   const handleClick = e => {
     e.preventDefault();
     if (onTestClick) return onTestClick();
-    console.log('BOOKING FOR THIS MENTOR OPENS UP');
+    //TODO: Booking for this mentor opens up
   };
 
   return (
