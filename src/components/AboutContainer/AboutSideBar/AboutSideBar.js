@@ -24,7 +24,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
 
   const options = optionLabels.map(label => {
     const handleClick = () => {
-      if (label === 'Get Involved') history.push('/volunteer');
+      if (label === 'Get Involved') history.push('/about');
       setSelected(label);
     };
     const isSelected = selected === label;
