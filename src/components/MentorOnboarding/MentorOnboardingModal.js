@@ -57,7 +57,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
     setOpen(false);
   };
 
-  const { register, handleSubmit, errors, setValue, watch } = useForm({
+  const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
 
