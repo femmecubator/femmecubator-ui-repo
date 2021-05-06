@@ -49,20 +49,25 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
             </div>
             <div className={classes.modal__center_div__buttons}>
               <Button
-                className={classes.modal__center_div__buttons__button_logoff}
-                onClick={logoff}
-                onKeyPress={logoff}
-                aria-label="log off"
-                tabIndex="0"
+                {...{
+                  className: classes.modal__center_div__buttons__button_logoff,
+                  onClick: logoff,
+                  onKeyPress: logoff,
+                  ariaLabel: 'log off',
+                  tabIndex: 0,
+                }}
               >
                 Log Off
               </Button>
               <Button
-                className={classes.modal__center_div__buttons__button_continue}
-                onClick={() => setIdle(false)}
-                onKeyPress={() => setIdle(false)}
-                aria-label="continue"
-                tabIndex="0"
+                {...{
+                  className:
+                    classes.modal__center_div__buttons__button_continue,
+                  onClick: () => setIdle(false),
+                  onKeyPress: () => setIdle(false),
+                  ariaLabel: 'continue',
+                  tabIndex: 0,
+                }}
               >
                 Continue
               </Button>
