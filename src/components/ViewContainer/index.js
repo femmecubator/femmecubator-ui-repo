@@ -1,9 +1,9 @@
 import React from 'react';
 import { getTokenCookie } from '../../utils/cookies';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 const ViewContainer = () => {
-  const { role_id } = jwt_decode(getTokenCookie());
+  const { role_id } = jwtDecode(getTokenCookie());
 
   return (
     <>
