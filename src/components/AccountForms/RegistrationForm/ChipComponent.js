@@ -73,7 +73,7 @@ const useStyles = makeStyles(() => ({
 const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
   const classes = useStyles();
   const watchRole = watch('role_id', '');
-  const handleClick = (val) =>
+  const handleClick = val =>
     setValue('role_id', val, { shouldDirty: true, shouldValidate: true });
   useEffect(() => {
     register('role_id');
