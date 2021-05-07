@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
-import LoginForm from './';
+import LoginForm from '.';
 import AuthMock from '../../../utils/auth';
 
 jest.mock('../../../utils/auth');
@@ -94,12 +94,10 @@ describe('<LoginForm />', () => {
   describe('with invalid password', () => {
     test('onSubmit should not be called', async () => {
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const passwordInput = screen.getByTestId('password');
       const submitButton = screen.getByRole('button', { name: /SIGN IN/i });
 
       await act(async () => {
         userEvent.type(emailInput, 'test@gmail.com');
-        userEvent.type(passwordInput, '');
         userEvent.click(submitButton);
       });
 
@@ -110,12 +108,10 @@ describe('<LoginForm />', () => {
   describe('with invalid email and password', () => {
     test('onSubmit should not be called', async () => {
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const passwordInput = screen.getByTestId('password');
       const submitButton = screen.getByRole('button', { name: /SIGN IN/i });
 
       await act(async () => {
         userEvent.type(emailInput, 'test@gmailcom');
-        userEvent.type(passwordInput, '');
         userEvent.click(submitButton);
       });
 
@@ -124,12 +120,10 @@ describe('<LoginForm />', () => {
 
     test('both email/password error should show', async () => {
       const emailInput = screen.getByRole('textbox', { name: /email/i });
-      const passwordInput = screen.getByTestId('password');
       const submitButton = screen.getByRole('button', { name: /SIGN IN/i });
 
       await act(async () => {
         userEvent.type(emailInput, 'testing@gmailcom');
-        userEvent.type(passwordInput, '');
         userEvent.click(submitButton);
       });
 
