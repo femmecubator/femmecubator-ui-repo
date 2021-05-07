@@ -26,7 +26,7 @@ const OnboardingSchema = yup.object().shape({
     .string()
     .required('Phone number is required')
     .matches(/^\+?1?[ .-]?\(?\d{3}\)?[ .-]?\d{3}[ .-]?\d{4}$/, PHONE_VAL),
-  timezone: yup.string().required('Timezone is required'),
+  // timezone: yup.string().required('Timezone is required'),
   googlemeet: yup
     .string()
     .required('Google meet is required')
@@ -54,6 +54,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
 
   const onSubmit = data => {
     // PUT/PATCH request to update bio etc.
+    console.log(data);
     setOpen(false);
   };
 
@@ -91,10 +92,10 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           helperText: errors.bio && errors.bio.message,
         }}
       />
-      <label htmlFor="skills" className={labelText}>
+      <label id="skills-label" htmlFor="skills" className={labelText}>
         {SKILLS}
       </label>
-      <input type="hidden" id="skills" name="skills" ref={register} />
+      {/* <input type="hidden" id="skills" name="skills" ref={register} /> */}
       <Autocomplete
         {...{
           multiple: true,
@@ -103,6 +104,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
           filterSelectedOptions: true,
           className: inputField,
           size: 'small',
+          'data-testid': 'skills',
           onChange: (event, newValue) => {
             setValue(
               'skills',
@@ -114,6 +116,10 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             <TextField
               {...{
                 ...params,
+                'aria-labelledby': 'skills-label',
+                id: 'skills',
+                name: 'skills',
+                inputRef: register,
                 variant: 'outlined',
                 placeholder: 'Select Skills',
                 error: !isEmpty(errors.skills),
@@ -143,7 +149,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
       <label htmlFor="timezone" className={labelText}>
         {TIME_ZONE}
       </label>
-      <input type="hidden" id="timezone" name="timezone" ref={register} />
+      {/* <input type="hidden" id="timezone" name="timezone" ref={register} /> */}
       <Autocomplete
         {...{
           options: timeZoneData,
@@ -158,8 +164,12 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
             <TextField
               {...{
                 ...params,
+                id: 'timezone',
+                name: 'timezone',
                 variant: 'outlined',
                 placeholder: 'Select a timezone',
+                'data-testid': 'timezone',
+                inputRef: register,
                 error: !isEmpty(errors.timezone),
                 helperText: errors.timezone && errors.timezone.message,
               }}
