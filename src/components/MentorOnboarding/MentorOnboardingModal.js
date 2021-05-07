@@ -67,8 +67,10 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
       onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
     >
       <div align="center">
-        <h2 className={heading}>Almost there!</h2>
-        <h3 className={subheading}>
+        <h2 id="mentorOnboardingTitle" className={heading}>
+          Almost there!
+        </h2>
+        <h3 id="mentorOnboardingDesc" className={subheading}>
           We'll need to confirm a few things about you.
         </h3>
       </div>
@@ -199,7 +201,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
     <FocusTrapOverlay open={open}>
       <Paper
         {...{
-          role: 'dialog',
+          role: 'alertdialog',
+          'aria-labelledby': 'mentorOnboardingTitle',
+          'aria-describedby': 'mentorOnboardingDesc',
           id: 'mentor-onboarding',
           'aria-label': 'Mentor onboarding modal',
           className: modal,
