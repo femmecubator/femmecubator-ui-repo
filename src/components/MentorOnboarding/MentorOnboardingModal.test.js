@@ -5,6 +5,7 @@ import MentorOnboardingModal from './MentorOnboardingModal';
 
 describe('<MentorOnboardingModal />', () => {
   const mockOnSubmit = jest.fn();
+  jest.setTimeout(10000);
 
   beforeEach(() => {
     render(<MentorOnboardingModal opened={true} mockOnSubmit={mockOnSubmit} />);
