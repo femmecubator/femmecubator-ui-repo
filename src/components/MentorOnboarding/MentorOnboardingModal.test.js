@@ -4,14 +4,11 @@ import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import MentorOnboardingModal from './MentorOnboardingModal';
 
-const mockOnSubmit = jest.fn();
 describe('<MentorOnboardingModal />', () => {
+  const mockOnSubmit = jest.fn();
+
   beforeEach(() => {
     render(<MentorOnboardingModal opened={true} mockOnSubmit={mockOnSubmit} />);
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
   });
 
   test('should submit with valid inputs', async () => {
