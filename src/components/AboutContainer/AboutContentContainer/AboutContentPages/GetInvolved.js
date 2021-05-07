@@ -60,7 +60,7 @@ const GetInvolved = () => {
             tech by 2021. Join us by supporting this program and create a pledge
             on Patreon.
           </p>
-          <BlueOutlineButton variant="outlined">
+          <BlueOutlineButton variant="outlined" /* onClick={true} */>
             MONETARY DONATION
           </BlueOutlineButton>
         </Grid>
