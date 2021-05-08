@@ -8,12 +8,13 @@ import {
   Typography,
   FormControl,
   InputLabel,
+  Grid,
 } from '@material-ui/core';
-// import DateFnsUtils from '@date-io/date-fns';
-// import {
-//   MuiPickersUtilsProvider,
-//   KeyboardDatePicker,
-// } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/moment';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 // import PropTypes from 'prop-types';
 
 import hourArray from './hourArray';
@@ -159,27 +160,44 @@ const TimeSlotModal = ({ handleClose }) => {
         <Typography className={h4Heading} variant="h4">
           Start Date
         </Typography>
-        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
-        {/* <Grid container justify="space-around"> */}
-        {/* <KeyboardDatePicker
-            disableToolbar
-            variant="inline"
-            format="MM/dd/yyyy"
-            margin="normal"
-            id="date-picker-inline"
-            label="Date picker inline"
-            // value={selectedDate}
-            // onChange={handleDateChange}
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
-          /> */}
-        {/* </Grid> */}
-        {/* </MuiPickersUtilsProvider> */}
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Date picker inline"
+              // value={selectedDate}
+              // onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
 
         <Typography className={h4Heading} variant="h4">
           End Date
         </Typography>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Date picker inline"
+              // value={selectedDate}
+              // onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <div className={buttonsDiv}>
           <button className={buttonModal} onClick={handleClose}>
             CANCEL

@@ -47,12 +47,12 @@ const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     position: 'fixed',
     width: '531px',
-    height: '900px',
+    height: '920px',
     left: '50%',
     top: '50%',
     backgroundColor: color.white,
     fontFamily: 'Open Sans, sans-serif',
-    padding: '30px 120px',
+    padding: '30px 130px',
     transform: 'translate(-50%, -50%)',
   },
   heading: {
@@ -109,6 +109,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'translateY(-50%)',
   },
   buttonsDiv: {
+    marginTop: '55px',
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0px 5px',
