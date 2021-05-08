@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '8px',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: '600',
-    padding: '20px 10px',
+    padding: '20px 5px',
   },
   content: {
     color: color.black,
