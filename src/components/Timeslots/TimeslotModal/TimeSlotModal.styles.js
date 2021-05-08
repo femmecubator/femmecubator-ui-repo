@@ -112,7 +112,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '55px',
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '0px 5px',
+    padding: '0px 0px',
   },
 }));
 
