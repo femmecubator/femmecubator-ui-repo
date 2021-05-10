@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import GetInvolved from './GetInvolved';
-import BlueOutlineButton from './GetInvolved';
 
 ('use strict');
 
@@ -20,10 +19,10 @@ const Button = ({ onClick, children }) => (
   <button onClick={onClick}>{children}</button>
 );
 
-it('checks that the Monetary Donation button is clickable', () => {
+it('checks that the Make a Donation button is clickable', () => {
   const handleClick = jest.fn();
-  render(<Button onClick={handleClick}>MONETARY DONATION</Button>);
-  fireEvent.click(screen.getByText(/monetary donation/i));
+  render(<Button onClick={handleClick}>MAKE A DONATION</Button>);
+  fireEvent.click(screen.getByText(/make a donation/i));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 

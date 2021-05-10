@@ -50,7 +50,7 @@ const GetInvolved = () => {
         direction="row"
         justify="flex-start"
         alignItems="flex-start"
-        spacing={10}
+        spacing={7}
       >
         <Grid item xs>
           <h3>Donate</h3>
@@ -60,7 +60,7 @@ const GetInvolved = () => {
             tech by 2021. Join us by supporting this program and create a pledge
             on Patreon.
           </p>
-          <BlueOutlineButton variant="outlined" /* onClick={true} */>
+          <BlueOutlineButton variant="outlined">
             MONETARY DONATION
           </BlueOutlineButton>
         </Grid>
@@ -105,7 +105,7 @@ const GetInvolved = () => {
           <h3>Volunteer</h3>
           <p>
             Are you a UX or Web Dev bootcamp grad looking to expand your skills?
-            Have at a least 5-7 hours a week to devote to learning what it's
+            Have at least 5 to 7 hours a week to devote to learning what it's
             like to be on a team? Be part of our agile team and dive into a
             3-month AppDev Program.
           </p>
