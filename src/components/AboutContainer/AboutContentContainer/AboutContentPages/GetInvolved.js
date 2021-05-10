@@ -61,7 +61,7 @@ const GetInvolved = () => {
             on Patreon.
           </p>
           <BlueOutlineButton variant="outlined">
-            MONETARY DONATION
+            MAKE A DONATION
           </BlueOutlineButton>
         </Grid>
         <Grid item xs>
