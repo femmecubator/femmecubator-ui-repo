@@ -24,7 +24,7 @@
     "select-timezone-material-ui": "^2.6.0",
     "styled-components": "^5.2.3",
     "universal-cookie": "^4.0.4",
-    "yup": "0.32.0"
+    "yup": "^0.32.0"
   },
   "scripts": {
     "start": "react-scripts start",
