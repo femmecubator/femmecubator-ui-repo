@@ -2,9 +2,9 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
+//import Divider from '@material-ui/core/Divider';
 import useStyles from '../AboutContentContainer.styles';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const BlueOutlineButton = withStyles({
   root: {
@@ -41,10 +41,6 @@ const GetInvolved = () => {
       <Typography variant="h2" className={title}>
         We are proudly volunteer-driven
       </Typography>
-      <Divider
-        orientation="horizontal"
-        variant="fullWidth" /* className={classes.divider} */
-      ></Divider>
       <Grid
         container
         direction="row"
@@ -78,10 +74,6 @@ const GetInvolved = () => {
         </Grid>
       </Grid>
       <br />
-      <Divider
-        orientation="horizontal"
-        variant="fullWidth" /* className={classes.divider} */
-      ></Divider>
       <Grid
         container
         direction="column"
