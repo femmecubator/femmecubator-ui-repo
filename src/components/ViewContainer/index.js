@@ -1,16 +1,21 @@
 import React from 'react';
 import { getTokenCookie } from '../../utils/cookies';
 import jwt_decode from 'jwt-decode';
+import MentorOnboardingModal from '../MentorOnboarding/MentorOnboardingModal';
+import Directory from '../Directory';
 
 const ViewContainer = () => {
-  const { role_id } = jwt_decode(getTokenCookie());
+  const { role_id, bio } = jwt_decode(getTokenCookie());
 
   return (
     <>
       {parseInt(role_id) === 0 ? (
-        <div>Mentor Dashboard</div>
+        <>
+          <MentorOnboardingModal opened={bio ? false : true} />
+          <div role="main">Mentor Dashboard</div>
+        </>
       ) : (
-        <div>Mentee Dashboard</div>
+        <Directory />
       )}
     </>
   );
