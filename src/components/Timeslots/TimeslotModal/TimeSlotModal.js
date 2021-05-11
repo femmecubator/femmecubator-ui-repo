@@ -16,6 +16,9 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 // import PropTypes from 'prop-types';
+import Moment from 'moment';
+const moment = require('moment');
+moment.suppressDeprecationWarnings = true;
 
 import hourArray from './hourArray';
 
@@ -54,14 +57,13 @@ const TimeSlotModal = ({ handleClose }) => {
     register('start-time');
     return () => unregister('start-time');
   }, [register, unregister]);
-
   const [selectedEnd, setSelectedEnd] = useState(true);
   function handleSelectEnd() {
     setSelectedEnd(false);
   }
   useEffect(() => {
-    register('endtime');
-    return () => unregister('endtime');
+    register('end-time');
+    return () => unregister('end-time');
   }, [register, unregister]);
 
   const selectHour = array => {
@@ -70,6 +72,23 @@ const TimeSlotModal = ({ handleClose }) => {
         {hour}
       </MenuItem>
     ));
+  };
+
+  const [selectedStartDate, setSelectedStartDate] = useState(
+    Moment(new Date()).format('MM/DD/YYYY')
+  );
+  const handleStartChange = data => {
+    console.log('selected', data.format('L'));
+    setSelectedStartDate(data.format('L'));
+    console.log('after set', selectedStartDate);
+  };
+
+  const [selectedEndDate, setSelectedEndDate] = useState(
+    Moment(new Date()).format('MM/DD/YYYY')
+  );
+  const handleEndChange = data => {
+    console.log(data.format('L'));
+    setSelectedEndDate(data.format('L'));
   };
 
   const formContent = (
@@ -125,12 +144,11 @@ const TimeSlotModal = ({ handleClose }) => {
           <Typography className={h4Heading} variant="h4">
             End Time
           </Typography>
-
           <FormControl variant="outlined">
             <InputLabel
               shrink={false}
-              htmlFor="endtime"
-              id="endtime"
+              htmlFor="end-time"
+              id="end-time"
               className={startEndTimeLabel}
             >
               {selectedEnd ? '6:00 PM' : ''}
@@ -138,11 +156,11 @@ const TimeSlotModal = ({ handleClose }) => {
 
             <Select
               className={selectInput}
-              labelId="endtime"
-              name="endtime"
+              labelId="end-time"
+              name="end-time"
               defaultValue=""
               onChange={e => {
-                setValue('endtime', e.target.value, { shouldDirty: true });
+                setValue('end-time', e.target.value, { shouldDirty: true });
                 // console.log(e.target.value);
                 handleSelectEnd();
               }}
@@ -163,16 +181,21 @@ const TimeSlotModal = ({ handleClose }) => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Date picker inline"
-              // value={selectedDate}
-              // onChange={handleDateChange}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
+              {...{
+                disableToolbar: true,
+                id: 'start-date',
+                variant: 'inline',
+                format: 'MM/dd/yyyy',
+                margin: 'normal',
+                label: 'start-date',
+                onChange: handleStartChange,
+                KeyboardButtonProps: {
+                  'aria-label': 'change date',
+                },
+                // className: titleInput,
+                name: 'start-date',
+                inputRef: register,
+                value: selectedStartDate,
               }}
             />
           </Grid>
@@ -184,16 +207,21 @@ const TimeSlotModal = ({ handleClose }) => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Date picker inline"
-              // value={selectedDate}
-              // onChange={handleDateChange}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
+              {...{
+                disableToolbar: true,
+                id: 'end-date',
+                variant: 'inline',
+                format: 'MM/dd/yyyy',
+                margin: 'normal',
+                label: 'end-date',
+                onChange: handleEndChange,
+                KeyboardButtonProps: {
+                  'aria-label': 'change date',
+                },
+                // className: titleInput,
+                name: 'end-date',
+                inputRef: register,
+                value: selectedEndDate,
               }}
             />
           </Grid>
