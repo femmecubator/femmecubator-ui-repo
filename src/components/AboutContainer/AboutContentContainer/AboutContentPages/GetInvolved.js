@@ -57,7 +57,7 @@ const GetInvolved = () => {
             tech by 2021. Join us by supporting this program and create a pledge
             on Patreon.
           </p>
-          <BlueOutlineButton variant="outlined">
+          <BlueOutlineButton variant="outlined" data-testid="donateButton">
             MAKE A DONATION
           </BlueOutlineButton>
         </Grid>
@@ -69,7 +69,7 @@ const GetInvolved = () => {
             community platform and support our volunteers with a recurring gift
             while you learn MongoDB, Express, React.js, and Node.js.
           </p>
-          <BlueOutlineButton variant="outlined">
+          <BlueOutlineButton variant="outlined" data-testid="patreonButton">
             SUPPORT ON PATREON
           </BlueOutlineButton>
         </Grid>
@@ -91,7 +91,7 @@ const GetInvolved = () => {
             ranging from tech interviews and whiteboarding sessions to
             informational interviews, consider applying to be a mentor.
           </p>
-          <BlueOutlineButton variant="outlined">
+          <BlueOutlineButton variant="outlined" data-testid="mentorButton">
             SIGN UP TO BE A MENTOR
           </BlueOutlineButton>
         </Grid>
@@ -104,7 +104,7 @@ const GetInvolved = () => {
             like to be on a team? Be part of our agile team and dive into a
             3-month AppDev Program.
           </p>
-          <BlueOutlineButton variant="outlined">
+          <BlueOutlineButton variant="outlined" data-testid="volunteerButton">
             APPLY TO VOLUNTEER
           </BlueOutlineButton>
         </Grid>
