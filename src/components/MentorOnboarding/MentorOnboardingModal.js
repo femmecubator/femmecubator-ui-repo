@@ -52,7 +52,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
 
   const [open, setOpen] = useState(opened);
 
-  const onSubmit = data => {
+  const onSubmit = () => {
     // PUT/PATCH request to update bio etc.
     setOpen(false);
   };
