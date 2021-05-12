@@ -37,12 +37,6 @@ const useStyles = makeStyles(theme => ({
       padding: '10px',
     },
   }),
-  // formHelperTxt: {
-  //   position: 'absolute',
-  //   fontFamily: 'Open Sans, sans-serif',
-  //   color: 'red',
-  // },
-
   modal: {
     boxSizing: 'border-box',
     position: 'fixed',
@@ -96,6 +90,8 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #BDBDBD',
     width: '100%',
     height: '40px',
+    borderRadius: '4px',
+    alignItems: 'center',
   },
   startEndTimeDiv: {
     display: 'flex',
@@ -113,6 +109,18 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0px 0px',
+  },
+  repeatDiv: {
+    boxSizing: 'border-box',
+    fontSize: '16px',
+    padding: '10px',
+    fontFamily: 'Open Sans',
+    display: 'inline-block',
+    // border: '1px solid #BDBDBD',
+    color: color.gray,
+    height: '40px',
+    borderRadius: '4px',
+    width: '38.5px',
   },
 }));
 

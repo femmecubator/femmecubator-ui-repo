@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -8,11 +8,20 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Divider from '@material-ui/core/Divider';
+import TimeSlotModal from './TimeslotModal/TimeSlotModal';
 
 import useStyles from './TimeSlots.styles';
 
 const TimeSlots = () => {
   const { root, slotButton, h3Heading, content, fromNowContent } = useStyles();
+
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   return (
     <Card className={root} variant="outlined">
@@ -72,8 +81,10 @@ const TimeSlots = () => {
           From now until 05/30/2021
         </Typography>
       </CardContent>
-      <button className={slotButton}>+ Add Another Slot</button>
-      {/* <CardActions disableSpacing></CardActions> */}
+      <button onClick={handleOpen} className={slotButton}>
+        + Add Another Slot
+      </button>
+      {openModal ? <TimeSlotModal handleClose={handleClose} /> : null}
     </Card>
   );
 };

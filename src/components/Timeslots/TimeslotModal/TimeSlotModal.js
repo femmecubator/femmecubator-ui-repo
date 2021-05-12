@@ -20,14 +20,11 @@ import Moment from 'moment';
 const moment = require('moment');
 moment.suppressDeprecationWarnings = true;
 
-import hourArray from './hourArray';
+// import hourArray from './hourArray';
 
 import useStyles from './TimeSlotModal.styles';
 
 const TimeSlotModal = ({ handleClose }) => {
-  /* eslint-disable no-console */
-  // console.log(handleClose);
-
   const {
     root,
     modal,
@@ -40,7 +37,7 @@ const TimeSlotModal = ({ handleClose }) => {
     buttonsDiv,
     startEndTimeDiv,
     startEndTimeLabel,
-    // formHelperTxt,
+    repeatDiv,
   } = useStyles();
 
   const { unregister, register, handleSubmit, setValue } = useForm();
@@ -66,6 +63,13 @@ const TimeSlotModal = ({ handleClose }) => {
     return () => unregister('end-time');
   }, [register, unregister]);
 
+  const quarterHours = ['00', '15', '30', '45'];
+  const hourArray = [];
+  for (let i = 0; i < 24; i++) {
+    for (let j = 0; j < 4; j++) {
+      hourArray.push(i + ':' + quarterHours[j]);
+    }
+  }
   const selectHour = array => {
     return array.map(hour => (
       <MenuItem key={hour} value={hour}>
@@ -78,18 +82,17 @@ const TimeSlotModal = ({ handleClose }) => {
     Moment(new Date()).format('MM/DD/YYYY')
   );
   const handleStartChange = data => {
-    console.log('selected', data.format('L'));
     setSelectedStartDate(data.format('L'));
-    console.log('after set', selectedStartDate);
   };
 
   const [selectedEndDate, setSelectedEndDate] = useState(
     Moment(new Date()).format('MM/DD/YYYY')
   );
   const handleEndChange = data => {
-    console.log(data.format('L'));
     setSelectedEndDate(data.format('L'));
   };
+
+  const daysArray = ['Su', 'M', 'T', 'W', 'Th', 'F', 'S'];
 
   const formContent = (
     <form className={root} onSubmit={handleSubmit(onSubmit)}>
@@ -173,7 +176,13 @@ const TimeSlotModal = ({ handleClose }) => {
         <Typography className={h4Heading} variant="h4">
           Repeat Every
         </Typography>
-        <section className={repeatEvery}></section>
+        <section className={repeatEvery}>
+          {daysArray.map(day => (
+            <div className={repeatDiv} key={day}>
+              {day}
+            </div>
+          ))}
+        </section>
 
         <Typography className={h4Heading} variant="h4">
           Start Date
@@ -185,7 +194,7 @@ const TimeSlotModal = ({ handleClose }) => {
                 disableToolbar: true,
                 id: 'start-date',
                 variant: 'inline',
-                format: 'MM/dd/yyyy',
+                format: 'MM/DD/yyyy',
                 margin: 'normal',
                 label: 'start-date',
                 onChange: handleStartChange,
@@ -211,7 +220,7 @@ const TimeSlotModal = ({ handleClose }) => {
                 disableToolbar: true,
                 id: 'end-date',
                 variant: 'inline',
-                format: 'MM/dd/yyyy',
+                format: 'MM/DD/yyyy',
                 margin: 'normal',
                 label: 'end-date',
                 onChange: handleEndChange,
