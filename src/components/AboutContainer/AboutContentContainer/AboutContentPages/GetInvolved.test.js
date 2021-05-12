@@ -23,23 +23,26 @@ it('checks that the Make a Donation button appears', () => {
   expect(Button).toHaveTextContent('MAKE A DONATION');
 });
 
-it.skip('checks that the Support on Patreon button is clickable', () => {
-  const handleClick = jest.fn();
-  render(<Button onClick={handleClick}>SUPPORT ON PATREON</Button>);
-  fireEvent.click(screen.getByText(/support on patreon/i));
-  expect(handleClick).toHaveBeenCalledTimes(1);
+it('checks that the Support on Patreon button appears', () => {
+  render(<GetInvolved />);
+  //const handleClick = jest.fn();
+  const Button = screen.getByTestId('patreonButton');
+  //fireEvent.click(Button);
+  expect(Button).toHaveTextContent('SUPPORT ON PATREON');
 });
 
-it.skip('checks that the Sign Up to be a Mentor button is clickable', () => {
-  const handleClick = jest.fn();
-  render(<Button onClick={handleClick}>SIGN UP TO BE A MENTOR</Button>);
-  fireEvent.click(screen.getByText(/sign up to be a mentor/i));
-  expect(handleClick).toHaveBeenCalledTimes(1);
+it('checks that the Mentor Signup button appears', () => {
+  render(<GetInvolved />);
+  //const handleClick = jest.fn();
+  const Button = screen.getByTestId('mentorButton');
+  //fireEvent.click(Button);
+  expect(Button).toHaveTextContent('SIGN UP TO BE A MENTOR');
 });
 
-it.skip('checks that the Apply to Volunteer button is clickable', () => {
-  const handleClick = jest.fn();
-  render(<Button onClick={handleClick}>APPLY TO VOLUNTEER</Button>);
-  fireEvent.click(screen.getByText(/apply to volunteer/i));
-  expect(handleClick).toHaveBeenCalledTimes(1);
+it('checks that the Volunteer Signup button appears', () => {
+  render(<GetInvolved />);
+  //const handleClick = jest.fn();
+  const Button = screen.getByTestId('volunteerButton');
+  //fireEvent.click(Button);
+  expect(Button).toHaveTextContent('APPLY TO VOLUNTEER');
 });
