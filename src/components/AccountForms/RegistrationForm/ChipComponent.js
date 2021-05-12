@@ -89,7 +89,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
           <Chip
             {...{
               className:
-                watchRole === 0 ? classes.chipStyle : classes.chipOutline,
+                watchRole === 1 ? classes.chipStyle : classes.chipOutline,
               size: 'small',
               label: 'Mentee',
               variant: 'outlined',
@@ -103,7 +103,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
           <Chip
             {...{
               className:
-                watchRole === 1 ? classes.chipStyle : classes.chipOutline,
+                watchRole === 0 ? classes.chipStyle : classes.chipOutline,
               size: 'small',
               label: 'Mentor',
               variant: 'outlined',
