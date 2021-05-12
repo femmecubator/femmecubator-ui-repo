@@ -17,13 +17,8 @@ const MobileHeader = ({
   getDrawerChoices,
   getAccountChoices,
 }) => {
-  const {
-    menuDrawer,
-    arrowIcon,
-    drawerContainer,
-    userInfoContainer,
-    joinBtn,
-  } = useStyles();
+  const { menuDrawer, arrowIcon, drawerContainer, userInfoContainer, joinBtn } =
+    useStyles();
 
   const location = useLocation();
 

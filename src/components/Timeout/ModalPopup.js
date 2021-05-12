@@ -53,7 +53,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
                   className: classes.modal__center_div__buttons__button_logoff,
                   onClick: logoff,
                   onKeyPress: logoff,
-                  ariaLabel: 'log off',
+                  'aria-label': 'log off',
                   tabIndex: 0,
                 }}
               >
@@ -65,7 +65,7 @@ const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
                     classes.modal__center_div__buttons__button_continue,
                   onClick: () => setIdle(false),
                   onKeyPress: () => setIdle(false),
-                  ariaLabel: 'continue',
+                  'aria-label': 'continue',
                   tabIndex: 0,
                 }}
               >
