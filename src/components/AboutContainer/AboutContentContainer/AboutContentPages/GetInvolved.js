@@ -41,11 +41,13 @@ const GetInvolved = () => {
         We are proudly volunteer-driven
       </Typography>
       <Grid
-        container
-        direction="row"
-        justify="flex-start"
-        alignItems="flex-start"
-        spacing={7}
+        {...{
+          container: true,
+          direction: 'row',
+          justify: 'flex-start',
+          alignItems: 'flex-start',
+          spacing: 7,
+        }}
       >
         <Grid item xs>
           <h3>Donate</h3>
@@ -74,10 +76,12 @@ const GetInvolved = () => {
       </Grid>
       <br />
       <Grid
-        container
-        direction="column"
-        justify="flex-start"
-        alignItems="flex-start"
+        {...{
+          container: true,
+          direction: 'column',
+          justify: 'flex-start',
+          alignItems: 'flex-start',
+        }}
       >
         <Grid item xs={7}>
           <h3>Mentor</h3>
