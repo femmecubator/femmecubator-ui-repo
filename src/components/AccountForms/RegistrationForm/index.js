@@ -125,7 +125,7 @@ const RegistrationForm = ({ mockOnSubmit }) => {
 
   const onClickButtonModal = () => {
     setOpenModal(false);
-    history.push('/mentors');
+    history.push('/dashboard');
   };
 
   const handleClickShowPassword = key => {

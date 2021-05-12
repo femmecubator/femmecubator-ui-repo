@@ -23,6 +23,7 @@ it('checks that the Make a Donation button appears', () => {
   expect(Button).toHaveTextContent('MAKE A DONATION');
 });
 
+<<<<<<< HEAD
 it('checks that the Support on Patreon button appears', () => {
   render(<GetInvolved />);
   //const handleClick = jest.fn();
@@ -45,4 +46,25 @@ it('checks that the Volunteer Signup button appears', () => {
   const Button = screen.getByTestId('volunteerButton');
   //fireEvent.click(Button);
   expect(Button).toHaveTextContent('APPLY TO VOLUNTEER');
+=======
+it.skip('checks that the Support on Patreon button is clickable', () => {
+  const handleClick = jest.fn();
+  render(<Button onClick={handleClick}>SUPPORT ON PATREON</Button>);
+  fireEvent.click(screen.getByText(/support on patreon/i));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
+
+it.skip('checks that the Sign Up to be a Mentor button is clickable', () => {
+  const handleClick = jest.fn();
+  render(<Button onClick={handleClick}>SIGN UP TO BE A MENTOR</Button>);
+  fireEvent.click(screen.getByText(/sign up to be a mentor/i));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
+
+it.skip('checks that the Apply to Volunteer button is clickable', () => {
+  const handleClick = jest.fn();
+  render(<Button onClick={handleClick}>APPLY TO VOLUNTEER</Button>);
+  fireEvent.click(screen.getByText(/apply to volunteer/i));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+>>>>>>> b223543db3748b2ddaba35c387c8d617b57d6f23
 });
