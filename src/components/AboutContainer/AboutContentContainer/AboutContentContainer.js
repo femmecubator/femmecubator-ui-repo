@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './AboutContentContainer.styles';
-import { WhatWeDo, WhoWeAre, Programs } from './AboutContentPages';
+import { WhatWeDo, WhoWeAre, Programs, GetInvolved } from './AboutContentPages';
 import { PropTypes } from 'prop-types';
 
 const AboutContentContainer = ({ selected }) => {
@@ -14,6 +14,8 @@ const AboutContentContainer = ({ selected }) => {
         return <WhoWeAre />;
       case 'Programs':
         return <Programs />;
+      case 'Get Involved':
+        return <GetInvolved />;
       default:
         return <WhatWeDo />;
     }

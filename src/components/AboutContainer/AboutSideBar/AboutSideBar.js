@@ -1,6 +1,5 @@
 import React from 'react';
 import useStyles from './AboutSideBar.styles';
-import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { useMediaQuery, Link } from '@material-ui/core';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
@@ -16,7 +15,6 @@ const AboutSideBar = ({ selected, setSelected }) => {
     arrow,
     scrollMenuIcon,
   } = useStyles();
-  const history = useHistory();
   const isMobile = useMediaQuery('(max-width: 798px)');
   const isXsMobile = useMediaQuery('(max-width:490px)');
 
@@ -24,7 +22,6 @@ const AboutSideBar = ({ selected, setSelected }) => {
 
   const options = optionLabels.map(label => {
     const handleClick = () => {
-      if (label === 'Get Involved') history.push('/volunteer');
       setSelected(label);
     };
     const isSelected = selected === label;
