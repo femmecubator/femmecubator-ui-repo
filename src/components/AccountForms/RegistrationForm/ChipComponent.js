@@ -93,7 +93,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
               size: 'small',
               label: 'Mentee',
               variant: 'outlined',
-              onClick: () => handleClick(1),
+              onClick: () => handleClick(0),
               icon:
                 watchRole === 0 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
@@ -107,7 +107,7 @@ const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
               size: 'small',
               label: 'Mentor',
               variant: 'outlined',
-              onClick: () => handleClick(0),
+              onClick: () => handleClick(1),
               icon:
                 watchRole === 1 ? (
                   <CheckCircleOutlineIcon className={classes.checkIcon} />
