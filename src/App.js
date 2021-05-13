@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { mockServer } from './mock/mockServer';
+
 import Header from './components/Header/Header';
+// import Timeout from './components/Timeout/Timeout';
 import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 import { withRouter } from 'react-router';
@@ -12,11 +13,12 @@ import { initialize, pageview } from 'react-ga';
 if (process.env.NODE_ENV === 'production') {
   initialize(process.env.REACT_APP_TRACKING_ID);
   const history = createBrowserHistory();
-  history.listen((location) => {
+  history.listen(location => {
     pageview(location.pathname + location.search);
   });
 }
 if (process.env.REACT_APP_MOCK_API_TRUE) {
+  const mockServer = require('./mock/mockServer');
   mockServer();
 }
 
@@ -29,12 +31,15 @@ function App() {
     }
   }, [location.pathname, location.search]);
 
+  // TODO: will need to fix tabIndex on profile drop down after prod deployment
   return (
     <div className="App">
+      {/* <Timeout> */}
       <Header />
       <ErrorBoundary>
         <AppRouter />
       </ErrorBoundary>
+      {/* </Timeout> */}
     </div>
   );
 }

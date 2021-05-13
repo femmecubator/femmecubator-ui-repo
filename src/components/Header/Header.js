@@ -30,14 +30,8 @@ function Header() {
 
   const history = useHistory();
 
-  const {
-    menuHeaders,
-    utilities,
-    userName,
-    title,
-    anchorEl,
-    drawerOpen,
-  } = state;
+  const { menuHeaders, utilities, userName, title, anchorEl, drawerOpen } =
+    state;
 
   useEffect(() => {
     const fetchHeaderData = async () => {
@@ -53,7 +47,7 @@ function Header() {
             },
           },
         } = await response;
-        setState((prevState) => ({
+        setState(prevState => ({
           ...prevState,
           menuHeaders,
           utilities,
@@ -70,16 +64,16 @@ function Header() {
   }, [history, isLoggedIn]);
 
   const handleDrawerOpen = useCallback(() => {
-    setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    setState(prevState => ({ ...prevState, drawerOpen: true }));
   }, []);
   const handleDrawerClose = useCallback(() => {
-    setState((prevState) => ({ ...prevState, drawerOpen: false }));
+    setState(prevState => ({ ...prevState, drawerOpen: false }));
   }, []);
-  const handleAccountOpen = useCallback((e) => {
-    setState((prevState) => ({ ...prevState, anchorEl: e.currentTarget }));
+  const handleAccountOpen = useCallback(e => {
+    setState(prevState => ({ ...prevState, anchorEl: e.currentTarget }));
   }, []);
   const handleAccountClose = useCallback(() => {
-    setState((prevState) => ({ ...prevState, anchorEl: null }));
+    setState(prevState => ({ ...prevState, anchorEl: null }));
   }, []);
 
   const getDrawerChoices = useCallback(() => {

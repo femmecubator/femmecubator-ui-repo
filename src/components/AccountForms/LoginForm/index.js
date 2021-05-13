@@ -23,7 +23,8 @@ const FORM_TITLE = 'Welcome back!';
 const emailRequirements = {
   required: 'Email is required',
   pattern: {
-    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    value:
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     message: 'Invalid email format',
   },
 };
@@ -43,7 +44,7 @@ const LoginForm = ({ testOnSubmit }) => {
     isMobile: isMobile,
   });
 
-  const onSubmit = async (credentials) => {
+  const onSubmit = async credentials => {
     try {
       await request.post(API_PATH.LOGIN, credentials);
       const inProduction = process.env.NODE_ENV === 'production';
@@ -52,7 +53,7 @@ const LoginForm = ({ testOnSubmit }) => {
         action: 'Logged In',
       };
       inProduction && event(options);
-      history.push('/mentors');
+      history.push('/dashboard');
     } catch ({ status, data: { err } }) {
       if (status === 401 || status === 403) {
         setError('server', {

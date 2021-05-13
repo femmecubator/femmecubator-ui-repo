@@ -7,10 +7,10 @@ import {
 } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core/';
 import Grid from '@material-ui/core/Grid';
-import mainImage from './assets/firstImage.jpg';
 import secondImage from './assets/secondimage.jpg';
 import { ReactComponent as WorkathonSVG } from './assets/Listings.svg';
 import { ReactComponent as MeetOnSlack } from './assets/MeetOnSlack.svg';
+import { ReactComponent as FirstImage } from './assets/firstImage.svg';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import PanToolIcon from '@material-ui/icons/PanTool';
@@ -117,15 +117,6 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 799px)': {
       height: '238px',
       order: '-1',
-    },
-  },
-  topImage: {
-    objectFit: 'cover',
-    width: '100%',
-    height: '476px',
-    '@media (max-width: 799px)': {
-      height: '238px',
-      objectPosition: '0% 34%',
     },
   },
   bookAndContributeContainer: {
@@ -523,7 +514,6 @@ export default function Home() {
     root,
     introContainer,
     topImageContainer,
-    topImage,
     bookAndContributeContainer,
     workathonContainer,
     ourMissionContainer,
@@ -605,13 +595,9 @@ export default function Home() {
             </div>
           </Grid>
           <Grid className={topImageContainer} item xs={12} sm={6}>
-            <img
-              {...{
-                src: mainImage,
-                className: topImage,
-                alt:
-                  'Three women of color with laptops working together in an open office.',
-              }}
+            <FirstImage
+              rel="preload"
+              aria-label="Three women of color with laptops working together in an open office."
             />
           </Grid>
           <Grid className={bookAndContributeContainer} item xs={12}>
