@@ -54,11 +54,11 @@ const LoginForm = ({ testOnSubmit }) => {
       };
       inProduction && event(options);
       history.push('/dashboard');
-    } catch ({ status, data: { err } }) {
+    } catch ({ status, data: { message } }) {
       if (status === 401 || status === 403) {
         setError('server', {
           type: 'auth',
-          message: err,
+          message,
         });
       }
     }
