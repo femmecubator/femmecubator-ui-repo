@@ -30,8 +30,14 @@ function Header() {
 
   const history = useHistory();
 
-  const { menuHeaders, utilities, userName, title, anchorEl, drawerOpen } =
-    state;
+  const {
+    menuHeaders,
+    utilities,
+    userName,
+    title,
+    anchorEl,
+    drawerOpen,
+  } = state;
 
   useEffect(() => {
     const fetchHeaderData = async () => {
