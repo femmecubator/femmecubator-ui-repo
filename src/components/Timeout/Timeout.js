@@ -11,10 +11,10 @@ const Timeout = ({ children }) => {
 
   const [idle, setIdle] = useState(false);
   const time = useRef(0);
-  /*
-  function reset() {
+
+  const reset = () => {
     time.current = 0;
-  } */
+  };
 
   useEffect(() => {
     let interval;
@@ -42,6 +42,7 @@ const Timeout = ({ children }) => {
           setIdle: setIdle,
           logoff: logoff,
           timedOut: timedOut,
+          reset: reset,
         }}
       />
       {children}
