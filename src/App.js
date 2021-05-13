@@ -31,14 +31,15 @@ function App() {
     }
   }, [location.pathname, location.search]);
 
+  // TODO: will need to fix tabIndex on profile drop down after prod deployment
   return (
     <div className="App">
-      <Timeout>
-        <Header />
-        <ErrorBoundary>
-          <AppRouter />
-        </ErrorBoundary>
-      </Timeout>
+      {/* <Timeout> */}
+      <Header />
+      <ErrorBoundary>
+        <AppRouter />
+      </ErrorBoundary>
+      {/* </Timeout> */}
     </div>
   );
 }
