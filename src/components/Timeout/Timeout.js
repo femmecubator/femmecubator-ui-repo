@@ -34,21 +34,18 @@ const Timeout = ({ children }) => {
   }, [idleTime, idle, isLoggedIn]);
 
   return (
-    <div aria-live="polite">
-      {idle && (
-        <ModalPopup
-          {...{
-            countdownTime: countdownTime,
-            setIdle: setIdle,
-            logoff: logoff,
-            timedOut: timedOut,
-          }}
-        />
-      )}
-      <div aria-hidden={idle} aria-disabled tabIndex="-1">
-        {children}
-      </div>
-    </div>
+    <>
+      <ModalPopup
+        {...{
+          open: idle,
+          countdownTime: countdownTime,
+          setIdle: setIdle,
+          logoff: logoff,
+          timedOut: timedOut,
+        }}
+      />
+      {children}
+    </>
   );
 };
 

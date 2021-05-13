@@ -3,7 +3,7 @@ import useStyles from './ModalPopup.styles';
 import FocusTrapOverlay from '../FocusTrapOverlay';
 import { Paper, Typography, Button } from '@material-ui/core';
 
-const ModalPopup = ({ countdownTime, setIdle, logoff, timedOut }) => {
+const ModalPopup = ({ open, countdownTime, setIdle, logoff, timedOut }) => {
   const classes = useStyles();
 
   const [minutes, setMinutes] = useState(Math.floor(countdownTime / 60000));
