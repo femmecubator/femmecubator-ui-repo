@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 
 import Header from './components/Header/Header';
-// import Timeout from './components/Timeout/Timeout';
+import Timeout from './components/Timeout/Timeout';
 import AppRouter from 'routes/AppRouter';
 import { ErrorBoundary } from 'components/ErrorHandling/ErrorBoundary';
 import { withRouter } from 'react-router';
@@ -34,12 +34,12 @@ function App() {
   // TODO: will need to fix tabIndex on profile drop down after prod deployment
   return (
     <div className="App">
-      {/* <Timeout> */}
-      <Header />
-      <ErrorBoundary>
-        <AppRouter />
-      </ErrorBoundary>
-      {/* </Timeout> */}
+      <Timeout>
+        <Header />
+        <ErrorBoundary>
+          <AppRouter />
+        </ErrorBoundary>
+      </Timeout>
     </div>
   );
 }
