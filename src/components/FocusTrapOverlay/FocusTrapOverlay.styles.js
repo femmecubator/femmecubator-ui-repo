@@ -7,6 +7,7 @@ const useStyles = makeStyles({
     inset: 0,
     display: 'block',
     overflow: 'scroll',
+    zIndex: 1300,
   },
 });
 
