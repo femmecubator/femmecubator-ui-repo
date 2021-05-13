@@ -1,95 +1,70 @@
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
-  modal_background: {
-    height: '100%',
-    width: '100%',
-    position: 'fixed',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    zIndex: '1000',
-    fontFamily: 'Open Sans, sans-serif',
-  },
-  modal: {
-    position: 'relative',
-    background: 'white',
-    width: '38rem',
-    height: '28rem',
+const colors = {
+  primary: '#026FE4',
+  secondary: '#828282',
+  text: '#4F4F4F',
+};
+
+const useStyles = makeStyles(theme => ({
+  modal: ({ isMobile }) => ({
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    margin: '28vh auto',
-    '@media (min-width: 414px, max-width: 1023px)': {
-      width: '75vw',
-      height: 'auto',
-      padding: '1.5rem',
-      margin: '20vh auto',
-    },
-    '@media (max-width: 896px)': {
-      width: '65vw',
-      height: 'auto',
-      padding: '1rem',
-      margin: '28vh auto',
-    },
-  },
-  modal__center_div: {
+    position: 'relative',
+    top: isMobile ? '25%' : '50%',
+    transform: isMobile ? 'none' : 'translateY(-50%)',
+    margin: 'auto',
+    height: isMobile ? '100%' : '464px',
+    maxWidth: '643px',
+    minHeight: isMobile ? '100vh' : null,
+  }),
+  container: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    width: '325px',
+    padding: theme.spacing(0, 4, 4),
   },
-  modal__center_div__content: {
+  text: {
+    textAlign: 'center',
+    fontFamily: 'Open Sans, sans-serif',
+    color: colors.text,
+    fontSize: '1rem',
+  },
+  timeoutHeading: {
+    color: colors.text,
+    fontSize: '1.75rem',
+    fontWeight: 700,
+  },
+  timeoutCountdown: {
+    color: colors.primary,
+    fontSize: '1.5rem',
+    fontWeight: 600,
+  },
+  buttonsContainer: {
+    marginTop: '2rem',
     display: 'flex',
-    flexDirection: 'column',
+    width: '100%',
+    justifyContent: 'space-around',
   },
-  modal__center_div__content__p_head: {
-    fontSize: '24px',
-    fontWeight: '700',
-    margin: '0',
-    textAlign: 'center',
-    color: 'rgb(80, 80, 80)',
-  },
-  modal__center_div__content__p_timer: {
-    fontSize: '21px',
-    fontWeight: '600',
-    textAlign: 'center',
-    color: 'rgb(0, 98, 255)',
-  },
-  modal__center_div__content__p_text: {
-    textAlign: 'center',
-    color: 'rgb(80, 80, 80)',
-  },
-  modal__center_div__buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '1.5rem',
-  },
-  modal__center_div__buttons__button_logoff: {
-    padding: '.5rem 1rem',
-    fontWeight: '700',
-    textTransform: 'uppercase',
+  button: {
+    padding: '10px 21px',
     color: 'white',
-    borderRadius: '3px',
-    transition: '200ms ease-in-out',
-    cursor: 'pointer',
-    background: 'gray',
-    marginRight: '1rem',
+    fontSize: '18px',
+    fontWeight: 700,
+  },
+  continueButton: {
+    backgroundColor: '#026FE4',
     '&:hover': {
-      filter: 'brightness(1.2)',
-      transition: '300ms ease-in-out',
+      backgroundColor: colors.primary,
+      boxShadow: `0 0 1px 2px ${colors.primary}`,
     },
   },
-  modal__center_div__buttons__button_continue: {
-    padding: '.5rem 1rem',
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    color: 'white',
-    borderRadius: '3px',
-    transition: '200ms ease-in-out',
-    cursor: 'pointer',
-    background: 'rgb(56, 132, 255)',
-    marginLeft: '1rem',
+  logoffButton: {
+    backgroundColor: '#828282',
     '&:hover': {
-      filter: 'brightness(1.2)',
-      transition: '300ms ease-in-out',
+      backgroundColor: colors.secondary,
+      boxShadow: `0 0 1px 2px ${colors.secondary}`,
     },
   },
 }));

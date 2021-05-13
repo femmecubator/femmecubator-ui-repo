@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import FocusTrapOverlay from '../FocusTrapOverlay';
-import { Paper, Typography, Button } from '@material-ui/core';
+import { Paper, Typography, Button, useMediaQuery } from '@material-ui/core';
 
 const ModalPopup = props => {
   const { open, countdownTime, setIdle, logoff, timedOut, reset } = props;
-  const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width:1024px)');
+  const {
+    modal,
+    container,
+    text,
+    timeoutHeading,
+    timeoutCountdown,
+    buttonsContainer,
+    button,
+    continueButton,
+    logoffButton,
+  } = useStyles(isMobile);
 
   const [minutes, setMinutes] = useState(Math.floor(countdownTime / 60000));
   const [seconds, setSeconds] = useState((countdownTime / 1000) % 60);
@@ -36,30 +47,36 @@ const ModalPopup = props => {
 
   return (
     <FocusTrapOverlay open={open}>
-      <Paper>
-        <Typography variant="h4" component="h1" align="center">
-          Your online session will expire soon
-        </Typography>
-        <Typography variant="h5" component="p" align="center">
-          {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} seconds`}
-        </Typography>
-        <Typography variant="body1" component="p" align="center">
-          Choose continue to keep working or log off.
-        </Typography>
-        <Button
-          {...{
-            onClick: logoff,
-          }}
-        >
-          Log Off
-        </Button>
-        <Button
-          {...{
-            onClick: handleContinue,
-          }}
-        >
-          Continue
-        </Button>
+      <Paper className={modal}>
+        <div className={container}>
+          <h1 className={`${timeoutHeading} ${text}`}>
+            Your online session will expire soon
+          </h1>
+          <p className={`${timeoutCountdown} ${text}`}>
+            {`${minutes} min ${seconds < 10 ? '0' : ''}${seconds} seconds`}
+          </p>
+          <p className={`${text}`}>
+            Choose continue to keep working or log off.
+          </p>
+          <div className={buttonsContainer}>
+            <Button
+              {...{
+                className: `${logoffButton} ${button}`,
+                onClick: logoff,
+              }}
+            >
+              Log Off
+            </Button>
+            <Button
+              {...{
+                className: `${continueButton} ${button}`,
+                onClick: handleContinue,
+              }}
+            >
+              Continue
+            </Button>
+          </div>
+        </div>
       </Paper>
     </FocusTrapOverlay>
   );
