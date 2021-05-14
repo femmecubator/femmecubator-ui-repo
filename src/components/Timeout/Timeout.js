@@ -52,6 +52,7 @@ const Timeout = ({ children }) => {
 
   return (
     <>
+      {children}
       <ModalPopup
         {...{
           open: idle,
@@ -62,7 +63,6 @@ const Timeout = ({ children }) => {
           reset: reset,
         }}
       />
-      {children}
     </>
   );
 };
