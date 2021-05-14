@@ -7,7 +7,7 @@ const colors = {
 };
 
 const useStyles = makeStyles(theme => ({
-  modal: ({ isMobile }) => ({
+  modal: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -17,8 +17,7 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     height: '464px',
     maxWidth: '643px',
-    // minHeight: isMobile ? '100vh' : null,
-  }),
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',

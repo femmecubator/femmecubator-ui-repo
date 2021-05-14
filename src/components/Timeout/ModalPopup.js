@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import FocusTrapOverlay from '../FocusTrapOverlay';
-import { Paper, Typography, Button, useMediaQuery } from '@material-ui/core';
+import { Paper, Button, useMediaQuery } from '@material-ui/core';
 
 const ModalPopup = props => {
   const { open, countdownTime, setIdle, logoff, timedOut, reset } = props;
-  const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     modal,
     container,
@@ -16,7 +15,7 @@ const ModalPopup = props => {
     button,
     continueButton,
     logoffButton,
-  } = useStyles(isMobile);
+  } = useStyles();
 
   const [minutes, setMinutes] = useState(Math.floor(countdownTime / 60000));
   const [seconds, setSeconds] = useState((countdownTime / 1000) % 60);
