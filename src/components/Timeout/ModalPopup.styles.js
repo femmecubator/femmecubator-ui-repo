@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     padding: '10px 21px',
     color: 'white',
-    fontSize: '18px',
+    fontSize: '0.9rem',
     fontWeight: 700,
   },
   continueButton: {
