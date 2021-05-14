@@ -46,7 +46,14 @@ const ModalPopup = props => {
 
   return (
     <FocusTrapOverlay open={open}>
-      <Paper className={modal}>
+      <Paper
+        {...{
+          role: 'alertdialog',
+          'aria-label': 'Session timeout modal',
+          'aria-modal': true,
+          className: modal,
+        }}
+      >
         <div className={container}>
           <h1 className={`${timeoutHeading} ${text}`}>
             Your online session will expire soon
@@ -60,6 +67,7 @@ const ModalPopup = props => {
           <div className={buttonsContainer}>
             <Button
               {...{
+                'aria-label': 'Log off',
                 className: `${logoffButton} ${button}`,
                 onClick: logoff,
               }}
@@ -68,6 +76,7 @@ const ModalPopup = props => {
             </Button>
             <Button
               {...{
+                'aria-label': 'Continue',
                 className: `${continueButton} ${button}`,
                 onClick: handleContinue,
               }}
