@@ -31,8 +31,6 @@ const Timeout = ({ children }) => {
     }
   }, []);
 
-  console.log(time.current);
-
   useEffect(() => {
     let interval;
     if (isLoggedIn && !idle) {

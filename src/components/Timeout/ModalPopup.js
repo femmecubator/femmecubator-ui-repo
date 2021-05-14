@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import FocusTrapOverlay from '../FocusTrapOverlay';
-import { Paper, Button, useMediaQuery } from '@material-ui/core';
+import { Paper, Button } from '@material-ui/core';
 
 const ModalPopup = props => {
   const { open, countdownTime, setIdle, logoff, timedOut, reset } = props;
