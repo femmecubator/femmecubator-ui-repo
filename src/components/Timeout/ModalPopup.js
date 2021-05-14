@@ -5,7 +5,7 @@ import { Paper, Typography, Button, useMediaQuery } from '@material-ui/core';
 
 const ModalPopup = props => {
   const { open, countdownTime, setIdle, logoff, timedOut, reset } = props;
-  const isMobile = useMediaQuery('(max-width:1024px)');
+  const isMobile = useMediaQuery('(max-width:1023px)');
   const {
     modal,
     container,

@@ -17,6 +17,23 @@ const Timeout = ({ children }) => {
   };
 
   useEffect(() => {
+    const events = [
+      'load',
+      'mousemove',
+      'mousedown',
+      'click',
+      'scroll',
+      'keypress',
+    ];
+
+    for (const e of events) {
+      window.addEventListener(e, reset);
+    }
+  }, []);
+
+  console.log(time.current);
+
+  useEffect(() => {
     let interval;
     if (isLoggedIn && !idle) {
       interval = setInterval(() => {
