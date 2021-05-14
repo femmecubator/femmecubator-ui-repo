@@ -49,8 +49,9 @@ const useStyles = makeStyles(theme => ({
   button: {
     padding: '10px 21px',
     color: 'white',
-    fontSize: '0.9rem',
+    fontSize: '0.95rem',
     fontWeight: 700,
+    fontFamily: 'Open Sans, sans-serif',
   },
   continueButton: {
     backgroundColor: '#026FE4',
