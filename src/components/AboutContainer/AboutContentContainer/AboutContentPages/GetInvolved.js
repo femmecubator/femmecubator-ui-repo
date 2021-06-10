@@ -20,11 +20,11 @@ const BlueOutlineButton = withStyles({
       border: 'none',
       color: 'white',
     },
-    /* '@media (max-width: 799px)': {
+    '@media (max-width: 799px)': {
       alignSelf: 'center',
       marginTop: 'auto',
       marginBottom: '20px',
-    }, */
+    },
   },
   label: {
     fontFamily: 'Open Sans, sans-serif',
@@ -76,7 +76,12 @@ const GetInvolved = () => {
             </p>
           </item>
           <item>
-            <BlueOutlineButton variant="outlined" data-testid="patreonButton">
+            <BlueOutlineButton
+              variant="outlined"
+              data-testid="patreonButton"
+              //className="edgeButton"
+              //color="#550CCC"
+            >
               SUPPORT ON PATREON
             </BlueOutlineButton>
           </item>
@@ -91,7 +96,7 @@ const GetInvolved = () => {
           alignItems: 'flex-start',
         }}
       >
-        <Grid item xs={7}>
+        <Grid item xs /* ={7} */>
           <item>
             <h3>Mentor</h3>
             <p>
@@ -101,14 +106,14 @@ const GetInvolved = () => {
               informational interviews, consider applying to be a mentor.
             </p>
           </item>
-          <item true>
+          <item>
             <BlueOutlineButton variant="outlined" data-testid="mentorButton">
-              BECOME A MENTOR
+              SIGN UP TO BE A MENTOR
             </BlueOutlineButton>
           </item>
         </Grid>
         <br />
-        <Grid item xs={7}>
+        <Grid item xs /* ={7} */>
           <item>
             <h3>Volunteer</h3>
             <p>
