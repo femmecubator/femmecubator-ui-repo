@@ -24,6 +24,7 @@ const BlueOutlineButton = withStyles({
       alignSelf: 'center',
       marginTop: 'auto',
       marginBottom: '20px',
+      padding: '20px',
     },
   },
   label: {
@@ -49,7 +50,7 @@ const GetInvolved = () => {
           spacing: 7,
         }}
       >
-        <Grid item xs>
+        <Grid item sm>
           <item>
             <h3>Donate</h3>
             <p>
@@ -60,12 +61,16 @@ const GetInvolved = () => {
             </p>
           </item>
           <item>
-            <BlueOutlineButton variant="outlined" data-testid="donateButton">
+            <BlueOutlineButton
+              variant="outlined"
+              data-testid="donateButton"
+              style={{ marginBottom: '-10px' }}
+            >
               MAKE A DONATION
             </BlueOutlineButton>
           </item>
         </Grid>
-        <Grid item xs>
+        <Grid item sm>
           <item>
             <h3>Grow with us</h3>
             <p>
@@ -76,12 +81,7 @@ const GetInvolved = () => {
             </p>
           </item>
           <item>
-            <BlueOutlineButton
-              variant="outlined"
-              data-testid="patreonButton"
-              //className="edgeButton"
-              //color="#550CCC"
-            >
+            <BlueOutlineButton variant="outlined" data-testid="patreonButton">
               SUPPORT ON PATREON
             </BlueOutlineButton>
           </item>
@@ -94,9 +94,10 @@ const GetInvolved = () => {
           direction: 'column',
           justify: 'flex-start',
           alignItems: 'flex-start',
+          sm: '7',
         }}
       >
-        <Grid item xs /* ={7} */>
+        <Grid item>
           <item>
             <h3>Mentor</h3>
             <p>
@@ -113,7 +114,7 @@ const GetInvolved = () => {
           </item>
         </Grid>
         <br />
-        <Grid item xs /* ={7} */>
+        <Grid item>
           <item>
             <h3>Volunteer</h3>
             <p>

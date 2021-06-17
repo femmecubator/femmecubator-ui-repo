@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
     color: '#495057',
     margin: '36px 15% 0 0',
     '@media (max-width: 1055px)': {
-      marginRight: 0,
+      margin: '0 15px -125px 15px',
     },
   },
   blue: {
