@@ -97,6 +97,33 @@ const memberData = [
   },
 ];
 
+// From https://codeburst.io/building-a-responsive-image-grid-web-app-with-react-and-material-ui-9318b2ce0ecd
+/*  return (
+   <div className={classes.root}>
+     <GridList cellHeight={300} spacing={30} className={classes.gridList}>
+       <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
+         <ListSubheader component="div"></ListSubheader>
+       </GridListTile>
+       {tileData.map(tile => (
+         <GridListTile key={tile.img}>
+           <img src={tile.img} alt={tile.title} />
+           <GridListTileBar
+             title={tile.title}
+             actionIcon={
+               <IconButton
+                 aria-label={`info about ${tile.title}`}
+                 className={classes.icon}
+               >
+                 <InfoIcon />
+               </IconButton>
+             }
+           />
+         </GridListTile>
+       ))}
+     </GridList>
+   </div>
+ ); */
+
 //{
 /* const WhoWeAre = () => {
   const { title, photosContainer } = useStyles();
