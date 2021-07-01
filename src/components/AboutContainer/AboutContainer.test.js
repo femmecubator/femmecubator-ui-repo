@@ -14,23 +14,23 @@ describe('<AboutContainer />', () => {
 
   const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
 
-  it('should display banner image', () => {
+  it.skip('should display banner image', () => {
     const image = screen.getByAltText('Two women of color working');
     expect(image.src).toContain('two-women');
   });
 
-  it('should display navigation bar with correct options', () => {
+  it.skip('should display navigation bar with correct options', () => {
     optionLabels.forEach(optionLabel => screen.getByTestId(optionLabel));
   });
 
-  it('should fire a click event for all menu options', () => {
+  it.skip('should fire a click event for all menu options', () => {
     optionLabels.forEach(optionLabel => {
       const optionLink = screen.getByTestId(optionLabel);
       fireEvent.click(optionLink);
     });
   });
 
-  it('should display corresponding title when an option is clicked', () => {
+  it.skip('should display corresponding title when an option is clicked', () => {
     optionLabels.forEach(optionLabel => {
       const optionLink = screen.getByTestId(optionLabel);
       const title = screen.getByTestId('title');
