@@ -1,17 +1,10 @@
 import React from 'react';
 import { Typography, Grid, useMediaQuery } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
-// eslint-disable-next-line
 import { PropTypes } from 'prop-types';
 import { MOBILE_MEDIA_QUERY } from 'utils/constants';
-//import ImageList from '@material-ui/core/ImageList';
-//import ImageListItem from '@material-ui/core/ImageListItem';
-//import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 
-/* const PhotoSection = ({ text, images }) => {
+const PhotoSection = ({ text, images, imagesTwo }) => {
   const { title, photosContainer } = useStyles();
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
@@ -21,170 +14,116 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
       <Grid
         container
         {...{
-          spacing: 3,
+          spacing: 10,
           className: photosContainer,
           justify: isMobile ? 'center' : 'flex-start',
         }}
       >
-        {images}
-      </Grid>
-    </>
-  );
-}; */
-
-/* PhotoContainer.propTypes = {
-  text: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.element),
-}; */
-
-const WhoWeAre = () => {
-  const { title, photosContainer } = useStyles();
-  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
-
-  return (
-    <>
-      <Typography {...{ variant: 'h2', className: title }}>
-        Volunteer Team
-      </Typography>
-      <Grid
-        {...{
-          container,
-          dirction: 'row',
-          className: photosContainer,
-          justify: isMobile ? 'center' : 'flex-start',
-          alignItems: 'flex-start',
-          spacing: 3,
-        }}
-      >
-        <GridList /* variant="standard" */ /* sx={{ width: 500, height: 450 }} */
-        >
-          {memberData.map(member => (
-            <GridListTile key={member.img} item xs={4}>
-              <img
-                srcSet={`${member.img}?w=248&fit=crop&auto=format 1x,
-                ${member.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={member.name}
-                loading="lazy"
-              />
-              <GridListTileBar
-                title={member.name}
-                subtitle={member.title}
-                position="below"
-              />
-            </GridListTile>
-          ))}
-        </GridList>
+        {images} {imagesTwo}
       </Grid>
     </>
   );
 };
 
-const memberData = [
-  {
-    img: 'assets/Netaly.png',
-    name: 'Netaly Ramirez',
-    title: 'Software Engineer',
-  },
-  {
-    img: 'assets/Sherouk.png',
-    name: 'Sherouk Omara',
-    title: 'Software Engineer',
-  },
-  {
-    img: 'assets/Jackson.png',
-    name: 'Jackson Chen',
-    title: 'Dev Teaching Assistant',
-  },
-];
+PhotoSection.propTypes = {
+  text: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.element),
+};
 
-// From https://codeburst.io/building-a-responsive-image-grid-web-app-with-react-and-material-ui-9318b2ce0ecd
-/*  return (
-   <div className={classes.root}>
-     <GridList cellHeight={300} spacing={30} className={classes.gridList}>
-       <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
-         <ListSubheader component="div"></ListSubheader>
-       </GridListTile>
-       {tileData.map(tile => (
-         <GridListTile key={tile.img}>
-           <img src={tile.img} alt={tile.title} />
-           <GridListTileBar
-             title={tile.title}
-             actionIcon={
-               <IconButton
-                 aria-label={`info about ${tile.title}`}
-                 className={classes.icon}
-               >
-                 <InfoIcon />
-               </IconButton>
-             }
-           />
-         </GridListTile>
-       ))}
-     </GridList>
-   </div>
- ); */
-
-//{
-/* const WhoWeAre = () => {
-  const { title, photosContainer } = useStyles();
-  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
-
-  return (
-    <>
-      <Typography {...{ variant: 'h2', className: title }}>
-        Volunteer Team
-      </Typography>
-      <Grid
-        {...{
-          container,
-          dirction: 'row',
-          className: photosContainer,
-          justify: isMobile ? 'center' : 'flex-start',
-          alignItems: 'flex-start',
-          spacing: 4,
-        }}
-      >
-        <Grid item sm>
-          <img src="./assets/Netaly.png" alt="Netaly"></img>
-          <h4>Netaly Ramirez</h4>
-          <p>Software Engineer</p>
-        </Grid>
-        <Grid item sm>
-          <img src="./assets/Sherouk.png" alt="Sherouk"></img>
-          <h4>Sherouk Omara</h4>
-          <p>Software Engineer</p>
-        </Grid>
-      </Grid>
-    </>
-  );
-}; */
-//}
-
-//{
-/* const WhoWeAre = () => {
+const WhoWeAre = () => {
   const { photoContainer } = useStyles();
 
   const images = (() => {
     const result = [];
     const catPngs = [
-      'assets/Netaly.png',
-      'assets/Sherouk.png',
-      'assets/Jackson.png',
-      'assets/Karem.png',
-      'assets/Carlo.png',
+      {
+        img: 'assets/Netaly.png',
+        name: 'Netaly Ramirez',
+        title: 'Software Engineer',
+      },
+      {
+        img: 'assets/Sherouk.png',
+        name: 'Sherouk Omara',
+        title: 'Software Engineer',
+      },
+      {
+        img: 'assets/Jackson.png',
+        name: 'Jackson Chen',
+        title: 'Dev Teaching Assistant',
+      },
+      {
+        img: 'assets/Karem.png',
+        name: 'Karem Ceron',
+        title: 'Software Engineer',
+      },
+      {
+        img: 'assets/Carlo.png',
+        name: 'Carlo Fernando',
+        title: 'Tech Lead',
+      },
     ];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < catPngs.length; i++) {
       let catIdx = i % catPngs.length;
       result.push(
         <Grid key={i} item className={photoContainer}>
-          <img src={catPngs[catIdx]} alt="team member" />
+          <img src={catPngs[catIdx].img} alt="team member" />
+          <p>{catPngs[catIdx].name}</p>
+          <p>{catPngs[catIdx].title}</p>
+          <p>{catPngs[catIdx].subtitle}</p>
         </Grid>
       );
     }
     return result;
-  })(); */
-//}
-//};
+  })();
+
+  const imagesTwo = (() => {
+    const resultTwo = [];
+    const catPngs = [
+      {
+        img: 'assets/Krizia.png',
+        name: 'Krizia Fernando',
+        title: 'Founder and Co-Director',
+        subtitle: 'Tech and Partnerships',
+      },
+      {
+        img: 'assets/Erika.png',
+        name: 'Erika Jeffers',
+        title: 'Co-Director',
+        subtitle: 'Operations and Programming',
+      },
+      {
+        img: 'assets/Pauline.png',
+        name: 'Pauline Vercaza',
+        title: 'Content and Community Lead',
+      },
+      {
+        img: 'assets/Krish.png',
+        name: 'Krish Uy Raneses',
+        title: 'UX Designer',
+      },
+    ];
+
+    for (let i = 0; i < catPngs.length; i++) {
+      let catIdx = i % catPngs.length;
+      resultTwo.push(
+        <Grid key={i} item className={photoContainer}>
+          <img src={catPngs[catIdx].img} alt="team member" />
+          <p>{catPngs[catIdx].name}</p>
+          <p>{catPngs[catIdx].title}</p>
+          <p>{catPngs[catIdx].subtitle}</p>
+        </Grid>
+      );
+    }
+    return resultTwo;
+  })();
+
+  return (
+    <>
+      <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
+      <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+    </>
+  );
+};
 
 export default WhoWeAre;

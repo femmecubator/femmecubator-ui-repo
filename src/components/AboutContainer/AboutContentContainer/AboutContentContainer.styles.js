@@ -46,8 +46,19 @@ const useStyles = makeStyles(() => ({
       objectFit: 'cover',
       width: '100%',
       height: '100%',
-      borderRadius: 10,
+      borderRadius: 0,
     },
+    '& p': {
+      margin: '0px',
+    },
+    '& p:first-of-type': {
+      marginTop: '10px',
+      fontWeight: 'bold',
+    },
+    /* '& p:last-of-type': {
+      paddingTop: '0px',
+      paddingBottom: '200px',
+    }, */
   },
 }));
 
