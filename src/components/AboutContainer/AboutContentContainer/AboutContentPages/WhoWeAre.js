@@ -70,7 +70,6 @@ const WhoWeAre = () => {
           <img src={catPngs[catIdx].img} alt="team member" />
           <p>{catPngs[catIdx].name}</p>
           <p>{catPngs[catIdx].title}</p>
-          <p>{catPngs[catIdx].subtitle}</p>
         </Grid>
       );
     }

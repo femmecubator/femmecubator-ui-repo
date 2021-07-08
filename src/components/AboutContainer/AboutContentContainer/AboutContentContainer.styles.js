@@ -37,16 +37,19 @@ const useStyles = makeStyles(() => ({
     color: '#026FE4',
   },
   photosContainer: {
-    margin: '10px 0 40px',
+    margin: '10px 0 40px -40px',
+    /* '@media': {
+      justify: 'center',
+    }, */
   },
   photoContainer: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 375,
     '& img': {
       objectFit: 'cover',
       width: '100%',
       height: '100%',
-      borderRadius: 0,
+      borderRadius: 5,
     },
     '& p': {
       margin: '0px',
