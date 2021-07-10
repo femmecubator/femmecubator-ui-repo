@@ -5,7 +5,7 @@ Femmecubator React project - an online community for women in tech
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Associated Repository
-https://github.com/cfernando415/femmecubator-api-repo
+https://github.com/femmecubator/femmecubator-api-repo
 
 ## Available Scripts
 
