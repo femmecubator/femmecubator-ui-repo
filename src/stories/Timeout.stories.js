@@ -7,10 +7,10 @@ export default {
   component: Timeout,
 };
 
-export const Modal = () => {
+export const Modal = open => {
   return (
     <div>
-      <ModalPopup />
+      <ModalPopup open={open} />
     </div>
   );
 };

@@ -19,5 +19,7 @@ it('waits before showing the modal popup', () => {
 
 it('renders the modal popup', () => {
   render(<Modal />);
-  expect(screen.getByText('Your online session')).toBeInTheDocument();
+  expect(
+    screen.getByText('Your online session will expire soon')
+  ).toBeInTheDocument();
 });
