@@ -8,7 +8,6 @@ const Timeout = ({ children }) => {
 
   const { logoff, timedOut } = Auth;
   const isLoggedIn = Auth.isLoggedIn();
-  console.log(idleTime, countdownTime, isLoggedIn, timedOut);
   const [idle, setIdle] = useState(false);
   const time = useRef(0);
 
