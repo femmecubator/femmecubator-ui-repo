@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './ModalPopup.styles';
 import FocusTrapOverlay from '../FocusTrapOverlay';
-import { Paper, Button } from '@material-ui/core';
+import { Dialog, Button } from '@material-ui/core';
 
 const ModalPopup = props => {
   const { open, countdownTime, setIdle, logoff, timedOut, reset } = props;
@@ -21,23 +21,23 @@ const ModalPopup = props => {
   const [seconds, setSeconds] = useState((countdownTime / 1000) % 60);
 
   useEffect(() => {
-    let time = countdownTime;
+    let timer;
 
-    const timer =
-      countdownTime > 0 &&
-      setInterval(() => {
+    if (open) {
+      let time = countdownTime;
+      timer = setInterval(() => {
         time -= 1000;
         setMinutes(Math.floor(time / 60000));
         setSeconds((time / 1000) % 60);
         if (time === 0) {
-          time = 0;
           clearInterval(timer);
           timedOut();
         }
       }, 1000);
+    }
 
     return () => clearInterval(timer);
-  }, [countdownTime, timedOut]);
+  }, [countdownTime, timedOut, open]);
 
   const handleContinue = () => {
     setIdle(false);
@@ -46,8 +46,10 @@ const ModalPopup = props => {
 
   return (
     <FocusTrapOverlay open={open}>
-      <Paper
+      <Dialog
         {...{
+          open: true,
+          disableAutoFocus: true,
           role: 'alertdialog',
           'aria-label': 'Session timeout modal',
           'aria-modal': true,
@@ -85,7 +87,7 @@ const ModalPopup = props => {
             </Button>
           </div>
         </div>
-      </Paper>
+      </Dialog>
     </FocusTrapOverlay>
   );
 };
