@@ -3,6 +3,7 @@ import { Typography, Grid, useMediaQuery } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
 import { MOBILE_MEDIA_QUERY } from 'utils/constants';
+//import { Person } from '@material-ui/icons';
 
 const PhotoSection = ({ text, images, imagesTwo }) => {
   const { title, photosContainer } = useStyles();
@@ -77,7 +78,7 @@ const WhoWeAre = () => {
   })();
 
   const imagesTwo = (() => {
-    const resultTwo = [];
+    //const resultTwo = [];
     const catPngs = [
       {
         img: 'assets/Krizia.png',
@@ -103,7 +104,34 @@ const WhoWeAre = () => {
       },
     ];
 
-    for (let i = 0; i < catPngs.length; i++) {
+    //catPngs.map(getInfo);
+
+    //<Grid /* key={i} */ item className={photoContainer}>
+    {
+      /* catPngs.map(getInfo); */
+    }
+    return (
+      <Grid item className={photoContainer}>
+        {catPngs.map((person, index) => (
+          <div key={index}>
+            <img src={person.img} alt="team member" />
+            <p>{person.name}</p>
+            <p>{person.title}</p>
+            <p>{person.subtitle}</p>
+          </div>
+        ))}
+      </Grid>
+    );
+
+    /* <p>{item.name}</p> */
+
+    //</Grid>;
+
+    /* function getInfo(item) {
+      return [item.img];
+    } */
+
+    /* for (let i = 0; i < catPngs.length; i++) {
       let catIdx = i % catPngs.length;
       resultTwo.push(
         <Grid key={i} item className={photoContainer}>
@@ -114,7 +142,7 @@ const WhoWeAre = () => {
         </Grid>
       );
     }
-    return resultTwo;
+    return resultTwo; */
   })();
 
   return (
