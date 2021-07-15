@@ -15,10 +15,7 @@ const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
       <Grid
         {...{
           container: true,
-          direction: 'row',
-          //alignItems: 'flex-start',
           spacing: 10,
-          //wrap: 'nowrap',
           className: photosContainer,
           justifyContent: isMobile ? 'center' : 'flex-start',
         }}
@@ -74,10 +71,7 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div
-            key={id}
-            className="memberCard" /* style={{ marginRight: -100 }} */
-          >
+          <div key={id} className="memberCard" /* style={{ padding: 10 }} */>
             <img src={img} alt="team member" />
             <p>{name}</p>
             <p>{title}</p>

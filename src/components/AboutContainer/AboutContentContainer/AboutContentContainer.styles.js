@@ -43,14 +43,17 @@ const useStyles = makeStyles(() => ({
     }, */
   },
   photoContainer: {
-    width: 375,
+    width: 400,
     height: 'auto',
+    display: 'flex',
+    flexDirection: 'initial',
+    //justifyContent: 'space-around',
+
     '& img': {
       objectFit: 'cover',
       width: '100%',
       height: '100%',
       borderRadius: 5,
-      paddingRight: '-100px',
     },
     '& p': {
       margin: '0px',
@@ -64,9 +67,7 @@ const useStyles = makeStyles(() => ({
       paddingBottom: '200px',
     }, */
   },
-  memberCard: {
-    marginLeft: '-100px',
-  },
+  memberCard: {},
 }));
 
 export default useStyles;
