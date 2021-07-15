@@ -43,8 +43,8 @@ const useStyles = makeStyles(() => ({
     }, */
   },
   photoContainer: {
-    width: 350,
-    height: 375,
+    width: 375,
+    height: 'auto',
     '& img': {
       objectFit: 'cover',
       width: '100%',
