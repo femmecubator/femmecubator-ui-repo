@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import { MOBILE_MEDIA_QUERY } from 'utils/constants';
 //import { Person } from '@material-ui/icons';
 
-const PhotoSection = ({ text, images, imagesTwo }) => {
+const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
   const { title, photosContainer } = useStyles();
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
@@ -15,13 +15,15 @@ const PhotoSection = ({ text, images, imagesTwo }) => {
       <Grid
         {...{
           container: true,
-          spacing: 10,
           direction: 'row',
+          //alignItems: 'flex-start',
+          spacing: 10,
+          //wrap: 'nowrap',
           className: photosContainer,
-          justify: isMobile ? 'center' : 'flex-start',
+          justifyContent: isMobile ? 'center' : 'flex-start',
         }}
       >
-        {images} {imagesTwo}
+        {images} {imagesTwo} {imagesThree} {imagesFour}
       </Grid>
     </>
   );
@@ -72,7 +74,10 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div key={id}>
+          <div
+            key={id}
+            className="memberCard" /* style={{ marginRight: -100 }} */
+          >
             <img src={img} alt="team member" />
             <p>{name}</p>
             <p>{title}</p>
@@ -116,7 +121,133 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div key={id}>
+          <div key={id} className="memberCard">
+            <img src={img} alt="team member" />
+            <p>{name}</p>
+            <p>{title}</p>
+            <p>{subtitle}</p>
+          </div>
+        ))}
+      </Grid>
+    );
+  })();
+
+  const imagesThree = (() => {
+    const memberPngs = [
+      {
+        id: 'nayeli-ux-mentor',
+        img: 'assets/Nayeli.png',
+        name: 'Nayeli Perez',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'ariella-ux-mentor',
+        img: 'assets/Ariella.png',
+        name: 'Ariella Chivil',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'amanda-ux-mentor',
+        img: 'assets/Amanda.png',
+        name: 'Amanda Powell',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'kianee-ux-mentor',
+        img: 'assets/Kianee.png',
+        name: 'Kianee De Jesus',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'iris-ux-mentor',
+        img: 'assets/Iris.png',
+        name: 'Iris Chen',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'heatherlee-ux-mentor',
+        img: 'assets/Heatherlee.png',
+        name: 'Heatherlee Nguyen',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'laura-ux-mentor',
+        img: 'assets/Laura.png',
+        name: 'Laura Nanits',
+        title: 'UX Mentor',
+      },
+      {
+        id: 'anh-dev-mentor',
+        img: 'assets/Anh.png',
+        name: 'Anh Vuong',
+        title: 'Dev Mentor',
+      },
+      {
+        id: 'donat-dev-mentor',
+        img: 'assets/Donat.png',
+        name: 'Donat Pllana',
+        title: 'Dev Mentor',
+      },
+      {
+        id: 'jackson-teaching-assistant',
+        img: 'assets/Jackson.png',
+        name: 'Jackson Chen',
+        title: 'Dev Teaching Assistant',
+      },
+      {
+        id: 'alvee-dev-mentor',
+        img: 'assets/Alvee.png',
+        name: 'Alvee Akand',
+        title: 'Dev Mentor',
+      },
+      {
+        id: 'carlo-tech-lead',
+        img: 'assets/Carlo.png',
+        name: 'Carlo Fernando',
+        title: 'Tech Lead',
+      },
+    ];
+
+    return (
+      <Grid item className={photoContainer}>
+        {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
+          <div key={id} className="memberCard">
+            <img src={img} alt="team member" />
+            <p>{name}</p>
+            <p>{title}</p>
+            <p>{subtitle}</p>
+          </div>
+        ))}
+      </Grid>
+    );
+  })();
+
+  const imagesFour = (() => {
+    const memberPngs = [
+      {
+        id: 'heatherlee-board-chair',
+        img: 'assets/Heatherlee.png',
+        name: 'Heatherlee Nguyen',
+        title: 'Board Chair',
+      },
+      {
+        id: 'nefertiti-vice-chair',
+        img: 'assets/Nefertiti.png',
+        name: 'Nefertiti Stokes',
+        title: 'Vice Chair',
+      },
+      {
+        id: 'megan-treasurer',
+        img: 'assets/Megan.png',
+        name: 'Megan Jeffers',
+        title: 'Treasurer',
+      },
+    ];
+
+    return (
+      <Grid item className={photoContainer}>
+        {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
+          <div key={id} className="memberCard">
             <img src={img} alt="team member" />
             <p>{name}</p>
             <p>{title}</p>
@@ -131,6 +262,8 @@ const WhoWeAre = () => {
     <>
       <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
       <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+      <PhotoSection {...{ text: 'Mentors', imagesThree }} />
+      <PhotoSection {...{ text: 'Board of Directors', imagesFour }} />
     </>
   );
 };

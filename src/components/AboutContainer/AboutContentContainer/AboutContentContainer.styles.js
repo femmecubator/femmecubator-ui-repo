@@ -50,6 +50,7 @@ const useStyles = makeStyles(() => ({
       width: '100%',
       height: '100%',
       borderRadius: 5,
+      paddingRight: '-100px',
     },
     '& p': {
       margin: '0px',
@@ -62,6 +63,9 @@ const useStyles = makeStyles(() => ({
       paddingTop: '0px',
       paddingBottom: '200px',
     }, */
+  },
+  memberCard: {
+    marginLeft: '-100px',
   },
 }));
 
