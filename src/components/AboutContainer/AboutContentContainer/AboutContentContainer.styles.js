@@ -15,8 +15,11 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 28,
     marginBottom: 15,
-    '@media (max-width: 490px)': {
-      fontSize: 21,
+    marginLeft: 10,
+    '@media (max-width: 760px)': {
+      fontSize: 19,
+      marginLeft: 0,
+      paddingTop: 10,
     },
   },
   content: {
@@ -38,10 +41,6 @@ const useStyles = makeStyles(() => ({
   },
   photosContainer: {
     margin: '10px 0 20px -40px',
-    //justifyContent: 'space-between',
-    /* '@media': {
-      justifyContent: 'center',
-    }, */
   },
   photoContainer: {
     width: 'auto',
@@ -57,6 +56,18 @@ const useStyles = makeStyles(() => ({
       width: 300,
       height: 300,
       borderRadius: 5,
+      '@media (max-width: 299px)': {
+        width: 150,
+        height: 150,
+      },
+      '@media (min-width: 300px) and (max-width: 399px)': {
+        width: 200,
+        height: 200,
+      },
+      '@media (min-width: 400px) and (max-width: 769px)': {
+        width: 250,
+        height: 250,
+      },
     },
     '& p': {
       margin: 0,
@@ -71,6 +82,9 @@ const useStyles = makeStyles(() => ({
   },
   memberCard: {
     margin: 10,
+    '@media (max-width: 760px)': {
+      margin: 0,
+    },
   },
 }));
 
