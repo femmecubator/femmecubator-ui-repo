@@ -37,37 +37,41 @@ const useStyles = makeStyles(() => ({
     color: '#026FE4',
   },
   photosContainer: {
-    margin: '10px 0 40px -40px',
+    margin: '10px 0 20px -40px',
+    //justifyContent: 'space-between',
     /* '@media': {
-      justify: 'center',
+      justifyContent: 'center',
     }, */
   },
   photoContainer: {
-    width: 400,
+    width: 'auto',
     height: 'auto',
     display: 'flex',
-    flexDirection: 'initial',
+    flexFlow: 'row wrap',
+    //alignItems: 'flex-start',
+    //alignContent: 'flex-start',
     //justifyContent: 'space-around',
 
     '& img': {
       objectFit: 'cover',
-      width: '100%',
-      height: '100%',
+      width: 300,
+      height: 300,
       borderRadius: 5,
     },
     '& p': {
-      margin: '0px',
+      margin: 0,
     },
     '& p:first-of-type': {
-      marginTop: '10px',
+      marginTop: 10,
       fontWeight: 'bold',
     },
-    /* '& p:last-of-type': {
-      paddingTop: '0px',
-      paddingBottom: '200px',
-    }, */
+    '& p:last-of-type': {
+      marginBottom: 20,
+    },
   },
-  memberCard: {},
+  memberCard: {
+    margin: 10,
+  },
 }));
 
 export default useStyles;

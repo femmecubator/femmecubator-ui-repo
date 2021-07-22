@@ -3,7 +3,6 @@ import { Typography, Grid, useMediaQuery } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
 import { MOBILE_MEDIA_QUERY } from 'utils/constants';
-//import { Person } from '@material-ui/icons';
 
 const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
   const { title, photosContainer } = useStyles();
@@ -28,11 +27,11 @@ const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
 
 PhotoSection.propTypes = {
   text: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.element),
+  images: PropTypes.element,
 };
 
 const WhoWeAre = () => {
-  const { photoContainer } = useStyles();
+  const { photoContainer, memberCard } = useStyles();
 
   const images = (() => {
     const memberPngs = [
@@ -71,12 +70,14 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div key={id} className="memberCard" /* style={{ padding: 10 }} */>
-            <img src={img} alt="team member" />
-            <p>{name}</p>
-            <p>{title}</p>
-            <p>{subtitle}</p>
-          </div>
+          <Grid className={memberCard} key={id}>
+            <>
+              <img src={img} alt="team member" />
+              <p>{name}</p>
+              <p>{title}</p>
+              <p>{subtitle}</p>
+            </>
+          </Grid>
         ))}
       </Grid>
     );
@@ -115,12 +116,14 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div key={id} className="memberCard">
-            <img src={img} alt="team member" />
-            <p>{name}</p>
-            <p>{title}</p>
-            <p>{subtitle}</p>
-          </div>
+          <Grid className={memberCard} key={id}>
+            <>
+              <img src={img} alt="team member" />
+              <p>{name}</p>
+              <p>{title}</p>
+              <p>{subtitle}</p>
+            </>
+          </Grid>
         ))}
       </Grid>
     );
@@ -205,12 +208,14 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div key={id} className="memberCard">
-            <img src={img} alt="team member" />
-            <p>{name}</p>
-            <p>{title}</p>
-            <p>{subtitle}</p>
-          </div>
+          <Grid className={memberCard} key={id}>
+            <>
+              <img src={img} alt="team member" />
+              <p>{name}</p>
+              <p>{title}</p>
+              <p>{subtitle}</p>
+            </>
+          </Grid>
         ))}
       </Grid>
     );
@@ -241,12 +246,14 @@ const WhoWeAre = () => {
     return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <div key={id} className="memberCard">
-            <img src={img} alt="team member" />
-            <p>{name}</p>
-            <p>{title}</p>
-            <p>{subtitle}</p>
-          </div>
+          <Grid className={memberCard} key={id}>
+            <>
+              <img src={img} alt="team member" />
+              <p>{name}</p>
+              <p>{title}</p>
+              <p>{subtitle}</p>
+            </>
+          </Grid>
         ))}
       </Grid>
     );
