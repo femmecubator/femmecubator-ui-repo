@@ -20,9 +20,11 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    width: '50%',
-    padding: theme.spacing(0, 4, 4),
-    margin: '2rem 0 2rem 7rem',
+    width: ({ isMobile }) => (isMobile ? '60%' : '57%'),
+    padding: ({ isMobile }) =>
+      isMobile ? '0 .5rem 1rem 1rem' : '8% 10% 12% 8%',
+    margin: ({ isMobile }) =>
+      isMobile ? '0 3rem 1rem 16%' : '2rem 0 2rem 13%',
   },
   text: {
     textAlign: 'center',
@@ -47,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
   },
   button: {
-    padding: '10px 21px',
+    padding: ({ isMobile }) => (isMobile ? '4% 3%' : '10px 21px'),
     color: 'white',
     fontSize: '0.95rem',
     fontWeight: 700,
