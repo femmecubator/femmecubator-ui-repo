@@ -1,12 +1,10 @@
 import React from 'react';
-import { Typography, Grid, useMediaQuery } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
-import { MOBILE_MEDIA_QUERY } from 'utils/constants';
 
 const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
   const { title, photosContainer } = useStyles();
-  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   return (
     <>
@@ -16,7 +14,6 @@ const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
           container: true,
           spacing: 10,
           className: photosContainer,
-          justifyContent: isMobile ? 'center' : 'flex-start',
         }}
       >
         {images} {imagesTwo} {imagesThree} {imagesFour}

@@ -47,10 +47,6 @@ const useStyles = makeStyles(() => ({
     height: 'auto',
     display: 'flex',
     flexFlow: 'row wrap',
-    //alignItems: 'flex-start',
-    //alignContent: 'flex-start',
-    //justifyContent: 'space-around',
-
     '& img': {
       objectFit: 'cover',
       width: 300,
