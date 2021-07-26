@@ -66,8 +66,8 @@ const WhoWeAre = () => {
 
     return (
       <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <Grid className={memberCard} key={id}>
+        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
+          <Grid className={memberCard} key={`${id} - ${idx}`}>
             <>
               <img src={img} alt="team member" />
               <p>{name}</p>
@@ -112,8 +112,8 @@ const WhoWeAre = () => {
 
     return (
       <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <Grid className={memberCard} key={id}>
+        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
+          <Grid className={memberCard} key={`${id} - ${idx}`}>
             <>
               <img src={img} alt="team member" />
               <p>{name}</p>
@@ -204,8 +204,8 @@ const WhoWeAre = () => {
 
     return (
       <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <Grid className={memberCard} key={id}>
+        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
+          <Grid className={memberCard} key={`${id} - ${idx}`}>
             <>
               <img src={img} alt="team member" />
               <p>{name}</p>
@@ -242,8 +242,8 @@ const WhoWeAre = () => {
 
     return (
       <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }) => (
-          <Grid className={memberCard} key={id}>
+        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
+          <Grid className={memberCard} key={`${id} - ${idx}`}>
             <>
               <img src={img} alt="team member" />
               <p>{name}</p>
