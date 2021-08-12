@@ -6,7 +6,7 @@ const colors = {
   text: '#4F4F4F',
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   modal: {
     display: 'flex',
     justifyContent: 'center',

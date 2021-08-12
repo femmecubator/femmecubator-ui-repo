@@ -49,6 +49,7 @@ const ModalPopup = props => {
 
   return (
     <FocusTrapOverlay open={open}>
+      {/* Dialog creates an infinite loop/ rerendering with the onboarding modal for mentors shows up, Maybe if theres a way to check when mentor onboarding modal is active?*/}
       <Dialog
         {...{
           open: true,
