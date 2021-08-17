@@ -3,35 +3,10 @@ import { Typography, Grid } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
 
-const PhotoSection = ({ text, images, imagesTwo, imagesThree, imagesFour }) => {
-  const { title, photosContainer } = useStyles();
-
-  return (
-    <>
-      <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
-      <Grid
-        {...{
-          container: true,
-          spacing: 10,
-          className: photosContainer,
-        }}
-      >
-        {images} {imagesTwo} {imagesThree} {imagesFour}
-      </Grid>
-    </>
-  );
-};
-
-PhotoSection.propTypes = {
-  text: PropTypes.string,
-  images: PropTypes.element,
-};
-
-const WhoWeAre = () => {
-  const { photoContainer, memberCard } = useStyles();
-
-  const images = (() => {
-    const memberPngs = [
+const sections = {
+  volunteers: {
+    text: 'AppDev Volunteer Team',
+    members: [
       {
         id: 'netaly-software-engineer',
         img: 'assets/Netaly.png',
@@ -62,9 +37,97 @@ const WhoWeAre = () => {
         name: 'Carlo Fernando',
         title: 'Tech Lead',
       },
-    ];
+    ],
+  },
+};
 
-    return (
+const PhotoSection = ({
+  text,
+  sections,
+  imagesTwo,
+  imagesThree,
+  imagesFour,
+}) => {
+  const { title, photosContainer } = useStyles();
+
+  return (
+    <>
+      <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
+      <Grid
+        {...{
+          container: true,
+          spacing: 10,
+          className: photosContainer,
+        }}
+      >
+        {sections} {imagesTwo} {imagesThree} {imagesFour}
+      </Grid>
+
+      {/* <Grid item className={photoContainer}>
+          {members.map(({ person: id, img, name, title, subtitle }, idx) => (
+            <Grid className={memberCard} key={`${id} - ${idx}`}>
+              <>
+                <img src={img} alt="team member" />
+                <p>{name}</p>
+                <p>{title}</p>
+                <p>{subtitle}</p>
+              </>
+            </Grid>
+          ))}
+        </Grid> */}
+      {/* PhotoSection.propTypes = {
+      text: PropTypes.string,
+      images: PropTypes.element,
+    }; */}
+      {Object.keys(sections).map((section, i) => (
+        <div key={i}>
+          <p>{sections[volunteers].name}</p>
+        </div>
+      ))}
+      {/* <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+  <PhotoSection {...{ text: 'Mentors', imagesThree }} />
+  <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */}
+    </>
+  );
+};
+
+//const WhoWeAre = () => {
+//const { photoContainer, memberCard } = useStyles();
+
+//const images = (() => {
+/* const memberPngs = [
+      {
+        id: 'netaly-software-engineer',
+        img: 'assets/Netaly.png',
+        name: 'Netaly Ramirez',
+        title: 'Software Engineer',
+      },
+      {
+        id: 'sherouk-software-engineer',
+        img: 'assets/Sherouk.png',
+        name: 'Sherouk Omara',
+        title: 'Software Engineer',
+      },
+      {
+        id: 'jackson-teaching-assistant',
+        img: 'assets/Jackson.png',
+        name: 'Jackson Chen',
+        title: 'Dev Teaching Assistant',
+      },
+      {
+        id: 'karem-software-engineer',
+        img: 'assets/Karem.png',
+        name: 'Karem Ceron',
+        title: 'Software Engineer',
+      },
+      {
+        id: 'carlo-tech-lead',
+        img: 'assets/Carlo.png',
+        name: 'Carlo Fernando',
+        title: 'Tech Lead',
+      },
+    ]; */
+/* return (
       <Grid item className={photoContainer}>
         {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
           <Grid className={memberCard} key={`${id} - ${idx}`}>
@@ -77,10 +140,10 @@ const WhoWeAre = () => {
           </Grid>
         ))}
       </Grid>
-    );
-  })();
+    ); */
+//}();
 
-  const imagesTwo = (() => {
+/*   const imagesTwo = (() => {
     const memberPngs = [
       {
         id: 'krizia-founder',
@@ -254,16 +317,22 @@ const WhoWeAre = () => {
         ))}
       </Grid>
     );
-  })();
+  })(); */
 
-  return (
+/* return (
     <>
-      <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
-      <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+      <PhotoSection
+        {...Object.keys(sections).map((section, i) => (
+          <div key={i}>
+            <p>{sections[volunteers].name}</p>
+          </div>
+        ))}
+      />
+      {/* <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
       <PhotoSection {...{ text: 'Mentors', imagesThree }} />
       <PhotoSection {...{ text: 'Board of Directors', imagesFour }} />
     </>
-  );
-};
+  ); */
+//};
 
-export default WhoWeAre;
+export default PhotoSection;
