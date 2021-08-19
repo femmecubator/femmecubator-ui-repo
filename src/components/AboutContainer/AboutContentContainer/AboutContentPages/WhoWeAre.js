@@ -82,71 +82,22 @@ const PhotoSection = ({ text, members = [] }) => {
   text: PropTypes.string,
   images: PropTypes.element,
 }; */
-/* {Object.keys(sections).map((section, i) => (
-        <div key={i}>
-          <p>{sections[volunteers].name}</p>
-        </div>
-      ))} */
-{
-  /* <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
-  <PhotoSection {...{ text: 'Mentors', imagesThree }} />
-  <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */
-}
-//</>
-//);
-//};
 
 const WhoWeAre = () => {
-  const { photoContainer, memberCard } = useStyles();
+  //const { photoContainer, memberCard } = useStyles();
+
+  return (
+    <>
+      {/* <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
+      <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+      <PhotoSection {...{ text: 'Mentors', imagesThree }} />
+      <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */}
+      {Object.keys(photoSectionConfig).map(config => (
+        <PhotoSection key={config} {...photoSectionConfig[config]} />
+      ))}
+    </>
+  );
 };
-//const images = (() => {
-/* const memberPngs = [
-      {
-        id: 'netaly-software-engineer',
-        img: 'assets/Netaly.png',
-        name: 'Netaly Ramirez',
-        title: 'Software Engineer',
-      },
-      {
-        id: 'sherouk-software-engineer',
-        img: 'assets/Sherouk.png',
-        name: 'Sherouk Omara',
-        title: 'Software Engineer',
-      },
-      {
-        id: 'jackson-teaching-assistant',
-        img: 'assets/Jackson.png',
-        name: 'Jackson Chen',
-        title: 'Dev Teaching Assistant',
-      },
-      {
-        id: 'karem-software-engineer',
-        img: 'assets/Karem.png',
-        name: 'Karem Ceron',
-        title: 'Software Engineer',
-      },
-      {
-        id: 'carlo-tech-lead',
-        img: 'assets/Carlo.png',
-        name: 'Carlo Fernando',
-        title: 'Tech Lead',
-      },
-    ]; */
-/* return (
-      <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
-          <Grid className={memberCard} key={`${id} - ${idx}`}>
-            <>
-              <img src={img} alt="team member" />
-              <p>{name}</p>
-              <p>{title}</p>
-              <p>{subtitle}</p>
-            </>
-          </Grid>
-        ))}
-      </Grid>
-    ); */
-//}();
 
 /*   const imagesTwo = (() => {
     const memberPngs = [
