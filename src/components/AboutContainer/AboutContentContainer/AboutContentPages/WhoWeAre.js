@@ -3,7 +3,7 @@ import { Typography, Grid } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
 
-const sections = {
+const PhotoSectionConfig = {
   volunteers: {
     text: 'AppDev Volunteer Team',
     members: [
@@ -40,6 +40,24 @@ const sections = {
     ],
   },
 };
+
+function Images({ members = [] }) {
+  const { photoContainer, memberCard } = useStyles();
+  return (
+    <Grid item className={photoContainer}>
+      {members.map(({ person: id, img, name, title, subtitle }, idx) => (
+        <Grid className={memberCard} key={`${id} - ${idx}`}>
+          <>
+            <img src={img} alt="team member" />
+            <p>{name}</p>
+            <p>{title}</p>
+            <p>{subtitle}</p>
+          </>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
 
 const PhotoSection = ({
   text,
