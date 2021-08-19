@@ -39,68 +39,9 @@ const photoSectionConfig = {
       },
     ],
   },
-};
-
-function Images({ members = [] }) {
-  const { photoContainer, memberCard } = useStyles();
-  return (
-    <Grid item className={photoContainer}>
-      {members.map(({ person: id, img, name, title, subtitle }, idx) => (
-        <Grid className={memberCard} key={`${id} - ${idx}`}>
-          <>
-            <img src={img} alt="team member" />
-            <p>{name}</p>
-            <p>{title}</p>
-            <p>{subtitle}</p>
-          </>
-        </Grid>
-      ))}
-    </Grid>
-  );
-}
-
-const PhotoSection = ({ text, members = [] }) => {
-  const { title, photosContainer } = useStyles();
-
-  return (
-    <>
-      <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
-      <Grid
-        {...{
-          container: true,
-          spacing: 10,
-          className: photosContainer,
-        }}
-      >
-        <Images members={members} />
-      </Grid>
-    </>
-  );
-};
-
-/* PhotoSection.propTypes = {
-  text: PropTypes.string,
-  images: PropTypes.element,
-}; */
-
-const WhoWeAre = () => {
-  //const { photoContainer, memberCard } = useStyles();
-
-  return (
-    <>
-      {/* <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
-      <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
-      <PhotoSection {...{ text: 'Mentors', imagesThree }} />
-      <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */}
-      {Object.keys(photoSectionConfig).map(config => (
-        <PhotoSection key={config} {...photoSectionConfig[config]} />
-      ))}
-    </>
-  );
-};
-
-/*   const imagesTwo = (() => {
-    const memberPngs = [
+  operations: {
+    text: 'Operations Team',
+    members: [
       {
         id: 'krizia-founder',
         img: 'assets/Krizia.png',
@@ -127,26 +68,11 @@ const WhoWeAre = () => {
         name: 'Krish Uy Raneses',
         title: 'UX Designer',
       },
-    ];
-
-    return (
-      <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
-          <Grid className={memberCard} key={`${id} - ${idx}`}>
-            <>
-              <img src={img} alt="team member" />
-              <p>{name}</p>
-              <p>{title}</p>
-              <p>{subtitle}</p>
-            </>
-          </Grid>
-        ))}
-      </Grid>
-    );
-  })();
-
-  const imagesThree = (() => {
-    const memberPngs = [
+    ],
+  },
+  mentors: {
+    text: 'Mentors',
+    members: [
       {
         id: 'nayeli-ux-mentor',
         img: 'assets/Nayeli.png',
@@ -219,26 +145,11 @@ const WhoWeAre = () => {
         name: 'Carlo Fernando',
         title: 'Tech Lead',
       },
-    ];
-
-    return (
-      <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
-          <Grid className={memberCard} key={`${id} - ${idx}`}>
-            <>
-              <img src={img} alt="team member" />
-              <p>{name}</p>
-              <p>{title}</p>
-              <p>{subtitle}</p>
-            </>
-          </Grid>
-        ))}
-      </Grid>
-    );
-  })();
-
-  const imagesFour = (() => {
-    const memberPngs = [
+    ],
+  },
+  board: {
+    text: 'Board of Directors',
+    members: [
       {
         id: 'heatherlee-board-chair',
         img: 'assets/Heatherlee.png',
@@ -257,23 +168,65 @@ const WhoWeAre = () => {
         name: 'Megan Jeffers',
         title: 'Treasurer',
       },
-    ];
+    ],
+  },
+};
 
-    return (
-      <Grid item className={photoContainer}>
-        {memberPngs.map(({ person: id, img, name, title, subtitle }, idx) => (
-          <Grid className={memberCard} key={`${id} - ${idx}`}>
-            <>
-              <img src={img} alt="team member" />
-              <p>{name}</p>
-              <p>{title}</p>
-              <p>{subtitle}</p>
-            </>
-          </Grid>
-        ))}
+function Images({ members = [] }) {
+  const { photoContainer, memberCard } = useStyles();
+  return (
+    <Grid item className={photoContainer}>
+      {members.map(({ person: id, img, name, title, subtitle }, idx) => (
+        <Grid className={memberCard} key={`${id} - ${idx}`}>
+          <>
+            <img src={img} alt="team member" />
+            <p>{name}</p>
+            <p>{title}</p>
+            <p>{subtitle}</p>
+          </>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
+
+const PhotoSection = ({ text, members = [] }) => {
+  const { title, photosContainer } = useStyles();
+
+  return (
+    <>
+      <Typography {...{ variant: 'h2', className: title }}>{text}</Typography>
+      <Grid
+        {...{
+          container: true,
+          spacing: 10,
+          className: photosContainer,
+        }}
+      >
+        <Images members={members} />
       </Grid>
-    );
-  })(); */
+    </>
+  );
+};
+
+/* PhotoSection.propTypes = {
+  text: PropTypes.string,
+  images: PropTypes.element,
+}; */
+
+const WhoWeAre = () => {
+  return (
+    <>
+      {/* <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
+      <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+      <PhotoSection {...{ text: 'Mentors', imagesThree }} />
+      <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */}
+      {Object.keys(photoSectionConfig).map(config => (
+        <PhotoSection key={config} {...photoSectionConfig[config]} />
+      ))}
+    </>
+  );
+};
 
 /* return (
     <>
