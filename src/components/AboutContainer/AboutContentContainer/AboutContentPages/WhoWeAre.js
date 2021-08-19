@@ -3,7 +3,7 @@ import { Typography, Grid } from '@material-ui/core';
 import useStyles from '../AboutContentContainer.styles';
 import { PropTypes } from 'prop-types';
 
-const PhotoSectionConfig = {
+const photoSectionConfig = {
   volunteers: {
     text: 'AppDev Volunteer Team',
     members: [
@@ -59,13 +59,7 @@ function Images({ members = [] }) {
   );
 }
 
-const PhotoSection = ({
-  text,
-  sections,
-  imagesTwo,
-  imagesThree,
-  imagesFour,
-}) => {
+const PhotoSection = ({ text, members = [] }) => {
   const { title, photosContainer } = useStyles();
 
   return (
@@ -78,40 +72,33 @@ const PhotoSection = ({
           className: photosContainer,
         }}
       >
-        {sections} {imagesTwo} {imagesThree} {imagesFour}
+        <Images members={members} />
       </Grid>
-
-      {/* <Grid item className={photoContainer}>
-          {members.map(({ person: id, img, name, title, subtitle }, idx) => (
-            <Grid className={memberCard} key={`${id} - ${idx}`}>
-              <>
-                <img src={img} alt="team member" />
-                <p>{name}</p>
-                <p>{title}</p>
-                <p>{subtitle}</p>
-              </>
-            </Grid>
-          ))}
-        </Grid> */}
-      {/* PhotoSection.propTypes = {
-      text: PropTypes.string,
-      images: PropTypes.element,
-    }; */}
-      {Object.keys(sections).map((section, i) => (
-        <div key={i}>
-          <p>{sections[volunteers].name}</p>
-        </div>
-      ))}
-      {/* <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
-  <PhotoSection {...{ text: 'Mentors', imagesThree }} />
-  <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */}
     </>
   );
 };
 
-//const WhoWeAre = () => {
-//const { photoContainer, memberCard } = useStyles();
+/* PhotoSection.propTypes = {
+  text: PropTypes.string,
+  images: PropTypes.element,
+}; */
+/* {Object.keys(sections).map((section, i) => (
+        <div key={i}>
+          <p>{sections[volunteers].name}</p>
+        </div>
+      ))} */
+{
+  /* <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
+  <PhotoSection {...{ text: 'Mentors', imagesThree }} />
+  <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */
+}
+//</>
+//);
+//};
 
+const WhoWeAre = () => {
+  const { photoContainer, memberCard } = useStyles();
+};
 //const images = (() => {
 /* const memberPngs = [
       {
@@ -353,4 +340,4 @@ const PhotoSection = ({
   ); */
 //};
 
-export default PhotoSection;
+export default WhoWeAre;
