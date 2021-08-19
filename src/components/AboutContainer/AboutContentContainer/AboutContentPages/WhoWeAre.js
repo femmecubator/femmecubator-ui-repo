@@ -209,10 +209,10 @@ const PhotoSection = ({ text, members = [] }) => {
   );
 };
 
-/* PhotoSection.propTypes = {
+PhotoSection.propTypes = {
   text: PropTypes.string,
   images: PropTypes.element,
-}; */
+};
 
 const WhoWeAre = () => {
   return (
