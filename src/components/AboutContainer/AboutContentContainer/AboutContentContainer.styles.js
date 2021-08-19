@@ -80,6 +80,7 @@ const useStyles = makeStyles(() => ({
     margin: 10,
     '@media (max-width: 760px)': {
       margin: 0,
+      padding: 5,
     },
   },
 }));
