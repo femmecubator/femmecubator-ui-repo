@@ -11,7 +11,7 @@ describe('<MentorOnboardingModal />', () => {
     render(<MentorOnboardingModal opened={true} mockOnSubmit={mockOnSubmit} />);
   });
 
-  test.skip('should submit with valid inputs', async () => {
+  test('should submit with valid inputs', async () => {
     const bio = screen.getByRole('textbox', { name: 'Add a Bio (128 char)' });
     const skills = screen.getByTestId('skills');
     const phone = screen.getByRole('textbox', { name: 'Phone' });
@@ -41,7 +41,7 @@ describe('<MentorOnboardingModal />', () => {
     expect(mockOnSubmit).toHaveBeenCalled();
   });
 
-  test.skip('should not submit with invalid inputs', async () => {
+  test('should not submit with invalid inputs', async () => {
     const bio = screen.getByRole('textbox', { name: 'Add a Bio (128 char)' });
     const skills = screen.getByTestId('skills');
     const phone = screen.getByRole('textbox', { name: 'Phone' });
@@ -76,7 +76,7 @@ describe('<MentorOnboardingModal />', () => {
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 
-  test.skip('should not submit with no inputs', async () => {
+  test('should not submit with no inputs', async () => {
     const submitButton = screen.getByRole('button', {
       name: "I'M GOOD TO GO!",
     });
