@@ -47,14 +47,8 @@ const errorStyles = makeStyles(() => ({
 
 const gutterBottom = true;
 function ErrorFallback() {
-  const {
-    image,
-    errorText,
-    normalText,
-    successIcon,
-    gridCenter,
-    centered,
-  } = errorStyles();
+  const { image, errorText, normalText, successIcon, gridCenter, centered } =
+    errorStyles();
   const { reload } = window.location;
   const altText = 'Working Woman on her desk looking a bit tired';
   return (
