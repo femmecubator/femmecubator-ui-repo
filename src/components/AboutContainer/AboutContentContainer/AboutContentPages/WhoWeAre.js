@@ -179,7 +179,7 @@ function Images({ members = [] }) {
       {members.map(({ person: id, img, name, title, subtitle }, idx) => (
         <Grid className={memberCard} key={`${id} - ${idx}`}>
           <>
-            <img src={img} alt="team member" />
+            <img src={img} alt={`${name} ${title}`} />
             <p>{name}</p>
             <p>{title}</p>
             <p>{subtitle}</p>
