@@ -217,31 +217,11 @@ PhotoSection.propTypes = {
 const WhoWeAre = () => {
   return (
     <>
-      {/* <PhotoSection {...{ text: 'AppDev Volunteer Team', images }} />
-      <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
-      <PhotoSection {...{ text: 'Mentors', imagesThree }} />
-      <PhotoSection {...{ text: 'Board of Directors', imagesFour }} /> */}
       {Object.keys(photoSectionConfig).map(config => (
         <PhotoSection key={config} {...photoSectionConfig[config]} />
       ))}
     </>
   );
 };
-
-/* return (
-    <>
-      <PhotoSection
-        {...Object.keys(sections).map((section, i) => (
-          <div key={i}>
-            <p>{sections[volunteers].name}</p>
-          </div>
-        ))}
-      />
-      {/* <PhotoSection {...{ text: 'Operations Team', imagesTwo }} />
-      <PhotoSection {...{ text: 'Mentors', imagesThree }} />
-      <PhotoSection {...{ text: 'Board of Directors', imagesFour }} />
-    </>
-  ); */
-//};
 
 export default WhoWeAre;
