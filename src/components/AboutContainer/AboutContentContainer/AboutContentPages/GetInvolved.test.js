@@ -4,7 +4,7 @@ import GetInvolved from './GetInvolved';
 
 ('use strict');
 
-it.skip('renders the page and shows the headings', () => {
+it('renders the page and shows the headings', () => {
   render(<GetInvolved />);
   expect(
     screen.getByText('We are proudly volunteer-driven')
@@ -15,7 +15,7 @@ it.skip('renders the page and shows the headings', () => {
   expect(screen.getByText('Volunteer')).toBeInTheDocument();
 });
 
-it.skip('checks that the Make a Donation button appears', () => {
+it('checks that the Make a Donation button appears', () => {
   render(<GetInvolved />);
   //const handleClick = jest.fn();
   const Button = screen.getByTestId('donateButton');
@@ -23,7 +23,7 @@ it.skip('checks that the Make a Donation button appears', () => {
   expect(Button).toHaveTextContent('MAKE A DONATION');
 });
 
-it.skip('checks that the Support on Patreon button appears', () => {
+it('checks that the Support on Patreon button appears', () => {
   render(<GetInvolved />);
   //const handleClick = jest.fn();
   const Button = screen.getByTestId('patreonButton');
@@ -31,7 +31,7 @@ it.skip('checks that the Support on Patreon button appears', () => {
   expect(Button).toHaveTextContent('SUPPORT ON PATREON');
 });
 
-it.skip('checks that the Mentor Signup button appears', () => {
+it('checks that the Mentor Signup button appears', () => {
   render(<GetInvolved />);
   //const handleClick = jest.fn();
   const Button = screen.getByTestId('mentorButton');
@@ -39,7 +39,7 @@ it.skip('checks that the Mentor Signup button appears', () => {
   expect(Button).toHaveTextContent('SIGN UP TO BE A MENTOR');
 });
 
-it.skip('checks that the Volunteer Signup button appears', () => {
+it('checks that the Volunteer Signup button appears', () => {
   render(<GetInvolved />);
   //const handleClick = jest.fn();
   const Button = screen.getByTestId('volunteerButton');
