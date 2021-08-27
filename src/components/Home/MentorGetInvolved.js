@@ -440,92 +440,99 @@ const useStyles = makeStyles(() => ({
 }));
 
 const MentorGetInvolved = () => {
-  <Grid container>
-    <Grid
-      {...{
-        className: HeadingContainer,
-        item: true,
-        XS: 12,
-      }}
-    >
-      <div className={headingComponent}>
-        <Typography variant="h2" className={titleWhite}>
-          Become a mentor
-        </Typography>
-        <Typography
+  return (
+    <main className={root}>
+      <Grid container>
+        <Grid
           {...{
-            variant: 'body1',
-            className: headingComponentParagraph,
-            paragraph: true,
+            className: 'HeadingContainer',
+            item: true,
+            XS: 12,
           }}
         >
-          Want to make a difference in the next generation of designers and
-          developers? We’re actively seeking BIPOC women experienced in UX or
-          Software Development to mentor other BIPOC women looking to break into
-          tech.
-        </Typography>
-        <BlueFilledButton variant="contained">SIGN UP NOW</BlueFilledButton>
-      </div>
-    </Grid>
+          <div className="HeadingComponent">
+            <Typography variant="h2" className="titleWhite">
+              Become a mentor
+            </Typography>
+            <Typography
+              {...{
+                variant: 'body1',
+                className: 'HeadingComponentParagraph',
+                paragraph: true,
+              }}
+            >
+              Want to make a difference in the next generation of designers and
+              developers? We’re actively seeking BIPOC women experienced in UX
+              or Software Development to mentor other BIPOC women looking to
+              break into tech.
+            </Typography>
+            <BlueFilledButton variant="contained">SIGN UP NOW</BlueFilledButton>
+          </div>
+        </Grid>
 
-    <Grid
-      {...{
-        className: WaysMentorContainer,
-        item: true,
-        xs: 12,
-      }}
-    >
-      <div className={waysMentorComponent}>
-        <Typography variant="h2" className={titlePurple}>
-          Ways you can mentor
-        </Typography>
-        <div className={cohortMentorContainer}>
-          <div className={greenCircle}>
-            <SupervisorAccountIcon
-              fontSize="large"
-              className={waysMentorContainerSVG}
-            />
+        <Grid
+          {...{
+            className: 'WaysMentorContainer',
+            item: true,
+            xs: 12,
+          }}
+        >
+          <div className="waysMentorComponent">
+            <Typography variant="h2" className="titlePurple">
+              Ways you can mentor
+            </Typography>
+            <div className="cohortMentorContainer">
+              <div className="greenCircle">
+                <SupervisorAccountIcon
+                  fontSize="large"
+                  className="waysMentorContainerSVG"
+                />
+              </div>
+              <Typography variant="h2" className="waysMentorComponentTitle">
+                Cohort Mentoring
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: 'waysMentorContainerParagraph',
+                  paragraph: true,
+                }}
+              >
+                Volunteer to become a mentor for our 8-week mentorship program
+                offered to aspiring UX designers and software developers twice a
+                year.
+              </Typography>
+            </div>
+            <br />
+            <Divider orientation="vertical" /* flexItem */ />
+            <br />
+            <div className="flexibleMentorContainer">
+              <div className="greenCircle">
+                <SchoolIcon
+                  fontSize="large"
+                  className="waysMentorContainerSVG"
+                />
+              </div>
+              <Typography variant="h2" className="waysMentorComponentTitle">
+                Flexible Mentoring
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: 'waysMentorContainerParagraph',
+                  paragraph: true,
+                }}
+              >
+                Set your calendar availability so mentees can easily book 1:1
+                time with you through our dedicated platform.
+              </Typography>
+            </div>
           </div>
-          <Typography variant="h2" className={waysMentorComponentTitle}>
-            Cohort Mentoring
-          </Typography>
-          <Typography
-            {...{
-              variant: 'body1',
-              className: waysMentorContainerParagraph,
-              paragraph: true,
-            }}
-          >
-            Volunteer to become a mentor for our 8-week mentorship program
-            offered to aspiring UX designers and software developers twice a
-            year.
-          </Typography>
-        </div>
-        <br />
-        <Divider orientation="vertical" /* flexItem */ />
-        <br />
-        <div className={flexibleMentorContainer}>
-          <div className={greenCircle}>
-            <SchoolIcon fontSize="large" className={waysMentorContainerSVG} />
-          </div>
-          <Typography variant="h2" className={waysMentorComponentTitle}>
-            Flexible Mentoring
-          </Typography>
-          <Typography
-            {...{
-              variant: 'body1',
-              className: waysMentorContainerParagraph,
-              paragraph: true,
-            }}
-          >
-            Set your calendar availability so mentees can easily book 1:1 time
-            with you through our dedicated platform.
-          </Typography>
-        </div>
-      </div>
-    </Grid>
-  </Grid>;
-  <Footer />;
+        </Grid>
+      </Grid>
+      <Footer />
+    </main>
+  );
 };
 
 export default MentorGetInvolved;

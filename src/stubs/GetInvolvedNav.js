@@ -1,9 +1,9 @@
 import React from 'react';
-//import { MentorGetInvolved } from '../component/Home/MentorGetInvolved';
+import MentorGetInvolved from '../components/Home/MentorGetInvolved';
 
 const GetInvolved = () => {
   //return <div>hello there</div>;
-  //return <MentorGetInvolved />;
+  return <MentorGetInvolved />;
 };
 
 export default GetInvolved;
