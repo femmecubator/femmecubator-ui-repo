@@ -439,7 +439,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const MentorHome = () => {
+const MentorGetInvolved = () => {
   <Grid container>
     <Grid
       {...{
@@ -528,4 +528,4 @@ const MentorHome = () => {
   <Footer />;
 };
 
-export default MentorHome;
+export default MentorGetInvolved;

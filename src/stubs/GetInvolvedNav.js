@@ -1,0 +1,9 @@
+import React from 'react';
+//import { MentorGetInvolved } from '../component/Home/MentorGetInvolved';
+
+const GetInvolved = () => {
+  //return <div>hello there</div>;
+  //return <MentorGetInvolved />;
+};
+
+export default GetInvolved;
