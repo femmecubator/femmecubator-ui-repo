@@ -24,6 +24,7 @@ const BlueOutlineButton = withStyles({
       alignSelf: 'center',
       marginTop: 'auto',
       marginBottom: '20px',
+      padding: '20px',
     },
   },
   label: {
@@ -49,7 +50,7 @@ const GetInvolved = () => {
           spacing: 7,
         }}
       >
-        <Grid item xs>
+        <Grid item sm>
           <h3>Donate</h3>
           <p>
             We are fundraising for our first mentorship program cohort which
@@ -57,11 +58,15 @@ const GetInvolved = () => {
             tech by 2021. Join us by supporting this program and create a pledge
             on Patreon.
           </p>
-          <BlueOutlineButton variant="outlined" data-testid="donateButton">
+          <BlueOutlineButton
+            variant="outlined"
+            data-testid="donateButton"
+            style={{ marginBottom: '-10px' }}
+          >
             MAKE A DONATION
           </BlueOutlineButton>
         </Grid>
-        <Grid item xs>
+        <Grid item sm>
           <h3>Grow with us</h3>
           <p>
             We're sharing updates on our app-building process on Patreon every
@@ -83,7 +88,7 @@ const GetInvolved = () => {
           alignItems: 'flex-start',
         }}
       >
-        <Grid item xs={7}>
+        <Grid item sm={7}>
           <h3>Mentor</h3>
           <p>
             Our members need you! If you are an industry expert in Design or
@@ -96,7 +101,7 @@ const GetInvolved = () => {
           </BlueOutlineButton>
         </Grid>
         <br />
-        <Grid item xs={7}>
+        <Grid item sm={7}>
           <h3>Volunteer</h3>
           <p>
             Are you a UX or Web Dev bootcamp grad looking to expand your skills?

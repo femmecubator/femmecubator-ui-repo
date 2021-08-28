@@ -15,8 +15,11 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 28,
     marginBottom: 15,
-    '@media (max-width: 490px)': {
-      fontSize: 21,
+    marginLeft: 10,
+    '@media (max-width: 760px)': {
+      fontSize: 19,
+      marginLeft: 0,
+      paddingTop: 10,
     },
   },
   content: {
@@ -27,7 +30,7 @@ const useStyles = makeStyles(() => ({
     color: '#495057',
     margin: '36px 15% 0 0',
     '@media (max-width: 1055px)': {
-      marginRight: 0,
+      margin: '0 15px -125px 15px',
     },
   },
   blue: {
@@ -37,16 +40,47 @@ const useStyles = makeStyles(() => ({
     color: '#026FE4',
   },
   photosContainer: {
-    margin: '10px 0 40px',
+    margin: '10px 0 20px -40px',
   },
   photoContainer: {
-    width: 300,
-    height: 300,
+    width: 'auto',
+    height: 'auto',
+    display: 'flex',
+    flexFlow: 'row wrap',
     '& img': {
       objectFit: 'cover',
-      width: '100%',
-      height: '100%',
-      borderRadius: 10,
+      width: 300,
+      height: 300,
+      borderRadius: 5,
+      '@media (max-width: 299px)': {
+        width: 150,
+        height: 150,
+      },
+      '@media (min-width: 300px) and (max-width: 399px)': {
+        width: 200,
+        height: 200,
+      },
+      '@media (min-width: 400px) and (max-width: 769px)': {
+        width: 250,
+        height: 250,
+      },
+    },
+    '& p': {
+      margin: 0,
+    },
+    '& p:first-of-type': {
+      marginTop: 10,
+      fontWeight: 'bold',
+    },
+    '& p:last-of-type': {
+      marginBottom: 20,
+    },
+  },
+  memberCard: {
+    margin: 10,
+    '@media (max-width: 760px)': {
+      margin: 0,
+      padding: 5,
     },
   },
 }));
