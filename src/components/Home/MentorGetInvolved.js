@@ -5,14 +5,18 @@ import {
   ThemeProvider,
   withStyles,
 } from '@material-ui/core/styles';
-import mentorHome from './assets/mentorhome.jpg';
+//import mentorHome from '.../assets/mentorhome.jpg';
 import { Typography, Button } from '@material-ui/core/';
 import Grid from '@material-ui/core/Grid';
 import Carousel from 'react-material-ui-carousel';
 import SchoolIcon from '@material-ui/icons/School';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import Divider from '@material-ui/core/Divider';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Footer from 'components/Footer/Footer';
 
 const BlueFilledButton = withStyles({
@@ -90,7 +94,7 @@ const useStyles = makeStyles(() => ({
   },
   headingContainer: {
     height: '400px',
-    backgroundImage: `url(${mentorHome})`,
+    //backgroundImage: `url(${mentorHome})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: '0% 30%',
@@ -454,7 +458,7 @@ const useStyles = makeStyles(() => ({
 const communityQuotes = [
   {
     id: 1,
-    img: './assets/communityImg1.png',
+    img: '../assets/communityImg1.png',
     text: 'I’ve learned so much from my mentor and made invaluable connections with other mentees like me.',
     name: 'Kimberly - Mentee',
   },
@@ -656,16 +660,6 @@ export default function MentorGetInvolved() {
           <Typography variant="h2" className="titleWhite">
             What the Femmecubator community is saying
           </Typography>
-          {/* <Grid item className={photoContainer}>
-                {members.map(({ person: id, img, name, title, subtitle }, idx) => (
-        <Grid className={memberCard} key={`${id} - ${idx}`}>
-          <>
-            <img src={img} alt={`${name} ${title}`} />
-            <p>{name}</p>
-            <p>{title}</p>
-            <p>{subtitle}</p>
-          </>
-        </Grid> */}
           <Grid>
             {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
               <Grid key={`${id} - ${idx}`}>
@@ -677,6 +671,88 @@ export default function MentorGetInvolved() {
               </Grid>
             ))}
           </Grid>
+        </Grid>
+        <Grid
+          {...{
+            className: 'faqAccordionContainer',
+            item: true,
+            xs: 12,
+          }}
+        >
+          <Accordion className="faqAccordionComponent">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              <Typography className="faqAccordianParagraph">
+                What’s the expected time commitment for a mentor?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>TBD</Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion className="faqAccordionComponent">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2-content"
+              id="panel2-header"
+            >
+              <Typography className="faqAccordianParagraph">
+                What is the difference between cohort and flexible mentoring?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>TBD</Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion className="faqAccordionComponent">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+            >
+              <Typography className="faqAccordianParagraph">
+                How do I know if I’m eligible to become a mentor?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>TBD</Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion className="faqAccordionComponent">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4-content"
+              id="panel4-header"
+            >
+              <Typography className="faqAccordianParagraph">
+                Who will I be mentoring?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>TBD</Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion className="faqAccordionComponent">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5-content"
+              id="panel5-header"
+            >
+              <Typography className="faqAccordianParagraph">
+                Why should I join Femmecubator?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>TBD</Typography>
+            </AccordionDetails>
+          </Accordion>
         </Grid>
       </Grid>
       <Footer />
