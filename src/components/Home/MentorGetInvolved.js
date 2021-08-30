@@ -439,7 +439,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const theme = createMuiTheme({
+/* const theme = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -449,20 +449,23 @@ const theme = createMuiTheme({
       xl: 1920,
     },
   },
-});
+}); */
 
 const communityQuotes = [
   {
+    id: 1,
     img: './assets/communityImg1.png',
     text: 'I’ve learned so much from my mentor and made invaluable connections with other mentees like me.',
     name: 'Kimberly - Mentee',
   },
   {
+    id: 2,
     img: './assets/communityImg2.png',
     text: 'I’ve been able to grow my leadership skills while doing something meaningful to me - helping other BIPOC women working in tech.',
     name: 'Yasmine - Mentor',
   },
   {
+    id: 3,
     img: './assets/communityImg3.png',
     text: 'It’s amazing being able to give back in this capacity. Femmecubator has created a safe community of talented individuals.',
     name: 'Sam - Mentor',
@@ -653,14 +656,27 @@ export default function MentorGetInvolved() {
           <Typography variant="h2" className="titleWhite">
             What the Femmecubator community is saying
           </Typography>
-          <div>
-            <Typography>
-              {communityQuotes.map(getQuotes)}
-              {function getQuotes(quote) {
-                return [quote.img];
-              }}
-            </Typography>
-          </div>
+          {/* <Grid item className={photoContainer}>
+                {members.map(({ person: id, img, name, title, subtitle }, idx) => (
+        <Grid className={memberCard} key={`${id} - ${idx}`}>
+          <>
+            <img src={img} alt={`${name} ${title}`} />
+            <p>{name}</p>
+            <p>{title}</p>
+            <p>{subtitle}</p>
+          </>
+        </Grid> */}
+          <Grid>
+            {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
+              <Grid key={`${id} - ${idx}`}>
+                <>
+                  <img src={img} aria-label={name} />
+                  <Typography>{text}</Typography>
+                  <Typography>{name}</Typography>
+                </>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
       <Footer />
