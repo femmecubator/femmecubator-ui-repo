@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  //createMuiTheme,
+  createMuiTheme,
   makeStyles,
-  //ThemeProvider,
+  ThemeProvider,
   withStyles,
 } from '@material-ui/core/styles';
 import mentorHome from './assets/mentorhome.jpg';
@@ -88,13 +88,13 @@ const useStyles = makeStyles(() => ({
       padding: '10px 10px',
     },
   },
-  HeadingContainer: {
+  headingContainer: {
     height: '400px',
     backgroundImage: `url(${mentorHome})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: '0% 30%',
-    boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
+    //boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
     display: 'flex',
     alignItems: 'center',
     '@media (max-width: 799px)': {
@@ -271,7 +271,7 @@ const useStyles = makeStyles(() => ({
       marginBottom: '0px',
     },
   },
-  HeadingComponent: {
+  headingComponent: {
     flexBasis: '432px',
     flexShrink: '1',
     display: 'flex',
@@ -284,7 +284,7 @@ const useStyles = makeStyles(() => ({
       alignItems: 'center',
     },
   },
-  HeadingComponentParagraph: {
+  headingComponentParagraph: {
     textAlign: 'left',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 700,
@@ -439,25 +439,75 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const MentorGetInvolved = () => {
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 800,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+});
+
+const communityQuotes = [
+  {
+    img: './assets/communityImg1.png',
+    text: 'I’ve learned so much from my mentor and made invaluable connections with other mentees like me.',
+    name: 'Kimberly - Mentee',
+  },
+  {
+    img: './assets/communityImg2.png',
+    text: 'I’ve been able to grow my leadership skills while doing something meaningful to me - helping other BIPOC women working in tech.',
+    name: 'Yasmine - Mentor',
+  },
+  {
+    img: './assets/communityImg3.png',
+    text: 'It’s amazing being able to give back in this capacity. Femmecubator has created a safe community of talented individuals.',
+    name: 'Sam - Mentor',
+  },
+];
+
+//communityQuotes.map(getQuotes);
+
+export default function MentorGetInvolved() {
+  const {
+    headingContainer,
+    headingComponent,
+    headingComponentParagraph,
+    titleWhite,
+    waysMentorContainer,
+    waysMentorComponent,
+    waysMentorComponentTitle,
+    waysMentorContainerParagraph,
+    waysMentorContainerSVG,
+  } = useStyles();
+
   return (
+    //<ThemeProvider theme={theme}>
     <main className={root}>
       <Grid container>
         <Grid
           {...{
-            className: 'HeadingContainer',
+            className: 'headingContainer',
             item: true,
-            XS: 12,
+            xs: 12,
           }}
         >
-          <div className="HeadingComponent">
+          <div /* className="headingComponent" */>
+            {/* <img
+              src="./assets/mentorhome.jpg"
+              rel="preload"
+              aria-label="a young woman of color pointing at her work on a whiteboard"
+            /> */}
             <Typography variant="h2" className="titleWhite">
               Become a mentor
             </Typography>
             <Typography
               {...{
                 variant: 'body1',
-                className: 'HeadingComponentParagraph',
+                className: 'headingComponentParagraph',
                 paragraph: true,
               }}
             >
@@ -472,7 +522,7 @@ const MentorGetInvolved = () => {
 
         <Grid
           {...{
-            className: 'WaysMentorContainer',
+            className: 'waysMentorContainer',
             item: true,
             xs: 12,
           }}
@@ -529,10 +579,94 @@ const MentorGetInvolved = () => {
             </div>
           </div>
         </Grid>
+        <Grid
+          {...{
+            className: 'howToStartContainer',
+            item: true,
+            xs: 12,
+          }}
+        >
+          <Typography variant="h2" className="titleWhite">
+            How to start
+          </Typography>
+          <div className="greenCircle">1</div>
+          <Typography variant="h2" className="titlePurple">
+            Sign Up
+          </Typography>
+          <Typography
+            {...{
+              variant: 'body1',
+              className: 'howToStartContainerParagraph',
+              paragraph: true,
+            }}
+          >
+            Make an account on Femmecubator
+          </Typography>
+          <div className="greenCircle">2</div>
+          <Typography variant="h2" className="titlePurple">
+            Apply
+          </Typography>
+          <Typography
+            {...{
+              variant: 'body1',
+              className: 'howToStartContainerParagraph',
+              paragraph: true,
+            }}
+          >
+            Complete and submit the mentor application form
+          </Typography>
+          <div className="greenCircle">3</div>
+          <Typography variant="h2" className="titlePurple">
+            Get Approved
+          </Typography>
+          <Typography
+            {...{
+              variant: 'body1',
+              className: 'howToStartContainerParagraph',
+              paragraph: true,
+            }}
+          >
+            Recieve an email confirmation within a week
+          </Typography>
+          <div className="greenCircle">4</div>
+          <Typography variant="h2" className="titlePurple">
+            Start Mentoring
+          </Typography>
+          <Typography
+            {...{
+              variant: 'body1',
+              className: 'howToStartContainerParagraph',
+              paragraph: true,
+            }}
+          >
+            Complete your profile and start making an impact
+          </Typography>
+          <BlueFilledButton variant="contained">SIGN UP NOW</BlueFilledButton>
+        </Grid>
+        <Grid
+          {...{
+            className: 'communityQuotesContainer',
+            item: true,
+            xs: 12,
+          }}
+        >
+          <Typography variant="h2" className="titleWhite">
+            What the Femmecubator community is saying
+          </Typography>
+          <div>
+            <Typography>
+              {communityQuotes.map(getQuotes)}
+              {function getQuotes(quote) {
+                return [quote.img];
+              }}
+            </Typography>
+          </div>
+        </Grid>
       </Grid>
       <Footer />
     </main>
+    //</ThemeProvider>
   );
-};
+}
 
-export default MentorGetInvolved;
+//export default MentorGetInvolved;
