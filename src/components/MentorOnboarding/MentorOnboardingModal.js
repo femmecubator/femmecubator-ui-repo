@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { TextField, useMediaQuery, Paper, Button } from '@material-ui/core';
-import FocusTrapOverlay from '../FocusTrapOverlay/FocusTrapOverlay';
+import FocusTrapOverlay from '../FocusTrapOverlay';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';

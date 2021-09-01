@@ -8,13 +8,27 @@ const Timeout = ({ children }) => {
 
   const { logoff, timedOut } = Auth;
   const isLoggedIn = Auth.isLoggedIn();
-
   const [idle, setIdle] = useState(false);
   const time = useRef(0);
-  /*
-  function reset() {
+
+  const reset = () => {
     time.current = 0;
-  } */
+  };
+
+  useEffect(() => {
+    const events = [
+      'load',
+      'mousemove',
+      'mousedown',
+      'click',
+      'scroll',
+      'keypress',
+    ];
+
+    for (const e of events) {
+      window.addEventListener(e, reset);
+    }
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -34,21 +48,19 @@ const Timeout = ({ children }) => {
   }, [idleTime, idle, isLoggedIn]);
 
   return (
-    <div aria-live="polite">
-      {idle && (
-        <ModalPopup
-          {...{
-            countdownTime: countdownTime,
-            setIdle: setIdle,
-            logoff: logoff,
-            timedOut: timedOut,
-          }}
-        />
-      )}
-      <div aria-hidden={idle} aria-disabled tabIndex="-1">
-        {children}
-      </div>
-    </div>
+    <>
+      {children}
+      <ModalPopup
+        {...{
+          open: idle,
+          countdownTime: countdownTime,
+          setIdle: setIdle,
+          logoff: logoff,
+          timedOut: timedOut,
+          reset: reset,
+        }}
+      />
+    </>
   );
 };
 

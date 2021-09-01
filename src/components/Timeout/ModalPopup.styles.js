@@ -1,95 +1,72 @@
 import { makeStyles } from '@material-ui/core';
 
+const colors = {
+  primary: '#026FE4',
+  secondary: '#828282',
+  text: '#4F4F4F',
+};
+
 const useStyles = makeStyles(() => ({
-  modal_background: {
-    height: '100%',
+  modal: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    top: '50%',
+    margin: 'auto',
+    height: '100vh',
+    width: '100vw',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: ({ isMobile }) => (isMobile ? '60%' : '57%'),
+    padding: ({ isMobile }) =>
+      isMobile ? '0 .5rem 1rem 1rem' : '8% 10% 12% 8%',
+    margin: ({ isMobile }) =>
+      isMobile ? '0 3rem 1rem 16%' : '2rem 0 2rem 13%',
+  },
+  text: {
+    textAlign: 'center',
+    fontFamily: 'Open Sans, sans-serif',
+    color: colors.text,
+    fontSize: '1rem',
+  },
+  timeoutHeading: {
+    color: colors.text,
+    fontSize: '1.75rem',
+    fontWeight: 700,
+  },
+  timeoutCountdown: {
+    color: colors.primary,
+    fontSize: '1.5rem',
+    fontWeight: 600,
+  },
+  buttonsContainer: {
+    marginTop: '2rem',
+    display: 'flex',
     width: '100%',
-    position: 'fixed',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    zIndex: '1000',
+    justifyContent: 'space-around',
+  },
+  button: {
+    padding: ({ isMobile }) => (isMobile ? '4% 3%' : '10px 21px'),
+    color: 'white',
+    fontSize: '0.95rem',
+    fontWeight: 700,
     fontFamily: 'Open Sans, sans-serif',
   },
-  modal: {
-    position: 'relative',
-    background: 'white',
-    width: '38rem',
-    height: '28rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '28vh auto',
-    '@media (min-width: 414px, max-width: 1023px)': {
-      width: '75vw',
-      height: 'auto',
-      padding: '1.5rem',
-      margin: '20vh auto',
-    },
-    '@media (max-width: 896px)': {
-      width: '65vw',
-      height: 'auto',
-      padding: '1rem',
-      margin: '28vh auto',
-    },
-  },
-  modal__center_div: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  modal__center_div__content: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  modal__center_div__content__p_head: {
-    fontSize: '24px',
-    fontWeight: '700',
-    margin: '0',
-    textAlign: 'center',
-    color: 'rgb(80, 80, 80)',
-  },
-  modal__center_div__content__p_timer: {
-    fontSize: '21px',
-    fontWeight: '600',
-    textAlign: 'center',
-    color: 'rgb(0, 98, 255)',
-  },
-  modal__center_div__content__p_text: {
-    textAlign: 'center',
-    color: 'rgb(80, 80, 80)',
-  },
-  modal__center_div__buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '1.5rem',
-  },
-  modal__center_div__buttons__button_logoff: {
-    padding: '.5rem 1rem',
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    color: 'white',
-    borderRadius: '3px',
-    transition: '200ms ease-in-out',
-    cursor: 'pointer',
-    background: 'gray',
-    marginRight: '1rem',
+  continueButton: {
+    backgroundColor: '#026FE4',
     '&:hover': {
-      filter: 'brightness(1.2)',
-      transition: '300ms ease-in-out',
+      backgroundColor: colors.primary,
+      boxShadow: `0 0 1px 2px ${colors.primary}`,
     },
   },
-  modal__center_div__buttons__button_continue: {
-    padding: '.5rem 1rem',
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    color: 'white',
-    borderRadius: '3px',
-    transition: '200ms ease-in-out',
-    cursor: 'pointer',
-    background: 'rgb(56, 132, 255)',
-    marginLeft: '1rem',
+  logoffButton: {
+    backgroundColor: '#828282',
     '&:hover': {
-      filter: 'brightness(1.2)',
-      transition: '300ms ease-in-out',
+      backgroundColor: colors.secondary,
+      boxShadow: `0 0 1px 2px ${colors.secondary}`,
     },
   },
 }));
