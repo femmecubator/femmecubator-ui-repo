@@ -58,6 +58,7 @@ const ROUTES_LABEL = {
   RESOURCES: 'resources',
   THREADS: 'threads',
   SETTINGS: 'settings',
+  DEV: 'dev',
 };
 
 const ROUTES = [
@@ -126,6 +127,13 @@ const ROUTES = [
     isProtected: true,
     label: ROUTES_LABEL.DASHBOARD,
     path: '/dashboard',
+  },
+  {
+    // temperory route
+    id: 12,
+    isProtected: false,
+    label: ROUTES_LABEL.DEV,
+    path: '/dev',
   },
 ];
 

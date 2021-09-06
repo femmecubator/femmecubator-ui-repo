@@ -6,6 +6,7 @@ import {
   Resources,
   Threads,
   Settings,
+  Dev,
 } from 'stubs';
 import Home from 'components/Home/Home';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
@@ -26,6 +27,7 @@ const {
   THREADS,
   SETTINGS,
   DASHBOARD,
+  DEV,
 } = ROUTES_LABEL;
 
 export default class ComponentFactory {
@@ -53,6 +55,8 @@ export default class ComponentFactory {
         return Threads;
       case SETTINGS:
         return Settings;
+      case DEV:
+        return Dev; // Temp component for testing dislog boxes
       default:
         throw new Error('Route undefined!');
     }
