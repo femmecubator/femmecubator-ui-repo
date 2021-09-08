@@ -57,9 +57,9 @@ const MentorCard = ({
                 'aria-label': 'Booking',
                 className: booking,
                 variant: 'outlined',
-                onClick: handleClick,
                 role: 'button',
               }}
+              onClick={() => handleClick}
             >
               BOOK ME
             </Button>
