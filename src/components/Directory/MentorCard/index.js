@@ -38,7 +38,6 @@ const MentorCard = ({
     e.preventDefault();
     // if (onTestClick) return onTestClick();
     setOpenMeet(true);
-    console.log('yes');
     //TODO: Booking for this mentor opens up
   };
 
