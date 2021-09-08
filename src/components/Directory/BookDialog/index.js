@@ -1,11 +1,9 @@
 import React from 'react';
-import { Button } from '@material-ui/core/';
 import ConfirmDialog from './ConfirmDialog';
 import AwesomeDialog from './AwesomeDialog';
 import SessionDialog from './SessionDialog';
 import MeetTimeDialog from './MeetTimeDialog';
-import MentorOnboardingModal from '../../MentorOnboarding/MentorOnboardingModal';
-export default function BookDialog() {
+export default function BookDialog({ openMeet, setOpenMeet }) {
   // DUMMY TIME SLOTS DATA
   const meetTimeSlots = [
     {
@@ -44,15 +42,14 @@ export default function BookDialog() {
     },
   ];
 
-  const [openMeet, setOpenMeet] = React.useState(false);
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openAwesome, setOpenAwesome] = React.useState(false);
   const [openSession, setOpenSession] = React.useState(false);
 
   // Meet time dialog handlers
-  const handleMeetOpen = () => {
-    setOpenMeet(true);
-  };
+  // const handleMeetOpen = () => {
+  //   setOpenMeet(true);
+  // };
   const handleMeetClose = () => {
     setOpenMeet(false);
   };
@@ -74,25 +71,15 @@ export default function BookDialog() {
   };
 
   // Session Dialog handlers
-  const handleSessionOpen = () => {
-    setOpenSession(true);
-  };
+  // const handleSessionOpen = () => {
+  //   setOpenSession(true);
+  // };
   const handleSessionClose = () => {
     setOpenSession(false);
   };
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleMeetOpen}>
-        Book me dialog test
-      </Button>
-      <Button variant="outlined" color="primary" onClick={handleSessionOpen}>
-        Session expiry dialog test
-      </Button>
-      <div>
-        Settings
-        <MentorOnboardingModal opened={true} />
-      </div>
+    <>
       <MeetTimeDialog
         meetTimeSlots={meetTimeSlots}
         openMeet={openMeet}
@@ -114,6 +101,6 @@ export default function BookDialog() {
         openSession={openSession}
         handleSessionClose={handleSessionClose}
       />
-    </div>
+    </>
   );
 }

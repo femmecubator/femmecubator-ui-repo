@@ -7,15 +7,8 @@ import { Button } from '@material-ui/core';
 const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
-  const {
-    root,
-    day,
-    date,
-    slots,
-    unavailableButton,
-    availableButton,
-    bookedButton,
-  } = classes;
+  const { root, day, date, slots, unavailableButton, availableButton } =
+    classes;
 
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
@@ -42,18 +35,20 @@ const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
                   return (
                     <Button
                       variant="contained"
-                      disabled={slot.status}
+                      // disabled={slot.status}
                       className={`${
-                        slot.status ? bookedButton : availableButton
+                        // slot.status ? bookedButton :
+                        availableButton
                       }`}
                       key={index}
                       onClick={
-                        slot.status
-                          ? null
-                          : () => {
-                              handleMeetClose();
-                              handleConfirmOpen();
-                            }
+                        // slot.status
+                        //   ? null
+                        //   :
+                        () => {
+                          handleMeetClose();
+                          handleConfirmOpen();
+                        }
                       }
                     >
                       {slot.time}
