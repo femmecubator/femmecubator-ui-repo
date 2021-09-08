@@ -20,6 +20,7 @@ const MentorCard = ({
   mentorSkills,
   bio,
   initials,
+  onTestClick,
 }) => {
   const [openMeet, setOpenMeet] = React.useState(false);
   const isMobile = useMediaQuery('(max-width:767px)');
@@ -36,7 +37,7 @@ const MentorCard = ({
 
   const handleClick = e => {
     e.preventDefault();
-    // if (onTestClick) return onTestClick();
+    if (onTestClick) return onTestClick();
     setOpenMeet(true);
     //TODO: Booking for this mentor opens up
   };
@@ -57,9 +58,9 @@ const MentorCard = ({
                 'aria-label': 'Booking',
                 className: booking,
                 variant: 'outlined',
+                onClick: handleClick,
                 role: 'button',
               }}
-              onClick={() => handleClick}
             >
               BOOK ME
             </Button>
