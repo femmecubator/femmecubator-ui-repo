@@ -23,7 +23,9 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "react-slick": "^0.28.1",
     "select-timezone-material-ui": "^2.6.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.3",
     "universal-cookie": "^4.0.4",
     "yup": "^0.32.0"

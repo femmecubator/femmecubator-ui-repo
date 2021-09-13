@@ -16,10 +16,11 @@ import CalendarIcon from '../../../../src/assets/images/CalendarIcon.svg';
 import DownArrow from '../../../../src/assets/images/DownArrow.svg';
 
 const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
-  const isMobile = useMediaQuery('(max-width:767px)');
+  const isMobile = useMediaQuery('(max-width:420px)');
   const classes = useStyles({ isMobile });
   const {
     root,
+    timeSlotModalWrapper,
     heading,
     modalContent,
     createTitle,
@@ -113,7 +114,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
   };
   return (
     <Dialog
-      className={root}
+      className={`${timeSlotModalWrapper} ${root}`}
       open={openModal}
       aria-labelledby="responsive-dialog-title"
       onClose={handleModalClose}
@@ -130,6 +131,9 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
               inputProps={{ 'aria-label': 'description' }}
               className={titleInput}
               placeholder={'Title'}
+              {...{
+                autoFocus: true,
+              }}
             />
             <div className={calendarDateWrapper}>
               <div className={calendarDateInput}>
@@ -139,8 +143,10 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
                   selected={startDate}
                   onChange={date => setStartDate(date)}
                   selectsStart
+                  minDate={new Date()}
                   startDate={startDate}
                   endDate={endDate}
+                  useWeekdaysShort={true}
                   dateFormat="dd/MM/yyyy"
                 />
               </div>
@@ -153,6 +159,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
                   selectsEnd
                   startDate={startDate}
                   endDate={endDate}
+                  useWeekdaysShort={true}
                   minDate={startDate}
                   dateFormat="dd/MM/yyyy"
                 />

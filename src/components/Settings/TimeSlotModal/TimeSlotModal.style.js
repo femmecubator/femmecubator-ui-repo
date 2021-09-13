@@ -119,6 +119,15 @@ const useStyles = makeStyles(() => ({
       lineHeight: '25px',
     },
   },
+  timeSlotModalWrapper: {
+    '& .MuiDialog-scrollPaper': {
+      '& .MuiDialog-paper': {
+        padding: ({ isMobile }) =>
+          isMobile ? '25px 0px 30px 0px' : '25px 25px 30px 25px',
+        margin: ({ isMobile }) => (isMobile ? '8px' : '32px'),
+      },
+    },
+  },
 }));
 
 export default useStyles;

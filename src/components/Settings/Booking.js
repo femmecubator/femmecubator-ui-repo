@@ -6,9 +6,10 @@ import errorImage from '../../../src/assets/images/error.svg';
 import TimeSlotModal from './TimeSlotModal';
 import ThreeDots from '../../../src/assets/images/ThreeDots.svg';
 
-const Booking = () => {
+const Booking = ({ heading }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
-  const classes = useStyles({ isMobile });
+  const bookingMediaQuery = useMediaQuery('(max-width:632px)');
+  const classes = useStyles({ isMobile, bookingMediaQuery });
   const {
     bookingInner,
     settingsButton,
@@ -17,6 +18,10 @@ const Booking = () => {
     dropDown,
     threeDotsWrapper,
     dropDownWrapper,
+    timeslotH2,
+    threeDotsWrapperInner,
+    hr,
+    mobileAddTimeSlotBtn,
   } = classes;
 
   const [openModal, setOpenModal] = React.useState(false);
@@ -33,7 +38,7 @@ const Booking = () => {
     <>
       {!noTimeSlot ? (
         <div className={timSlotHeader}>
-          <h2>My Timeslots</h2>
+          <h2>{heading}</h2>
           <div className={'rightWrapper'}>
             <Button
               className={settingsButton}
@@ -42,7 +47,9 @@ const Booking = () => {
               + Add a timeslot
             </Button>
             <div className={threeDotsWrapper}>
-              <img src={ThreeDots} alt={'options'} />
+              <div className={threeDotsWrapperInner}>
+                <img src={ThreeDots} alt={'options'} />
+              </div>
               <div className={dropDownWrapper}>
                 <div className={dropDown}>
                   <span>Edit</span>
@@ -53,9 +60,9 @@ const Booking = () => {
           </div>
         </div>
       ) : (
-        <h2>My Timeslots</h2>
+        <h2 className={timeslotH2}>{heading}</h2>
       )}
-      <hr />
+      <hr className={hr} />
 
       {noTimeSlot ? (
         <div className={bookingInner}>
@@ -77,6 +84,16 @@ const Booking = () => {
             </div>
             <p>Mon, Wed, Fri | 8-9 pm EST | Aug - Dec 2021</p>
           </div>
+          {bookingMediaQuery ? (
+            <div className={mobileAddTimeSlotBtn}>
+              <Button
+                className={settingsButton}
+                onClick={() => setOpenModal(true)}
+              >
+                + Add a timeslot
+              </Button>
+            </div>
+          ) : null}
         </>
       )}
       <TimeSlotModal

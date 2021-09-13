@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
   },
   directoryTab: {
     ...font,
-    color: '#550CCC',
+    color: '#CFCFCF',
     fontSize: '20px',
   },
   directoryHeader: {
@@ -42,6 +42,14 @@ const useStyles = makeStyles(() => ({
   tabs: {
     borderBottom: '1px #BDBDBD solid',
     margin: ({ isMobile }) => (isMobile ? '1rem' : '1.2rem 2rem 2rem 2rem'),
+  },
+  meetingWrapper: {
+    maxWidth: '860px',
+    border: '1px solid #BDBDBD',
+    borderRadius: '8px',
+    marginBottom: '90px',
+    marginLeft: ({ isSmallDevice }) => (isSmallDevice ? '12px' : '30px'),
+    marginRight: ({ isSmallDevice }) => (isSmallDevice ? '12px' : '30px'),
   },
 }));
 

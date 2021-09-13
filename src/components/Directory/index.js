@@ -15,8 +15,10 @@ import { emptySearch, directoryTabs, subheaderProperties } from './utils';
 import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIcon.svg';
 import request from '../../utils/axiosConfig';
 import isEmpty from 'lodash/isEmpty';
+import Meetings from 'components/Settings/Meetings';
 const Directory = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
+  const isSmallDevice = useMediaQuery('(max-width:480px)');
   const {
     root,
     loadingIcon,
@@ -25,8 +27,10 @@ const Directory = () => {
     directoryHeader,
     directoryTab,
     tabs,
+    meetingWrapper,
   } = useStyles({
     isMobile,
+    isSmallDevice,
   });
   const [selectedTab, setSelectedTab] = useState(0);
   const [mentorCards, setMentorCards] = useState([]);
@@ -56,6 +60,13 @@ const Directory = () => {
       return mentorList.map(mentorObject => (
         <MentorCard {...mentorObject} key={mentorObject._id} />
       ));
+    },
+    1: () => {
+      return (
+        <div className={meetingWrapper}>
+          <Meetings />
+        </div>
+      );
     },
   };
 
@@ -110,7 +121,7 @@ const Directory = () => {
 
           <div
             {...{
-              className: mentorListContainer,
+              className: `${selectedTab === 0 ? mentorListContainer : ''}`,
               value: selectedTab,
               index: 0,
               'data-testid': 'mentorListContainer',

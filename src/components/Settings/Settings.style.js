@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   settingsWrapper: {
-    width: '85%',
     margin: '0px auto',
     paddingTop: '60px',
     paddingBottom: '80px',
@@ -17,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
   insideWrapper: {
     display: 'grid',
-    gridTemplateColumns: '0.25fr 0.75fr',
+    gridTemplateColumns: ({ isMobile }) => (isMobile ? '1fr' : '0.25fr 0.75fr'),
     gap: '20px',
   },
   accountInfoWrapper: {
@@ -74,6 +73,7 @@ const useStyles = makeStyles(() => ({
     },
     '& h4': {
       margin: 0,
+      color: '#4F4F4F',
     },
   },
   settingsButton: {
@@ -89,6 +89,8 @@ const useStyles = makeStyles(() => ({
     color: '#026FE4',
     marginTop: '50px',
     textTransform: 'inherit',
+    paddingLeft: '16px',
+    paddingRight: '16px',
   },
   tabs: {
     borderBottom: '1px solid #828282;',
@@ -103,9 +105,10 @@ const useStyles = makeStyles(() => ({
       lineHeight: '29px',
       color: '#828282',
       cursor: 'pointer',
-      paddingBottom: '10px',
+      paddingBottom: '8px',
       background: 'transparent',
       border: 'none',
+      maxWidth: '780px',
     },
   },
   activeTab: {
@@ -125,8 +128,9 @@ const useStyles = makeStyles(() => ({
     marginBottom: '18px',
     '& h4': {
       margin: 0,
+      color: '#4F4F4F',
     },
-    '& p': {
+    '& .disabledFields': {
       background: '#F2F2F2',
       border: '1px solid #828282',
       boxSizing: 'border-box',
@@ -163,10 +167,16 @@ const useStyles = makeStyles(() => ({
   },
   gooleMeet: {
     display: 'flex',
-    gap: '20px',
+    gap: ({ isMobile }) => (isMobile ? '0' : '20px'),
+    flexDirection: ({ isMobile }) => (isMobile ? 'column' : 'row'),
     '& p': {
-      color: '#026FE4',
-      fontWeight: '600',
+      color: '#026FE4 !important',
+      fontWeight: '600 !important',
+      paddingLeft: '22px !important',
+      paddingRight: '22px !important',
+    },
+    '& p:nth-child(2)': {
+      border: '1.5px solid #026FE4 !important',
     },
   },
   profileEdit: {
@@ -185,23 +195,28 @@ const useStyles = makeStyles(() => ({
       fontSize: '18px',
       paddingLeft: '20px',
       paddingRight: '20px',
+      marginBottom: '30px',
     },
     '& p': {
       fontWeight: 'normal',
       fontSize: '21px',
       lineHeight: '29px',
       color: '#495057',
+      textAlign: 'center',
     },
   },
   timSlotHeader: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    padding: '0px 28px',
     '& button': {
       height: 'fit-content',
       marginTop: '0',
       lineHeight: '20px',
       fontSize: '16px',
+      display: ({ bookingMediaQuery }) =>
+        bookingMediaQuery ? 'none' : 'block',
     },
     '& .rightWrapper': {
       alignItems: 'center',
@@ -212,13 +227,19 @@ const useStyles = makeStyles(() => ({
         cursor: 'pointer',
       },
     },
+    '& h2': {
+      color: '#495057',
+    },
   },
   timeSlotData: {
     fontWeight: 600,
     display: 'flex',
     alignItems: 'center',
     paddingBottom: '15px',
-    // borderBottom: '1px solid #BDBDBD',
+    paddingLeft: '22px',
+    paddingRight: '22px',
+    flexFlow: 'row wrap',
+    // borderBottom: '1px solid #9A9A9A',
     '& span': {
       marginRight: '5px',
     },
@@ -237,6 +258,7 @@ const useStyles = makeStyles(() => ({
       fontSize: '18px',
       lineHeight: '25px',
       color: '#4F4F4F',
+      marginLeft: ({ bookingMediaQuery }) => (bookingMediaQuery ? '55px' : 0),
     },
   },
   dropDown: {
@@ -248,6 +270,22 @@ const useStyles = makeStyles(() => ({
     borderRadius: '4px',
     display: 'flex',
     gap: '20px',
+    position: 'relative',
+    '&:after, &:before': {
+      bottom: '100%',
+      left: '50%',
+      border: 'solid transparent',
+      content: '""',
+      height: '0',
+      width: '0',
+      position: 'absolute',
+      pointerEvents: 'none',
+    },
+    '&:before': {
+      marginLeft: '19px',
+      borderWidth: '10px',
+      borderBottomColor: '#495057',
+    },
   },
   threeDotsWrapper: {
     cursor: 'pointer',
@@ -261,6 +299,114 @@ const useStyles = makeStyles(() => ({
     right: '-5px',
     top: '24px',
     paddingTop: '24px',
+  },
+  timeslotH2: {
+    padding: '0px 28px',
+    color: '#495057',
+  },
+  hr: {
+    width: ({ bookingMediaQuery }) => (bookingMediaQuery ? '100%' : '95%'),
+  },
+  threeDotsWrapperInner: {
+    height: '30px',
+    width: '30px',
+    borderRadius: '50%',
+    background: '#F2F7FF',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  meetingsDetails: {
+    display: 'flex',
+    padding: '0px 32px',
+    paddingBottom: '20px',
+    alignItems: ({ isMobile }) => (isMobile ? 'center' : 'flex-start'),
+    flexDirection: ({ isMobile }) => (isMobile ? 'column' : 'row'),
+    justifyContent: 'space-between',
+    '& div': {
+      '& p': {
+        fontWeight: 'normal',
+        fontSize: '16px',
+        lineHeight: '150%',
+        color: '#495057',
+        display: 'flex',
+        gap: '4px',
+        flexFlow: 'row wrap',
+        '& label': {
+          fontWeight: 'normal',
+          fontSize: '16px',
+          lineHeight: '150%',
+          color: '#495057',
+        },
+        '& .meeting-person-name': {
+          fontWeight: 'bold',
+          fontSize: '18px',
+          lineHeight: '25px',
+          color: '#495057',
+        },
+        '& .meeting-link': {
+          fontWeight: 600,
+          fontSize: '18px',
+          lineHeight: '25px',
+          color: '#026FE4',
+          cursor: 'pointer',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
+      },
+    },
+  },
+  nomeetings: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px',
+    flexDirection: 'column',
+    padding: '50px 0px',
+    '& p': {
+      fontWeight: 'bold',
+      fontSize: '18px',
+      lineHeight: '25px',
+      textAlign: 'center',
+      color: '#495057',
+      margin: 0,
+    },
+  },
+  mobileAddTimeSlotBtn: {
+    padding: '30px 0px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTop: '1px solid #9A9A9A',
+    '& button': {
+      margin: 0,
+    },
+  },
+  securityFields: {
+    marginTop: '10px',
+    '& div': {
+      '& input': {
+        padding: '11.5px 14px',
+      },
+    },
+  },
+  disabledInputsBG: {
+    background: '#F2F2F2 !important',
+  },
+  personalInfoDisabled: {
+    '& div': {
+      '& input': {
+        padding: 0,
+        fontWeight: 'normal',
+        fontSize: '16px',
+        lineHeight: '150%',
+        color: '#4F4F4F',
+      },
+    },
+    '& fieldset': {
+      border: 'none',
+    },
   },
 }));
 

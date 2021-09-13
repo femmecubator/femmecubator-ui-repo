@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-evenly',
     color: '#495057',
     paddingBottom: '60px',
+    gap: '10px',
     '& *': {
       textAlign: 'center',
     },
@@ -23,6 +24,8 @@ const useStyles = makeStyles(() => ({
     marginTop: 0,
   },
   slots: {
+    display: ({ isMobile }) => (isMobile ? 'flex' : 'block'),
+    flexDirection: ({ isMobile }) => (isMobile ? 'column' : 'column'),
     '& > button': {
       marginBottom: '10px',
     },

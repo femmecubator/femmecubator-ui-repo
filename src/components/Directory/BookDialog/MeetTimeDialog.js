@@ -14,7 +14,8 @@ const MeetTimeDialog = ({
   handleConfirmOpen,
 }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
-  const classes = useStyles({ isMobile });
+  const isSmallDevice = useMediaQuery('(max-width:480px)');
+  const classes = useStyles({ isMobile, isSmallDevice });
   const {
     root,
     highlightText,
@@ -34,7 +35,12 @@ const MeetTimeDialog = ({
       onClose={handleMeetClose}
       aria-labelledby="responsive-dialog-title"
     >
-      <DialogContent className={`${paddingBottomLg} ${paddingTopLg}`}>
+      <DialogContent
+        className={`${paddingBottomLg} ${paddingTopLg}`}
+        style={
+          isSmallDevice ? { paddingLeft: '5px', paddingRight: '5px' } : null
+        }
+      >
         <DialogContentText
           className={`${dialogText} ${paddingBottomSm} ${fontWeightBold}`}
         >

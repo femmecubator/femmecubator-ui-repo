@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Container from '@material-ui/core/Container';
 import useStyles from './Settings.style';
 import AccountInfo from './AccountInfo';
 import Profile from './Profile';
-import Booking from './Booking';
+import Security from './Security';
 
 const SettingsComponent = () => {
-  const isMobile = useMediaQuery('(max-width:767px)');
+  const isMobile = useMediaQuery('(max-width:880px)');
   const classes = useStyles({ isMobile });
   const {
     settingsWrapper,
@@ -22,7 +21,7 @@ const SettingsComponent = () => {
 
   return (
     <div style={{ background: 'white', minHeight: '100vh' }}>
-      <Container fixed style={{ background: 'white' }}>
+      <div className="container">
         <div className={settingsWrapper}>
           <h2 className={title}>Settings</h2>
           <div className={insideWrapper}>
@@ -33,22 +32,22 @@ const SettingsComponent = () => {
                   className={`${tab === 0 ? activeTab : ''} ${`tabButtons`}`}
                   onClick={() => setTab(0)}
                 >
-                  Profile
+                  PROFILE
                 </button>
                 <button
                   className={`${tab === 1 ? activeTab : ''} ${`tabButtons`}`}
                   onClick={() => setTab(1)}
                 >
-                  Booking
+                  SECURITY
                 </button>
               </div>
               <div className={tabsContent}>
-                {tab === 0 ? <Profile /> : <Booking />}
+                {tab === 0 ? <Profile /> : <Security />}
               </div>
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
