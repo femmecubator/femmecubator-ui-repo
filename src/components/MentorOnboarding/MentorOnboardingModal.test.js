@@ -13,7 +13,7 @@ describe('<MentorOnboardingModal />', () => {
 
   test('should submit with valid inputs', async () => {
     const bio = screen.getByRole('textbox', {
-      name: 'Add a Bio (128 char)' || 'Bio',
+      name: 'Bio',
     });
     const skills = screen.getByTestId('skills');
     const phone = screen.getByRole('textbox', { name: 'Phone' });
@@ -44,7 +44,9 @@ describe('<MentorOnboardingModal />', () => {
   });
 
   test('should not submit with invalid inputs', async () => {
-    const bio = screen.getByRole('textbox', { name: 'Add a Bio (128 char)' });
+    const bio = screen.getByRole('textbox', {
+      name: 'Bio',
+    });
     const skills = screen.getByTestId('skills');
     const phone = screen.getByRole('textbox', { name: 'Phone' });
     const timezone = screen.getByTestId('timezone');
