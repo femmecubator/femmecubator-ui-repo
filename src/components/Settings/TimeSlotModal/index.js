@@ -35,36 +35,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
     timeSlotsButtons,
   } = classes;
 
-  const [weekDays, setWeekDays] = useState([
-    {
-      lable: 'Su',
-      selected: false,
-    },
-    {
-      lable: 'M',
-      selected: false,
-    },
-    {
-      lable: 'T',
-      selected: false,
-    },
-    {
-      lable: 'W',
-      selected: false,
-    },
-    {
-      lable: 'Th',
-      selected: false,
-    },
-    {
-      lable: 'F',
-      selected: false,
-    },
-    {
-      lable: 'S',
-      selected: false,
-    },
-  ]);
+  const [weekDays, setWeekDays] = useState(weekDaysData);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
@@ -236,3 +207,34 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
 };
 
 export default TimeSlotModal;
+
+const weekDaysData = [
+  {
+    lable: 'Su',
+    selected: false,
+  },
+  {
+    lable: 'M',
+    selected: false,
+  },
+  {
+    lable: 'T',
+    selected: false,
+  },
+  {
+    lable: 'W',
+    selected: false,
+  },
+  {
+    lable: 'Th',
+    selected: false,
+  },
+  {
+    lable: 'F',
+    selected: false,
+  },
+  {
+    lable: 'S',
+    selected: false,
+  },
+];
