@@ -81,7 +81,9 @@ export default function BookDialog({ openMeet, setOpenMeet }) {
   return (
     <>
       <MeetTimeDialog
-        meetTimeSlots={meetTimeSlots}
+        meetTimeSlots={
+          meetTimeSlots && meetTimeSlots.length > 0 ? meetTimeSlots : []
+        }
         openMeet={openMeet}
         handleMeetClose={handleMeetClose}
         handleConfirmOpen={handleConfirmOpen}
