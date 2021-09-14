@@ -20,41 +20,60 @@ const Profile = () => {
   const [googleMeet, setGoogleMeet] = useState('meet.google.com/oer-yjhx-sia');
   const [openModal, setOpenModal] = useState(false);
 
+  const fields = [
+    {
+      heading: 'Bio',
+      data: bio,
+    },
+    {
+      heading: 'Skills (eg. tech stack, anything you can offer help with.)',
+      data: skills,
+    },
+    {
+      heading: 'Phone',
+      data: phone,
+    },
+    {
+      heading: 'Your Time Zone',
+      data: timeZone,
+    },
+    {
+      heading: 'Personal meeting room',
+      data: googleMeet,
+    },
+  ];
+
   return (
     <>
-      <div className={inputGroups}>
-        <h4>Bio</h4>
-        <textarea
-          row={5}
-          className={textArea}
-          value={bio}
-          disabled={true}
-        ></textarea>
-      </div>
-      <div className={inputGroups}>
-        <h4>Skills (eg. tech stack, anything you can offer help with.)</h4>
-        <p className={'disabledFields'}>{skills}</p>
-      </div>
-      <div className={inputGroups}>
-        <h4>Phone</h4>
-        <p className={'disabledFields'}>{phone}</p>
-      </div>
-      <div className={inputGroups}>
-        <h4>Your Time Zone</h4>
-        <p className={'disabledFields'}>{timeZone}</p>
-      </div>
-      <div className={inputGroups}>
-        <h4>Personal meeting room</h4>
-        <div className={gooleMeet}>
-          <p className={'disabledFields'}>{googleMeet}</p>
-          <p
-            className={'disabledFields'}
-            style={{ background: 'white', cursor: 'pointer' }}
-          >
-            {'Copy Google Meet Link'}
-          </p>
-        </div>
-      </div>
+      {fields && fields.length > 0
+        ? fields.map((data, index) => {
+            return (
+              <div className={inputGroups} key={index}>
+                <h4>{data.heading}</h4>
+                {data.heading === 'Bio' ? (
+                  <textarea
+                    row={5}
+                    className={textArea}
+                    value={bio}
+                    disabled={true}
+                  ></textarea>
+                ) : data.heading === 'Personal meeting room' ? (
+                  <div className={gooleMeet}>
+                    <p className={'disabledFields'}>{googleMeet}</p>
+                    <p
+                      className={'disabledFields'}
+                      style={{ background: 'white', cursor: 'pointer' }}
+                    >
+                      {'Copy Google Meet Link'}
+                    </p>
+                  </div>
+                ) : (
+                  <p className={'disabledFields'}>{data.data}</p>
+                )}
+              </div>
+            );
+          })
+        : null}
       <div className={profileEdit}>
         <Button className={settingsButton} onClick={() => setOpenModal(true)}>
           Edit

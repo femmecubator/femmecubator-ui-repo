@@ -18,6 +18,21 @@ const Security = () => {
   const MIN_8CHARS = 'Must be more than 8 characters';
   const INVALID_PASSWORD_FORMAT = 'Invalid password format: A-z 0-9 @$!%*?%';
 
+  const inputFieldsData = [
+    {
+      label: 'Current Password',
+      name: 'currentPassword',
+    },
+    {
+      label: 'New Password',
+      name: 'newPassword',
+    },
+    {
+      label: 'Retype Password',
+      name: 'retypePassword',
+    },
+  ];
+
   const passwordSchema = yup.object().shape({
     currentPassword: yup.string().required('Current Password is required'),
     newPassword: yup
@@ -57,80 +72,36 @@ const Security = () => {
   return (
     <>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <div className={inputGroups}>
-          <h4>Current Password</h4>
-          <TextField
-            {...{
-              id: 'currentPassword',
-              className: `${
-                disabledInputs
-                  ? `${securityFields} ${disabledInputsBG}`
-                  : securityFields
-              }`,
-              variant: 'outlined',
-              inputProps: { 'data-testid': 'currentPassword' },
-              name: 'currentPassword',
-              type: 'password',
-              autoFocus: true,
-              inputRef: register,
-              disabled: disabledInputs,
-              error: !isEmpty(errors.currentPassword),
-              helperText:
-                errors.currentPassword && errors.currentPassword.message,
-            }}
-          />
-        </div>
-
-        <div className={inputGroups}>
-          <h4>New Password</h4>
-          <TextField
-            {...{
-              id: 'newPassword',
-              inputProps: { 'data-testid': 'newPassword' },
-              inputRef: register,
-              name: 'newPassword',
-              type: 'password',
-              variant: 'outlined',
-              disabled: disabledInputs,
-              className: `${
-                disabledInputs
-                  ? `${securityFields} ${disabledInputsBG}`
-                  : securityFields
-              }`,
-              error: !isEmpty(errors.newPassword),
-              helperText: errors.newPassword && errors.newPassword.message,
-            }}
-          />
-        </div>
-
-        <div className={inputGroups}>
-          <h4>Retype Password</h4>
-          <TextField
-            {...{
-              id: 'retypePassword',
-              inputProps: { 'data-testid': 'retypePassword' },
-              inputRef: register,
-              type: 'password',
-              name: 'retypePassword',
-              variant: 'outlined',
-              className: `${
-                disabledInputs
-                  ? `${securityFields} ${disabledInputsBG}`
-                  : securityFields
-              }`,
-              disabled: disabledInputs,
-              error: !isEmpty(errors.retypePassword),
-              helperText:
-                errors.retypePassword && errors.retypePassword.message,
-            }}
-          />
-        </div>
-        {/* <Button
-          className={settingsButton}
-          onClick={() => setDisableInputs(false)}
-        >
-          Edit
-        </Button> */}
+        {inputFieldsData && inputFieldsData.length > 0
+          ? inputFieldsData.map((data, index) => {
+              return (
+                <div className={inputGroups} key={index}>
+                  <h4>{data.label}</h4>
+                  <TextField
+                    {...{
+                      id: `${data.name}`,
+                      className: `${
+                        disabledInputs
+                          ? `${securityFields} ${disabledInputsBG}`
+                          : securityFields
+                      }`,
+                      variant: 'outlined',
+                      inputProps: { 'data-testid': `${data.name}` },
+                      name: `${data.name}`,
+                      type: 'password',
+                      autoFocus: index === 0 ? true : false,
+                      inputRef: register,
+                      disabled: disabledInputs,
+                      error: !isEmpty(errors[`${data.name}`]),
+                      helperText:
+                        errors[`${data.name}`] &&
+                        errors[`${data.name}`].message,
+                    }}
+                  />
+                </div>
+              );
+            })
+          : null}
         <Button
           {...{
             'data-testid': 'submit',
