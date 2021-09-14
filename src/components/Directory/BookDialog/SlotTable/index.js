@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import useStyles from './SlotTable.styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Button } from '@material-ui/core';
-// import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 
 const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
@@ -21,7 +18,6 @@ const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
 
   return (
     <div className={root}>
-      {/* <Slider {...settings}> */}
       {isSmallDevice
         ? meetTimeSlots.slice(0, 2).map((slotItem, index) => {
             return (
@@ -44,21 +40,12 @@ const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
                       return (
                         <Button
                           variant="contained"
-                          // disabled={slot.status}
-                          className={`${
-                            // slot.status ? bookedButton :
-                            availableButton
-                          }`}
+                          className={`${availableButton}`}
                           key={index}
-                          onClick={
-                            // slot.status
-                            //   ? null
-                            //   :
-                            () => {
-                              handleMeetClose();
-                              handleConfirmOpen();
-                            }
-                          }
+                          onClick={() => {
+                            handleMeetClose();
+                            handleConfirmOpen();
+                          }}
                         >
                           {slot.time}
                         </Button>
@@ -90,21 +77,12 @@ const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
                       return (
                         <Button
                           variant="contained"
-                          // disabled={slot.status}
-                          className={`${
-                            // slot.status ? bookedButton :
-                            availableButton
-                          }`}
+                          className={`${availableButton}`}
                           key={index}
-                          onClick={
-                            // slot.status
-                            //   ? null
-                            //   :
-                            () => {
-                              handleMeetClose();
-                              handleConfirmOpen();
-                            }
-                          }
+                          onClick={() => {
+                            handleMeetClose();
+                            handleConfirmOpen();
+                          }}
                         >
                           {slot.time}
                         </Button>
@@ -115,7 +93,6 @@ const SlotTable = ({ meetTimeSlots, handleMeetClose, handleConfirmOpen }) => {
               </div>
             );
           })}
-      {/* </Slider> */}
     </div>
   );
 };
