@@ -11,6 +11,7 @@ import {
   Typography,
   useMediaQuery,
 } from '@material-ui/core/';
+import BookDialog from '../BookDialog';
 
 const MentorCard = ({
   firstName,
@@ -21,6 +22,7 @@ const MentorCard = ({
   initials,
   onTestClick,
 }) => {
+  const [openMeet, setOpenMeet] = React.useState(false);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
@@ -36,76 +38,80 @@ const MentorCard = ({
   const handleClick = e => {
     e.preventDefault();
     if (onTestClick) return onTestClick();
+    setOpenMeet(true);
     //TODO: Booking for this mentor opens up
   };
 
   return (
-    <Card className={root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="Mentor Avatar" className={avatar}>
-            {initials}
-          </Avatar>
-        }
-        action={
-          <Button
-            {...{
-              'aria-label': 'Booking',
-              className: booking,
-              variant: 'outlined',
-              onClick: handleClick,
-              role: 'button',
-            }}
-          >
-            BOOK ME
-          </Button>
-        }
-        title={
+    <>
+      <BookDialog openMeet={openMeet} setOpenMeet={setOpenMeet} />
+      <Card className={root}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="Mentor Avatar" className={avatar}>
+              {initials}
+            </Avatar>
+          }
+          action={
+            <Button
+              {...{
+                'aria-label': 'Booking',
+                className: booking,
+                variant: 'outlined',
+                onClick: handleClick,
+                role: 'button',
+              }}
+            >
+              BOOK ME
+            </Button>
+          }
+          title={
+            <Typography
+              {...{
+                variant: 'body1',
+                className: mentorNameField,
+                'data-testid': 'mentorNameField',
+              }}
+            >
+              {firstName} {lastName}
+            </Typography>
+          }
+          subheader={
+            <Typography
+              {...{
+                variant: 'caption',
+                className: jobField,
+                'data-testid': 'jobTitleField',
+              }}
+            >
+              {title}
+            </Typography>
+          }
+        />
+        {isMobile ? null : <Divider light={false} />}
+        <CardContent>
           <Typography
             {...{
-              variant: 'body1',
-              className: mentorNameField,
-              'data-testid': 'mentorNameField',
+              variant: 'body2',
+              className: skillList,
+              'data-testid': 'skillList',
+              gutterBottom: true,
             }}
           >
-            {firstName} {lastName}
+            {mentorSkills}
           </Typography>
-        }
-        subheader={
           <Typography
             {...{
               variant: 'caption',
-              className: jobField,
-              'data-testid': 'jobTitleField',
+              className: bioSection,
+              'data-testid': 'bioSection',
             }}
           >
-            {title}
+            {bio}
           </Typography>
-        }
-      />
-      {isMobile ? null : <Divider light={false} />}
-      <CardContent>
-        <Typography
-          {...{
-            variant: 'body2',
-            className: skillList,
-            'data-testid': 'skillList',
-            gutterBottom: true,
-          }}
-        >
-          {mentorSkills}
-        </Typography>
-        <Typography
-          {...{
-            variant: 'caption',
-            className: bioSection,
-            'data-testid': 'bioSection',
-          }}
-        >
-          {bio}
-        </Typography>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </>
   );
 };
 MentorCard.propTypes = {

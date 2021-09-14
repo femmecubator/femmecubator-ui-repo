@@ -6,6 +6,7 @@ import About from './About';
 import Resources from './Resources';
 import Threads from './Threads';
 import Settings from './Settings';
+import Dev from './Dev';
 
 export {
   Landing,
@@ -16,4 +17,5 @@ export {
   Resources,
   Threads,
   Settings,
+  Dev,
 };

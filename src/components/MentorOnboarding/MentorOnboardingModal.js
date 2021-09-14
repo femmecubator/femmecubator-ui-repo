@@ -10,7 +10,7 @@ import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
 import { isEmpty } from 'lodash';
 
-const BIO = 'Add a Bio (128 char)';
+const BIO = 'Bio';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
 const PHONE = 'Phone';
 const TIME_ZONE = 'Your Time Zone';
@@ -36,7 +36,12 @@ const OnboardingSchema = yup.object().shape({
     ),
 });
 
-const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
+const MentorOnboardingModal = ({
+  opened,
+  mockOnSubmit,
+  withouHeading,
+  setOpenModal,
+}) => {
   const isMobile = useMediaQuery('(max-width:1024px)');
   const {
     modal,
@@ -53,8 +58,9 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   const [open, setOpen] = useState(opened);
 
   const onSubmit = () => {
+    setOpenModal(false);
     // PUT/PATCH request to update bio etc.
-    setOpen(false);
+    // setOpen(false);
   };
 
   const { register, handleSubmit, errors, setValue } = useForm({
@@ -66,14 +72,17 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
       className={formContainer}
       onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
     >
-      <div align="center">
-        <h2 id="mentorOnboardingTitle" className={heading}>
-          Almost there!
-        </h2>
-        <h3 id="mentorOnboardingDesc" className={subheading}>
-          We'll need to confirm a few things about you.
-        </h3>
-      </div>
+      {withouHeading ? null : (
+        <div align="center">
+          <h2 id="mentorOnboardingTitle" className={heading}>
+            Almost there!
+          </h2>
+          <h3 id="mentorOnboardingDesc" className={subheading}>
+            We'll need to confirm a few things about you.
+          </h3>
+        </div>
+      )}
+
       <label htmlFor="bio" className={labelText}>
         {BIO}
       </label>
@@ -198,7 +207,7 @@ const MentorOnboardingModal = ({ opened, mockOnSubmit }) => {
   );
 
   return (
-    <FocusTrapOverlay open={open}>
+    <FocusTrapOverlay open={opened}>
       <Paper
         {...{
           role: 'alertdialog',

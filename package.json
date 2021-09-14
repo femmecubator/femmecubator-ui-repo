@@ -14,6 +14,7 @@
     "lodash": "^4.17.20",
     "msw": "^0.24.1",
     "react": "^17.0.1",
+    "react-datepicker": "^4.2.1",
     "react-dom": "^17.0.1",
     "react-ga": "^3.2.0",
     "react-hook-form": "^6.15.5",
@@ -22,7 +23,9 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
+    "react-slick": "^0.28.1",
     "select-timezone-material-ui": "^2.6.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.3",
     "universal-cookie": "^4.0.4",
     "yup": "^0.32.0"
@@ -94,6 +97,7 @@
     "miragejs": "^0.1.41",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
+    "react-refresh": "^0.10.0",
     "react-test-renderer": "^17.0.2"
   },
   "prettier": {
