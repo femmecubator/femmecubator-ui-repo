@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './Settings.style';
 import { Button } from '@material-ui/core';
-import Calendar_icon from '../../../src/assets/images/Calendar_icon.svg';
+import NoMeetings from './NoMeetings';
 
 const Meetings = () => {
   const isMobile = useMediaQuery('(max-width:680px)');
@@ -44,11 +44,7 @@ const Meetings = () => {
           </div>
         </div>
       ) : (
-        <div className={nomeetings}>
-          <img src={Calendar_icon} alt="calendar-icon" />
-          <p>No meetings yet!</p>
-          <p>Stay tuned.</p>
-        </div>
+        <NoMeetings />
       )}
     </>
   );
