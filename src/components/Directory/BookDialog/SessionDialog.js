@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useStyles from './BookDialog.styles';
+import useStyles from '../Directory.styles';
 import {
   Button,
   Dialog,
@@ -15,7 +15,7 @@ const SessionDialog = ({ openSession, handleSessionClose }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
-    root,
+    rootMeet,
     dialogTitle,
     dialogText,
     countDown,
@@ -32,7 +32,7 @@ const SessionDialog = ({ openSession, handleSessionClose }) => {
 
   return (
     <Dialog
-      className={root}
+      className={rootMeet}
       open={openSession}
       onClose={handleSessionClose}
       aria-labelledby="responsive-dialog-title"

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useStyles from './BookDialog.styles';
+import useStyles from '../Directory.styles';
 import {
   Dialog,
   DialogActions,
@@ -15,7 +15,7 @@ const AwesomeDialog = ({ openAwesome, handleAwesomeClose }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
-    root,
+    rootMeet,
     dialogTitle,
     dialogText,
     closeIcon,
@@ -26,7 +26,7 @@ const AwesomeDialog = ({ openAwesome, handleAwesomeClose }) => {
 
   return (
     <Dialog
-      className={root}
+      className={rootMeet}
       open={openAwesome}
       onClose={handleAwesomeClose}
       aria-labelledby="responsive-dialog-title"
