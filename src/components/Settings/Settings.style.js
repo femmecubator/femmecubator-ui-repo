@@ -408,6 +408,10 @@ const useStyles = makeStyles(() => ({
       border: 'none',
     },
   },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
+  },
 }));
 
 export default useStyles;
