@@ -75,8 +75,8 @@ const Security = () => {
 
   const onSubmit = async data => {
     setOpenBackdropt(true);
-    const { email } = jwt_decode(getTokenCookie());
-    const body = { ...data, email };
+    const { _id } = jwt_decode(getTokenCookie());
+    const body = { ...data, _id };
     try {
       const response = await request.post(API_PATH.UPDATE_PASSWORD, body);
       if (response.data.message === 'Success') {

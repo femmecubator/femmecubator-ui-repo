@@ -32,6 +32,7 @@ const API_PATH = {
   LOGIN_PAGE: '/login',
   ROOT: '/',
   UPDATE_PASSWORD: '/api/updateProfile/updatePassword',
+  UPDATE_PROFILE: '/api/updateProfile',
 };
 
 const METHOD_TYPE = {
