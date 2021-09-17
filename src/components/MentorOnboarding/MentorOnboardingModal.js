@@ -41,6 +41,8 @@ const MentorOnboardingModal = ({
   mockOnSubmit,
   withouHeading,
   setOpenModal,
+  showInModal,
+  setEditFields,
 }) => {
   const isMobile = useMediaQuery('(max-width:1024px)');
   const {
@@ -58,6 +60,7 @@ const MentorOnboardingModal = ({
   const [open, setOpen] = useState(opened);
 
   const onSubmit = () => {
+    setEditFields(false);
     setOpenModal(false);
     // PUT/PATCH request to update bio etc.
     // setOpen(false);
@@ -71,6 +74,7 @@ const MentorOnboardingModal = ({
     <form
       className={formContainer}
       onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
+      style={!showInModal ? { padding: 0 } : null}
     >
       {withouHeading ? null : (
         <div align="center">
@@ -206,7 +210,7 @@ const MentorOnboardingModal = ({
     </form>
   );
 
-  return (
+  return showInModal ? (
     <FocusTrapOverlay open={opened}>
       <Paper
         {...{
@@ -221,6 +225,8 @@ const MentorOnboardingModal = ({
         {formContent}
       </Paper>
     </FocusTrapOverlay>
+  ) : (
+    formContent
   );
 };
 

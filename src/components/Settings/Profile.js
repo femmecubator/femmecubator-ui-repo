@@ -19,6 +19,7 @@ const Profile = () => {
   const [timeZone, setTimeZone] = useState('GMT + 5, New York');
   const [googleMeet, setGoogleMeet] = useState('meet.google.com/oer-yjhx-sia');
   const [openModal, setOpenModal] = useState(false);
+  const [editFields, setEditFields] = useState(false);
 
   const fields = [
     {
@@ -45,8 +46,9 @@ const Profile = () => {
 
   return (
     <>
-      {fields && fields.length > 0
-        ? fields.map((data, index) => {
+      {!editFields ? (
+        fields && fields.length > 0 ? (
+          fields.map((data, index) => {
             return (
               <div className={inputGroups} key={index}>
                 <h4>{data.heading}</h4>
@@ -73,17 +75,29 @@ const Profile = () => {
               </div>
             );
           })
-        : null}
-      <div className={profileEdit}>
-        <Button className={settingsButton} onClick={() => setOpenModal(true)}>
-          Edit
-        </Button>
-      </div>
-      <MentorOnboardingModal
-        opened={openModal}
-        setOpenModal={setOpenModal}
-        withouHeading={true}
-      />
+        ) : null
+      ) : (
+        <MentorOnboardingModal
+          opened={openModal}
+          setOpenModal={setOpenModal}
+          withouHeading={true}
+          showInModal={false}
+          setEditFields={setEditFields}
+        />
+      )}
+      {!editFields ? (
+        <div className={profileEdit}>
+          <Button
+            className={settingsButton}
+            onClick={() => {
+              setOpenModal(true);
+              setEditFields(true);
+            }}
+          >
+            Edit
+          </Button>
+        </div>
+      ) : null}
     </>
   );
 };
