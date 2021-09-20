@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './Settings.style';
 import { Button } from '@material-ui/core';
 import MentorOnboardingModal from 'components/MentorOnboarding/MentorOnboardingModal';
 
-const Profile = () => {
+const Profile = ({ profileData }) => {
   const isMobile = useMediaQuery('(max-width:580px)');
   const classes = useStyles({ isMobile });
   const { inputGroups, textArea, gooleMeet, settingsButton, profileEdit } =
     classes;
 
-  const [bio, setBio] = useState(
-    'Narwhal prism snackwave pop-up, wayfarers kinfolk asymmetrical poke. Flexitarian cliche williamsburg drinking vinegar shabby chic slow-carb pug semiotics pop-up. Cliche williamsburg drinking vinegar shabby.'
-  );
+  const [bio, setBio] = useState('Bio');
 
-  const [skills, setSkills] = useState('React,js, Node.js, Ruby on Rails');
-  const [phone, setPhone] = useState('718-777-4545');
-  const [timeZone, setTimeZone] = useState('GMT + 5, New York');
-  const [googleMeet, setGoogleMeet] = useState('meet.google.com/oer-yjhx-sia');
+  const [skills, setSkills] = useState('Analytical Skills');
+  const [phone, setPhone] = useState('9646621206');
+  const [timeZone, setTimeZone] = useState('GMT-11:00 Pacific/Midway');
+  const [googleMeet, setGoogleMeet] = useState(
+    'https://meet.google.com/vst-phkb-gvq'
+  );
   const [openModal, setOpenModal] = useState(false);
   const [editFields, setEditFields] = useState(false);
+
+  useEffect(() => {
+    if (profileData) {
+      const { bio, googlemeet, phone, skills, timezone } = profileData;
+      setBio(bio);
+      setGoogleMeet(googlemeet);
+      setPhone(phone);
+      setSkills(skills);
+      setTimeZone(timezone);
+    }
+  }, [profileData]);
 
   const fields = [
     {
@@ -83,6 +94,7 @@ const Profile = () => {
           withouHeading={true}
           showInModal={false}
           setEditFields={setEditFields}
+          profileData={profileData}
         />
       )}
       {!editFields ? (

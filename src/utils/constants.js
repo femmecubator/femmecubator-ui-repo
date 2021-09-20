@@ -31,8 +31,9 @@ const API_PATH = {
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
   ROOT: '/',
-  UPDATE_PASSWORD: '/api/updateProfile/updatePassword',
-  UPDATE_PROFILE: '/api/updateProfile',
+  UPDATE_PASSWORD: '/api/profile/updatePassword',
+  UPDATE_PROFILE: '/api/profile/updateProfile',
+  GETPROFILEDATA: '/api/profile/getProfileData',
 };
 
 const METHOD_TYPE = {

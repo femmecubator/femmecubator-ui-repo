@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   TextField,
@@ -15,8 +15,6 @@ import useStyles from './MentorOnboardingModal.styles';
 import timeZoneData from './timezoneArray';
 import topSkills from './topSkills';
 import { isEmpty } from 'lodash';
-import jwt_decode from 'jwt-decode';
-import { getTokenCookie } from 'utils/cookies';
 import Backdrop from '@material-ui/core/Backdrop';
 import request from 'utils/axiosConfig';
 import SnackBar from 'components/SnackBar';
@@ -55,6 +53,7 @@ const MentorOnboardingModal = ({
   setOpenModal,
   showInModal,
   setEditFields,
+  profileData,
 }) => {
   const isMobile = useMediaQuery('(max-width:1024px)');
   const {
@@ -78,8 +77,7 @@ const MentorOnboardingModal = ({
 
   const onSubmit = async data => {
     setOpenBackdropt(true);
-    const { _id } = jwt_decode(getTokenCookie());
-    const body = { ...data, _id };
+    const body = { ...data, hasOnboarded: true };
     try {
       const response = await request.post(API_PATH.UPDATE_PROFILE, body);
       if (response.data.message === 'Success') {
@@ -87,9 +85,10 @@ const MentorOnboardingModal = ({
         setOpenSnackBar(true);
         setResponseMessage('Account info updated successfully');
         setResponseMessageType('success');
-        setDisableInputs(true);
+        window.location.reload();
       }
     } catch (err) {
+      console.log(err);
       setOpenBackdropt(false);
       setOpenSnackBar(true);
       setResponseMessage(err.data.message);
@@ -100,6 +99,17 @@ const MentorOnboardingModal = ({
   const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
+
+  useEffect(() => {
+    if (profileData) {
+      const { bio, googlemeet, phone, skills, timezone } = profileData;
+      setValue('bio', bio);
+      setValue('googlemeet', googlemeet);
+      setValue('phone', phone);
+      setValue('skills', skills.split(','), { shouldValidate: true });
+      setValue('timezone', timezone, { shouldValidate: true });
+    }
+  }, [setValue, profileData]);
 
   const formContent = (
     <>
@@ -208,7 +218,7 @@ const MentorOnboardingModal = ({
             className: inputField,
             size: 'small',
             onChange: (event, newValue) => {
-              const value = newValue ? newValue.offset : null;
+              const value = newValue ? newValue : null;
               setValue('timezone', value, { shouldValidate: true });
             },
             renderInput: params => (

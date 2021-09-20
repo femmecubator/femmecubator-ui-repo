@@ -13,7 +13,7 @@ import SnackBar from 'components/SnackBar';
 import Backdrop from '@material-ui/core/Backdrop';
 import request from 'utils/axiosConfig';
 
-const AccountInfo = () => {
+const AccountInfo = ({ profileData }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
@@ -66,12 +66,10 @@ const AccountInfo = () => {
       .matches(/^[a-zA-Z\s]*$/, ONLY_LETTERS_WS),
   });
 
-  const { register, handleSubmit, errors, setError, setValue, reset } = useForm(
-    {
-      revalidateMode: 'onChange',
-      resolver: yupResolver(personalInfoSchema),
-    }
-  );
+  const { register, handleSubmit, errors, setValue } = useForm({
+    revalidateMode: 'onChange',
+    resolver: yupResolver(personalInfoSchema),
+  });
 
   const onSubmit = async data => {
     setOpenBackdropt(true);
@@ -95,11 +93,14 @@ const AccountInfo = () => {
   };
 
   useEffect(() => {
-    setValue('email', 'samcc@gmail.com');
-    setValue('firstName', 'Sam');
-    setValue('lastName', 'Cruz');
-    setValue('jobTitle', 'UX Designer');
-  }, [setValue]);
+    if (profileData) {
+      const { email, firstName, lastName, title } = profileData;
+      setValue('email', email);
+      setValue('firstName', firstName);
+      setValue('lastName', lastName);
+      setValue('jobTitle', title);
+    }
+  }, [setValue, profileData]);
 
   return (
     <>
