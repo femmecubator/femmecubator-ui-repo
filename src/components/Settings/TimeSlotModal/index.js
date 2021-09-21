@@ -8,6 +8,7 @@ import {
   DialogContentText,
   DialogTitle,
   Input,
+  TextField,
 } from '@material-ui/core/';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DatePicker from 'react-datepicker';
@@ -33,6 +34,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
     slectedWeekDay,
     border_right_none,
     timeSlotsButtons,
+    gooleMeet,
   } = classes;
 
   const [weekDays, setWeekDays] = useState(weekDaysData);
@@ -40,6 +42,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
+  const [meetLink, setMeetLink] = useState('meet.google.com/oer-yjhx-sia');
 
   const StartDateInput = React.forwardRef(({ value, onClick }, ref) => (
     <button className={calendarInput} onClick={onClick}>
@@ -94,7 +97,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
         className={heading}
         id="responsive-dialog-title"
       >{`Add a timeslot`}</DialogTitle>
-      <DialogContent>
+      <DialogContent style={{ padding: '0px 24px' }}>
         <DialogContentText>
           <div className={modalContent}>
             <p className={createTitle}>Create Title</p>
@@ -136,9 +139,7 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
                 />
               </div>
             </div>
-            <p className={heading} style={{ marginTop: '25px' }}>
-              Repeat every
-            </p>
+            <p style={{ marginTop: '25px' }}>Repeat every</p>
             <div className={weekDaysWrapper}>
               {weekDays.map((data, index) => {
                 return (
@@ -179,6 +180,22 @@ const TimeSlotModal = ({ openModal, setOpenModal, setNotTimeSlot }) => {
                   customInput={<TimeInput />}
                 />
               </div>
+              <p className={createTitle} style={{ marginTop: '25px' }}>
+                Meeting link:
+              </p>
+              <TextField
+                {...{
+                  id: `${'gooleMeet'}`,
+                  className: `${gooleMeet}`,
+                  variant: 'outlined',
+                  inputProps: { 'data-testid': `${gooleMeet}` },
+                  name: `${gooleMeet}`,
+                  value: meetLink,
+                  onChange: event => {
+                    setMeetLink(event.target.value);
+                  },
+                }}
+              />
             </div>
           </div>
         </DialogContentText>
