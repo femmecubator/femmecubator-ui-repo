@@ -27,8 +27,8 @@ const Profile = ({ profileData }) => {
       setBio(bio);
       setGoogleMeet(googlemeet);
       setPhone(phone);
-      setSkills(skills);
-      setTimeZone(timezone);
+      setSkills(skills.join());
+      setTimeZone(timezone.name);
     }
   }, [profileData]);
 

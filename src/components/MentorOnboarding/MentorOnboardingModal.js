@@ -68,15 +68,27 @@ const MentorOnboardingModal = ({
   } = useStyles({
     isMobile: isMobile,
   });
-
-  const [open, setOpen] = useState(opened);
+  const { skills, timezone } = profileData;
+  const indexArray = [];
+  skills.map(data => {
+    topSkills.map((data2, index) => {
+      if (data2.title === data) {
+        indexArray.push(index);
+      }
+    });
+  });
+  const defaultSkillsArray = indexArray.map(data => topSkills[data]);
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
   const [responseMessageType, setResponseMessageType] = useState('');
   const [openBackdrop, setOpenBackdropt] = useState(false);
+  const [timeZoneObject, setTimeZoneObject] = useState(timezone);
+  const [skillsArray, setSkillsArray] = useState(skills);
 
   const onSubmit = async data => {
     setOpenBackdropt(true);
+    data.timezone = timeZoneObject;
+    data.skills = skillsArray;
     const body = { ...data, hasOnboarded: true };
     try {
       const response = await request.post(API_PATH.UPDATE_PROFILE, body);
@@ -99,17 +111,15 @@ const MentorOnboardingModal = ({
   const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
-
   useEffect(() => {
     if (profileData) {
-      const { bio, googlemeet, phone, skills, timezone } = profileData;
+      const { bio, googlemeet, phone, skills } = profileData;
       setValue('bio', bio);
       setValue('googlemeet', googlemeet);
       setValue('phone', phone);
-      setValue('skills', skills.split(','), { shouldValidate: true });
-      setValue('timezone', timezone, { shouldValidate: true });
+      setValue('skills', skills, { shouldValidate: true });
     }
-  }, [setValue, profileData]);
+  }, [setValue, profileData, timeZoneObject]);
 
   const formContent = (
     <>
@@ -171,12 +181,14 @@ const MentorOnboardingModal = ({
             size: 'small',
             'data-testid': 'skills',
             onChange: (event, newValue) => {
+              setSkillsArray(newValue.map(option => option.title));
               setValue(
                 'skills',
                 newValue.map(option => option.title),
                 { shouldValidate: true }
               );
             },
+            defaultValue: defaultSkillsArray,
             renderInput: params => (
               <TextField
                 {...{
@@ -219,8 +231,10 @@ const MentorOnboardingModal = ({
             size: 'small',
             onChange: (event, newValue) => {
               const value = newValue ? newValue : null;
+              setTimeZoneObject(value);
               setValue('timezone', value, { shouldValidate: true });
             },
+            defaultValue: timeZoneObject,
             renderInput: params => (
               <TextField
                 {...{
