@@ -68,22 +68,37 @@ const MentorOnboardingModal = ({
   } = useStyles({
     isMobile: isMobile,
   });
-  const { skills, timezone } = profileData;
-  const indexArray = [];
-  skills.map(data => {
-    topSkills.map((data2, index) => {
-      if (data2.title === data) {
-        indexArray.push(index);
+
+  var defaultSkillsArray = [];
+  var defaultTimeZoneIndex;
+  if (profileData) {
+    const { skills, timezone } = profileData;
+    var indexArraySkills = [];
+    skills.map(data => {
+      topSkills.map((data2, index) => {
+        if (data2.title === data) {
+          indexArraySkills.push(index);
+        }
+      });
+    });
+    timeZoneData.map((data, index) => {
+      if (data.name === timezone.name) {
+        defaultTimeZoneIndex = index;
       }
     });
-  });
-  const defaultSkillsArray = indexArray.map(data => topSkills[data]);
+    defaultSkillsArray = indexArraySkills.map(data => topSkills[data]);
+  }
+
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
   const [responseMessageType, setResponseMessageType] = useState('');
   const [openBackdrop, setOpenBackdropt] = useState(false);
-  const [timeZoneObject, setTimeZoneObject] = useState(timezone);
-  const [skillsArray, setSkillsArray] = useState(skills);
+  const [timeZoneObject, setTimeZoneObject] = useState(
+    profileData ? profileData.timezone : null
+  );
+  const [skillsArray, setSkillsArray] = useState(
+    profileData ? profileData.skills : []
+  );
 
   const onSubmit = async data => {
     setOpenBackdropt(true);
@@ -234,7 +249,7 @@ const MentorOnboardingModal = ({
               setTimeZoneObject(value);
               setValue('timezone', value, { shouldValidate: true });
             },
-            defaultValue: timeZoneObject,
+            defaultValue: timeZoneData[defaultTimeZoneIndex],
             renderInput: params => (
               <TextField
                 {...{
