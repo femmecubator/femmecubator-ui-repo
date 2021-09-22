@@ -19,6 +19,9 @@ import Backdrop from '@material-ui/core/Backdrop';
 import request from 'utils/axiosConfig';
 import SnackBar from 'components/SnackBar';
 import { API_PATH } from 'utils/constants';
+import jwt_decode from 'jwt-decode';
+import { getTokenCookie } from 'utils/cookies';
+import Cookies from 'universal-cookie';
 
 const BIO = 'Bio';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
@@ -69,6 +72,12 @@ const MentorOnboardingModal = ({
     isMobile: isMobile,
   });
 
+  const cookies = new Cookies();
+
+  if (cookies.get('TOKEN')) {
+    const { hasOnboarded } = jwt_decode(getTokenCookie());
+  }
+
   var defaultSkillsArray = [];
   var defaultTimeZoneIndex;
   if (profileData) {
@@ -104,9 +113,14 @@ const MentorOnboardingModal = ({
     setOpenBackdropt(true);
     data.timezone = timeZoneObject;
     data.skills = skillsArray;
-    const body = { ...data, hasOnboarded: true };
+    var body;
+    if (hasOnboarded) {
+      body = { ...data };
+    } else {
+      body = { ...data, hasOnboarded: true };
+    }
     try {
-      const response = await request.post(API_PATH.UPDATE_PROFILE, body);
+      const response = await request.post(API_PATH.UPDATE_MENTOR_PROFILE, body);
       if (response.data.message === 'Success') {
         setOpenBackdropt(false);
         setOpenSnackBar(true);

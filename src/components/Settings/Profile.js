@@ -4,7 +4,7 @@ import useStyles from './Settings.style';
 import { Button } from '@material-ui/core';
 import MentorOnboardingModal from 'components/MentorOnboarding/MentorOnboardingModal';
 
-const Profile = ({ profileData }) => {
+const Profile = ({ profileData, mentorsProfileData }) => {
   const isMobile = useMediaQuery('(max-width:580px)');
   const classes = useStyles({ isMobile });
   const { inputGroups, textArea, gooleMeet, settingsButton, profileEdit } =
@@ -22,15 +22,15 @@ const Profile = ({ profileData }) => {
   const [editFields, setEditFields] = useState(false);
 
   useEffect(() => {
-    if (profileData) {
-      const { bio, googlemeet, phone, skills, timezone } = profileData;
+    if (mentorsProfileData) {
+      const { bio, googlemeet, phone, skills, timezone } = mentorsProfileData;
       setBio(bio);
       setGoogleMeet(googlemeet);
       setPhone(phone);
       setSkills(skills.join());
       setTimeZone(timezone.name);
     }
-  }, [profileData]);
+  }, [mentorsProfileData]);
 
   const fields = [
     {
@@ -94,7 +94,7 @@ const Profile = ({ profileData }) => {
           withouHeading={true}
           showInModal={false}
           setEditFields={setEditFields}
-          profileData={profileData}
+          profileData={mentorsProfileData}
         />
       )}
       {!editFields ? (

@@ -34,6 +34,8 @@ const API_PATH = {
   UPDATE_PASSWORD: '/api/profile/updatePassword',
   UPDATE_PROFILE: '/api/profile/updateProfile',
   GETPROFILEDATA: '/api/profile/getProfileData',
+  UPDATE_MENTOR_PROFILE: '/api/mentors/updateProfile',
+  GET_MENTORS_PROFILEDATA: 'api/mentors/profile',
 };
 
 const METHOD_TYPE = {

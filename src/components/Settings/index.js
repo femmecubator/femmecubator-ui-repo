@@ -28,10 +28,12 @@ const SettingsComponent = () => {
   const [tab, setTab] = useState(0);
 
   const [profileData, setProfileData] = useState(null);
+  const [mentorsProfileData, setMentorsProfileData] = useState(null);
   const [openBackdrop, setOpenBackdropt] = useState(false);
 
   useEffect(() => {
     getProfileData();
+    getMentorsProfileData();
   }, []);
 
   const getProfileData = async () => {
@@ -40,6 +42,18 @@ const SettingsComponent = () => {
       const res = await request.get(API_PATH.GETPROFILEDATA);
       if (res.data.data) {
         setProfileData(res.data.data);
+        setOpenBackdropt(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getMentorsProfileData = async () => {
+    setOpenBackdropt(true);
+    try {
+      const res = await request.get(API_PATH.GET_MENTORS_PROFILEDATA);
+      if (res.data.data) {
+        setMentorsProfileData(res.data.data);
         setOpenBackdropt(false);
       }
     } catch (err) {
@@ -79,7 +93,11 @@ const SettingsComponent = () => {
                   </div>
                   <div className={tabsContent}>
                     {tab === 0 ? (
-                      <Profile profileData={profileData ? profileData : null} />
+                      <Profile
+                        mentorsProfileData={
+                          mentorsProfileData ? mentorsProfileData : null
+                        }
+                      />
                     ) : (
                       <Security />
                     )}
