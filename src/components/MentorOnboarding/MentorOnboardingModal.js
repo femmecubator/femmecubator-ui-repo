@@ -74,8 +74,10 @@ const MentorOnboardingModal = ({
 
   const cookies = new Cookies();
 
+  var hasOnboarded;
+
   if (cookies.get('TOKEN')) {
-    const { hasOnboarded } = jwt_decode(getTokenCookie());
+    hasOnboarded = jwt_decode(getTokenCookie()).hasOnboarded;
   }
 
   var defaultSkillsArray = [];

@@ -41,9 +41,11 @@ const Directory = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await request.get('/api/directory');
-        setMentorCards(data);
-      } catch (e) {
+        const { data } = await request.get('/api/mentors');
+        if (data.data) {
+          setMentorCards(data.data);
+        }
+      } catch (err) {
         setErrorResponse(true);
       }
     }

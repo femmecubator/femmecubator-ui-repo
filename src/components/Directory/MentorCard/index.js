@@ -14,15 +14,7 @@ import {
 } from '@material-ui/core/';
 import BookDialog from '../BookDialog';
 
-const MentorCard = ({
-  firstName,
-  lastName,
-  title,
-  mentorSkills,
-  bio,
-  initials,
-  onTestClick,
-}) => {
+const MentorCard = ({ userInfo, skills, bio, onTestClick }) => {
   const [openMeet, setOpenMeet] = React.useState(false);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
@@ -50,7 +42,8 @@ const MentorCard = ({
         <CardHeader
           avatar={
             <Avatar aria-label="Mentor Avatar" className={avatar}>
-              {initials}
+              {userInfo[0].firstName.charAt(0)}
+              {userInfo[0].lastName.charAt(0)}
             </Avatar>
           }
           action={
@@ -74,7 +67,7 @@ const MentorCard = ({
                 'data-testid': 'mentorNameField',
               }}
             >
-              {firstName} {lastName}
+              {userInfo[0].firstName} {userInfo[0].lastName}
             </Typography>
           }
           subheader={
@@ -85,7 +78,7 @@ const MentorCard = ({
                 'data-testid': 'jobTitleField',
               }}
             >
-              {title}
+              {userInfo[0].title}
             </Typography>
           }
         />
@@ -99,7 +92,7 @@ const MentorCard = ({
               gutterBottom: true,
             }}
           >
-            {mentorSkills}
+            {skills.join()}
           </Typography>
           <Typography
             {...{
