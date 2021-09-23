@@ -80,7 +80,7 @@ const useStyles = makeStyles(() => ({
     margin: 0,
   },
   weekDaysWrapper: {
-    border: '2px solid #2F80ED',
+    border: '2px solid #bdbdbd',
     borderRadius: '4px',
     width: 'fit-content',
     '& :last-child': {
@@ -142,6 +142,10 @@ const useStyles = makeStyles(() => ({
         color: '#026FE4',
       },
     },
+  },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
   },
 }));
 

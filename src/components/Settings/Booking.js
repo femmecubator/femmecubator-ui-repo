@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './Settings.style';
 import { Button, Checkbox } from '@material-ui/core';
 import errorImage from '../../../src/assets/images/error.svg';
 import TimeSlotModal from './TimeSlotModal';
 import ThreeDots from '../../../src/assets/images/ThreeDots.svg';
+import { formatAMPM } from 'utils/timeConverter';
+import { monthNames } from 'utils/timeConverter';
 
-const Booking = ({ heading }) => {
+const Booking = ({ heading, timeSlots, setTimeSlots }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const bookingMediaQuery = useMediaQuery('(max-width:632px)');
   const classes = useStyles({ isMobile, bookingMediaQuery });
@@ -33,6 +35,12 @@ const Booking = ({ heading }) => {
   const handleChange = event => {
     setChecked(event.target.checked);
   };
+
+  useEffect(() => {
+    if (timeSlots && timeSlots.length > 0) {
+      setNotTimeSlot(false);
+    }
+  }, [timeSlots]);
 
   return (
     <>
@@ -64,7 +72,7 @@ const Booking = ({ heading }) => {
       )}
       <hr className={hr} />
 
-      {noTimeSlot ? (
+      {!(timeSlots && timeSlots.length > 0) ? (
         <div className={bookingInner}>
           <img src={errorImage} alt="error" />
           <p>You haven’t set up time slots yet. </p>
@@ -74,16 +82,36 @@ const Booking = ({ heading }) => {
         </div>
       ) : (
         <>
-          <div className={timeSlotData}>
-            <Checkbox
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'primary checkbox' }}
-            />
-            <div>
-              <label htmlFor={'title'}>Weekdays</label>
-            </div>
-            <p>Mon, Wed, Fri | 8-9 pm EST | Aug - Dec 2021</p>
-          </div>
+          {timeSlots.map((data, index) => {
+            var weekDays = [];
+            data.weekDays
+              .filter(data => data.selected === true)
+              .map(data => {
+                weekDays.push(data.lable);
+              });
+            var startTime = new Date(data.startTime);
+            var endTime = new Date(data.endTime);
+            var startMonth = new Date(data.startDate).getMonth();
+            var endMonth = new Date(data.endDate).getMonth();
+            return (
+              <div className={timeSlotData} key={index}>
+                <Checkbox
+                  onChange={handleChange}
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
+                />
+                <div>
+                  <label htmlFor={'title'}>Weekdays</label>
+                </div>
+                <p>
+                  {weekDays.join()} |{' '}
+                  {`${formatAMPM(startTime)} - ${formatAMPM(endTime)}`} EST |{' '}
+                  {`${monthNames[startMonth]} - ${monthNames[endMonth]}`}{' '}
+                  {'2021'}
+                </p>
+              </div>
+            );
+          })}
+
           {bookingMediaQuery ? (
             <div className={mobileAddTimeSlotBtn}>
               <Button
@@ -100,6 +128,8 @@ const Booking = ({ heading }) => {
         openModal={openModal}
         setOpenModal={setOpenModal}
         setNotTimeSlot={setNotTimeSlot}
+        timeSlots={timeSlots}
+        setTimeSlots={setTimeSlots}
       />
     </>
   );

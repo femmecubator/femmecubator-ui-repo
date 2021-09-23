@@ -20,6 +20,10 @@ const useStyles = makeStyles(() => ({
     borderRadius: '8px',
     marginBottom: '90px',
   },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
+  },
 }));
 
 export default useStyles;
