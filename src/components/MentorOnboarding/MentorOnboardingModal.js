@@ -154,15 +154,6 @@ const MentorOnboardingModal = ({
 
   const formContent = (
     <>
-      <Backdrop className={backdrop} open={openBackdrop}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <SnackBar
-        openSnackBar={openSnackBar}
-        setOpenSnackBar={setOpenSnackBar}
-        responseMessage={responseMessage}
-        responseMessageType={responseMessageType}
-      />
       <form
         className={formContainer}
         onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
@@ -307,7 +298,7 @@ const MentorOnboardingModal = ({
     </>
   );
 
-  return showInModal ? (
+  return (
     <>
       <SnackBar
         openSnackBar={openSnackBar}
@@ -318,23 +309,27 @@ const MentorOnboardingModal = ({
       <Backdrop className={backdrop} open={openBackdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <FocusTrapOverlay open={opened}>
-        <Paper
-          {...{
-            role: 'alertdialog',
-            'aria-labelledby': 'mentorOnboardingTitle',
-            'aria-describedby': 'mentorOnboardingDesc',
-            id: 'mentor-onboarding',
-            'aria-label': 'Mentor onboarding modal',
-            className: modal,
-          }}
-        >
-          {formContent}
-        </Paper>
-      </FocusTrapOverlay>
+      {showInModal ? (
+        <>
+          <FocusTrapOverlay open={opened}>
+            <Paper
+              {...{
+                role: 'alertdialog',
+                'aria-labelledby': 'mentorOnboardingTitle',
+                'aria-describedby': 'mentorOnboardingDesc',
+                id: 'mentor-onboarding',
+                'aria-label': 'Mentor onboarding modal',
+                className: modal,
+              }}
+            >
+              {formContent}
+            </Paper>
+          </FocusTrapOverlay>
+        </>
+      ) : (
+        formContent
+      )}
     </>
-  ) : (
-    formContent
   );
 };
 
