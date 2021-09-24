@@ -83,16 +83,11 @@ const Booking = ({ heading, timeSlots, setTimeSlots }) => {
       ) : (
         <>
           {timeSlots.map((data, index) => {
-            var weekDays = [];
-            data.weekDays
-              .filter(data => data.selected === true)
-              .map(data => {
-                weekDays.push(data.lable);
-              });
+            var weekDays = data.weekDays;
             var startTime = new Date(data.startTime);
             var endTime = new Date(data.endTime);
-            var startMonth = new Date(data.startDate).getMonth();
-            var endMonth = new Date(data.endDate).getMonth();
+            var startMonth = new Date(data.startDate);
+            var endMonth = new Date(data.endDate);
             return (
               <div className={timeSlotData} key={index}>
                 <Checkbox
@@ -103,9 +98,13 @@ const Booking = ({ heading, timeSlots, setTimeSlots }) => {
                   <label htmlFor={'title'}>Weekdays</label>
                 </div>
                 <p>
-                  {weekDays.join()} |{' '}
+                  {weekDays.join().replace(/,[s]*/g, ', ')} |{' '}
                   {`${formatAMPM(startTime)} - ${formatAMPM(endTime)}`} EST |{' '}
-                  {`${monthNames[startMonth]} - ${monthNames[endMonth]}`}{' '}
+                  {`${startMonth.getDate()} ${
+                    monthNames[startMonth.getMonth()]
+                  } - ${startMonth.getDate()} ${
+                    monthNames[endMonth.getMonth()]
+                  }`}{' '}
                   {'2021'}
                 </p>
               </div>

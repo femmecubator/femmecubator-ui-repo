@@ -16,6 +16,7 @@ import { ReactComponent as SubheaderIcon } from '../Subheader/assets/SubheaderIc
 import request from '../../utils/axiosConfig';
 import isEmpty from 'lodash/isEmpty';
 import Meetings from 'components/Settings/Meetings';
+
 const Directory = () => {
   const isMobile = useMediaQuery('(max-width:1023px)');
   const isSmallDevice = useMediaQuery('(max-width:480px)');
@@ -43,7 +44,14 @@ const Directory = () => {
       try {
         const { data } = await request.get('/api/mentors');
         if (data.data) {
-          setMentorCards(data.data);
+          var mentorsWithTimeSlot = [];
+          var mentorsData = data.data;
+          mentorsData.map(data => {
+            if ('timeSlot' in data) {
+              mentorsWithTimeSlot.push(data);
+            }
+          });
+          setMentorCards(mentorsWithTimeSlot);
         }
       } catch (err) {
         setErrorResponse(true);

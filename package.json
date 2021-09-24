@@ -12,6 +12,7 @@
     "focus-trap-react": "^8.5.0",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "msw": "^0.24.1",
     "react": "^17.0.1",
     "react-datepicker": "^4.2.1",

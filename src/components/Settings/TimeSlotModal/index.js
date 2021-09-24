@@ -17,6 +17,7 @@ import CalendarIcon from '../../../../src/assets/images/CalendarIcon.svg';
 import DownArrow from '../../../../src/assets/images/DownArrow.svg';
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
+import moment from 'moment';
 
 const TimeSlotModal = ({
   openModal,
@@ -48,7 +49,9 @@ const TimeSlotModal = ({
 
   const [weekDays, setWeekDays] = useState(weekDaysData);
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(
+    new Date(moment().add(3, 'months').calendar())
+  );
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [meetLink, setMeetLink] = useState('');
@@ -110,6 +113,12 @@ const TimeSlotModal = ({
 
   const saveTimeSlot = async () => {
     setOpenBackdrop(true);
+    var selectedWeekDays = [];
+    weekDays.map(data => {
+      if (data.selected === true) {
+        selectedWeekDays.push(data.timeSlotLabel);
+      }
+    });
     var body = {
       timeSlot: [
         ...timeSlots,
@@ -120,7 +129,7 @@ const TimeSlotModal = ({
           endDate: endDate,
           startTime: startTime,
           endTime: endTime,
-          weekDays: weekDays,
+          weekDays: selectedWeekDays,
         },
       ],
     };
@@ -164,10 +173,7 @@ const TimeSlotModal = ({
                   autoFocus: true,
                 }}
                 value={title}
-                onChange={e => {
-                  setTitle(e.target.value);
-                  console.log(startTime === endTime);
-                }}
+                onChange={e => setTitle(e.target.value)}
               />
               <div className={calendarDateWrapper}>
                 <div className={calendarDateInput}>
@@ -216,7 +222,7 @@ const TimeSlotModal = ({
                           '2px solid #bdbdbd')
                       }
                     >
-                      {data.lable}
+                      {data.calendarLabel}
                     </button>
                   );
                 })}
@@ -238,7 +244,7 @@ const TimeSlotModal = ({
                 <div className={calendarDateInput}>
                   <label htmlFor="Start Date">End Time</label>
                   <DatePicker
-                    selected={endTime}
+                    selected={endDate}
                     onChange={date => setEndTime(date)}
                     showTimeSelect
                     showTimeSelectOnly
@@ -294,31 +300,38 @@ export default TimeSlotModal;
 
 const weekDaysData = [
   {
-    lable: 'Su',
+    calendarLabel: 'Su',
+    timeSlotLabel: 'Sun',
     selected: false,
   },
   {
-    lable: 'M',
+    calendarLabel: 'M',
+    timeSlotLabel: 'Mon',
     selected: false,
   },
   {
-    lable: 'T',
+    calendarLabel: 'T',
+    timeSlotLabel: 'Tue',
     selected: false,
   },
   {
-    lable: 'W',
+    calendarLabel: 'W',
+    timeSlotLabel: 'Wed',
     selected: false,
   },
   {
-    lable: 'Th',
+    calendarLabel: 'Th',
+    timeSlotLabel: 'Thu',
     selected: false,
   },
   {
-    lable: 'F',
+    calendarLabel: 'F',
+    timeSlotLabel: 'Fri',
     selected: false,
   },
   {
-    lable: 'S',
+    calendarLabel: 'S',
+    timeSlotLabel: 'Sat',
     selected: false,
   },
 ];

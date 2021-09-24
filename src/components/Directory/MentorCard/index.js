@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core/';
 import BookDialog from '../BookDialog';
 
-const MentorCard = ({ userInfo, skills, bio, onTestClick }) => {
+const MentorCard = ({ userInfo, skills, bio, onTestClick, timeSlot }) => {
   const [openMeet, setOpenMeet] = React.useState(false);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
@@ -37,7 +37,13 @@ const MentorCard = ({ userInfo, skills, bio, onTestClick }) => {
 
   return (
     <>
-      <BookDialog openMeet={openMeet} setOpenMeet={setOpenMeet} />
+      {timeSlot && timeSlot.length > 0 ? (
+        <BookDialog
+          openMeet={openMeet}
+          setOpenMeet={setOpenMeet}
+          timeSlot={timeSlot}
+        />
+      ) : null}
       <Card className={root}>
         <CardHeader
           avatar={
@@ -109,12 +115,12 @@ const MentorCard = ({ userInfo, skills, bio, onTestClick }) => {
   );
 };
 MentorCard.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  mentorSkills: PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
-  initials: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  title: PropTypes.string,
+  mentorSkills: PropTypes.string,
+  bio: PropTypes.string,
+  initials: PropTypes.string,
 };
 
 export default MentorCard;
