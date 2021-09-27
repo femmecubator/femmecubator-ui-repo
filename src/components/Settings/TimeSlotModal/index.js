@@ -57,11 +57,11 @@ const TimeSlotModal = ({
   const [errorResponse, setErrorResponse] = useState(false);
 
   useState(() => {
-    var endDate = new Date();
+    var endTime = new Date();
     var startTime = new Date();
-    endDate.setHours(endDate.getHours() + 1, 0, 0, 0);
+    endTime.setHours(endTime.getHours() + 1, 0, 0, 0);
     startTime.setHours(startTime.getHours(), 0, 0, 0);
-    setEndTime(endDate);
+    setEndTime(endTime);
     setStartTime(startTime);
     var date = new Date();
     setEndDate(new Date(date.setMonth(date.getMonth() + 3)));
@@ -87,7 +87,15 @@ const TimeSlotModal = ({
     </button>
   ));
 
-  const TimeInput = React.forwardRef(({ value, onClick }, ref) => (
+  const StartTimeInput = React.forwardRef(({ value, onClick }, ref) => (
+    <button className={calendarInput} onClick={onClick}>
+      <p className={`${date_input} ${border_right_none}`} ref={ref}>
+        {value}
+      </p>
+      <img src={DownArrow} alt="down-arrow" />
+    </button>
+  ));
+  const EndtTimeInput = React.forwardRef(({ value, onClick }, ref) => (
     <button className={calendarInput} onClick={onClick}>
       <p className={`${date_input} ${border_right_none}`} ref={ref}>
         {value}
@@ -237,23 +245,23 @@ const TimeSlotModal = ({
                     onChange={date => setStartTime(date)}
                     showTimeSelect
                     showTimeSelectOnly
-                    timeIntervals={15}
+                    timeIntervals={30}
                     timeCaption="Time"
                     dateFormat="h:mm aa"
-                    customInput={<TimeInput />}
+                    customInput={<StartTimeInput />}
                   />
                 </div>
                 <div className={calendarDateInput}>
                   <label htmlFor="Start Date">End Time</label>
                   <DatePicker
-                    selected={endDate}
+                    selected={endTime}
                     onChange={date => setEndTime(date)}
                     showTimeSelect
                     showTimeSelectOnly
-                    timeIntervals={15}
+                    timeIntervals={30}
                     timeCaption="Time"
                     dateFormat="h:mm aa"
-                    customInput={<TimeInput />}
+                    customInput={<EndtTimeInput />}
                   />
                 </div>
                 <p className={createTitle} style={{ marginTop: '25px' }}>
