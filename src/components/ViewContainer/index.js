@@ -11,7 +11,6 @@ import MentorOnboardingModal from 'components/MentorOnboarding/MentorOnboardingM
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
 import { Backdrop, CircularProgress } from '@material-ui/core';
-import { date } from 'yup/lib/locale';
 
 const ViewContainer = () => {
   const { role_id, hasOnboarded } = jwt_decode(getTokenCookie());
@@ -23,6 +22,7 @@ const ViewContainer = () => {
 
   const [timeSlots, setTimeSlots] = useState(null);
   const [openBackdrop, setOpenBackdrop] = useState(false);
+  const [errorResponse, setErrorResponse] = useState(false);
 
   useEffect(() => {
     if (hasOnboarded) {
@@ -41,8 +41,11 @@ const ViewContainer = () => {
       }
     } catch (err) {
       console.log(err);
+      setErrorResponse(true);
     }
   };
+
+  if (errorResponse) throw Error('BAD API REQUEST');
 
   return (
     <>

@@ -17,7 +17,6 @@ import CalendarIcon from '../../../../src/assets/images/CalendarIcon.svg';
 import DownArrow from '../../../../src/assets/images/DownArrow.svg';
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
-import moment from 'moment';
 
 const TimeSlotModal = ({
   openModal,
@@ -49,15 +48,13 @@ const TimeSlotModal = ({
 
   const [weekDays, setWeekDays] = useState(weekDaysData);
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(
-    new Date(moment().add(3, 'months').calendar())
-  );
+  const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [meetLink, setMeetLink] = useState('');
   const [title, setTitle] = useState('');
-  const [disableSaveBtn, setDisableSaveBtn] = useState(true);
   const [openBackdrop, setOpenBackdrop] = useState(false);
+  const [errorResponse, setErrorResponse] = useState(false);
 
   useState(() => {
     var endDate = new Date();
@@ -66,6 +63,8 @@ const TimeSlotModal = ({
     startTime.setHours(startTime.getHours(), 0, 0, 0);
     setEndTime(endDate);
     setStartTime(startTime);
+    var date = new Date();
+    setEndDate(new Date(date.setMonth(date.getMonth() + 3)));
   }, [endTime, startTime]);
 
   const StartDateInput = React.forwardRef(({ value, onClick }, ref) => (
@@ -142,9 +141,12 @@ const TimeSlotModal = ({
         setNotTimeSlot(false);
       }
     } catch (err) {
+      setErrorResponse(true);
       console.log(err);
     }
   };
+
+  if (errorResponse) throw Error('BAD API REQUEST');
 
   return (
     <>
