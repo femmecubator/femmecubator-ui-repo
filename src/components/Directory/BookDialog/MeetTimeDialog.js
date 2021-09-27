@@ -12,6 +12,11 @@ const MeetTimeDialog = ({
   openMeet,
   handleMeetClose,
   handleConfirmOpen,
+  timeSlot,
+  setDays,
+  handleClick,
+  days,
+  mentor_id,
 }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const isSmallDevice = useMediaQuery('(max-width:480px)');
@@ -48,13 +53,32 @@ const MeetTimeDialog = ({
           <span className={`${highlightText}`}>Amanda Powell, UX Mentor</span>
         </DialogContentText>
         <div className={`${slotTableContainer} ${paddingTopSm}`}>
-          <ArrowBackIosIcon />
+          {days > 4 ? (
+            <ArrowBackIosIcon
+              onClick={() => {
+                if (days > 4) {
+                  handleClick(mentor_id, days - 5);
+                  setDays(days - 5);
+                } else {
+                  handleClick(mentor_id, 4);
+                  setDays(4);
+                }
+              }}
+            />
+          ) : null}
+
           <SlotTable
             meetTimeSlots={meetTimeSlots}
             handleMeetClose={handleMeetClose}
             handleConfirmOpen={handleConfirmOpen}
+            timeSlot={timeSlot}
           />
-          <ArrowForwardIosIcon />
+          <ArrowForwardIosIcon
+            onClick={() => {
+              handleClick(mentor_id, days + 5);
+              setDays(days + 5);
+            }}
+          />
         </div>
       </DialogContent>
     </Dialog>
@@ -66,6 +90,7 @@ MeetTimeDialog.propTypes = {
   openMeet: PropTypes.bool.isRequired,
   handleMeetClose: PropTypes.func.isRequired,
   handleConfirmOpen: PropTypes.func.isRequired,
+  timeSlot: PropTypes.array.isRequired,
 };
 
 export default MeetTimeDialog;

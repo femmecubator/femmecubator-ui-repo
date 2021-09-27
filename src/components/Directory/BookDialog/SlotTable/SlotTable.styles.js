@@ -5,7 +5,8 @@ const useStyles = makeStyles(() => ({
   root: {
     ...font,
     width: '100%',
-    display: 'flex',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
     justifyContent: 'space-evenly',
     color: '#495057',
     paddingBottom: '60px',
@@ -38,6 +39,13 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       backgroundColor: '#026FE4',
       color: '#fff',
+    },
+    '& span': {
+      display: 'flex',
+      flexDirection: 'column',
+      '& p': {
+        margin: 0,
+      },
     },
   },
   unavailableButton: {

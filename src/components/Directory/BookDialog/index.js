@@ -3,8 +3,17 @@ import ConfirmDialog from './ConfirmDialog';
 import AwesomeDialog from './AwesomeDialog';
 import SessionDialog from './SessionDialog';
 import MeetTimeDialog from './MeetTimeDialog';
-export default function BookDialog({ openMeet, setOpenMeet }) {
-  // DUMMY TIME SLOTS DATA
+
+export default function BookDialog({
+  openMeet,
+  setOpenMeet,
+  timeSlot,
+  slotsData,
+  setDays,
+  days,
+  handleClick,
+  mentor_id,
+}) {
   const meetTimeSlots = [
     {
       id: 101,
@@ -71,12 +80,15 @@ export default function BookDialog({ openMeet, setOpenMeet }) {
   return (
     <>
       <MeetTimeDialog
-        meetTimeSlots={
-          meetTimeSlots && meetTimeSlots.length > 0 ? meetTimeSlots : []
-        }
+        meetTimeSlots={slotsData ? slotsData : []}
         openMeet={openMeet}
         handleMeetClose={handleMeetClose}
         handleConfirmOpen={handleConfirmOpen}
+        timeSlot={timeSlot}
+        setDays={setDays}
+        days={days}
+        handleClick={handleClick}
+        mentor_id={mentor_id}
       />
 
       <ConfirmDialog
