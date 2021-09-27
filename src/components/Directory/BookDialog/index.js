@@ -46,15 +46,10 @@ export default function BookDialog({ openMeet, setOpenMeet }) {
   const [openAwesome, setOpenAwesome] = React.useState(false);
   const [openSession, setOpenSession] = React.useState(false);
 
-  // Meet time dialog handlers
-  // const handleMeetOpen = () => {
-  //   setOpenMeet(true);
-  // };
   const handleMeetClose = () => {
     setOpenMeet(false);
   };
 
-  // Awesome dialog handlers
   const handleAwesomeOpen = () => {
     setOpenAwesome(true);
   };
@@ -62,7 +57,6 @@ export default function BookDialog({ openMeet, setOpenMeet }) {
     setOpenAwesome(false);
   };
 
-  // Confirm Dialog handlers
   const handleConfirmOpen = () => {
     setOpenConfirm(true);
   };
@@ -70,10 +64,6 @@ export default function BookDialog({ openMeet, setOpenMeet }) {
     setOpenConfirm(false);
   };
 
-  // Session Dialog handlers
-  // const handleSessionOpen = () => {
-  //   setOpenSession(true);
-  // };
   const handleSessionClose = () => {
     setOpenSession(false);
   };

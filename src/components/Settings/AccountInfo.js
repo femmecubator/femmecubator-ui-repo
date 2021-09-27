@@ -142,13 +142,10 @@ const AccountInfo = ({ profileData }) => {
                 error: !isEmpty(errors.email),
                 helperText: errors.email && errors.email.message,
               }}
-              // value={email}
-              // onChange={e => setEmail(e.target.value)}
             />
           </div>
           <div className={email_password}>
             <h4>First Name</h4>
-            {/* <p>Sam</p> */}
             <TextField
               {...{
                 id: 'firstName',
@@ -170,7 +167,6 @@ const AccountInfo = ({ profileData }) => {
           </div>
           <div className={email_password}>
             <h4>Last Name</h4>
-            {/* <p>Cruz</p> */}
             <TextField
               {...{
                 id: 'lastName',
@@ -192,7 +188,6 @@ const AccountInfo = ({ profileData }) => {
           </div>
           <div className={email_password}>
             <h4>Job Title</h4>
-            {/* <p>UX Designer</p> */}
             <TextField
               {...{
                 id: 'jobTitle',
