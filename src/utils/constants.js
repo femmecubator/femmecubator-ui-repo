@@ -31,6 +31,11 @@ const API_PATH = {
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
   ROOT: '/',
+  UPDATE_PASSWORD: '/api/profile/updatePassword',
+  UPDATE_PROFILE: '/api/profile/updateProfile',
+  GETPROFILEDATA: '/api/profile/getProfileData',
+  UPDATE_MENTOR_PROFILE: '/api/mentors/updateProfile',
+  GET_MENTORS_PROFILEDATA: 'api/mentors/profile',
 };
 
 const METHOD_TYPE = {
@@ -70,7 +75,7 @@ const ROUTES = [
   },
   {
     id: 2,
-    isProtected: true,
+    // isProtected: true,
     label: ROUTES_LABEL.MENTORS,
     path: '/mentors',
   },

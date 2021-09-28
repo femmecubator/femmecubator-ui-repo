@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './Settings.style';
 import { Button } from '@material-ui/core';
 import MentorOnboardingModal from 'components/MentorOnboarding/MentorOnboardingModal';
 
-const Profile = () => {
+const Profile = ({ profileData, mentorsProfileData }) => {
   const isMobile = useMediaQuery('(max-width:580px)');
   const classes = useStyles({ isMobile });
   const { inputGroups, textArea, gooleMeet, settingsButton, profileEdit } =
     classes;
 
-  const [bio, setBio] = useState(
-    'Narwhal prism snackwave pop-up, wayfarers kinfolk asymmetrical poke. Flexitarian cliche williamsburg drinking vinegar shabby chic slow-carb pug semiotics pop-up. Cliche williamsburg drinking vinegar shabby.'
-  );
+  const [bio, setBio] = useState('Bio');
 
-  const [skills, setSkills] = useState('React,js, Node.js, Ruby on Rails');
-  const [phone, setPhone] = useState('718-777-4545');
-  const [timeZone, setTimeZone] = useState('GMT + 5, New York');
-  const [googleMeet, setGoogleMeet] = useState('meet.google.com/oer-yjhx-sia');
+  const [skills, setSkills] = useState('Analytical Skills');
+  const [phone, setPhone] = useState('9646621206');
+  const [timeZone, setTimeZone] = useState('GMT-11:00 Pacific/Midway');
+  const [googleMeet, setGoogleMeet] = useState(
+    'https://meet.google.com/vst-phkb-gvq'
+  );
   const [openModal, setOpenModal] = useState(false);
+  const [editFields, setEditFields] = useState(false);
+
+  useEffect(() => {
+    if (mentorsProfileData) {
+      const { bio, googlemeet, phone, skills, timezone } = mentorsProfileData;
+      setBio(bio);
+      setGoogleMeet(googlemeet);
+      setPhone(phone);
+      setSkills(skills.join());
+      setTimeZone(timezone.name);
+    }
+  }, [mentorsProfileData]);
 
   const fields = [
     {
@@ -45,8 +57,9 @@ const Profile = () => {
 
   return (
     <>
-      {fields && fields.length > 0
-        ? fields.map((data, index) => {
+      {!editFields ? (
+        fields && fields.length > 0 ? (
+          fields.map((data, index) => {
             return (
               <div className={inputGroups} key={index}>
                 <h4>{data.heading}</h4>
@@ -73,17 +86,30 @@ const Profile = () => {
               </div>
             );
           })
-        : null}
-      <div className={profileEdit}>
-        <Button className={settingsButton} onClick={() => setOpenModal(true)}>
-          Edit
-        </Button>
-      </div>
-      <MentorOnboardingModal
-        opened={openModal}
-        setOpenModal={setOpenModal}
-        withouHeading={true}
-      />
+        ) : null
+      ) : (
+        <MentorOnboardingModal
+          opened={openModal}
+          setOpenModal={setOpenModal}
+          withouHeading={true}
+          showInModal={false}
+          setEditFields={setEditFields}
+          profileData={mentorsProfileData}
+        />
+      )}
+      {!editFields ? (
+        <div className={profileEdit}>
+          <Button
+            className={settingsButton}
+            onClick={() => {
+              setOpenModal(true);
+              setEditFields(true);
+            }}
+          >
+            Edit
+          </Button>
+        </div>
+      ) : null}
     </>
   );
 };

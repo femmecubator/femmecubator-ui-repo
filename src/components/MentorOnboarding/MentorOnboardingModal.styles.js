@@ -62,6 +62,10 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '800',
     fontSize: '28px',
   },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
+  },
 }));
 
 export default useStyles;

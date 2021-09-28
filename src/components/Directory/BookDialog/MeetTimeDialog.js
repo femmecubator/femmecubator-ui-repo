@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useStyles from './BookDialog.styles';
+import useStyles from '../Directory.styles';
 import { Dialog, DialogContent, DialogContentText } from '@material-ui/core/';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -17,7 +17,7 @@ const MeetTimeDialog = ({
   const isSmallDevice = useMediaQuery('(max-width:480px)');
   const classes = useStyles({ isMobile, isSmallDevice });
   const {
-    root,
+    rootMeet,
     highlightText,
     dialogText,
     paddingBottomSm,
@@ -30,7 +30,7 @@ const MeetTimeDialog = ({
 
   return (
     <Dialog
-      className={root}
+      className={rootMeet}
       open={openMeet}
       onClose={handleMeetClose}
       aria-labelledby="responsive-dialog-title"

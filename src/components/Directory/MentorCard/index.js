@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useStyles from './MentorCard.styles';
+import { makeStyles } from '@material-ui/core';
+import { font } from '../utils';
 import {
   Card,
   CardHeader,
@@ -13,15 +14,7 @@ import {
 } from '@material-ui/core/';
 import BookDialog from '../BookDialog';
 
-const MentorCard = ({
-  firstName,
-  lastName,
-  title,
-  mentorSkills,
-  bio,
-  initials,
-  onTestClick,
-}) => {
+const MentorCard = ({ userInfo, skills, bio, onTestClick, timeSlot }) => {
   const [openMeet, setOpenMeet] = React.useState(false);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
@@ -44,12 +37,19 @@ const MentorCard = ({
 
   return (
     <>
-      <BookDialog openMeet={openMeet} setOpenMeet={setOpenMeet} />
+      {timeSlot && timeSlot.length > 0 ? (
+        <BookDialog
+          openMeet={openMeet}
+          setOpenMeet={setOpenMeet}
+          timeSlot={timeSlot}
+        />
+      ) : null}
       <Card className={root}>
         <CardHeader
           avatar={
             <Avatar aria-label="Mentor Avatar" className={avatar}>
-              {initials}
+              {userInfo[0].firstName.charAt(0)}
+              {userInfo[0].lastName.charAt(0)}
             </Avatar>
           }
           action={
@@ -73,7 +73,7 @@ const MentorCard = ({
                 'data-testid': 'mentorNameField',
               }}
             >
-              {firstName} {lastName}
+              {userInfo[0].firstName} {userInfo[0].lastName}
             </Typography>
           }
           subheader={
@@ -84,7 +84,7 @@ const MentorCard = ({
                 'data-testid': 'jobTitleField',
               }}
             >
-              {title}
+              {userInfo[0].title}
             </Typography>
           }
         />
@@ -98,7 +98,7 @@ const MentorCard = ({
               gutterBottom: true,
             }}
           >
-            {mentorSkills}
+            {skills.join()}
           </Typography>
           <Typography
             {...{
@@ -115,12 +115,69 @@ const MentorCard = ({
   );
 };
 MentorCard.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  mentorSkills: PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
-  initials: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  title: PropTypes.string,
+  mentorSkills: PropTypes.string,
+  bio: PropTypes.string,
+  initials: PropTypes.string,
 };
 
 export default MentorCard;
+
+const avatarColors = [
+  '#FF7452',
+  '#FFAB00',
+  '#D4EE9C',
+  '#00C7E6',
+  '#719AF5',
+  '#CABEE9',
+];
+
+const useStyles = makeStyles(() => ({
+  root: {
+    width: '413px',
+    variant: ({ isMobile }) => (isMobile ? 'none' : 'outlined'),
+    marginBottom: '1rem',
+    maxHeight: '258px',
+  },
+  avatar: {
+    ...font,
+    fontSize: '14px',
+    backgroundColor: () => {
+      return avatarColors[Math.floor(Math.random() * avatarColors.length)];
+    },
+    fontWeight: '600',
+    color: 'black',
+  },
+  booking: {
+    ...font,
+    fontWeight: '600',
+    maxHeight: '30px',
+    marginTop: '10%',
+    borderColor: '#026FE4',
+    color: '#026FE4',
+  },
+  jobField: {
+    ...font,
+    color: '#026FE4',
+    fontWeight: '700 !important',
+  },
+  mentorNameField: {
+    ...font,
+    fontWeight: '600 !important',
+  },
+  skillList: {
+    ...font,
+    fontWeight: '700',
+  },
+  bioSection: {
+    ...font,
+    fontWeight: '400',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkitLineClamp': 5,
+    '-webkitBoxOrient': 'vertical',
+  },
+}));

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useStyles from './BookDialog.styles';
+import useStyles from '../Directory.styles';
 import {
   Button,
   Dialog,
@@ -19,7 +19,7 @@ const ConfirmDialog = ({
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
-    root,
+    rootMeet,
     dialogTitle,
     dialogText,
     highlightText,
@@ -35,7 +35,7 @@ const ConfirmDialog = ({
 
   return (
     <Dialog
-      className={root}
+      className={rootMeet}
       open={openConfirm}
       onClose={handleConfirmClose}
       aria-labelledby="responsive-dialog-title"

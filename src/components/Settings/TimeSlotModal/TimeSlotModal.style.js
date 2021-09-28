@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   heading: {
+    padding: '20px 24px 0px 24px',
     '& h2': {
       fontFamily: 'Open Sans',
       fontStyle: 'normal',
@@ -79,7 +80,7 @@ const useStyles = makeStyles(() => ({
     margin: 0,
   },
   weekDaysWrapper: {
-    border: '2px solid #2F80ED',
+    border: '2px solid #bdbdbd',
     borderRadius: '4px',
     width: 'fit-content',
     '& :last-child': {
@@ -123,10 +124,28 @@ const useStyles = makeStyles(() => ({
     '& .MuiDialog-scrollPaper': {
       '& .MuiDialog-paper': {
         padding: ({ isMobile }) =>
-          isMobile ? '25px 0px 30px 0px' : '25px 25px 30px 25px',
+          isMobile ? '25px 0px 30px 0px' : '0px 25px 25px',
         margin: ({ isMobile }) => (isMobile ? '8px' : '32px'),
       },
     },
+  },
+  gooleMeet: {
+    display: 'flex',
+    maxWidth: '275px',
+    '& div': {
+      '& input': {
+        padding: '11.5px 14px',
+        background: '#F2F2F2',
+        fontWeight: 600,
+        fontSize: '16px',
+        lineHeight: '16px',
+        color: '#026FE4',
+      },
+    },
+  },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
   },
 }));
 
