@@ -28,10 +28,14 @@ const BlueFilledButton = withStyles({
     padding: '10px 21px',
     color: 'white',
     margin: '0px',
+    marginLeft: '9%',
     '&:hover': {
       background: '#550CCC',
       border: 'none',
     },
+    /* buttonOne: {
+      marginLeft: '7px',
+    }, */
   },
 
   label: {
@@ -508,6 +512,7 @@ export default function MentorGetInvolved() {
     faqAccordionComponent,
     faqAccordianParagraph,
     faqAccordianParagraphTwo,
+    buttonOne,
   } = classes;
 
   return (
@@ -546,12 +551,13 @@ export default function MentorGetInvolved() {
               or Software Development to mentor other BIPOC women looking to
               break into tech.
             </Typography>
-            <BlueFilledButton variant="contained">SIGN UP NOW</BlueFilledButton>
+            <BlueFilledButton variant="contained" className="buttonOne">
+              SIGN UP NOW
+            </BlueFilledButton>
           </div>
         </Grid>
         <Grid
           {...{
-            //container,
             className: waysMentorContainer,
             item: true,
             xs: 12,
@@ -567,7 +573,14 @@ export default function MentorGetInvolved() {
               Ways you can mentor
             </Typography>
           </div>
-          <Grid {...{ className: mentorTypeContainer }}>
+          <Grid
+            className={mentorTypeContainer}
+            //direction: 'row',
+            //justifyContent: 'space-between',
+            //alignItems: 'center',
+            //item: true,
+            //xs: 6,
+          >
             <div className={greenCircle}>
               <SupervisorAccountIcon
                 fontSize="large"
@@ -575,7 +588,12 @@ export default function MentorGetInvolved() {
               />
             </div>
             <Typography
-              {...{ variant: 'h2', className: waysMentorComponentTitle }}
+              {...{
+                variant: 'h2',
+                className: waysMentorComponentTitle,
+                item: true,
+                xs: 6,
+              }}
             >
               Cohort Mentoring
             </Typography>
@@ -591,19 +609,24 @@ export default function MentorGetInvolved() {
               year.
             </Typography>
             {/* <br /> */}
-            <Divider
+            {/* <Divider
               orientation="vertical"
               variant="middle"
               //textAlign="center"
               style={{ height: '100px' }}
               flexItem
-            />
+            /> */}
             {/* <br /> */}
             <div className={greenCircle}>
               <SchoolIcon fontSize="large" className={waysMentorContainerSVG} />
             </div>
             <Typography
-              {...{ variant: 'h2', className: waysMentorComponentTitle }}
+              {...{
+                variant: 'h2',
+                className: waysMentorComponentTitle,
+                item: true,
+                lg: 3,
+              }}
             >
               Flexible Mentoring
             </Typography>

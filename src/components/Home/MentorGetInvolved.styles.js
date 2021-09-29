@@ -7,14 +7,14 @@ const useStyles = makeStyles(() => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: '0% 30%',
-    //boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
+    boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
     display: 'flex',
     alignItems: 'center',
-    '@media (max-width: 799px)': {
+    /* '@media (max-width: 799px)': {
       justifyContent: 'center',
-    },
+    }, */
   },
-  /* headingComponent: {
+  /*   headingComponent: {
     flexBasis: '432px',
     flexShrink: '1',
     display: 'flex',
@@ -29,11 +29,15 @@ const useStyles = makeStyles(() => ({
   }, */
   headingComponentParagraph: {
     textAlign: 'left',
+    width: '27%',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 700,
     fontSize: '14px',
     color: 'white',
     marginBottom: '40px',
+    marginLeft: '9%',
+    //display: 'flex',
+    //flexWrap: 'wrap',
     '@media (max-width: 799px)': {
       textAlign: 'center',
     },
@@ -44,11 +48,16 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: '28px',
     color: 'white',
-    marginBottom: '30px',
+    marginBottom: '10px',
+    display: 'flex',
+    marginLeft: '9%',
     '@media (max-width: 799px)': {
       textAlign: 'center',
     },
   },
+  /* buttonOne: {
+    marginLeft: '7%',
+  }, */
   titlePurple: {
     textAlign: 'left',
     fontFamily: 'Open Sans, sans-serif',
@@ -80,20 +89,20 @@ const useStyles = makeStyles(() => ({
   waysMentorContainer: {
     //height: '330px',
     backgroundColor: '#FFFFFF',
-    display: 'flex',
-    justifyContent: 'space-evenly',
+    //display: 'flex',
+    //justifyContent: 'space-evenly',
     paddingTop: '45px',
     //flexDirection: 'column',
     '@media (max-width: 799px)': {
       paddingTop: '0px',
       alignItems: 'center',
-      height: '700px',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
+      //height: '700px',
+      //flexWrap: 'wrap',
+      //flexDirection: 'column',
     },
   },
   containerTitle: {
-    marginBottom: '50px',
+    marginBottom: '20px',
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
@@ -108,42 +117,46 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: '28px',
     color: '#400CCC',
-    marginBottom: '12px',
-    display: 'flex',
-    alignItems: 'center',
+    marginBottom: '40px',
+    //alignItems: 'center',
     '@media (max-width: 799px)': {
       marginBottom: '15px',
       textAlign: 'center',
     },
   },
-  waysMentorComponent: {
-    maxWidth: '360px',
-    minWidth: '200px',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+  /* waysMentorComponent: {
+    //maxWidth: '360px',
+    //minWidth: '200px',
+    //display: 'flex',
+    //flexDirection: 'row',
+    //alignItems: 'flex-start',
     '@media (max-width: 799px)': {
       alignItems: 'center',
       width: '300px',
     },
-  },
+  }, */
   waysMentorContainerParagraph: {
     textAlign: 'left',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
     fontSize: '16px',
     color: '#000000',
-    marginBottom: '40px',
+    //width: '27%',
+    //marginBottom: '40px',
+    //marginTop: '40px',
     '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '0px',
     },
   },
   mentorTypeContainer: {
-    //display: 'flex',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    //justifyContent: 'space-between',
     padding: '20px',
     '@media (max-width: 799px)': {
-      flexDirection: 'row',
+      //flexDirection: 'row',
       alignItems: 'center',
     },
   },
@@ -160,8 +173,8 @@ const useStyles = makeStyles(() => ({
       paddingTop: '0px',
       alignItems: 'center',
       height: '700px',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
+      //flexWrap: 'wrap',
+      //flexDirection: 'column',
     },
   },
   howToStartComponent: {
@@ -202,7 +215,7 @@ const useStyles = makeStyles(() => ({
     '@media (max-width: 799px)': {
       paddingTop: '0px',
       alignItems: 'center',
-      height: '700px',
+      //height: '700px',
       flexWrap: 'wrap',
       flexDirection: 'column',
     },
@@ -210,25 +223,33 @@ const useStyles = makeStyles(() => ({
   communityQuotesComponent: {
     //maxWidth: '360px',
     //minWidth: '200px',
-    display: 'flex',
-    flexDirection: 'row',
+    //display: 'flex',
+    //flexDirection: 'column',
     alignItems: 'flex-start',
     '@media (max-width: 799px)': {
       alignItems: 'center',
-      width: '300px',
+      //width: '300px',
     },
   },
-  communityQuotesImage: {},
+  communityQuotesImage: {
+    marginBottom: '20px',
+    display: 'flex',
+    '@media (max-width: 799px)': {
+      alignItems: 'center',
+      marginBottom: '20px',
+    },
+  },
   communityQuotesText: {
     textAlign: 'left',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
     fontSize: '16px',
     color: '#000000',
-    marginBottom: '40px',
+    marginBottom: '20px',
+    display: 'flex',
     '@media (max-width: 799px)': {
       textAlign: 'center',
-      marginBottom: '0px',
+      marginBottom: '20px',
     },
   },
   communityQuotesName: {
@@ -238,13 +259,17 @@ const useStyles = makeStyles(() => ({
     fontSize: '12px',
     fontStyle: 'italic',
     color: '#000000',
-    marginTop: '40px',
+    //marginTop: '40px',
+    display: 'flex',
     '@media (max-width: 799px)': {
       textAlign: 'center',
-      marginBottom: '0px',
+      marginBottom: '20px',
     },
   },
-  faqAccordionContainer: {},
+  faqAccordionContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   faqAccordionComponent: {},
   faqAccordianParagraph: {},
   faqAccordianParagraphTwo: {},
