@@ -17,6 +17,7 @@
     "react-datepicker": "^4.2.1",
     "react-dom": "^17.0.1",
     "react-ga": "^3.2.0",
+    "react-google-login": "^5.2.2",
     "react-hook-form": "^6.15.5",
     "react-horizontal-scrolling-menu": "^0.7.10",
     "react-material-ui-carousel": "^2.1.1",
@@ -103,11 +104,5 @@
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test:ghook"
-    }
   }
 }
