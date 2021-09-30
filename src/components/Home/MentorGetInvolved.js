@@ -502,6 +502,7 @@ export default function MentorGetInvolved() {
     flexibleMentor,
     waysMentorContainerParagraph,
     howToStartContainer,
+    howToStartContainerTitle,
     howToStartComponent,
     signUpStep,
     applyStep,
@@ -510,6 +511,7 @@ export default function MentorGetInvolved() {
     howToStartNumbers,
     howToStartContainerParagraph,
     communityQuotesContainer,
+    communityQuotesContainerTitle,
     communityQuotesComponent,
     communityQuotesImage,
     communityQuotesText,
@@ -665,7 +667,9 @@ export default function MentorGetInvolved() {
             xs: 12,
           }}
         >
-          <Grid {...{ className: containerTitle, item: true, xs: 12 }}>
+          <Grid
+            {...{ className: howToStartContainerTitle, item: true, xs: 12 }}
+          >
             <Typography {...{ variant: 'h2', className: titlePurple }}>
               How to start
             </Typography>
@@ -775,38 +779,49 @@ export default function MentorGetInvolved() {
         <Grid
           {...{
             className: communityQuotesContainer,
-            item: true,
+            container: true,
             xs: 12,
           }}
         >
-          <Typography {...{ variant: 'h2', className: titlePurple }}>
-            What the Femmecubator community is saying
-          </Typography>
-          <Grid>
-            {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
-              <Grid key={`${id} - ${idx}`}>
-                <Grid
-                  {...{
-                    className: communityQuotesComponent,
-                    item: true,
-                    xs: 12,
-                  }}
-                >
-                  <img
-                    src={img}
-                    aria-label={name}
-                    className={communityQuotesImage}
-                  />
-                  <Typography className={communityQuotesText}>
-                    {text}
-                  </Typography>
-                  <Typography className={communityQuotesName}>
-                    {name}
-                  </Typography>
-                </Grid>
-              </Grid>
-            ))}
+          <Grid
+            {...{
+              className: communityQuotesContainerTitle,
+              item: true,
+              xs: 12,
+            }}
+          >
+            <Typography
+              {...{ variant: 'h2', className: titlePurple, item: true }}
+            >
+              What the Femmecubator community is saying
+            </Typography>
           </Grid>
+          {/* <Grid container> */}
+          {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
+            <Grid key={`${id} - ${idx}`} item>
+              <Grid
+                {...{
+                  className: communityQuotesComponent,
+                  item: true,
+                  xs: 12,
+                }}
+              >
+                <img
+                  src={img}
+                  aria-label={name}
+                  className={communityQuotesImage}
+                  item="true"
+                />
+                <Typography {...{ item: true, className: communityQuotesText }}>
+                  {text}
+                </Typography>
+                <Typography {...{ item: true, className: communityQuotesName }}>
+                  {name}
+                </Typography>
+              </Grid>
+            </Grid>
+          ))}
+          {/* </Grid> */}
         </Grid>
         <Grid
           {...{

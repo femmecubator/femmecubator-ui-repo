@@ -184,12 +184,13 @@ const useStyles = makeStyles(() => ({
       flexDirection: 'column',
     },
   },
+  howToStartContainerTitle: {},
   howToStartComponent: {
     //maxWidth: '360px',
     //minWidth: '200px',
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    //alignItems: 'center',
     '@media (max-width: 799px)': {
       alignItems: 'center',
       width: '300px',
@@ -214,17 +215,17 @@ const useStyles = makeStyles(() => ({
   },
   communityQuotesContainer: {
     backgroundColor: '#FFFFFF',
-    display: 'flex',
-    justifyContent: 'space-evenly',
+    //display: 'flex',
+    //justifyContent: 'space-evenly',
     paddingTop: '45px',
     paddingBottom: '45px',
-    flexDirection: 'column',
+    //flexDirection: 'column',
     '@media (max-width: 799px)': {
       paddingTop: '0px',
       alignItems: 'center',
       //height: '700px',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
+      //flexWrap: 'wrap',
+      //flexDirection: 'column',
     },
   },
   communityQuotesComponent: {
@@ -240,7 +241,7 @@ const useStyles = makeStyles(() => ({
   },
   communityQuotesImage: {
     marginBottom: '20px',
-    display: 'flex',
+    //display: 'flex',
     '@media (max-width: 799px)': {
       alignItems: 'center',
       marginBottom: '20px',
@@ -253,7 +254,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '16px',
     color: '#000000',
     marginBottom: '20px',
-    display: 'flex',
+    //display: 'flex',
     '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '20px',
@@ -267,7 +268,7 @@ const useStyles = makeStyles(() => ({
     fontStyle: 'italic',
     color: '#000000',
     //marginTop: '40px',
-    display: 'flex',
+    //display: 'flex',
     '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '20px',
