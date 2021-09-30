@@ -17,6 +17,8 @@ const MeetTimeDialog = ({
   handleClick,
   days,
   mentor_id,
+  setMentorInfo,
+  mentorInfo,
 }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const isSmallDevice = useMediaQuery('(max-width:480px)');
@@ -72,6 +74,8 @@ const MeetTimeDialog = ({
             handleMeetClose={handleMeetClose}
             handleConfirmOpen={handleConfirmOpen}
             timeSlot={timeSlot}
+            setMentorInfo={setMentorInfo}
+            mentorInfo={mentorInfo}
           />
           <ArrowForwardIosIcon
             onClick={() => {
