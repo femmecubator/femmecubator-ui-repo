@@ -13,44 +13,9 @@ export default function BookDialog({
   days,
   handleClick,
   mentor_id,
+  mentorInfo,
+  setMentorInfo,
 }) {
-  const meetTimeSlots = [
-    {
-      id: 101,
-      date: 'Jan 26',
-      slots: [
-        { time: '5:00 pm', status: false },
-        { time: '6:00 pm', status: false },
-      ],
-    },
-    {
-      id: 102,
-      date: 'Jan 27',
-      slots: [],
-    },
-    {
-      id: 103,
-      date: 'Jan 28',
-      slots: [
-        { time: '5:00 pm', status: false },
-        { time: '6:00 pm', status: true },
-      ],
-    },
-    {
-      id: 104,
-      date: 'Jan 29',
-      slots: [],
-    },
-    {
-      id: 105,
-      date: 'Jan 30',
-      slots: [
-        { time: '5:00 pm', status: false },
-        { time: '6:00 pm', status: false },
-      ],
-    },
-  ];
-
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openAwesome, setOpenAwesome] = React.useState(false);
   const [openSession, setOpenSession] = React.useState(false);
@@ -89,12 +54,15 @@ export default function BookDialog({
         days={days}
         handleClick={handleClick}
         mentor_id={mentor_id}
+        setMentorInfo={setMentorInfo}
+        mentorInfo={mentorInfo}
       />
 
       <ConfirmDialog
         openConfirm={openConfirm}
         handleConfirmClose={handleConfirmClose}
         handleAwesomeOpen={handleAwesomeOpen}
+        mentorInfo={mentorInfo}
       />
       <AwesomeDialog
         openAwesome={openAwesome}

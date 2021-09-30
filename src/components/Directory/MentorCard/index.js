@@ -23,11 +23,18 @@ const MentorCard = ({
   onTestClick,
   timeSlot,
   mentor_id,
+  timezone,
 }) => {
   const [openMeet, setOpenMeet] = useState(false);
   const [slotsData, setSlotsData] = useState([]);
   const [errorResponse, setErrorResponse] = useState(false);
   const [openBackdrop, setOpenBackdropt] = useState(false);
+  const [mentorInfo, setMentorInfo] = useState({
+    timeZone: timezone.name,
+    mentorEmail: userInfo[0].email,
+    mentortName: `${userInfo[0].firstName} ${userInfo[0].lastName}`,
+    mentorTitle: userInfo[0].title,
+  });
   const [days, setDays] = useState(4);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
@@ -52,7 +59,6 @@ const MentorCard = ({
       date.setDate(date.getDate() + days);
       return date;
     };
-
     function getDates(startDate, stopDate) {
       var dateArray = new Array();
       var currentDate = startDate;
@@ -75,8 +81,6 @@ const MentorCard = ({
       });
     });
 
-    console.log(dateArray);
-
     var body = { timeslot: finalData, mentor_id: mentor_id };
 
     async function fetchSlotsData() {
@@ -97,8 +101,6 @@ const MentorCard = ({
     fetchSlotsData();
 
     if (onTestClick) return onTestClick();
-
-    //TODO: Booking for this mentor opens up
   };
 
   if (errorResponse) throw Error('BAD API REQUEST');
@@ -118,6 +120,8 @@ const MentorCard = ({
             days={days}
             handleClick={handleClick}
             mentor_id={mentor_id}
+            mentorInfo={mentorInfo}
+            setMentorInfo={setMentorInfo}
           />
         ) : null
       ) : null}

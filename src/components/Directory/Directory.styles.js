@@ -157,6 +157,10 @@ const useStyles = makeStyles(() => ({
       minWidth: ({ isMobile }) => (isMobile ? '85%' : 'auto'),
     },
   },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
+  },
 }));
 
 export default useStyles;
