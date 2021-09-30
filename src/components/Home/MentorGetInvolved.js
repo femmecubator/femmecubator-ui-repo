@@ -498,9 +498,15 @@ export default function MentorGetInvolved() {
     greenCircle,
     waysMentorContainerSVG,
     waysMentorComponentTitle,
+    cohortMentor,
+    flexibleMentor,
     waysMentorContainerParagraph,
     howToStartContainer,
     howToStartComponent,
+    signUpStep,
+    applyStep,
+    getApprovedStep,
+    startMentoringStep,
     howToStartNumbers,
     howToStartContainerParagraph,
     communityQuotesContainer,
@@ -524,7 +530,7 @@ export default function MentorGetInvolved() {
       <Grid container>
         <Grid
           {...{
-            //container,
+            container: true,
             className: headingContainer,
             item: true,
             xs: 12,
@@ -559,175 +565,211 @@ export default function MentorGetInvolved() {
         <Grid
           {...{
             className: waysMentorContainer,
-            item: true,
+            container: true,
             xs: 12,
           }}
         >
-          <div className={containerTitle}>
-            <Typography
-              {...{
-                variant: 'h2',
-                className: titlePurple,
-              }}
-            >
-              Ways you can mentor
-            </Typography>
-          </div>
-          <Grid
-            className={mentorTypeContainer}
-            //direction: 'row',
-            //justifyContent: 'space-between',
-            //alignItems: 'center',
-            //item: true,
-            //xs: 6,
+          {/* <div className={containerTitle}> */}
+          <Typography
+            {...{
+              variant: 'h2',
+              className: titlePurple,
+            }}
           >
-            <div className={greenCircle}>
-              <SupervisorAccountIcon
-                fontSize="large"
-                className={waysMentorContainerSVG}
-              />
-            </div>
-            <Typography
-              {...{
-                variant: 'h2',
-                className: waysMentorComponentTitle,
-                item: true,
-                xs: 6,
-              }}
-            >
-              Cohort Mentoring
-            </Typography>
-            <Typography
-              {...{
-                variant: 'body1',
-                className: waysMentorContainerParagraph,
-                paragraph: true,
-              }}
-            >
-              Volunteer to become a mentor for our 8-week mentorship program
-              offered to aspiring UX designers and software developers twice a
-              year.
-            </Typography>
+            Ways you can mentor
+          </Typography>
+          {/* </div> */}
+          <Grid
+            {...{
+              container: 'true',
+              className: mentorTypeContainer,
+              //direction: 'row',
+              //justifyContent: 'space-between',
+              //alignItems: 'center',
+            }}
+          >
+            <Grid {...{ item: 'true', xs: 4, className: cohortMentor }}>
+              <div className={greenCircle}>
+                <SupervisorAccountIcon
+                  item="true"
+                  fontSize="large"
+                  className={waysMentorContainerSVG}
+                />
+              </div>
+              <Typography
+                {...{
+                  variant: 'h2',
+                  className: waysMentorComponentTitle,
+                  item: true,
+                  //xs: 6,
+                }}
+              >
+                Cohort Mentoring
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: waysMentorContainerParagraph,
+                  item: true,
+                }}
+              >
+                Volunteer to become a mentor for our 8-week mentorship program
+                offered to aspiring UX designers and software developers twice a
+                year.
+              </Typography>
+            </Grid>
+            {/* </Grid> */}
             {/* <br /> */}
-            {/* <Divider
+            <Divider
               orientation="vertical"
               variant="middle"
-              //textAlign="center"
-              style={{ height: '100px' }}
+              style={{ height: '100%' }}
               flexItem
-            /> */}
+            />
             {/* <br /> */}
-            <div className={greenCircle}>
-              <SchoolIcon fontSize="large" className={waysMentorContainerSVG} />
-            </div>
-            <Typography
-              {...{
-                variant: 'h2',
-                className: waysMentorComponentTitle,
-                item: true,
-                lg: 3,
-              }}
-            >
-              Flexible Mentoring
-            </Typography>
-            <Typography
-              {...{
-                variant: 'body1',
-                className: waysMentorContainerParagraph,
-                paragraph: true,
-              }}
-            >
-              Set your calendar availability so mentees can easily book 1:1 time
-              with you through our dedicated platform.
-            </Typography>
+            <Grid {...{ item: 'true', xs: 4, className: flexibleMentor }}>
+              <div className={greenCircle}>
+                <SchoolIcon
+                  fontSize="large"
+                  className={waysMentorContainerSVG}
+                />
+              </div>
+              <Typography
+                {...{
+                  variant: 'h2',
+                  className: waysMentorComponentTitle,
+                  item: true,
+                  //lg: 3,
+                }}
+              >
+                Flexible Mentoring
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: waysMentorContainerParagraph,
+                  paragraph: true,
+                }}
+              >
+                Set your calendar availability so mentees can easily book 1:1
+                time with you through our dedicated platform.
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
+
         <Grid
           {...{
             className: howToStartContainer,
-            item: true,
+            container: true,
             xs: 12,
           }}
         >
-          <div className={containerTitle}>
+          <Grid {...{ className: containerTitle, item: true, xs: 12 }}>
             <Typography {...{ variant: 'h2', className: titlePurple }}>
               How to start
             </Typography>
-          </div>
-          <Grid {...{ className: howToStartComponent }}>
-            <div
-              className={greenCircle}
-              style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
-            >
-              1
-            </div>
-            <Typography {...{ variant: 'h2', className: titlePurple }}>
-              Sign Up
-            </Typography>
-            <Typography
-              {...{
-                variant: 'body1',
-                className: howToStartContainerParagraph,
-                paragraph: true,
-              }}
-            >
-              Make an account on Femmecubator
-            </Typography>
-            <div
-              className={greenCircle}
-              style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
-            >
-              2
-            </div>
-            <Typography {...{ variant: 'h2', className: titlePurple }}>
-              Apply
-            </Typography>
-            <Typography
-              {...{
-                variant: 'body1',
-                className: howToStartContainerParagraph,
-                paragraph: true,
-              }}
-            >
-              Complete and submit the mentor application form
-            </Typography>
-            <div
-              className={greenCircle}
-              style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
-            >
-              3
-            </div>
-            <Typography {...{ variant: 'h2', className: titlePurple }}>
-              Get Approved
-            </Typography>
-            <Typography
-              {...{
-                variant: 'body1',
-                className: howToStartContainerParagraph,
-                paragraph: true,
-              }}
-            >
-              Recieve an email confirmation within a week
-            </Typography>
-            <div
-              className={greenCircle}
-              style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
-            >
-              4
-            </div>
-            <Typography {...{ variant: 'h2', className: titlePurple }}>
-              Start Mentoring
-            </Typography>
-            <Typography
-              {...{
-                variant: 'body1',
-                className: howToStartContainerParagraph,
-                paragraph: true,
-              }}
-            >
-              Complete your profile and start making an impact
-            </Typography>
-            <BlueFilledButton variant="contained">SIGN UP NOW</BlueFilledButton>
+          </Grid>
+          <Grid {...{ className: howToStartComponent /* direction: 'row' */ }}>
+            <Grid {...{ className: signUpStep, item: true, xs: 2 }}>
+              <div
+                className={greenCircle}
+                style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
+                item="true"
+              >
+                1
+              </div>
+              <Typography
+                {...{ variant: 'h2', className: titlePurple, item: true }}
+              >
+                Sign Up
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: howToStartContainerParagraph,
+                  item: true,
+                }}
+              >
+                Make an account on Femmecubator
+              </Typography>
+            </Grid>
+
+            <Grid {...{ className: applyStep, item: true }}>
+              <div
+                className={greenCircle}
+                style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
+                item="true"
+              >
+                2
+              </div>
+              <Typography
+                {...{ variant: 'h2', className: titlePurple, item: true }}
+              >
+                Apply
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: howToStartContainerParagraph,
+                  item: true,
+                }}
+              >
+                Complete and submit the mentor application form
+              </Typography>
+            </Grid>
+
+            <Grid {...{ className: getApprovedStep, item: true }}>
+              <div
+                className={greenCircle}
+                style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
+                item="true"
+              >
+                3
+              </div>
+              <Typography
+                {...{ variant: 'h2', className: titlePurple, item: true }}
+              >
+                Get Approved
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: howToStartContainerParagraph,
+                  item: true,
+                }}
+              >
+                Recieve an email confirmation within a week
+              </Typography>
+            </Grid>
+            <Grid {...{ className: startMentoringStep, item: true }}>
+              <div
+                className={greenCircle}
+                style={{ color: '#400CCC', fontSize: '20px', fontWeight: 500 }}
+                item="true"
+              >
+                4
+              </div>
+              <Typography
+                {...{ variant: 'h2', className: titlePurple, item: true }}
+              >
+                Start Mentoring
+              </Typography>
+              <Typography
+                {...{
+                  variant: 'body1',
+                  className: howToStartContainerParagraph,
+                  item: true,
+                }}
+              >
+                Complete your profile and start making an impact
+              </Typography>
+            </Grid>
+            {/* <Grid {...{ item: true }}> */}
+            <BlueFilledButton {...{ variant: 'contained', item: true }}>
+              SIGN UP NOW
+            </BlueFilledButton>
+            {/* </Grid> */}
           </Grid>
         </Grid>
         <Grid
