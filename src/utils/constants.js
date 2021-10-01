@@ -38,6 +38,7 @@ const API_PATH = {
   GET_MENTORS_PROFILEDATA: '/api/mentors/profile',
   GET_TIME_SLOTS: '/api/booking/getTimeSlots',
   ADD_CALENDAR_EVENT: '/api/booking/createCalendarEvent',
+  GET_MEETING_DETAILS: '/api/booking/',
 };
 
 const METHOD_TYPE = {
