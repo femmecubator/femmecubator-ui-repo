@@ -30,7 +30,6 @@ const TIME_ZONE = 'Your Time Zone';
 const GOOGLE_MEET = 'Add a google meet:';
 const MAX_CHARS = 'Bio must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
-const GOOGLE_MEET_VAL = 'Google meet link is not valid';
 
 const OnboardingSchema = yup.object().shape({
   bio: yup.string().required('Bio is required').max(128, MAX_CHARS),
@@ -40,13 +39,6 @@ const OnboardingSchema = yup.object().shape({
     .required('Phone number is required')
     .matches(/^\+?1?[ .-]?\(?\d{3}\)?[ .-]?\d{3}[ .-]?\d{4}$/, PHONE_VAL),
   timezone: yup.string().required('Timezone is required'),
-  googlemeet: yup
-    .string()
-    .required('Google meet is required')
-    .matches(
-      /^(http[s]?:\/\/)?(www\.)?(meet\.google\.com\/(?:\w{3}-\w{4}-\w{3}))?$/,
-      GOOGLE_MEET_VAL
-    ),
 });
 
 const MentorOnboardingModal = ({
@@ -272,23 +264,6 @@ const MentorOnboardingModal = ({
                 }}
               />
             ),
-          }}
-        />
-        <label htmlFor="googlemeet" className={labelText}>
-          {GOOGLE_MEET}
-        </label>
-        <TextField
-          {...{
-            id: 'googlemeet',
-            placeholder: 'Add google meet link',
-            variant: 'outlined',
-            className: inputField,
-            size: 'small',
-            name: 'googlemeet',
-            type: 'text',
-            inputRef: register,
-            error: !isEmpty(errors.googlemeet),
-            helperText: errors.googlemeet && errors.googlemeet.message,
           }}
         />
         <Button type="submit" className={modalSubmit}>
