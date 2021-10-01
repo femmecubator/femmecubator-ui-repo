@@ -35,7 +35,8 @@ const MentorCard = ({
     mentortName: `${userInfo[0].firstName} ${userInfo[0].lastName}`,
     mentorTitle: userInfo[0].title,
   });
-  const [days, setDays] = useState(4);
+  const isMobileDevice = useMediaQuery('(max-width:820px)');
+  const [days, setDays] = useState(isMobileDevice ? 2 : 4);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
@@ -50,7 +51,6 @@ const MentorCard = ({
   } = classes;
 
   const handleClick = (mentor_id, slotDates) => {
-    // e.preventDefault();
     var finalData = [];
     const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -69,8 +69,10 @@ const MentorCard = ({
       return dateArray;
     }
 
+    var currentCursor = isMobileDevice ? 2 : 4;
+
     var dateArray = getDates(
-      new Date().addDays(slotDates - 4),
+      new Date().addDays(slotDates - currentCursor),
       new Date().addDays(slotDates)
     );
 
@@ -142,8 +144,8 @@ const MentorCard = ({
                 role: 'button',
               }}
               onClick={() => {
-                handleClick(mentor_id, 4);
-                setDays(4);
+                handleClick(mentor_id, isMobileDevice ? 2 : 4);
+                setDays(isMobileDevice ? 2 : 4);
               }}
             >
               BOOK ME

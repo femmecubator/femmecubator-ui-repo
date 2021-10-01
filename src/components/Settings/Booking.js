@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './Settings.style';
 import { Button, Checkbox } from '@material-ui/core';
@@ -30,10 +30,22 @@ const Booking = ({ heading, timeSlots, setTimeSlots }) => {
 
   const [noTimeSlot, setNotTimeSlot] = React.useState(true);
 
-  const [checked, setChecked] = React.useState(true);
+  const [editDeleteArray, setEditDeleteArray] = useState([]);
 
-  const handleChange = event => {
-    setChecked(event.target.checked);
+  const handleChange = (title, event) => {
+    var array = editDeleteArray;
+    if (event.target.checked) {
+      array.push(title);
+    } else {
+      let position;
+      array.map((data, index) => {
+        if (data === title) {
+          position = index;
+        }
+      });
+      array.splice(position, 1);
+    }
+    setNotTimeSlot([...array]);
   };
 
   useEffect(() => {
@@ -91,7 +103,7 @@ const Booking = ({ heading, timeSlots, setTimeSlots }) => {
             return (
               <div className={timeSlotData} key={index}>
                 <Checkbox
-                  onChange={handleChange}
+                  onChange={event => handleChange(data.title, event)}
                   inputProps={{ 'aria-label': 'primary checkbox' }}
                 />
                 <div>

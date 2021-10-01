@@ -22,6 +22,7 @@ const MeetTimeDialog = ({
 }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const isSmallDevice = useMediaQuery('(max-width:480px)');
+  const isMobileDevice = useMediaQuery('(max-width:820px)');
   const classes = useStyles({ isMobile, isSmallDevice });
   const {
     rootMeet,
@@ -58,12 +59,22 @@ const MeetTimeDialog = ({
           {days > 4 ? (
             <ArrowBackIosIcon
               onClick={() => {
-                if (days > 4) {
-                  handleClick(mentor_id, days - 5);
-                  setDays(days - 5);
+                if (isMobileDevice) {
+                  if (days > 2) {
+                    handleClick(mentor_id, days - 3);
+                    setDays(days - 3);
+                  } else {
+                    handleClick(mentor_id, 2);
+                    setDays(2);
+                  }
                 } else {
-                  handleClick(mentor_id, 4);
-                  setDays(4);
+                  if (days > 4) {
+                    handleClick(mentor_id, days - 5);
+                    setDays(days - 5);
+                  } else {
+                    handleClick(mentor_id, 4);
+                    setDays(4);
+                  }
                 }
               }}
             />
@@ -79,8 +90,13 @@ const MeetTimeDialog = ({
           />
           <ArrowForwardIosIcon
             onClick={() => {
-              handleClick(mentor_id, days + 5);
-              setDays(days + 5);
+              if (isMobileDevice) {
+                handleClick(mentor_id, days + 3);
+                setDays(days + 3);
+              } else {
+                handleClick(mentor_id, days + 5);
+                setDays(days + 5);
+              }
             }}
           />
         </div>
