@@ -512,6 +512,7 @@ export default function MentorGetInvolved() {
     howToStartContainerParagraph,
     communityQuotesContainer,
     communityQuotesContainerTitle,
+    communityQuotesNestedContainer,
     communityQuotesComponent,
     communityQuotesImage,
     communityQuotesText,
@@ -796,32 +797,41 @@ export default function MentorGetInvolved() {
               What the Femmecubator community is saying
             </Typography>
           </Grid>
-          {/* <Grid container> */}
-          {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
-            <Grid key={`${id} - ${idx}`} item>
-              <Grid
-                {...{
-                  className: communityQuotesComponent,
-                  item: true,
-                  xs: 12,
-                }}
-              >
-                <img
-                  src={img}
-                  aria-label={name}
-                  className={communityQuotesImage}
-                  item="true"
-                />
-                <Typography {...{ item: true, className: communityQuotesText }}>
-                  {text}
-                </Typography>
-                <Typography {...{ item: true, className: communityQuotesName }}>
-                  {name}
-                </Typography>
+          <Grid
+            container
+            className={communityQuotesNestedContainer}
+            spacing={3}
+            item={12}
+          >
+            {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
+              <Grid key={`${id} - ${idx}`} item>
+                <Grid
+                  {...{
+                    className: communityQuotesComponent,
+                    item: true,
+                    xs: 4,
+                  }}
+                >
+                  <img
+                    src={img}
+                    aria-label={name}
+                    className={communityQuotesImage}
+                    item="true"
+                  />
+                  <Typography
+                    {...{ item: true, className: communityQuotesText }}
+                  >
+                    {text}
+                  </Typography>
+                  <Typography
+                    {...{ item: true, className: communityQuotesName }}
+                  >
+                    {name}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-          ))}
-          {/* </Grid> */}
+            ))}
+          </Grid>
         </Grid>
         <Grid
           {...{

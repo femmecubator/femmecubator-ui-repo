@@ -228,6 +228,9 @@ const useStyles = makeStyles(() => ({
       //flexDirection: 'column',
     },
   },
+  communityQuotesNestedContainer: {
+    flexDirection: 'row',
+  },
   communityQuotesComponent: {
     //maxWidth: '360px',
     //minWidth: '200px',
