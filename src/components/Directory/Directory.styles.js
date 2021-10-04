@@ -141,6 +141,10 @@ const useStyles = makeStyles(() => ({
     justifyContent: `space-between`,
     alignItems: `center`,
     paddingTop: 0,
+    '& .slotGrid': {
+      paddingRight: '15px',
+      paddingLeft: '15px',
+    },
     '& svg': {
       cursor: 'pointer',
       color: '#888888',
@@ -152,10 +156,15 @@ const useStyles = makeStyles(() => ({
   },
   rootMeet: {
     '& .MuiDialog-paper': {
-      width: '650px',
-      maxWidth: '650px',
+      width: '880px',
+      maxWidth: '800px',
+      borderRadius: ({ isMobile }) => (isMobile ? '8px' : '16px'),
       minWidth: ({ isMobile }) => (isMobile ? '85%' : 'auto'),
     },
+  },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
   },
 }));
 

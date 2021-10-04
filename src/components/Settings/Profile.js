@@ -49,10 +49,6 @@ const Profile = ({ profileData, mentorsProfileData }) => {
       heading: 'Your Time Zone',
       data: timeZone,
     },
-    {
-      heading: 'Personal meeting room',
-      data: googleMeet,
-    },
   ];
 
   return (

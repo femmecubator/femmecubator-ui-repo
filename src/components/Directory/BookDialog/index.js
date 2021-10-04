@@ -3,45 +3,19 @@ import ConfirmDialog from './ConfirmDialog';
 import AwesomeDialog from './AwesomeDialog';
 import SessionDialog from './SessionDialog';
 import MeetTimeDialog from './MeetTimeDialog';
-export default function BookDialog({ openMeet, setOpenMeet }) {
-  // DUMMY TIME SLOTS DATA
-  const meetTimeSlots = [
-    {
-      id: 101,
-      date: 'Jan 26',
-      slots: [
-        { time: '5:00 pm', status: false },
-        { time: '6:00 pm', status: false },
-      ],
-    },
-    {
-      id: 102,
-      date: 'Jan 27',
-      slots: [],
-    },
-    {
-      id: 103,
-      date: 'Jan 28',
-      slots: [
-        { time: '5:00 pm', status: false },
-        { time: '6:00 pm', status: true },
-      ],
-    },
-    {
-      id: 104,
-      date: 'Jan 29',
-      slots: [],
-    },
-    {
-      id: 105,
-      date: 'Jan 30',
-      slots: [
-        { time: '5:00 pm', status: false },
-        { time: '6:00 pm', status: false },
-      ],
-    },
-  ];
 
+export default function BookDialog({
+  openMeet,
+  setOpenMeet,
+  timeSlot,
+  slotsData,
+  setDays,
+  days,
+  handleClick,
+  mentor_id,
+  mentorInfo,
+  setMentorInfo,
+}) {
   const [openConfirm, setOpenConfirm] = React.useState(false);
   const [openAwesome, setOpenAwesome] = React.useState(false);
   const [openSession, setOpenSession] = React.useState(false);
@@ -71,18 +45,24 @@ export default function BookDialog({ openMeet, setOpenMeet }) {
   return (
     <>
       <MeetTimeDialog
-        meetTimeSlots={
-          meetTimeSlots && meetTimeSlots.length > 0 ? meetTimeSlots : []
-        }
+        meetTimeSlots={slotsData ? slotsData : []}
         openMeet={openMeet}
         handleMeetClose={handleMeetClose}
         handleConfirmOpen={handleConfirmOpen}
+        timeSlot={timeSlot}
+        setDays={setDays}
+        days={days}
+        handleClick={handleClick}
+        mentor_id={mentor_id}
+        setMentorInfo={setMentorInfo}
+        mentorInfo={mentorInfo}
       />
 
       <ConfirmDialog
         openConfirm={openConfirm}
         handleConfirmClose={handleConfirmClose}
         handleAwesomeOpen={handleAwesomeOpen}
+        mentorInfo={mentorInfo}
       />
       <AwesomeDialog
         openAwesome={openAwesome}

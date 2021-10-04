@@ -35,7 +35,10 @@ const API_PATH = {
   UPDATE_PROFILE: '/api/profile/updateProfile',
   GETPROFILEDATA: '/api/profile/getProfileData',
   UPDATE_MENTOR_PROFILE: '/api/mentors/updateProfile',
-  GET_MENTORS_PROFILEDATA: 'api/mentors/profile',
+  GET_MENTORS_PROFILEDATA: '/api/mentors/profile',
+  GET_TIME_SLOTS: '/api/booking/getTimeSlots',
+  ADD_CALENDAR_EVENT: '/api/booking/createCalendarEvent',
+  GET_MEETING_DETAILS: '/api/booking/',
 };
 
 const METHOD_TYPE = {

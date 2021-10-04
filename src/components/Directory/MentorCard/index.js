@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core';
+import { Backdrop, CircularProgress, makeStyles } from '@material-ui/core';
 import { font } from '../utils';
 import {
   Card,
@@ -13,9 +13,30 @@ import {
   useMediaQuery,
 } from '@material-ui/core/';
 import BookDialog from '../BookDialog';
+import request from 'utils/axiosConfig';
+import { API_PATH } from 'utils/constants';
 
-const MentorCard = ({ userInfo, skills, bio, onTestClick, timeSlot }) => {
-  const [openMeet, setOpenMeet] = React.useState(false);
+const MentorCard = ({
+  userInfo,
+  skills,
+  bio,
+  onTestClick,
+  timeSlot,
+  mentor_id,
+  timezone,
+}) => {
+  const [openMeet, setOpenMeet] = useState(false);
+  const [slotsData, setSlotsData] = useState([]);
+  const [errorResponse, setErrorResponse] = useState(false);
+  const [openBackdrop, setOpenBackdropt] = useState(false);
+  const [mentorInfo, setMentorInfo] = useState({
+    timeZone: timezone.name,
+    mentorEmail: userInfo[0].email,
+    mentortName: `${userInfo[0].firstName} ${userInfo[0].lastName}`,
+    mentorTitle: userInfo[0].title,
+  });
+  const isMobileDevice = useMediaQuery('(max-width:820px)');
+  const [days, setDays] = useState(isMobileDevice ? 2 : 4);
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
@@ -26,23 +47,85 @@ const MentorCard = ({ userInfo, skills, bio, onTestClick, timeSlot }) => {
     jobField,
     mentorNameField,
     bioSection,
+    backdrop,
   } = classes;
 
-  const handleClick = e => {
-    e.preventDefault();
+  const handleClick = (mentor_id, slotDates) => {
+    var finalData = [];
+    const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    Date.prototype.addDays = function (days) {
+      var date = new Date(this.valueOf());
+      date.setDate(date.getDate() + days);
+      return date;
+    };
+    function getDates(startDate, stopDate) {
+      var dateArray = new Array();
+      var currentDate = startDate;
+      while (currentDate <= stopDate) {
+        dateArray.push(currentDate);
+        currentDate = currentDate.addDays(1);
+      }
+      return dateArray;
+    }
+
+    var currentCursor = isMobileDevice ? 2 : 4;
+
+    var dateArray = getDates(
+      new Date().addDays(slotDates - currentCursor),
+      new Date().addDays(slotDates)
+    );
+
+    dateArray.map(data => {
+      finalData.push({
+        date: data.toISOString(),
+        weekDay: weekDays[data.getDay()],
+      });
+    });
+
+    var body = { timeslot: finalData, mentor_id: mentor_id };
+
+    async function fetchSlotsData() {
+      setOpenBackdropt(true);
+      try {
+        const { data } = await request.post(API_PATH.GET_TIME_SLOTS, body);
+        if (data.message === 'Success') {
+          setOpenBackdropt(false);
+          setOpenMeet(true);
+          var meetSlots = data.data;
+          setSlotsData(meetSlots);
+        }
+      } catch (err) {
+        setErrorResponse(true);
+        setOpenBackdropt(false);
+      }
+    }
+    fetchSlotsData();
+
     if (onTestClick) return onTestClick();
-    setOpenMeet(true);
-    //TODO: Booking for this mentor opens up
   };
 
+  if (errorResponse) throw Error('BAD API REQUEST');
   return (
     <>
+      <Backdrop className={backdrop} open={openBackdrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {timeSlot && timeSlot.length > 0 ? (
-        <BookDialog
-          openMeet={openMeet}
-          setOpenMeet={setOpenMeet}
-          timeSlot={timeSlot}
-        />
+        slotsData.length > 0 ? (
+          <BookDialog
+            openMeet={openMeet}
+            setOpenMeet={setOpenMeet}
+            timeSlot={timeSlot}
+            slotsData={slotsData}
+            setDays={setDays}
+            days={days}
+            handleClick={handleClick}
+            mentor_id={mentor_id}
+            mentorInfo={mentorInfo}
+            setMentorInfo={setMentorInfo}
+          />
+        ) : null
       ) : null}
       <Card className={root}>
         <CardHeader
@@ -58,8 +141,11 @@ const MentorCard = ({ userInfo, skills, bio, onTestClick, timeSlot }) => {
                 'aria-label': 'Booking',
                 className: booking,
                 variant: 'outlined',
-                onClick: handleClick,
                 role: 'button',
+              }}
+              onClick={() => {
+                handleClick(mentor_id, isMobileDevice ? 2 : 4);
+                setDays(isMobileDevice ? 2 : 4);
               }}
             >
               BOOK ME
@@ -179,5 +265,9 @@ const useStyles = makeStyles(() => ({
     display: '-webkit-box',
     '-webkitLineClamp': 5,
     '-webkitBoxOrient': 'vertical',
+  },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
   },
 }));
