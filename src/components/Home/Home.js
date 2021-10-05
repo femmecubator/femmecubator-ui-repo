@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  createMuiTheme,
+  createTheme,
   makeStyles,
   ThemeProvider,
   withStyles,
@@ -496,7 +496,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,

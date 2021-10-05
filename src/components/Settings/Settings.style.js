@@ -264,12 +264,11 @@ const useStyles = makeStyles(() => ({
   dropDown: {
     flexDirection: 'column',
     background: '#495057',
-    padding: '15px 25px',
     alignItems: 'flex-start',
     color: '#ffffff',
     borderRadius: '4px',
     display: 'flex',
-    gap: '20px',
+    gap: '0px',
     position: 'relative',
     '&:after, &:before': {
       bottom: '100%',
@@ -285,6 +284,23 @@ const useStyles = makeStyles(() => ({
       marginLeft: '19px',
       borderWidth: '10px',
       borderBottomColor: '#495057',
+    },
+    '& button': {
+      background: 'transparent',
+      border: 'none',
+      color: 'white',
+      fontSize: '16px',
+      width: '98px',
+      fontWeight: 'bold',
+      padding: '15px 15px',
+      lineHeight: '19px',
+      display: 'flex',
+      textAlign: 'left',
+      fontFamily: 'Open Sans',
+      cursor: 'pointer',
+    },
+    '& button:nth-child(2)': {
+      paddingTop: '10px !important',
     },
   },
   threeDotsWrapper: {
