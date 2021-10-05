@@ -86,6 +86,7 @@ const TimeSlotModal = ({
       setStartTime(startTime);
       var date = new Date();
       setEndDate(new Date(date.setMonth(date.getMonth() + 3)));
+      setWeekDays(weekDaysData);
     }
   }, [editTimeSlotData, editItem]);
 
