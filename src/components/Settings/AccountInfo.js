@@ -117,8 +117,13 @@ const AccountInfo = ({ profileData }) => {
         <div className={profile}>
           <div className={mentorName}>SC</div>
           <div>
-            <h3 className={mentorFullName}>Sam Cruz</h3>
-            <p className={mentorProfession}>UX Designer</p>
+            <h3 className={mentorFullName}>
+              {profileData ? profileData.firstName : ''}{' '}
+              {profileData ? profileData.lastName : ''}
+            </h3>
+            <p className={mentorProfession}>
+              {profileData ? profileData.title : ''}
+            </p>
           </div>
         </div>
         <div className={batch}>Mentor</div>

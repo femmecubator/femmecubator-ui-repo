@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStyles from './TimeSlotModal.style';
 import {
   Button,
@@ -24,6 +24,9 @@ const TimeSlotModal = ({
   setNotTimeSlot,
   timeSlots,
   setTimeSlots,
+  editTimeSlotData,
+  setEditTimeSlotData,
+  editItem,
 }) => {
   const isMobile = useMediaQuery('(max-width:420px)');
   const classes = useStyles({ isMobile });
@@ -56,16 +59,36 @@ const TimeSlotModal = ({
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
 
-  useState(() => {
-    var endTime = new Date();
-    var startTime = new Date();
-    endTime.setHours(endTime.getHours() + 1, 0, 0, 0);
-    startTime.setHours(startTime.getHours(), 0, 0, 0);
-    setEndTime(endTime);
-    setStartTime(startTime);
-    var date = new Date();
-    setEndDate(new Date(date.setMonth(date.getMonth() + 3)));
-  }, [endTime, startTime]);
+  useEffect(() => {
+    if (editTimeSlotData) {
+      const { endDate, endTime, meetLink, startDate, startTime, title } =
+        editItem;
+      var oldWeekDays = editItem.weekDays;
+      var updatedWeekDays = weekDaysData;
+      updatedWeekDays.map(data => {
+        if (oldWeekDays.includes(data.timeSlotLabel)) {
+          data.selected = true;
+        }
+      });
+      setTitle(title);
+      setWeekDays(updatedWeekDays);
+      setMeetLink(meetLink);
+      setStartTime(new Date(startTime));
+      setEndTime(new Date(endTime));
+      setStartDate(new Date(startDate));
+      setEndDate(new Date(endDate));
+    } else {
+      var endTime = new Date();
+      var startTime = new Date();
+      endTime.setHours(endTime.getHours() + 1, 0, 0, 0);
+      startTime.setHours(startTime.getHours(), 0, 0, 0);
+      setEndTime(endTime);
+      setStartTime(startTime);
+      var date = new Date();
+      setEndDate(new Date(date.setMonth(date.getMonth() + 3)));
+      setWeekDays(weekDaysData);
+    }
+  }, [editTimeSlotData, editItem]);
 
   const StartDateInput = React.forwardRef(({ value, onClick }, ref) => (
     <button className={calendarInput} onClick={onClick}>
@@ -119,6 +142,7 @@ const TimeSlotModal = ({
   };
 
   const saveTimeSlot = async () => {
+    var body;
     setOpenBackdrop(true);
     var selectedWeekDays = [];
     weekDays.map(data => {
@@ -126,20 +150,40 @@ const TimeSlotModal = ({
         selectedWeekDays.push(data.timeSlotLabel);
       }
     });
-    var body = {
-      timeSlot: [
-        ...timeSlots,
-        {
-          title: title,
-          meetLink: meetLink,
-          startDate: startDate,
-          endDate: endDate,
-          startTime: startTime,
-          endTime: endTime,
-          weekDays: selectedWeekDays,
-        },
-      ],
-    };
+    if (editTimeSlotData) {
+      var updatedTimeSlot = timeSlots;
+      var editTedTimeSlot = {
+        title: title,
+        meetLink: meetLink,
+        startDate: startDate,
+        endDate: endDate,
+        startTime: startTime,
+        endTime: endTime,
+        weekDays: selectedWeekDays,
+      };
+      var objIndex = updatedTimeSlot.findIndex(
+        obj => obj.title === editItem.title
+      );
+      updatedTimeSlot[objIndex] = editTedTimeSlot;
+      body = {
+        timeSlot: [...updatedTimeSlot],
+      };
+    } else {
+      body = {
+        timeSlot: [
+          ...timeSlots,
+          {
+            title: title,
+            meetLink: meetLink,
+            startDate: startDate,
+            endDate: endDate,
+            startTime: startTime,
+            endTime: endTime,
+            weekDays: selectedWeekDays,
+          },
+        ],
+      };
+    }
     try {
       const response = await request.post(API_PATH.UPDATE_MENTOR_PROFILE, body);
       if (response.data.message === 'Success') {
@@ -147,6 +191,14 @@ const TimeSlotModal = ({
         setOpenBackdrop(false);
         setOpenModal(false);
         setNotTimeSlot(false);
+        setWeekDays(weekDaysData);
+        setStartDate(new Date());
+        setEndDate(new Date());
+        setStartTime(new Date());
+        setEndTime(new Date());
+        setMeetLink('');
+        setTitle('');
+        setEditTimeSlotData(false);
       }
     } catch (err) {
       setErrorResponse(true);

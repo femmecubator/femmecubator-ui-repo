@@ -47,7 +47,7 @@ const Directory = () => {
           var mentorsWithTimeSlot = [];
           var mentorsData = data.data;
           mentorsData.map(data => {
-            if ('timeSlot' in data) {
+            if ('timeSlot' in data && data.timeSlot.length > 0) {
               mentorsWithTimeSlot.push(data);
             }
           });
