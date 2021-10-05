@@ -69,7 +69,6 @@ const Booking = ({ heading, timeSlots, setTimeSlots }) => {
       array.splice(position, 1);
     }
     setCheckBoxes([...check]);
-    console.log(array);
     setEditDeleteArray([...array]);
   };
 

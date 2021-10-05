@@ -45,7 +45,6 @@ const ConfirmDialog = ({
 
   const responseGoogle = response => {
     var token = response.tokenObj.access_token;
-    console.log(token);
     addCalendarEvent(token);
   };
 
@@ -62,7 +61,6 @@ const ConfirmDialog = ({
     try {
       const { data } = await request.post(API_PATH.ADD_CALENDAR_EVENT, body);
       if (data.message === 'Success') {
-        console.log(data);
         setOpenBackdropt(false);
         handleConfirmClose();
         handleAwesomeOpen();
