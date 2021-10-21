@@ -230,10 +230,9 @@ const useStyles = makeStyles(() => ({
   },
   communityQuotesContainer: {
     backgroundColor: '#FFFFFF',
-    display: 'flex',
-    //justifyContent: 'space-evenly',
+    //display: 'flex',
     paddingTop: '45px',
-    paddingBottom: '45px',
+    paddingBottom: '100px',
     //flexDirection: 'column',
     /* '@media (max-width: 799px)': {
       paddingTop: '0px',
@@ -246,7 +245,7 @@ const useStyles = makeStyles(() => ({
   communityQuotesNestedContainer: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    marginLeft: '9%',
   },
   communityQuotesComponent: {
     //maxWidth: '200px',
