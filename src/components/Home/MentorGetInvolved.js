@@ -22,13 +22,13 @@ import Footer from 'components/Footer/Footer';
 
 const BlueFilledButton = withStyles({
   root: {
+    display: 'flex',
     background: '#026FE4',
     borderRadius: '4px',
     height: '45px',
     padding: '10px 21px',
     color: 'white',
-    margin: '0px',
-    marginLeft: '9%',
+    //margin: '0px',
     '&:hover': {
       background: '#550CCC',
       border: 'none',
@@ -555,7 +555,11 @@ export default function MentorGetInvolved() {
                 in UX or Software Development to mentor other BIPOC women
                 looking to break into tech.
               </Typography>
-              <BlueFilledButton variant="contained" className="buttonOne">
+              <BlueFilledButton
+                variant="contained"
+                className="buttonOne"
+                style={{ marginLeft: '9%' }}
+              >
                 SIGN UP NOW
               </BlueFilledButton>
             </div>
@@ -794,9 +798,10 @@ export default function MentorGetInvolved() {
                   variant: 'contained',
                   item: true,
                   style: {
-                    display: 'flex',
+                    /* display: 'flex', */
                     //alignItems: 'center',
-                    marginBottom: '45px',
+                    //justifyContent: 'space-around',
+                    marginLeft: '45%',
                   },
                 }}
               >

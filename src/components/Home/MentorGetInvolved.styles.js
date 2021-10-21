@@ -189,6 +189,7 @@ const useStyles = makeStyles(() => ({
     //display: 'flex',
     //justifyContent: 'space-evenly',
     paddingTop: '45px',
+    paddingBottom: '100px',
     //flexDirection: 'row',
     /* '@media (max-width: 799px)': {
       paddingTop: '20px',
@@ -204,7 +205,7 @@ const useStyles = makeStyles(() => ({
     //minWidth: '200px',
     display: 'flex',
     //flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'center',
     /* '@media (max-width: 799px)': {
       alignItems: 'center',
       width: '300px',
