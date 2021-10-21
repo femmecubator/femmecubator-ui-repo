@@ -481,8 +481,6 @@ const communityQuotes = [
   },
 ];
 
-//communityQuotes.map(getQuotes);
-
 export default function MentorGetInvolved() {
   //const matches = useMediaQuery(theme.breakpoints.down('sm'));
   const classes = useStyles();
@@ -499,6 +497,7 @@ export default function MentorGetInvolved() {
     greenCircle,
     waysMentorContainerSVG,
     waysMentorComponentTitle,
+    mentorComponentWithSVG,
     cohortMentor,
     flexibleMentor,
     waysMentorContainerParagraph,
@@ -532,7 +531,7 @@ export default function MentorGetInvolved() {
               container: true,
               className: headingContainer,
               item: true,
-              xs: 12,
+              sm: 12,
             }}
           >
             <div className="headingComponent">
@@ -565,42 +564,42 @@ export default function MentorGetInvolved() {
             {...{
               className: waysMentorContainer,
               container: true,
-              xs: 12,
+              spacing: 2,
+              //sm: 12,
             }}
           >
-            {/* <div className={containerTitle}> */}
-            <Typography
-              {...{
-                variant: 'h2',
-                className: titlePurple,
-              }}
-            >
-              Ways you can mentor
-            </Typography>
-            {/* </div> */}
+            <Grid {...{ className: containerTitle, item: true }}>
+              <Typography
+                {...{
+                  variant: 'h2',
+                  className: titlePurple,
+                }}
+              >
+                Ways you can mentor
+              </Typography>
+            </Grid>
+
             <Grid
               {...{
-                container: 'true',
+                item: true,
                 className: mentorTypeContainer,
-                //direction: 'row',
-                //justifyContent: 'space-between',
-                //alignItems: 'center',
               }}
             >
-              <Grid {...{ item: 'true', xs: 4, className: cohortMentor }}>
-                <div className={greenCircle}>
-                  <SupervisorAccountIcon
-                    item="true"
-                    fontSize="large"
-                    className={waysMentorContainerSVG}
-                  />
-                </div>
+              {/* <Grid className={mentorComponentWithSVG} item> */}
+              <Grid className={greenCircle} item>
+                <SupervisorAccountIcon
+                  item="true"
+                  fontSize="large"
+                  className={waysMentorContainerSVG}
+                />
+              </Grid>
+
+              <Grid {...{ item: true, sm: 3, className: cohortMentor }}>
                 <Typography
                   {...{
                     variant: 'h2',
                     className: waysMentorComponentTitle,
                     item: true,
-                    //xs: 6,
                   }}
                 >
                   Cohort Mentoring
@@ -618,27 +617,27 @@ export default function MentorGetInvolved() {
                 </Typography>
               </Grid>
               {/* </Grid> */}
-              {/* <br /> */}
               <Divider
                 orientation="vertical"
                 variant="middle"
-                style={{ height: '100%' }}
-                flexItem
+                style={{ height: '100%', marginRight: '7%', marginLeft: '7%' }}
+                item
+                //flexItem
               />
-              {/* <br /> */}
-              <Grid {...{ item: 'true', xs: 4, className: flexibleMentor }}>
-                <div className={greenCircle}>
-                  <SchoolIcon
-                    fontSize="large"
-                    className={waysMentorContainerSVG}
-                  />
-                </div>
+
+              {/* <Grid className={mentorComponentWithSVG} item> */}
+              <Grid className={greenCircle} item>
+                <SchoolIcon
+                  fontSize="large"
+                  className={waysMentorContainerSVG}
+                />
+              </Grid>
+              <Grid {...{ item: true, sm: 3, className: flexibleMentor }}>
                 <Typography
                   {...{
                     variant: 'h2',
                     className: waysMentorComponentTitle,
                     item: true,
-                    //lg: 3,
                   }}
                 >
                   Flexible Mentoring
@@ -647,7 +646,7 @@ export default function MentorGetInvolved() {
                   {...{
                     variant: 'body1',
                     className: waysMentorContainerParagraph,
-                    paragraph: true,
+                    item: true,
                   }}
                 >
                   Set your calendar availability so mentees can easily book 1:1
@@ -655,6 +654,7 @@ export default function MentorGetInvolved() {
                 </Typography>
               </Grid>
             </Grid>
+            {/* </Grid> */}
           </Grid>
 
           <Grid

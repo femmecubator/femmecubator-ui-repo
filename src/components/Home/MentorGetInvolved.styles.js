@@ -93,17 +93,18 @@ const useStyles = makeStyles(() => ({
     //height: '330px',
     backgroundColor: '#FFFFFF',
     display: 'flex',
-    //justifyContent: 'space-evenly',
+    justifyContent: 'space-evenly',
     paddingTop: '45px',
+    paddingBottom: '100px',
     flexDirection: 'column',
-    alignItems: 'center',
-    '@media (max-width: 799px)': {
+    //alignItems: 'center',
+    /* '@media (max-width: 799px)': {
       paddingTop: '20px',
       alignItems: 'center',
       //height: '700px',
       //flexWrap: 'wrap',
       //flexDirection: 'column',
-    },
+    }, */
   },
   /* containerTitle: {
     //marginBottom: '20px',
@@ -121,40 +122,48 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: '28px',
     color: '#400CCC',
-    marginBottom: '40px',
+    marginBottom: '20px',
     //alignItems: 'center',
-    '@media (max-width: 799px)': {
+    /* '@media (max-width: 799px)': {
       marginBottom: '15px',
       textAlign: 'center',
-    },
+    }, */
   },
   /* waysMentorComponent: {
     //maxWidth: '360px',
     //minWidth: '200px',
     //display: 'flex',
     //flexDirection: 'row',
-    //alignItems: 'flex-start',
-    '@media (max-width: 799px)': {
+    alignItems: 'flex-start',
+    /* '@media (max-width: 799px)': {
       alignItems: 'center',
       width: '300px',
     },
   }, */
   mentorTypeContainer: {
-    //alignItems: 'flex-start',
-    //justifyContent: 'space-between',
-    padding: '20px',
-    '@media (max-width: 799px)': {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    //padding: '20px',
+    /* '@media (max-width: 799px)': {
       //flexDirection: 'row',
       alignItems: 'center',
-    },
+    }, */
+  },
+  mentorComponentWithSVG: {
+    display: 'flex',
+    flexDirection: 'row',
   },
   cohortMentor: {
-    marginLeft: '7%',
-    //display: 'flex',
-    //alignItems: 'flex-center',
+    //marginRight: '7%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   flexibleMentor: {
-    marginLeft: '7%',
+    //marginLeft: '7%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   waysMentorContainerParagraph: {
     textAlign: 'left',
@@ -165,13 +174,15 @@ const useStyles = makeStyles(() => ({
     //width: '27%',
     //marginBottom: '40px',
     //marginTop: '40px',
-    '@media (max-width: 799px)': {
+    /* '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '0px',
-    },
+    }, */
   },
   waysMentorContainerSVG: {
     color: '#400CCC',
+    //display: 'flex',
+    //alignItems: 'flex-end',
   },
   howToStartContainer: {
     //backgroundColor: '#FFFFFF',
