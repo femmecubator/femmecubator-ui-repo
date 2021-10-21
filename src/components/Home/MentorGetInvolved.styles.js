@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
   headingContainer: {
     height: '400px',
     backgroundImage: `url('./assets/mentorhome.jpg')`,
@@ -213,7 +216,7 @@ const useStyles = makeStyles(() => ({
       marginBottom: '0px',
     },
   },
-  communityQuotesContainer: {
+  /* communityQuotesContainer: {
     backgroundColor: '#FFFFFF',
     //display: 'flex',
     //justifyContent: 'space-evenly',
@@ -227,11 +230,11 @@ const useStyles = makeStyles(() => ({
       //flexWrap: 'wrap',
       //flexDirection: 'column',
     },
-  },
-  communityQuotesNestedContainer: {
+  }, */
+  /* communityQuotesNestedContainer: {
     flexDirection: 'row',
-  },
-  communityQuotesComponent: {
+  }, */
+  /* communityQuotesComponent: {
     //maxWidth: '360px',
     //minWidth: '200px',
     //display: 'flex',
@@ -241,16 +244,16 @@ const useStyles = makeStyles(() => ({
       alignItems: 'center',
       //width: '300px',
     },
-  },
-  communityQuotesImage: {
+  }, */
+  /* communityQuotesImage: {
     marginBottom: '20px',
     //display: 'flex',
     '@media (max-width: 799px)': {
       alignItems: 'center',
       marginBottom: '20px',
     },
-  },
-  communityQuotesText: {
+  }, */
+  /*   communityQuotesText: {
     textAlign: 'left',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
@@ -276,7 +279,7 @@ const useStyles = makeStyles(() => ({
       textAlign: 'center',
       marginBottom: '20px',
     },
-  },
+  }, */
   faqAccordionContainer: {
     display: 'flex',
     flexDirection: 'column',
