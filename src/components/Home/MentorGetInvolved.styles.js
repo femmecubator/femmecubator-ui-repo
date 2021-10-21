@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  /* root: {
     flexGrow: 1,
-  },
+  }, */
   headingContainer: {
     height: '400px',
     backgroundImage: `url('./assets/mentorhome.jpg')`,
@@ -178,32 +178,32 @@ const useStyles = makeStyles(() => ({
     //display: 'flex',
     //justifyContent: 'space-evenly',
     paddingTop: '45px',
-    //flexDirection: 'column',
-    '@media (max-width: 799px)': {
+    //flexDirection: 'row',
+    /* '@media (max-width: 799px)': {
       paddingTop: '20px',
       alignItems: 'center',
       height: '700px',
       flexWrap: 'wrap',
       flexDirection: 'column',
-    },
+    }, */
   },
   howToStartContainerTitle: {},
-  howToStartComponent: {
+  howToStartNestedContainer: {
     //maxWidth: '360px',
     //minWidth: '200px',
     display: 'flex',
-    flexDirection: 'row',
-    //alignItems: 'center',
-    '@media (max-width: 799px)': {
+    //flexDirection: 'row',
+    alignItems: 'center',
+    /* '@media (max-width: 799px)': {
       alignItems: 'center',
       width: '300px',
-    },
+    }, */
   },
-  /*   howToStartNumbers: {
+  howToStartNumbers: {
     color: '#400CCC',
     fontSize: '20px',
     fontWeight: 500,
-  }, */
+  },
   howToStartContainerParagraph: {
     textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
@@ -211,75 +211,79 @@ const useStyles = makeStyles(() => ({
     fontSize: '16px',
     color: '#000000',
     marginBottom: '40px',
-    '@media (max-width: 799px)': {
+    /* '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '0px',
-    },
+    }, */
   },
-  /* communityQuotesContainer: {
+  communityQuotesContainer: {
     backgroundColor: '#FFFFFF',
-    //display: 'flex',
+    display: 'flex',
     //justifyContent: 'space-evenly',
     paddingTop: '45px',
     paddingBottom: '45px',
     //flexDirection: 'column',
-    '@media (max-width: 799px)': {
+    /* '@media (max-width: 799px)': {
       paddingTop: '0px',
       alignItems: 'center',
-      //height: '700px',
-      //flexWrap: 'wrap',
-      //flexDirection: 'column',
-    },
-  }, */
-  /* communityQuotesNestedContainer: {
+      height: '700px',
+      flexWrap: 'wrap',
+      flexDirection: 'column',
+    }, */
+  },
+  communityQuotesNestedContainer: {
+    display: 'flex',
     flexDirection: 'row',
-  }, */
-  /* communityQuotesComponent: {
-    //maxWidth: '360px',
-    //minWidth: '200px',
-    //display: 'flex',
-    //flexDirection: 'column',
-    alignItems: 'flex-start',
-    '@media (max-width: 799px)': {
+    alignItems: 'center',
+  },
+  communityQuotesComponent: {
+    //maxWidth: '200px',
+    //minWidth: '50px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    /* '@media (max-width: 799px)': {
       alignItems: 'center',
       //width: '300px',
-    },
-  }, */
-  /* communityQuotesImage: {
+    }, */
+  },
+  communityQuotesImage: {
     marginBottom: '20px',
-    //display: 'flex',
-    '@media (max-width: 799px)': {
+    display: 'flex',
+    //maxWidth: '150px',
+    /* '@media (max-width: 799px)': {
       alignItems: 'center',
       marginBottom: '20px',
-    },
-  }, */
-  /*   communityQuotesText: {
-    textAlign: 'left',
+    }, */
+  },
+  communityQuotesText: {
+    textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
     fontSize: '16px',
     color: '#000000',
     marginBottom: '20px',
-    //display: 'flex',
-    '@media (max-width: 799px)': {
+    display: 'flex',
+    /*     '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '20px',
-    },
+    }, */
   },
   communityQuotesName: {
-    textAlign: 'left',
+    textAlign: 'center',
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
     fontSize: '12px',
     fontStyle: 'italic',
     color: '#000000',
     //marginTop: '40px',
-    //display: 'flex',
-    '@media (max-width: 799px)': {
+    display: 'flex',
+    /* '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '20px',
-    },
-  }, */
+    }, */
+  },
+
   faqAccordionContainer: {
     display: 'flex',
     flexDirection: 'column',
