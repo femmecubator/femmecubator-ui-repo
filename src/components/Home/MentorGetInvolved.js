@@ -907,7 +907,7 @@ export default function MentorGetInvolved() {
                 <Typography
                   {...{ className: faqAccordianParagraphTwo, item: true }}
                 >
-                  TBD
+                  We recommend an average time commitment of 2-4 hours monthly.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -930,7 +930,17 @@ export default function MentorGetInvolved() {
                 <Typography
                   {...{ className: faqAccordianParagraphTwo, item: true }}
                 >
-                  TBD
+                  Cohort mentorship applies to mentors interested in getting
+                  involved in our Spring or Fall Excel Labs program. In this
+                  track, you will be needed to provide critique or lead design
+                  talks for a minimum of 2 hours on a fixed schedule/cadence.
+                  <br />
+                  <br />
+                  Flexible mentorship is an on-demand track where mentors have
+                  the flexibility to provide one-off consultation for
+                  designers/developers outside of the Excel Labs program. Our
+                  mentees will book 1:1 time with you through our app through
+                  our timeslots feature.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -953,7 +963,10 @@ export default function MentorGetInvolved() {
                 <Typography
                   {...{ className: faqAccordianParagraphTwo, item: true }}
                 >
-                  TBD
+                  We highly recommend midlevel designers and developers to join
+                  as mentors. BIPOC mentors are a plus. We find that most
+                  mentees are looking to pair up with mentors who are of similar
+                  backgrounds.
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -976,12 +989,30 @@ export default function MentorGetInvolved() {
                 <Typography
                   {...{ className: faqAccordianParagraphTwo, item: true }}
                 >
-                  TBD
+                  Femmecubator’s mission is to support BIPOC women breaking into
+                  the field of UX or Developments. In a nutshell, members often
+                  need support in different stages of their career switch:
+                  <br />
+                  <br />
+                  Just starting - seeking out best resources or next step
+                  options to further strengthen their skills
+                  <br />
+                  <br />
+                  Already took bootcamp/classes - looking for career path
+                  recommendations or informational interview
+                  <br />
+                  <br />
+                  Portfolio Review - they are looking to get feedback on their
+                  work, their project or design critique their portfolio
+                  <br />
+                  <br />
+                  Pair programming - developer mentees often get stuck and need
+                  support on refactoring or debugging code
                 </Typography>
               </AccordionDetails>
             </Accordion>
 
-            <Accordion
+            {/* <Accordion
               {...{ className: faqAccordionComponent, item: true, sm: 12 }}
             >
               <AccordionSummary
@@ -1002,7 +1033,7 @@ export default function MentorGetInvolved() {
                   TBD
                 </Typography>
               </AccordionDetails>
-            </Accordion>
+            </Accordion> */}
           </Grid>
           <Footer />
         </Grid>
