@@ -185,12 +185,11 @@ const useStyles = makeStyles(() => ({
     //alignItems: 'flex-end',
   },
   howToStartContainer: {
-    //backgroundColor: '#FFFFFF',
-    //display: 'flex',
-    //justifyContent: 'space-evenly',
+    display: 'flex',
+    justifyContent: 'center',
     paddingTop: '45px',
     paddingBottom: '100px',
-    //flexDirection: 'row',
+    flexDirection: 'row',
     /* '@media (max-width: 799px)': {
       paddingTop: '20px',
       alignItems: 'center',
@@ -199,17 +198,23 @@ const useStyles = makeStyles(() => ({
       flexDirection: 'column',
     }, */
   },
-  howToStartContainerTitle: {},
+  howToStartContainerTitle: {
+    //marginTop: '40px',
+  },
   howToStartNestedContainer: {
     //maxWidth: '360px',
     //minWidth: '200px',
     display: 'flex',
-    //flexDirection: 'row',
+    flexDirection: 'row',
     justifyContent: 'center',
     /* '@media (max-width: 799px)': {
       alignItems: 'center',
       width: '300px',
     }, */
+  },
+  howToStartComponent: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   howToStartNumbers: {
     color: '#400CCC',
@@ -298,9 +303,24 @@ const useStyles = makeStyles(() => ({
   faqAccordionContainer: {
     display: 'flex',
     flexDirection: 'column',
+    marginTop: '50px',
+    marginBottom: '100px',
+    paddingRight: '100px',
+    paddingLeft: '100px',
   },
-  faqAccordionComponent: {},
-  faqAccordianParagraph: {},
+  faqAccordionContainerTitle: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingBottom: '50px',
+  },
+  faqAccordionComponent: {
+    backgroundColor: '#F1F7FF',
+    borderBottom: '0.5px solid gray',
+    boxShadow: 'none',
+  },
+  faqAccordianParagraph: {
+    fontWeight: '900',
+  },
   faqAccordianParagraphTwo: {},
 }));
 

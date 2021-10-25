@@ -515,6 +515,7 @@ export default function MentorGetInvolved() {
     communityQuotesText,
     communityQuotesName,
     faqAccordionContainer,
+    faqAccordionContainerTitle,
     faqAccordionComponent,
     faqAccordianParagraph,
     faqAccordianParagraphTwo,
@@ -685,6 +686,8 @@ export default function MentorGetInvolved() {
                     color: '#400CCC',
                     fontSize: '20px',
                     fontWeight: 500,
+                    marginLeft: '38%',
+                    marginBottom: '20px',
                   }}
                   item="true"
                 >
@@ -713,6 +716,8 @@ export default function MentorGetInvolved() {
                     color: '#400CCC',
                     fontSize: '20px',
                     fontWeight: 500,
+                    marginLeft: '38%',
+                    marginBottom: '20px',
                   }}
                   item="true"
                 >
@@ -741,6 +746,8 @@ export default function MentorGetInvolved() {
                     color: '#400CCC',
                     fontSize: '20px',
                     fontWeight: 500,
+                    marginLeft: '38%',
+                    marginBottom: '20px',
                   }}
                   item="true"
                 >
@@ -769,7 +776,8 @@ export default function MentorGetInvolved() {
                     color: '#400CCC',
                     fontSize: '20px',
                     fontWeight: 500,
-                    //display: 'flex',
+                    marginLeft: '38%',
+                    marginBottom: '20px',
                   }}
                   item="true"
                 >
@@ -865,90 +873,132 @@ export default function MentorGetInvolved() {
           <Grid
             {...{
               className: faqAccordionContainer,
-              item: true,
-              xs: 12,
+              container: true,
+              sm: 12,
             }}
           >
-            <Accordion {...{ className: faqAccordionComponent }}>
+            <Grid
+              {...{
+                className: faqAccordionContainerTitle,
+                item: true /* , sm: 12 */,
+              }}
+            >
+              <Typography {...{ variant: 'h2', className: titlePurple }}>
+                Frequently Asked Questions
+              </Typography>
+            </Grid>
+            <Accordion
+              {...{ className: faqAccordionComponent, item: true, sm: 12 }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
                 id="panel1-header"
+                disableGutters
+                elevation={0}
               >
-                <Typography {...{ className: faqAccordianParagraph }}>
+                <Typography
+                  {...{ className: faqAccordianParagraph, item: true }}
+                >
                   What’s the expected time commitment for a mentor?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography {...{ className: faqAccordianParagraphTwo }}>
+                <Typography
+                  {...{ className: faqAccordianParagraphTwo, item: true }}
+                >
                   TBD
                 </Typography>
               </AccordionDetails>
             </Accordion>
 
-            <Accordion {...{ className: faqAccordionComponent }}>
+            <Accordion
+              {...{ className: faqAccordionComponent, item: true, sm: 12 }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2-content"
                 id="panel2-header"
               >
-                <Typography {...{ className: faqAccordianParagraph }}>
+                <Typography
+                  {...{ className: faqAccordianParagraph, item: true }}
+                >
                   What is the difference between cohort and flexible mentoring?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography {...{ className: faqAccordianParagraphTwo }}>
+                <Typography
+                  {...{ className: faqAccordianParagraphTwo, item: true }}
+                >
                   TBD
                 </Typography>
               </AccordionDetails>
             </Accordion>
 
-            <Accordion {...{ className: faqAccordionComponent }}>
+            <Accordion
+              {...{ className: faqAccordionComponent, item: true, sm: 12 }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
               >
-                <Typography {...{ className: faqAccordianParagraph }}>
+                <Typography
+                  {...{ className: faqAccordianParagraph, item: true }}
+                >
                   How do I know if I’m eligible to become a mentor?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography {...{ className: faqAccordianParagraphTwo }}>
+                <Typography
+                  {...{ className: faqAccordianParagraphTwo, item: true }}
+                >
                   TBD
                 </Typography>
               </AccordionDetails>
             </Accordion>
 
-            <Accordion {...{ className: faqAccordionComponent }}>
+            <Accordion
+              {...{ className: faqAccordionComponent, item: true, sm: 12 }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel4-content"
                 id="panel4-header"
               >
-                <Typography {...{ className: faqAccordianParagraph }}>
+                <Typography
+                  {...{ className: faqAccordianParagraph, item: true }}
+                >
                   Who will I be mentoring?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography {...{ className: faqAccordianParagraphTwo }}>
+                <Typography
+                  {...{ className: faqAccordianParagraphTwo, item: true }}
+                >
                   TBD
                 </Typography>
               </AccordionDetails>
             </Accordion>
 
-            <Accordion {...{ className: faqAccordionComponent }}>
+            <Accordion
+              {...{ className: faqAccordionComponent, item: true, sm: 12 }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel5-content"
                 id="panel5-header"
               >
-                <Typography {...{ className: faqAccordianParagraph }}>
+                <Typography
+                  {...{ className: faqAccordianParagraph, item: true }}
+                >
                   Why should I join Femmecubator?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography {...{ className: faqAccordianParagraphTwo }}>
+                <Typography
+                  {...{ className: faqAccordianParagraphTwo, item: true }}
+                >
                   TBD
                 </Typography>
               </AccordionDetails>
