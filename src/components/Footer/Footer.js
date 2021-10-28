@@ -1,5 +1,5 @@
 import React from 'react';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { Typography, Link } from '@material-ui/core/';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link as RouterLink } from 'react-router-dom';
@@ -91,7 +91,7 @@ const Footer = () => {
     quickLinksContainer,
   } = useStyles();
 
-  const theme = createMuiTheme({
+  const theme = createTheme({
     breakpoints: {
       values: {
         xs: 0,

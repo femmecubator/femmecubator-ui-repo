@@ -13,7 +13,7 @@ export const Mentor_Onboarding_Modal = () => {
     <>
       <Router>
         <GlobalProvider>
-          <MentorOnboardingModal />
+          <MentorOnboardingModal showInModal={true} />
         </GlobalProvider>
       </Router>
     </>
