@@ -1,13 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {
-  Mentors,
-  Listings,
-  Volunteer,
-  GetInvolved,
-  Threads,
-  Settings,
-  Dev,
-} from 'stubs';
+import { Mentors, Listings, Volunteer, Threads, Settings, Dev } from 'stubs';
 import Home from 'components/Home/Home';
 import MentorGetInvolved from 'components/Home/MentorGetInvolved';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
