@@ -1,14 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {
-  Mentors,
-  Listings,
-  Volunteer,
-  Resources,
-  Threads,
-  Settings,
-  Dev,
-} from 'stubs';
+import { Mentors, Listings, Volunteer, Threads, Settings, Dev } from 'stubs';
 import Home from 'components/Home/Home';
+import MentorGetInvolved from 'components/Home/MentorGetInvolved';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
 import LoginForm from 'components/AccountForms/LoginForm';
 import ViewContainer from 'components/ViewContainer';
@@ -23,7 +16,7 @@ const {
   LISTINGS,
   VOLUNTEER,
   ABOUT,
-  RESOURCES,
+  GETINVOLVED,
   THREADS,
   SETTINGS,
   DASHBOARD,
@@ -49,8 +42,8 @@ export default class ComponentFactory {
         return Volunteer;
       case ABOUT:
         return AboutContainer;
-      case RESOURCES:
-        return Resources;
+      case GETINVOLVED:
+        return MentorGetInvolved;
       case THREADS:
         return Threads;
       case SETTINGS:

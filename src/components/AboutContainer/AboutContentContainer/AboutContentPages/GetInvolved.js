@@ -24,7 +24,6 @@ const BlueOutlineButton = withStyles({
       alignSelf: 'center',
       marginTop: 'auto',
       marginBottom: '20px',
-      padding: '20px',
     },
   },
   label: {
@@ -42,15 +41,13 @@ const GetInvolved = () => {
         We are proudly volunteer-driven
       </Typography>
       <Grid
-        {...{
-          container: true,
-          direction: 'row',
-          justify: 'flex-start',
-          alignItems: 'flex-start',
-          spacing: 7,
-        }}
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="flex-start"
+        spacing={7}
       >
-        <Grid item sm>
+        <Grid item xs>
           <h3>Donate</h3>
           <p>
             We are fundraising for our first mentorship program cohort which
@@ -58,15 +55,11 @@ const GetInvolved = () => {
             tech by 2021. Join us by supporting this program and create a pledge
             on Patreon.
           </p>
-          <BlueOutlineButton
-            variant="outlined"
-            data-testid="donateButton"
-            style={{ marginBottom: '-10px' }}
-          >
+          <BlueOutlineButton variant="outlined">
             MAKE A DONATION
           </BlueOutlineButton>
         </Grid>
-        <Grid item sm>
+        <Grid item xs>
           <h3>Grow with us</h3>
           <p>
             We're sharing updates on our app-building process on Patreon every
@@ -74,21 +67,19 @@ const GetInvolved = () => {
             community platform and support our volunteers with a recurring gift
             while you learn MongoDB, Express, React.js, and Node.js.
           </p>
-          <BlueOutlineButton variant="outlined" data-testid="patreonButton">
+          <BlueOutlineButton variant="outlined">
             SUPPORT ON PATREON
           </BlueOutlineButton>
         </Grid>
       </Grid>
       <br />
       <Grid
-        {...{
-          container: true,
-          direction: 'column',
-          justify: 'flex-start',
-          alignItems: 'flex-start',
-        }}
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="flex-start"
       >
-        <Grid item sm={7}>
+        <Grid item xs={7}>
           <h3>Mentor</h3>
           <p>
             Our members need you! If you are an industry expert in Design or
@@ -96,12 +87,12 @@ const GetInvolved = () => {
             ranging from tech interviews and whiteboarding sessions to
             informational interviews, consider applying to be a mentor.
           </p>
-          <BlueOutlineButton variant="outlined" data-testid="mentorButton">
+          <BlueOutlineButton variant="outlined">
             SIGN UP TO BE A MENTOR
           </BlueOutlineButton>
         </Grid>
         <br />
-        <Grid item sm={7}>
+        <Grid item xs={7}>
           <h3>Volunteer</h3>
           <p>
             Are you a UX or Web Dev bootcamp grad looking to expand your skills?
@@ -109,7 +100,7 @@ const GetInvolved = () => {
             like to be on a team? Be part of our agile team and dive into a
             3-month AppDev Program.
           </p>
-          <BlueOutlineButton variant="outlined" data-testid="volunteerButton">
+          <BlueOutlineButton variant="outlined">
             APPLY TO VOLUNTEER
           </BlueOutlineButton>
         </Grid>

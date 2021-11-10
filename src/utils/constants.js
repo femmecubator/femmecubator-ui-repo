@@ -7,8 +7,8 @@ const DEFAULT_COMMON_MENU = {
     },
     {
       id: 2,
-      label: 'Resources',
-      href: '/resources',
+      label: 'Get Involved',
+      href: '/getinvolved',
     },
     {
       id: 3,
@@ -63,7 +63,7 @@ const ROUTES_LABEL = {
   LISTINGS: 'listings',
   VOLUNTEER: 'volunteer',
   ABOUT: 'whatWeDo',
-  RESOURCES: 'resources',
+  GET_INVOLVED: 'getinvolved',
   THREADS: 'threads',
   SETTINGS: 'settings',
   DEV: 'dev',
@@ -116,7 +116,7 @@ const ROUTES = [
     id: 8,
     isProtected: false,
     label: ROUTES_LABEL.RESOURCES,
-    path: '/resources',
+    path: '/getinvolved',
   },
   {
     id: 9,
