@@ -9,8 +9,6 @@ closes #
 - [ ] I made sure I removed all the console.logs
 - [ ] I made sure mobile portrait view looks good
 - [ ] I made sure mobile landscape view looks good
-- [ ] I added storybook for the component
-	- [ ] Storybook not applicable
 - [ ] I added unit test coverage
 	- [ ] I added integration test coverage
 	- [ ] Unit test coverage not applicable
