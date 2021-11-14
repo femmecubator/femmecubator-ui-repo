@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import 'fontsource-roboto';
+import '@fontsource/roboto';
 
 const useStyles = makeStyles(theme => ({
   root: {
