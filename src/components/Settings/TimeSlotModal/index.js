@@ -45,7 +45,7 @@ const TimeSlotModal = ({
     slectedWeekDay,
     border_right_none,
     timeSlotsButtons,
-    gooleMeet,
+   // gooleMeet,
     backdrop,
   } = classes;
 
@@ -54,14 +54,14 @@ const TimeSlotModal = ({
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  const [meetLink, setMeetLink] = useState('');
+ // const [meetLink, setMeetLink] = useState('');
   const [title, setTitle] = useState('');
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
 
   useEffect(() => {
     if (editTimeSlotData) {
-      const { endDate, endTime, meetLink, startDate, startTime, title } =
+      const { endDate, endTime, /* meetLink, */ startDate, startTime, title } =
         editItem;
       var oldWeekDays = editItem.weekDays;
       var updatedWeekDays = weekDaysData;
@@ -72,7 +72,7 @@ const TimeSlotModal = ({
       });
       setTitle(title);
       setWeekDays(updatedWeekDays);
-      setMeetLink(meetLink);
+      //setMeetLink(meetLink);
       setStartTime(new Date(startTime));
       setEndTime(new Date(endTime));
       setStartDate(new Date(startDate));
@@ -154,7 +154,7 @@ const TimeSlotModal = ({
       var updatedTimeSlot = timeSlots;
       var editTedTimeSlot = {
         title: title,
-        meetLink: meetLink,
+        //meetLink: meetLink,
         startDate: startDate,
         endDate: endDate,
         startTime: startTime,
@@ -174,7 +174,7 @@ const TimeSlotModal = ({
           ...timeSlots,
           {
             title: title,
-            meetLink: meetLink,
+            //meetLink: meetLink,
             startDate: startDate,
             endDate: endDate,
             startTime: startTime,
@@ -196,7 +196,7 @@ const TimeSlotModal = ({
         setEndDate(new Date());
         setStartTime(new Date());
         setEndTime(new Date());
-        setMeetLink('');
+        //setMeetLink('');
         setTitle('');
         setEditTimeSlotData(false);
       }
@@ -316,7 +316,7 @@ const TimeSlotModal = ({
                     customInput={<EndtTimeInput />}
                   />
                 </div>
-                <p className={createTitle} style={{ marginTop: '25px' }}>
+      {/*           <p className={createTitle} style={{ marginTop: '25px' }}>
                   Meeting link:
                 </p>
                 <TextField
@@ -331,7 +331,7 @@ const TimeSlotModal = ({
                       setMeetLink(event.target.value);
                     },
                   }}
-                />
+                /> */}
               </div>
             </div>
           </DialogContentText>
@@ -348,7 +348,7 @@ const TimeSlotModal = ({
             variant="contained"
             color="primary"
             onClick={() => saveTimeSlot()}
-            disabled={!(title !== '' && meetLink !== '' ? true : false)}
+            disabled={!(title !== '' /* && meetLink !== '' */ ? true : false)}
           >
             Save
           </Button>
