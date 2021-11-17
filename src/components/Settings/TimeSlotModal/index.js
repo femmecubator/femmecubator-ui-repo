@@ -267,7 +267,7 @@ const TimeSlotModal = ({
                   />
                 </div>
               </div>
-              <p style={{ marginTop: '25px' }}>Repeat every</p>
+              <p style={{ marginTop: '25px' }}>Choose a day/recurring days</p>
               <div className={weekDaysWrapper}>
                 {weekDays.map((data, index) => {
                   return (
