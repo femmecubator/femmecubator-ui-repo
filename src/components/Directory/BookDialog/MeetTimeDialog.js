@@ -53,7 +53,9 @@ const MeetTimeDialog = ({
           className={`${dialogText} ${paddingBottomSm} ${fontWeightBold}`}
         >
           Book meeting time with{' '}
-          <span className={`${highlightText}`}>Amanda Powell, UX Mentor</span>
+          <span className={`${highlightText}`}>
+            {mentorInfo.mentortName}, {mentorInfo.mentorTitle}
+          </span>
         </DialogContentText>
         <div className={`${slotTableContainer} ${paddingTopSm}`}>
           {days > 4 ? (

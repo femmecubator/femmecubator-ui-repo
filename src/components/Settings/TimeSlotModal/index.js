@@ -45,7 +45,6 @@ const TimeSlotModal = ({
     slectedWeekDay,
     border_right_none,
     timeSlotsButtons,
-    // gooleMeet,
     backdrop,
   } = classes;
 
@@ -54,15 +53,13 @@ const TimeSlotModal = ({
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  // const [meetLink, setMeetLink] = useState('');
   const [title, setTitle] = useState('');
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
 
   useEffect(() => {
     if (editTimeSlotData) {
-      const { endDate, endTime, /* meetLink, */ startDate, startTime, title } =
-        editItem;
+      const { endDate, endTime, startDate, startTime, title } = editItem;
       var oldWeekDays = editItem.weekDays;
       var updatedWeekDays = weekDaysData;
       updatedWeekDays.map(data => {
@@ -72,7 +69,6 @@ const TimeSlotModal = ({
       });
       setTitle(title);
       setWeekDays(updatedWeekDays);
-      //setMeetLink(meetLink);
       setStartTime(new Date(startTime));
       setEndTime(new Date(endTime));
       setStartDate(new Date(startDate));
@@ -154,7 +150,6 @@ const TimeSlotModal = ({
       var updatedTimeSlot = timeSlots;
       var editTedTimeSlot = {
         title: title,
-        //meetLink: meetLink,
         startDate: startDate,
         endDate: endDate,
         startTime: startTime,
@@ -174,7 +169,6 @@ const TimeSlotModal = ({
           ...timeSlots,
           {
             title: title,
-            //meetLink: meetLink,
             startDate: startDate,
             endDate: endDate,
             startTime: startTime,
@@ -196,7 +190,6 @@ const TimeSlotModal = ({
         setEndDate(new Date());
         setStartTime(new Date());
         setEndTime(new Date());
-        //setMeetLink('');
         setTitle('');
         setEditTimeSlotData(false);
       }
@@ -267,7 +260,9 @@ const TimeSlotModal = ({
                   />
                 </div>
               </div>
-              <p style={{ marginTop: '25px' }}>Choose a day/recurring days</p>
+              <p style={{ marginTop: '25px', color: '#FF3131' }}>
+                Choose a day/recurring days
+              </p>
               <div className={weekDaysWrapper}>
                 {weekDays.map((data, index) => {
                   return (
@@ -316,22 +311,6 @@ const TimeSlotModal = ({
                     customInput={<EndtTimeInput />}
                   />
                 </div>
-                {/*           <p className={createTitle} style={{ marginTop: '25px' }}>
-                  Meeting link:
-                </p>
-                <TextField
-                  {...{
-                    id: `${'gooleMeet'}`,
-                    className: `${gooleMeet}`,
-                    variant: 'outlined',
-                    inputProps: { 'data-testid': `${gooleMeet}` },
-                    name: `${gooleMeet}`,
-                    value: meetLink,
-                    onChange: event => {
-                      setMeetLink(event.target.value);
-                    },
-                  }}
-                /> */}
               </div>
             </div>
           </DialogContentText>
@@ -348,7 +327,7 @@ const TimeSlotModal = ({
             variant="contained"
             color="primary"
             onClick={() => saveTimeSlot()}
-            disabled={!(title !== '' /* && meetLink !== '' */ ? true : false)}
+            disabled={!(title !== '' ? true : false)}
           >
             Save
           </Button>
