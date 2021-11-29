@@ -27,7 +27,6 @@ const BIO = 'Bio';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
 const PHONE = 'Phone';
 const TIME_ZONE = 'Your Time Zone';
-const GOOGLE_MEET = 'Add a google meet:';
 const MAX_CHARS = 'Bio must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
 
@@ -114,7 +113,11 @@ const MentorOnboardingModal = ({
       body = { ...data, hasOnboarded: true };
     }
     try {
+      console.log(API_PATH.UPDATE_MENTOR_PROFILE);
+
       const response = await request.post(API_PATH.UPDATE_MENTOR_PROFILE, body);
+      console.log('response');
+      console.log(API_PATH.UPDATE_MENTOR_PROFILE);
       if (response.data.message === 'Success') {
         setOpenBackdropt(false);
         setOpenSnackBar(true);

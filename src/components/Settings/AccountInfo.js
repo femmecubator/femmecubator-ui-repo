@@ -126,6 +126,7 @@ const AccountInfo = ({ profileData }) => {
             </p>
           </div>
         </div>
+        {/* console.log(profileData.role_id) */}
         <div className={batch}>Mentor</div>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <div className={email_password}>
