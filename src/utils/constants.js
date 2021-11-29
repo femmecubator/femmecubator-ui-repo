@@ -165,3 +165,8 @@ export {
   COHORT,
   APP_DEADLINE,
 };
+
+export const userRoles = {
+  mentor: 0,
+  mentee: 1,
+};
