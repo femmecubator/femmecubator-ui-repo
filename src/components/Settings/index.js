@@ -10,6 +10,8 @@ import MentorOnboardingModal from 'components/MentorOnboarding/MentorOnboardingM
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
 import { Backdrop, CircularProgress } from '@material-ui/core';
+import { getUserRole } from 'utils/cookies';
+import { userRoles } from 'utils/constants';
 
 const SettingsComponent = () => {
   const { hasOnboarded } = jwt_decode(getTokenCookie());
@@ -25,7 +27,7 @@ const SettingsComponent = () => {
     tabsContent,
     backdrop,
   } = classes;
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(getUserRole() === userRoles.mentor ? 0 : 1);
 
   const [profileData, setProfileData] = useState(null);
   const [mentorsProfileData, setMentorsProfileData] = useState(null);
@@ -74,14 +76,16 @@ const SettingsComponent = () => {
                 <AccountInfo profileData={profileData ? profileData : null} />
                 <div className={tabsWrapper}>
                   <div className={tabs}>
-                    <button
-                      className={`${
-                        tab === 0 ? activeTab : ''
-                      } ${`tabButtons`}`}
-                      onClick={() => setTab(0)}
-                    >
-                      PROFILE
-                    </button>
+                    {getUserRole() === userRoles.mentor ? (
+                      <button
+                        className={`${
+                          tab === 0 ? activeTab : ''
+                        } ${`tabButtons`}`}
+                        onClick={() => setTab(0)}
+                      >
+                        PROFILE
+                      </button>
+                    ) : null}
                     <button
                       className={`${
                         tab === 1 ? activeTab : ''

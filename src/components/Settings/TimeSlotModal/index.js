@@ -45,7 +45,7 @@ const TimeSlotModal = ({
     slectedWeekDay,
     border_right_none,
     timeSlotsButtons,
-   // gooleMeet,
+    // gooleMeet,
     backdrop,
   } = classes;
 
@@ -54,7 +54,7 @@ const TimeSlotModal = ({
   const [endDate, setEndDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
- // const [meetLink, setMeetLink] = useState('');
+  // const [meetLink, setMeetLink] = useState('');
   const [title, setTitle] = useState('');
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
@@ -316,7 +316,7 @@ const TimeSlotModal = ({
                     customInput={<EndtTimeInput />}
                   />
                 </div>
-      {/*           <p className={createTitle} style={{ marginTop: '25px' }}>
+                {/*           <p className={createTitle} style={{ marginTop: '25px' }}>
                   Meeting link:
                 </p>
                 <TextField
