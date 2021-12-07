@@ -35,7 +35,7 @@ const SettingsComponent = () => {
 
   useEffect(() => {
     getProfileData();
-    getMentorsProfileData();
+    getUserRole() === userRoles.mentor ? getMentorsProfileData() : '';
   }, []);
 
   const getProfileData = async () => {
@@ -67,16 +67,16 @@ const SettingsComponent = () => {
       <Backdrop className={backdrop} open={openBackdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      {hasOnboarded ? (
-        <div style={{ background: 'white', minHeight: '100vh' }}>
-          <div className="container">
-            <div className={settingsWrapper}>
-              <h2 className={title}>Settings</h2>
-              <div className={insideWrapper}>
-                <AccountInfo profileData={profileData ? profileData : null} />
-                <div className={tabsWrapper}>
-                  <div className={tabs}>
-                    {getUserRole() === userRoles.mentor ? (
+      {getUserRole() === userRoles.mentor ? (
+        hasOnboarded ? (
+          <div style={{ background: 'white', minHeight: '100vh' }}>
+            <div className="container">
+              <div className={settingsWrapper}>
+                <h2 className={title}>Settings</h2>
+                <div className={insideWrapper}>
+                  <AccountInfo profileData={profileData ? profileData : null} />
+                  <div className={tabsWrapper}>
+                    <div className={tabs}>
                       <button
                         className={`${
                           tab === 0 ? activeTab : ''
@@ -85,7 +85,43 @@ const SettingsComponent = () => {
                       >
                         PROFILE
                       </button>
-                    ) : null}
+                      <button
+                        className={`${
+                          tab === 1 ? activeTab : ''
+                        } ${`tabButtons`}`}
+                        onClick={() => setTab(1)}
+                      >
+                        SECURITY
+                      </button>
+                    </div>
+                    <div className={tabsContent}>
+                      {tab === 0 ? (
+                        <Profile
+                          mentorsProfileData={
+                            mentorsProfileData ? mentorsProfileData : null
+                          }
+                        />
+                      ) : (
+                        <Security />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <MentorOnboardingModal showInModal={true} opened={true} />
+        )
+      ) : (
+        <div style={{ background: 'white', minHeight: '100vh' }}>
+          <div className="container">
+            <div className={settingsWrapper}>
+              <h2 className={title}>Settings</h2>
+              <div className={insideWrapper}>
+                <AccountInfo profileData={profileData ? profileData : null} />
+                <div className={tabsWrapper}>
+                  <div className={tabs}>
                     <button
                       className={`${
                         tab === 1 ? activeTab : ''
@@ -111,8 +147,6 @@ const SettingsComponent = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <MentorOnboardingModal showInModal={true} opened={true} />
       )}
       ;
     </>
