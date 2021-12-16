@@ -35,6 +35,7 @@ const MentorCard = ({
     mentortName: `${userInfo[0].firstName} ${userInfo[0].lastName}`,
     mentorTitle: userInfo[0].title,
   });
+  const [goals, setGoals] = useState('');
   const isMobileDevice = useMediaQuery('(max-width:820px)');
   const [days, setDays] = useState(isMobileDevice ? 2 : 4);
   const isMobile = useMediaQuery('(max-width:767px)');
@@ -124,6 +125,8 @@ const MentorCard = ({
             mentor_id={mentor_id}
             mentorInfo={mentorInfo}
             setMentorInfo={setMentorInfo}
+            goals={goals}
+            setGoals={setGoals}
           />
         ) : null
       ) : null}

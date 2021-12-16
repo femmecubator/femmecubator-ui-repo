@@ -9,7 +9,7 @@ import { formatAMPM } from 'utils/timeConverter';
 const SlotTable = ({
   meetTimeSlots,
   handleMeetClose,
-  handleConfirmOpen,
+  handleGoalsOpen,
   setMentorInfo,
   mentorInfo,
 }) => {
@@ -55,7 +55,7 @@ const SlotTable = ({
                         key={index}
                         onClick={() => {
                           handleMeetClose();
-                          handleConfirmOpen();
+                          handleGoalsOpen();
                           var mentorBookingDetails;
                           mentorBookingDetails = {
                             ...mentorInfo,
@@ -86,7 +86,7 @@ const SlotTable = ({
 SlotTable.propTypes = {
   meetTimeSlots: PropTypes.array.isRequired,
   handleMeetClose: PropTypes.func.isRequired,
-  handleConfirmOpen: PropTypes.func.isRequired,
+  handleGoalsOpen: PropTypes.func.isRequired,
 };
 
 export default SlotTable;

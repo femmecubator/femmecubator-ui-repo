@@ -118,6 +118,9 @@ const useStyles = makeStyles(() => ({
   paddingBottomSm: {
     paddingBottom: '20px !important',
   },
+  paddingBottomNm: {
+    paddingBottom: '35px !important',
+  },
   paddingTopMd: {
     paddingTop: '40px !important',
   },
@@ -165,6 +168,29 @@ const useStyles = makeStyles(() => ({
   backdrop: {
     zIndex: 999999,
     color: '#fff',
+  },
+  centerContent: {
+    textAlign: 'center',
+  },
+  roundedButton: {
+    borderRadius: '5px',
+  },
+  goalsTextArea: {
+    margin: 'auto',
+    maxWidth: 580,
+    maxHeight: 120,
+    width: '90%',
+    '& .MuiTextField-root': {
+      width: '100%',
+      position: 'relative',
+    },
+    '& .MuiFormHelperText-root': {
+      position: 'absolute',
+      top: -32,
+      left: -5,
+      color: 'red',
+      fontSize: 16,
+    },
   },
 }));
 

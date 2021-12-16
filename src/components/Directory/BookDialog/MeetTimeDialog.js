@@ -11,7 +11,7 @@ const MeetTimeDialog = ({
   meetTimeSlots,
   openMeet,
   handleMeetClose,
-  handleConfirmOpen,
+  handleGoalsOpen,
   timeSlot,
   setDays,
   handleClick,
@@ -85,7 +85,7 @@ const MeetTimeDialog = ({
           <SlotTable
             meetTimeSlots={meetTimeSlots}
             handleMeetClose={handleMeetClose}
-            handleConfirmOpen={handleConfirmOpen}
+            handleGoalsOpen={handleGoalsOpen}
             timeSlot={timeSlot}
             setMentorInfo={setMentorInfo}
             mentorInfo={mentorInfo}
@@ -111,7 +111,7 @@ MeetTimeDialog.propTypes = {
   meetTimeSlots: PropTypes.array.isRequired,
   openMeet: PropTypes.bool.isRequired,
   handleMeetClose: PropTypes.func.isRequired,
-  handleConfirmOpen: PropTypes.func.isRequired,
+  handleGoalsOpen: PropTypes.func.isRequired,
   timeSlot: PropTypes.array.isRequired,
 };
 
