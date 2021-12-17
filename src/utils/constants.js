@@ -66,6 +66,8 @@ const ROUTES_LABEL = {
   GET_INVOLVED: 'getinvolved',
   THREADS: 'threads',
   SETTINGS: 'settings',
+  FORGOTPASSWORD: 'forgotpassword',
+  RESETPASSWORD: 'resetpassword',
   DEV: 'dev',
 };
 
@@ -137,8 +139,20 @@ const ROUTES = [
     path: '/dashboard',
   },
   {
-    // temperory route
     id: 12,
+    isProtected: false,
+    label: ROUTES_LABEL.FORGOTPASSWORD,
+    path: '/forgotpassword',
+  },
+  {
+    id: 13,
+    isProtected: false,
+    label: ROUTES_LABEL.RESETPASSWORD,
+    path: '/resetpassword',
+  },
+  {
+    // temperory route
+    id: 14,
     isProtected: false,
     label: ROUTES_LABEL.DEV,
     path: '/dev',

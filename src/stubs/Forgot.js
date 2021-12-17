@@ -1,14 +1,12 @@
 import ForgotPassword from 'components/ForgotPassword';
-import ResetPassword from 'components/ResetPassword';
 import React from 'react';
 
-const Dev = () => {
+const Forgot = () => {
   return (
     <main>
       <ForgotPassword />
-      {/* <ResetPassword /> */}
     </main>
   );
 };
 
-export default Dev;
+export default Forgot;

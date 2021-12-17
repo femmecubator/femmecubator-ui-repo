@@ -5,6 +5,19 @@ import Volunteer from './Volunteer';
 import About from './About';
 import Threads from './Threads';
 import Settings from './Settings';
+import Forgot from './Forgot';
+import Reset from './Reset';
 import Dev from './Dev';
 
-export { Landing, Listings, Mentors, Volunteer, About, Threads, Settings, Dev };
+export {
+  Landing,
+  Listings,
+  Mentors,
+  Volunteer,
+  About,
+  Threads,
+  Settings,
+  Forgot,
+  Reset,
+  Dev,
+};
