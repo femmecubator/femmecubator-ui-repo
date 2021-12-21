@@ -39,6 +39,8 @@ const API_PATH = {
   GET_TIME_SLOTS: '/api/booking/getTimeSlots',
   ADD_CALENDAR_EVENT: '/api/booking/createCalendarEvent',
   GET_MEETING_DETAILS: '/api/booking/',
+  GET_SKILLS: '/api/skills/',
+  UPDATE_SKILLS: '/api/skills/update',
 };
 
 const METHOD_TYPE = {
