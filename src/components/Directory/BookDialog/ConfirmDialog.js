@@ -138,7 +138,7 @@ const ConfirmDialog = ({
           <Button
             className={`${actionButton} ${actionButtonOutlined}`}
             variant="outlined"
-            onClose={() => {
+            onClick={() => {
               setGoals(''), handleConfirmClose();
             }}
             color="primary"
