@@ -1,17 +1,29 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import isEmpty from 'lodash/isEmpty';
+import { API_PATH } from 'utils/constants';
+import request from 'utils/axiosConfig';
 import { Button, TextField, Typography } from '@material-ui/core';
 import useStyles from './ForgotPassword.styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FemmecubatorLogoFull from '../../assets/images/FemmecubatorLogoFull.svg';
 
-function validateEmail(mail) {
-  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-    return true;
-  }
-  return false;
-}
+const MIN_CHARS = 'Must be more than 1 character';
 
-const ForgotScreen = ({ setEmailSent }) => {
+const ForgotSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required('Email is required')
+    .min(2, MIN_CHARS)
+    .matches(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      'Invalid email format'
+    ),
+});
+
+const ForgotScreen = ({ setEmailSent, setOpenBackdrop, mockOnSubmit }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const classes = useStyles({ isMobile });
   const {
@@ -28,19 +40,46 @@ const ForgotScreen = ({ setEmailSent }) => {
     normalWidth,
   } = classes;
 
-  const [email, setEmail] = React.useState(null);
+  const { register, handleSubmit, errors, setError } = useForm({
+    revalidateMode: 'onChange',
+    resolver: yupResolver(ForgotSchema),
+  });
 
-  React.useEffect(() => {
-    console.log(email);
-  }, [email]);
-
-  const handleSubmit = () => {
-    if (validateEmail(email)) setEmailSent(true);
+  const onSubmit = async data => {
+    setOpenBackdrop(true);
+    const body = {
+      email: data.email,
+    };
+    try {
+      const response = await request.post(API_PATH.FORGOT_PASSWORD, body);
+      if (response.data.message === 'Success') {
+        setOpenBackdrop(false);
+        setEmailSent(true);
+      } else {
+        throw error;
+      }
+    } catch (err) {
+      setOpenBackdrop(false);
+      if (err.data)
+        setError('email', {
+          type: 'manual',
+          message: err.data.message,
+        });
+      else
+        setError('email', {
+          type: 'manual',
+          message: 'Something went wrong',
+        });
+    }
   };
 
   return (
     <div className={root}>
-      <div className={forgotContainer}>
+      <form
+        className={forgotContainer}
+        noValidate
+        onSubmit={handleSubmit(mockOnSubmit || onSubmit)}
+      >
         <img
           className={`${logo} ${marginBottomMd} ${marginTopNm}`}
           src={FemmecubatorLogoFull}
@@ -57,24 +96,32 @@ const ForgotScreen = ({ setEmailSent }) => {
         </Typography>
         <div className={field}>
           <TextField
-            id="filled-required"
-            label="Email:"
-            variant="filled"
-            placeholder="Sam.Cruz@gmail.com"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            {...{
+              id: 'email',
+              className: classes.textField,
+              InputProps: { inputProps: { 'data-testid': 'email' } },
+              label: 'Email',
+              variant: 'filled',
+              inputRef: register,
+              name: 'email',
+              placeholder: 'Sam.Cruz@gmail.com',
+              error: !isEmpty(errors.email),
+              helperText: errors.email && errors.email.message,
+            }}
           />
         </div>
         <Button
-          className={`${actionButton} ${actionButtonContained}`}
-          variant="contained"
-          onClick={handleSubmit}
-          color="primary"
-          disabled={!validateEmail(email)}
+          {...{
+            'data-testid': 'submit',
+            type: 'submit',
+            variant: 'contained',
+            color: 'primary',
+            className: `${actionButton} ${actionButtonContained}`,
+          }}
         >
           RESET PASSWORD
         </Button>
-      </div>
+      </form>
     </div>
   );
 };

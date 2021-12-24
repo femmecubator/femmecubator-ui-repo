@@ -4,6 +4,8 @@ import useStyles from './ResetPassword.styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import FemmecubatorLogoFull from '../../assets/images/FemmecubatorLogoFull.svg';
 import SuccessLogo from '../../assets/images/SuccessLogo.svg';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const SuccessResetScreen = () => {
   const isMobile = useMediaQuery('(max-width:767px)');
@@ -12,15 +14,12 @@ const SuccessResetScreen = () => {
     root,
     logo,
     successlogo,
-    field,
     successContainer,
     dialogTitle,
-    dialogText,
     narrowWidth,
     marginBottomLg,
     actionButton,
     actionButtonContained,
-    marginBottomSm,
     marginTopMd,
   } = classes;
   return (
@@ -41,14 +40,16 @@ const SuccessResetScreen = () => {
             Password Reset Successful!
           </h2>
         </Typography>
-        <Button
-          className={`${actionButton} ${actionButtonContained} ${marginTopMd}`}
-          variant="contained"
-          onClick={() => console.log('submit')}
-          color="primary"
-        >
-          TAKE ME BACK
-        </Button>
+        <Link to="/">
+          <Button
+            className={`${actionButton} ${actionButtonContained} ${marginTopMd}`}
+            variant="contained"
+            onClick={() => console.log('submit')}
+            color="primary"
+          >
+            TAKE ME BACK
+          </Button>
+        </Link>
       </div>
     </div>
   );

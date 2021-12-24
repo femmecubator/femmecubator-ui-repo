@@ -88,6 +88,7 @@ const useStyles = makeStyles(() => ({
     '& .MuiFormLabel-root': {
       fontWeight: 'bold',
       color: '#4f4f4f',
+      transform: 'translate(14px, 28px) scale(1)',
     },
     '& .MuiInputLabel-filled': {
       transform: ({ isMobile }) =>
@@ -129,6 +130,12 @@ const useStyles = makeStyles(() => ({
       fontWeight: 'normal',
       color: '#4f4f4f',
     },
+    '& .MuiInputLabel-outlined': {
+      transform: `translate(14px, 28px) scale(1)`,
+    },
+    '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+      transform: `translate(14px, -6px) scale(0.75)`,
+    },
     '& .MuiInputLabel-filled': {
       transform: ({ isMobile }) =>
         isMobile
@@ -136,7 +143,7 @@ const useStyles = makeStyles(() => ({
           : `translate(12px, 28px) scale(1)`,
     },
     '& .MuiInputLabel-filled.MuiInputLabel-shrink': {
-      transform: `translate(12px, 10px) scale(0.75)`,
+      transform: `translate(12px, 0px) scale(0.75)`,
     },
     '& .MuiFormLabel-root.Mui-focused': {
       color: '#2F80ED',

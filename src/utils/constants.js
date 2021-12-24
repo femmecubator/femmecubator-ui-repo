@@ -41,6 +41,8 @@ const API_PATH = {
   GET_MEETING_DETAILS: '/api/booking/',
   GET_SKILLS: '/api/skills/',
   UPDATE_SKILLS: '/api/skills/update',
+  FORGOT_PASSWORD: '/api/register/forgotpassword',
+  RESET_PASSWORD: '/api/register/resetpassword',
 };
 
 const METHOD_TYPE = {
