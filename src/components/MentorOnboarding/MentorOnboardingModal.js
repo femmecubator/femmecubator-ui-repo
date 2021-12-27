@@ -8,7 +8,9 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import FocusTrapOverlay from '../FocusTrapOverlay/FocusTrapOverlay';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete, {
+  createFilterOptions,
+} from '@material-ui/lab/Autocomplete';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useStyles from './MentorOnboardingModal.styles';
@@ -27,7 +29,6 @@ const BIO = 'Bio';
 const SKILLS = 'Skills (eg. tech stack, anything you can offer help with.)';
 const PHONE = 'Phone';
 const TIME_ZONE = 'Your Time Zone';
-const GOOGLE_MEET = 'Add a google meet:';
 const MAX_CHARS = 'Bio must be no more than 128 characters';
 const PHONE_VAL = 'Phone number is not valid';
 
@@ -64,6 +65,7 @@ const MentorOnboardingModal = ({
     isMobile: isMobile,
   });
 
+  const filter = createFilterOptions();
   const cookies = new Cookies();
 
   var hasOnboarded;
@@ -78,18 +80,14 @@ const MentorOnboardingModal = ({
     const { skills, timezone } = profileData;
     var indexArraySkills = [];
     skills.map(data => {
-      topSkills.map((data2, index) => {
-        if (data2.title === data) {
-          indexArraySkills.push(index);
-        }
-      });
+      indexArraySkills.push(data);
     });
     timeZoneData.map((data, index) => {
       if (data.name === timezone.name) {
         defaultTimeZoneIndex = index;
       }
     });
-    defaultSkillsArray = indexArraySkills.map(data => topSkills[data]);
+    defaultSkillsArray = indexArraySkills;
   }
 
   const [openSnackBar, setOpenSnackBar] = useState(false);
@@ -99,14 +97,46 @@ const MentorOnboardingModal = ({
   const [timeZoneObject, setTimeZoneObject] = useState(
     profileData ? profileData.timezone : null
   );
-  const [skillsArray, setSkillsArray] = useState(
-    profileData ? profileData.skills : []
-  );
+  const [skillsArray, setSkillsArray] = useState([]);
+
+  const getSkills = async () => {
+    setOpenBackdropt(true);
+    try {
+      const response = await request.get(API_PATH.GET_SKILLS);
+      if (response.data.message === 'Success') {
+        var data = response.data.data;
+        setSkillsArray(data);
+        setOpenBackdropt(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updateSkills = async newSkills => {
+    setOpenBackdropt(true);
+    const body = {
+      skills: newSkills,
+    };
+    try {
+      const response = await request.post(API_PATH.UPDATE_SKILLS, body);
+      if (response.data.message === 'Success') {
+        setOpenBackdropt(false);
+      }
+    } catch (err) {
+      setOpenBackdropt(true);
+      console.log(err);
+    }
+  };
+
+  React.useEffect(() => {
+    getSkills();
+  }, []);
 
   const onSubmit = async data => {
     setOpenBackdropt(true);
     data.timezone = timeZoneObject;
-    data.skills = skillsArray;
+    data.skills = JSON.parse(data.skills);
     var body;
     if (hasOnboarded) {
       body = { ...data };
@@ -114,7 +144,16 @@ const MentorOnboardingModal = ({
       body = { ...data, hasOnboarded: true };
     }
     try {
+      // posting new skills if any
+      const newSkills = data.skills.filter(
+        newSkill =>
+          !skillsArray.some(oldSkill => newSkill.title === oldSkill.title)
+      );
+      updateSkills(newSkills);
+
       const response = await request.post(API_PATH.UPDATE_MENTOR_PROFILE, body);
+      console.log('response');
+      console.log(API_PATH.UPDATE_MENTOR_PROFILE);
       if (response.data.message === 'Success') {
         setOpenBackdropt(false);
         setOpenSnackBar(true);
@@ -131,16 +170,21 @@ const MentorOnboardingModal = ({
     }
   };
 
-  const { register, handleSubmit, errors, setValue } = useForm({
+  const setDefaultValues = skills => {
+    skills.map(skill => defaultSkillsArray.push(skill));
+  };
+
+  const { register, handleSubmit, errors, setValue, getValues } = useForm({
     resolver: yupResolver(OnboardingSchema),
   });
+
   useEffect(() => {
     if (profileData) {
       const { bio, googlemeet, phone, skills } = profileData;
       setValue('bio', bio);
       setValue('googlemeet', googlemeet);
       setValue('phone', phone);
-      setValue('skills', skills, { shouldValidate: true });
+      setValue('skills', JSON.stringify(skills), { shouldValidate: true });
     }
   }, [setValue, profileData, timeZoneObject]);
 
@@ -188,19 +232,36 @@ const MentorOnboardingModal = ({
         <Autocomplete
           {...{
             multiple: true,
-            options: topSkills,
+            options: skillsArray,
             getOptionLabel: option => option.title,
             filterSelectedOptions: true,
             className: inputField,
             size: 'small',
             'data-testid': 'skills',
             onChange: (event, newValue) => {
-              setSkillsArray(newValue.map(option => option.title));
-              setValue(
-                'skills',
-                newValue.map(option => option.title),
-                { shouldValidate: true }
-              );
+              // setSkillsArray(newValue.map(option => option.inputValue));
+              console.log(newValue, getValues('skills'));
+              setValue('skills', JSON.stringify(newValue), {
+                shouldValidate: true,
+              });
+            },
+            filterOptions: (options, params) => {
+              if (options) {
+                const filtered = filter(options, params);
+
+                const { inputValue } = params;
+                // Suggest the creation of a new value
+                const isExisting = options.some(
+                  option => inputValue === option.inputValue
+                );
+                if (inputValue !== '' && !isExisting) {
+                  filtered.push({
+                    title: `${inputValue}`,
+                  });
+                }
+
+                return filtered;
+              }
             },
             defaultValue: defaultSkillsArray,
             renderInput: params => (

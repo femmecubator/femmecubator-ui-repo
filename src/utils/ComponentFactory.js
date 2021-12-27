@@ -1,5 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Mentors, Listings, Volunteer, Threads, Settings, Dev } from 'stubs';
+import {
+  Mentors,
+  Listings,
+  Volunteer,
+  Threads,
+  Settings,
+  Forgot,
+  Reset,
+  Dev,
+} from 'stubs';
 import Home from 'components/Home/Home';
 import MentorGetInvolved from 'components/Home/MentorGetInvolved';
 import RegistrationForm from 'components/AccountForms/RegistrationForm';
@@ -7,6 +16,7 @@ import LoginForm from 'components/AccountForms/LoginForm';
 import ViewContainer from 'components/ViewContainer';
 import AboutContainer from 'components/AboutContainer';
 import { ROUTES_LABEL } from 'utils/constants';
+import ResetPassword from 'components/ResetPassword';
 
 const {
   HOME,
@@ -20,6 +30,8 @@ const {
   THREADS,
   SETTINGS,
   DASHBOARD,
+  FORGOTPASSWORD,
+  RESETPASSWORD,
   DEV,
 } = ROUTES_LABEL;
 
@@ -48,6 +60,10 @@ export default class ComponentFactory {
         return Threads;
       case SETTINGS:
         return Settings;
+      case FORGOTPASSWORD:
+        return Forgot;
+      case RESETPASSWORD:
+        return ResetPassword;
       case DEV:
         return Dev; // Temp component for testing dislog boxes
       default:

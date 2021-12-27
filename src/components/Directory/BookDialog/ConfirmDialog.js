@@ -22,6 +22,8 @@ const ConfirmDialog = ({
   handleConfirmClose,
   handleAwesomeOpen,
   mentorInfo,
+  goals,
+  setGoals,
 }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const [openBackdrop, setOpenBackdropt] = useState(false);
@@ -57,6 +59,7 @@ const ConfirmDialog = ({
       mentorEmailId: mentorInfo.mentorEmail,
       timeZone: mentorInfo.timeZone,
       access_token: token,
+      summary: goals,
     };
     try {
       const { data } = await request.post(API_PATH.ADD_CALENDAR_EVENT, body);
@@ -64,6 +67,7 @@ const ConfirmDialog = ({
         setOpenBackdropt(false);
         handleConfirmClose();
         handleAwesomeOpen();
+        setGoals('');
       }
     } catch (err) {
       setErrorResponse(true);
@@ -98,7 +102,9 @@ const ConfirmDialog = ({
       <Dialog
         className={rootMeet}
         open={openConfirm}
-        onClose={handleConfirmClose}
+        onClose={() => {
+          setGoals(''), handleConfirmClose();
+        }}
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle
@@ -132,7 +138,9 @@ const ConfirmDialog = ({
           <Button
             className={`${actionButton} ${actionButtonOutlined}`}
             variant="outlined"
-            onClick={handleConfirmClose}
+            onClick={() => {
+              setGoals(''), handleConfirmClose();
+            }}
             color="primary"
           >
             CANCEL

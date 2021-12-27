@@ -39,6 +39,10 @@ const API_PATH = {
   GET_TIME_SLOTS: '/api/booking/getTimeSlots',
   ADD_CALENDAR_EVENT: '/api/booking/createCalendarEvent',
   GET_MEETING_DETAILS: '/api/booking/',
+  GET_SKILLS: '/api/skills/',
+  UPDATE_SKILLS: '/api/skills/update',
+  FORGOT_PASSWORD: '/api/register/forgotpassword',
+  RESET_PASSWORD: '/api/register/resetpassword',
 };
 
 const METHOD_TYPE = {
@@ -66,6 +70,8 @@ const ROUTES_LABEL = {
   GET_INVOLVED: 'getinvolved',
   THREADS: 'threads',
   SETTINGS: 'settings',
+  FORGOTPASSWORD: 'forgotpassword',
+  RESETPASSWORD: 'resetpassword',
   DEV: 'dev',
 };
 
@@ -137,8 +143,20 @@ const ROUTES = [
     path: '/dashboard',
   },
   {
-    // temperory route
     id: 12,
+    isProtected: false,
+    label: ROUTES_LABEL.FORGOTPASSWORD,
+    path: '/forgotpassword',
+  },
+  {
+    id: 13,
+    isProtected: false,
+    label: ROUTES_LABEL.RESETPASSWORD,
+    path: '/resetpassword',
+  },
+  {
+    // temperory route
+    id: 14,
     isProtected: false,
     label: ROUTES_LABEL.DEV,
     path: '/dev',
@@ -164,4 +182,9 @@ export {
   MOBILE_MEDIA_QUERY,
   COHORT,
   APP_DEADLINE,
+};
+
+export const userRoles = {
+  mentor: 0,
+  mentee: 1,
 };

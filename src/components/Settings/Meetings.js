@@ -46,7 +46,7 @@ const Meetings = () => {
       <Backdrop className={backdrop} open={openBackdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <h2 className={timeslotH2}>{'Your Meetings'}</h2>
+      <h2 className={timeslotH2}>{'My Meetings'}</h2>
       <hr className={hr} />
       {meetingData ? (
         meetingData.map((data, index) => {

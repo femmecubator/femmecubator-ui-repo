@@ -10,6 +10,8 @@ import MentorOnboardingModal from 'components/MentorOnboarding/MentorOnboardingM
 import request from 'utils/axiosConfig';
 import { API_PATH } from 'utils/constants';
 import { Backdrop, CircularProgress } from '@material-ui/core';
+import { getUserRole } from 'utils/cookies';
+import { userRoles } from 'utils/constants';
 
 const SettingsComponent = () => {
   const { hasOnboarded } = jwt_decode(getTokenCookie());
@@ -25,7 +27,7 @@ const SettingsComponent = () => {
     tabsContent,
     backdrop,
   } = classes;
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(getUserRole() === userRoles.mentor ? 0 : 1);
 
   const [profileData, setProfileData] = useState(null);
   const [mentorsProfileData, setMentorsProfileData] = useState(null);
@@ -33,7 +35,7 @@ const SettingsComponent = () => {
 
   useEffect(() => {
     getProfileData();
-    getMentorsProfileData();
+    getUserRole() === userRoles.mentor ? getMentorsProfileData() : '';
   }, []);
 
   const getProfileData = async () => {
@@ -65,7 +67,53 @@ const SettingsComponent = () => {
       <Backdrop className={backdrop} open={openBackdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      {hasOnboarded ? (
+      {getUserRole() === userRoles.mentor ? (
+        hasOnboarded ? (
+          <div style={{ background: 'white', minHeight: '100vh' }}>
+            <div className="container">
+              <div className={settingsWrapper}>
+                <h2 className={title}>Settings</h2>
+                <div className={insideWrapper}>
+                  <AccountInfo profileData={profileData ? profileData : null} />
+                  <div className={tabsWrapper}>
+                    <div className={tabs}>
+                      <button
+                        className={`${
+                          tab === 0 ? activeTab : ''
+                        } ${`tabButtons`}`}
+                        onClick={() => setTab(0)}
+                      >
+                        PROFILE
+                      </button>
+                      <button
+                        className={`${
+                          tab === 1 ? activeTab : ''
+                        } ${`tabButtons`}`}
+                        onClick={() => setTab(1)}
+                      >
+                        SECURITY
+                      </button>
+                    </div>
+                    <div className={tabsContent}>
+                      {tab === 0 ? (
+                        <Profile
+                          mentorsProfileData={
+                            mentorsProfileData ? mentorsProfileData : null
+                          }
+                        />
+                      ) : (
+                        <Security />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <MentorOnboardingModal showInModal={true} opened={true} />
+        )
+      ) : (
         <div style={{ background: 'white', minHeight: '100vh' }}>
           <div className="container">
             <div className={settingsWrapper}>
@@ -74,14 +122,6 @@ const SettingsComponent = () => {
                 <AccountInfo profileData={profileData ? profileData : null} />
                 <div className={tabsWrapper}>
                   <div className={tabs}>
-                    <button
-                      className={`${
-                        tab === 0 ? activeTab : ''
-                      } ${`tabButtons`}`}
-                      onClick={() => setTab(0)}
-                    >
-                      PROFILE
-                    </button>
                     <button
                       className={`${
                         tab === 1 ? activeTab : ''
@@ -107,8 +147,6 @@ const SettingsComponent = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <MentorOnboardingModal showInModal={true} opened={true} />
       )}
       ;
     </>

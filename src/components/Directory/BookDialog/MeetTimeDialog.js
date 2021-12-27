@@ -11,7 +11,7 @@ const MeetTimeDialog = ({
   meetTimeSlots,
   openMeet,
   handleMeetClose,
-  handleConfirmOpen,
+  handleGoalsOpen,
   timeSlot,
   setDays,
   handleClick,
@@ -50,10 +50,12 @@ const MeetTimeDialog = ({
         }
       >
         <DialogContentText
-          className={`${dialogText} ${paddingBottomSm} ${fontWeightBold}`}
+          className={`${dialogText} ${paddingTopSm} ${fontWeightBold}`}
         >
           Book meeting time with{' '}
-          <span className={`${highlightText}`}>Amanda Powell, UX Mentor</span>
+          <span className={`${highlightText}`}>
+            {mentorInfo.mentortName}, {mentorInfo.mentorTitle}
+          </span>
         </DialogContentText>
         <div className={`${slotTableContainer} ${paddingTopSm}`}>
           {days > 4 ? (
@@ -83,7 +85,7 @@ const MeetTimeDialog = ({
           <SlotTable
             meetTimeSlots={meetTimeSlots}
             handleMeetClose={handleMeetClose}
-            handleConfirmOpen={handleConfirmOpen}
+            handleGoalsOpen={handleGoalsOpen}
             timeSlot={timeSlot}
             setMentorInfo={setMentorInfo}
             mentorInfo={mentorInfo}
@@ -109,7 +111,7 @@ MeetTimeDialog.propTypes = {
   meetTimeSlots: PropTypes.array.isRequired,
   openMeet: PropTypes.bool.isRequired,
   handleMeetClose: PropTypes.func.isRequired,
-  handleConfirmOpen: PropTypes.func.isRequired,
+  handleGoalsOpen: PropTypes.func.isRequired,
   timeSlot: PropTypes.array.isRequired,
 };
 

@@ -12,6 +12,8 @@ import { getTokenCookie } from 'utils/cookies';
 import SnackBar from 'components/SnackBar';
 import Backdrop from '@material-ui/core/Backdrop';
 import request from 'utils/axiosConfig';
+import { getUserRole } from 'utils/cookies';
+import { userRoles } from 'utils/constants';
 
 const AccountInfo = ({ profileData }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
@@ -126,7 +128,9 @@ const AccountInfo = ({ profileData }) => {
             </p>
           </div>
         </div>
-        <div className={batch}>Mentor</div>
+        <div className={batch}>
+          {getUserRole() === userRoles.mentor ? 'Mentor' : 'Mentee'}
+        </div>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <div className={email_password}>
             <h4>Email</h4>

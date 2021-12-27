@@ -111,8 +111,8 @@ const Directory = () => {
             Office Hours
           </Typography>
         )}
-        <DirectorySearchBar setQuery={setQuery} />
         <div className={mentorDirectory}>
+          <DirectorySearchBar setQuery={setQuery} type="aboveTabs" />
           <Tabs
             {...{
               value: selectedTab,
