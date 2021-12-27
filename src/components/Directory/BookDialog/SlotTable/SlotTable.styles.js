@@ -17,13 +17,14 @@ const useStyles = makeStyles(() => ({
     },
   },
   day: {
-    fontSize: ({ isMobile }) => (isMobile ? '16px' : '18px'),
+    fontSize: ({ isMobile }) => (isMobile ? '12px' : '13px'),
     fontWeight: '700',
     marginBottom: 0,
   },
   date: {
-    fontSize: ({ isMobile }) => (isMobile ? '16px' : '18px'),
+    fontSize: ({ isMobile }) => (isMobile ? '12px' : '13px'),
     marginTop: 0,
+    marginBottom: 20,
   },
   slots: {
     justifyContent: 'center',
@@ -39,7 +40,7 @@ const useStyles = makeStyles(() => ({
     textTransform: 'lowercase',
     boxShadow: 'none',
     color: '#495057',
-    padding: '6px 6px',
+    padding: '8px 12px',
     borderRadius: '16px',
     '&:hover': {
       backgroundColor: '#026FE4',
@@ -50,7 +51,7 @@ const useStyles = makeStyles(() => ({
       flexDirection: 'column',
       '& p': {
         margin: 0,
-        fontSize: '12px',
+        fontSize: '10px',
       },
     },
   },
@@ -58,8 +59,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#E0E0E0',
     height: '32px',
     width: '100%',
-    maxWidth: '130px',
+    maxWidth: '120px',
     textTransform: 'lowercase',
+    fontSize: 10,
     '&.Mui-disabled': { backgroundColor: '#E0E0E0' },
   },
   bookedButton: {

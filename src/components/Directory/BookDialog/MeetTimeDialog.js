@@ -50,7 +50,7 @@ const MeetTimeDialog = ({
         }
       >
         <DialogContentText
-          className={`${dialogText} ${paddingBottomSm} ${fontWeightBold}`}
+          className={`${dialogText} ${paddingTopSm} ${fontWeightBold}`}
         >
           Book meeting time with{' '}
           <span className={`${highlightText}`}>

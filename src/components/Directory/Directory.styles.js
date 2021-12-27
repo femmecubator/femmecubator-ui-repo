@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
     top: '50%',
   },
   mentorDirectory: {
+    position: 'relative',
     backgroundColor: 'white',
     margin: ({ isMobile }) => (isMobile ? '0' : '0 2rem'),
   },
@@ -147,6 +148,7 @@ const useStyles = makeStyles(() => ({
     '& .slotGrid': {
       paddingRight: '15px',
       paddingLeft: '15px',
+      paddingTop: '10px',
     },
     '& svg': {
       cursor: 'pointer',
