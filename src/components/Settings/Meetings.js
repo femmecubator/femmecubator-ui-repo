@@ -14,11 +14,19 @@ const Meetings = () => {
   const isMobile = useMediaQuery('(max-width:680px)');
   const bookingMediaQuery = useMediaQuery('(max-width:632px)');
 
-  const [meetingData, setMeetingData] = useState(null);
+  const [meetingData, setMeetingData] = useState();
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [errorResponse, setErrorResponse] = useState(false);
   const classes = useStyles({ isMobile, bookingMediaQuery });
-  const { timeslotH2, meetingsDetails, settingsButton, hr, backdrop } = classes;
+  const {
+    timeslotH2,
+    meetingsDetails,
+    settingsButton,
+    hr,
+    backdrop,
+    summaryStyle,
+    buttonDiv,
+  } = classes;
 
   useEffect(() => {
     getMeetings();
@@ -55,6 +63,10 @@ const Meetings = () => {
           var endTime = role_id === 1 ? data.attendeeEnd : data.organizerEnd;
           var meetingStartTime = new Date(startTime);
           var meetingEndTime = new Date(endTime);
+          var summary =
+            data.summary.split(' ').length > 300
+              ? data.summary.split(' ').splice(0, 300).join(' ')
+              : data.summary;
           return (
             <div className={meetingsDetails} key={index}>
               <div>
@@ -80,8 +92,9 @@ const Meetings = () => {
                     {data.hangoutLink}
                   </span>
                 </p>
+                <p className={summaryStyle}>{summary}</p>
               </div>
-              <div>
+              <div className={buttonDiv}>
                 <Button
                   className={settingsButton}
                   onClick={() => (window.location.href = data.hangoutLink)}
