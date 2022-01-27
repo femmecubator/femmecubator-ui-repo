@@ -187,7 +187,9 @@ const MentorCard = ({
               gutterBottom: true,
             }}
           >
-            {skills.join()}
+            {skills
+              .map(a => `${typeof a === 'string' ? a : a.title}`)
+              .join(', ')}
           </Typography>
           <Typography
             {...{

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './registration.css';
 import { InputLabel, Chip, makeStyles } from '@material-ui/core';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import { useLocation } from 'react-router';
 
 const useStyles = makeStyles(() => ({
   chipStyle: {
@@ -71,11 +72,25 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ChipComponent = ({ register, unregister, watch, setValue, errors }) => {
+  // const useQuery = () => {
+  //   return new URLSearchParams(useLocation().search);
+  // };
+  // const query = useQuery();
   const classes = useStyles();
   const watchRole = watch('role_id', '');
   const handleClick = val =>
     setValue('role_id', val, { shouldDirty: true, shouldValidate: true });
+
+  // useEffect(() => {
+  //   if (query.get('type')) {
+  //     if (query.get('type') === 'mentor') {
+  //       handleClick(0);
+  //     }
+  //   }
+  // });
+
   useEffect(() => {
+    // console.log(watchRole);
     register('role_id');
     return () => unregister('role_id');
   }, [register, unregister]);

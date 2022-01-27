@@ -87,7 +87,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     textAlign: 'center',
     color: '#026FE4',
-    marginTop: '50px',
+    marginTop: ({ isMobile }) => (isMobile ? '20px' : '50px'),
     textTransform: 'inherit',
     paddingLeft: '16px',
     paddingRight: '16px',
@@ -427,6 +427,12 @@ const useStyles = makeStyles(() => ({
   backdrop: {
     zIndex: 999999,
     color: '#fff',
+  },
+  buttonDiv: {
+    minWidth: '150px',
+  },
+  summaryStyle: {
+    color: '#4F4F4F',
   },
 }));
 

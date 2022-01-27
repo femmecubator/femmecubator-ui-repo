@@ -1,9 +1,16 @@
 import React from 'react';
 import useStyles from './AboutContentContainer.styles';
-import { WhatWeDo, WhoWeAre, Programs, GetInvolved } from './AboutContentPages';
+import {
+  WhatWeDo,
+  WhoWeAre,
+  Community,
+  Support,
+  Volunteer,
+  ContactUs,
+} from './AboutContentPages';
 import { PropTypes } from 'prop-types';
 
-const AboutContentContainer = ({ selected }) => {
+const AboutContentContainer = ({ selected, setSelected }) => {
   const { container, content } = useStyles();
 
   const page = () => {
@@ -12,10 +19,14 @@ const AboutContentContainer = ({ selected }) => {
         return <WhatWeDo />;
       case 'Who We Are':
         return <WhoWeAre />;
-      case 'Programs':
-        return <Programs />;
-      case 'Get Involved':
-        return <GetInvolved />;
+      case 'Community':
+        return <Community />;
+      case 'Support':
+        return <Support />;
+      case 'Volunteer':
+        return <Volunteer {...{ selected, setSelected }} />;
+      case 'Contact Us':
+        return <ContactUs />;
       default:
         return <WhatWeDo />;
     }
@@ -30,6 +41,7 @@ const AboutContentContainer = ({ selected }) => {
 
 AboutContentContainer.propTypes = {
   selected: PropTypes.string,
+  setSelected: PropTypes.func,
 };
 
 export default AboutContentContainer;
