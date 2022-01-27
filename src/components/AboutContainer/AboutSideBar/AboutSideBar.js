@@ -18,7 +18,14 @@ const AboutSideBar = ({ selected, setSelected }) => {
   const isMobile = useMediaQuery('(max-width: 798px)');
   const isXsMobile = useMediaQuery('(max-width:490px)');
 
-  const optionLabels = ['What We Do', 'Who We Are', 'Programs', 'Get Involved'];
+  const optionLabels = [
+    'What We Do',
+    'Who We Are',
+    'Community',
+    'Volunteer',
+    'Support',
+    'Contact Us',
+  ];
 
   const options = optionLabels.map(label => {
     const handleClick = () => {
@@ -46,7 +53,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
 
   return (
     <nav className={container}>
-      {isXsMobile ? (
+      {isMobile ? (
         <section className={xsChoicesContainer}>
           <ScrollMenu
             data={options}
@@ -57,7 +64,7 @@ const AboutSideBar = ({ selected, setSelected }) => {
       ) : (
         <section className={choicesContainer}>{options}</section>
       )}
-      {isMobile && !isXsMobile && <hr />}
+      {isMobile && !isMobile && <hr />}
     </nav>
   );
 };

@@ -19,6 +19,7 @@ import KeyboardIcon from '@material-ui/icons/Keyboard';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Footer from 'components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const isProgress = process.env['REACT_APP_WIP'] === 'true';
 
@@ -445,9 +446,18 @@ const useStyles = makeStyles(() => ({
   },
   slackFormContainer: {
     display: 'flex',
-    flexDirection: 'column',
+    gap: 20,
     justifyContent: 'flex-start',
+    '& h2': {
+      maxWidth: 450,
+    },
+    '& button': {
+      minWidth: 150,
+      margin: 20,
+    },
     '@media (max-width: 799px)': {
+      flexDirection: 'column',
+      gap: 0,
       width: '80%',
       alignItems: 'center',
     },
@@ -493,6 +503,9 @@ const useStyles = makeStyles(() => ({
   },
   joinSlackButton: {
     alignSelf: 'center',
+  },
+  linkStyle: {
+    textDecoration: 'none',
   },
 }));
 
@@ -550,13 +563,14 @@ export default function Home() {
     inProgress,
     inProgressHeader,
     inProgressParagraph,
+    linkStyle,
   } = useStyles();
 
   return (
     <ThemeProvider theme={theme}>
       <main className={root}>
         <Grid container>
-          {isProgress ? (
+          {/* {isProgress ? (
             <Grid className={inProgress} item xs={12}>
               <Typography variant="h2" className={inProgressHeader}>
                 Thanks so much for stopping by!
@@ -576,7 +590,7 @@ export default function Home() {
                 to us on Instagram @femmecubator.
               </Typography>
             </Grid>
-          ) : null}
+          ) : null} */}
           <Grid className={introContainer} item xs={12} sm={6}>
             <div className={firstContainerDiv}>
               <Typography variant="h2" className={getConnectedHeader}>
@@ -589,9 +603,14 @@ export default function Home() {
                 skills, the Femmecubator community can jumpstart your career in
                 tech.
               </Typography>
-              <BlueFilledButton data-testid="styled-button" variant="contained">
-                JOIN TODAY
-              </BlueFilledButton>
+              <Link to="/register" className={linkStyle}>
+                <BlueFilledButton
+                  data-testid="styled-button"
+                  variant="contained"
+                >
+                  JOIN TODAY
+                </BlueFilledButton>
+              </Link>
             </div>
           </Grid>
           <Grid className={topImageContainer} item xs={12} sm={6}>
@@ -613,7 +632,7 @@ export default function Home() {
                   variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
-                  Book mentors
+                  Connect with a mentor
                 </Typography>
                 <Typography
                   {...{
@@ -622,10 +641,9 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Are you thinking of going into Design or Development career
-                  tracks? Easily book time with mentors who can help with
-                  portfolio reviews, practice interview and whiteboarding
-                  sessions.
+                  Career-switching to UX or Dev? Connect with mentors who can
+                  help with portfolio reviews, practice interviews or code
+                  challenge preps.
                 </Typography>
               </div>
             </div>
@@ -641,7 +659,7 @@ export default function Home() {
                   variant="h2"
                   className={bookAndContributeComponentTitle}
                 >
-                  Contribute content
+                  Host a workshop
                 </Typography>
                 <Typography
                   {...{
@@ -650,9 +668,9 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Grow this community with us! We’re looking for org leaders
-                  from women empowerment groups or individuals who want to take
-                  part in research and creating content.
+                  Speak on topics you’re passionate about. We’re looking for
+                  Designers or Developers from all levels to host talks or
+                  tech-related workshops through our monthly LiT Talks event.
                 </Typography>
               </div>
             </div>
@@ -783,9 +801,11 @@ export default function Home() {
                     career support ranging from tech interviews and
                     whiteboarding sessions to informational interviews.
                   </Typography>
-                  <BlueOutlineButton variant="contained" color="primary">
-                    SIGN UP TO BE A MENTOR
-                  </BlueOutlineButton>
+                  <Link to="/register?type=mentor" className={linkStyle}>
+                    <BlueOutlineButton variant="contained" color="primary">
+                      SIGN UP TO BE A MENTOR
+                    </BlueOutlineButton>
+                  </Link>
                 </div>
               </Carousel>
             ) : (
@@ -810,9 +830,11 @@ export default function Home() {
                     of Color in tech by 2021. Join us by supporting this program
                     and create a pledge on Patreon.
                   </Typography>
-                  <BlueOutlineButton variant="contained">
-                    DONATE
-                  </BlueOutlineButton>
+                  <Link to="/about?page=support" className={linkStyle}>
+                    <BlueOutlineButton variant="contained">
+                      DONATE
+                    </BlueOutlineButton>
+                  </Link>
                 </div>
                 <div className={carouselContainerComponents}>
                   <Typography variant="h3" className={title}>
@@ -831,9 +853,11 @@ export default function Home() {
                     learning what it’s like to be in a team? Be part of our
                     agile team and dive into a 3-month AppDev Program.
                   </Typography>
-                  <BlueOutlineButton variant="contained" color="primary">
-                    APPLY TO VOLUNTEER
-                  </BlueOutlineButton>
+                  <Link to="/about?page=volunteer" className={linkStyle}>
+                    <BlueOutlineButton variant="contained" color="primary">
+                      APPLY TO VOLUNTEER
+                    </BlueOutlineButton>
+                  </Link>
                 </div>
                 <div className={carouselContainerComponents}>
                   <Typography variant="h3" className={title}>
@@ -855,9 +879,11 @@ export default function Home() {
                     career support ranging from tech interviews and
                     whiteboarding sessions to informational interviews.
                   </Typography>
-                  <BlueOutlineButton variant="contained" color="primary">
-                    SIGN UP TO BE A MENTOR
-                  </BlueOutlineButton>
+                  <Link to="/register?type=mentor" className={linkStyle}>
+                    <BlueOutlineButton variant="contained" color="primary">
+                      SIGN UP TO BE A MENTOR
+                    </BlueOutlineButton>
+                  </Link>
                 </div>
               </div>
             )}
@@ -869,20 +895,22 @@ export default function Home() {
                 variant="h2"
                 className={bookAndContributeComponentTitle}
               >
-                Join the community on Slack
+                Join our community of Designers and Developers on Slack.
               </Typography>
-              <form className={slackForm}>
-                <input
-                  {...{
-                    type: 'text',
-                    placeholder: 'Your email address here',
-                    className: inputForm,
-                  }}
-                />
+              <Link
+                {...{
+                  target: '_blank',
+                  to: {
+                    pathname:
+                      'https://join.slack.com/t/femmecubator/shared_invite/zt-nc0vbhl1-5j383UNk3wZTHFkn7_IW~A',
+                  },
+                  className: linkStyle,
+                }}
+              >
                 <BlueFilledButton className={joinSlackButton}>
-                  SUBMIT
+                  Join us on Slack
                 </BlueFilledButton>
-              </form>
+              </Link>
             </div>
           </Grid>
         </Grid>

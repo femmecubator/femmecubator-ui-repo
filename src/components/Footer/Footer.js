@@ -113,7 +113,7 @@ const Footer = () => {
       ) : null}
       <div className={footerContainers}>
         <Typography variant="h3" className={footerHeaders}>
-          Femmecubator © 2020
+          Femmecubator © 2022
         </Typography>
         <Typography
           {...{
@@ -163,7 +163,17 @@ const Footer = () => {
         <Link
           {...{
             component: RouterLink,
-            to: '/',
+            target: '_blank',
+            to: { pathname: 'https://medium.com/femmecubator' },
+            className: quickLinks,
+          }}
+        >
+          FC Labs
+        </Link>
+        <Link
+          {...{
+            component: RouterLink,
+            to: '/about?page=contactus',
             className: quickLinks,
           }}
         >
@@ -187,16 +197,52 @@ const Footer = () => {
           <Facebook
             {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
           />
-          <Instagram
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Twitter
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Patreon
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Linkedin {...{ 'data-testid': 'SocialSVG' }} />
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://instagram.com/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Instagram
+              {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
+            />
+          </Link>
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://twitter.com/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Twitter
+              {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
+            />
+          </Link>
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://www.patreon.com/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Patreon
+              {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
+            />
+          </Link>
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://www.linkedin.com/company/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Linkedin {...{ 'data-testid': 'SocialSVG' }} />
+          </Link>
         </div>
       </div>
     </div>
