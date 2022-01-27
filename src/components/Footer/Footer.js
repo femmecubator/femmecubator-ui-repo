@@ -4,7 +4,6 @@ import { Typography, Link } from '@material-ui/core/';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link as RouterLink } from 'react-router-dom';
 import { ReactComponent as FemmecubatorLogo } from './assets/femmecubatorlogo.svg';
-import { ReactComponent as Facebook } from './assets/facebook.svg';
 import { ReactComponent as Instagram } from './assets/instagram.svg';
 import { ReactComponent as Twitter } from './assets/twitter.svg';
 import { ReactComponent as Patreon } from './assets/patreon.svg';
@@ -194,9 +193,6 @@ const Footer = () => {
           Follow Us
         </Typography>
         <div className={socialNetworksContainer}>
-          <Facebook
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
           <Link
             {...{
               component: RouterLink,

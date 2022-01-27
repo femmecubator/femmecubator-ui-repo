@@ -11,7 +11,7 @@ const Community = () => {
         Community Programs and Events
       </Typography>
       <section>
-        <h3>Mentor Match Event (ongoing)</h3>
+        <h3>Mentor Match Event</h3>
         <p>
           Mentor Match is a one-on-one mentor support to BIPOC women new to UX
           careers. We've invited mentors from Microsoft, Boeing, Optum and many
