@@ -641,7 +641,9 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Career-switching to UX Design and Web Development?
+                  Career-switching to UX Design and Web Development? Connect
+                  with mentors who can help with portfolio reviews, practice
+                  interviews or code challenge preps.
                 </Typography>
               </div>
             </div>
