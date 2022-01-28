@@ -7,8 +7,8 @@ const DEFAULT_COMMON_MENU = {
     },
     {
       id: 2,
-      label: 'Resources',
-      href: '/resources',
+      label: 'Get Involved',
+      href: '/getinvolved',
     },
     {
       id: 3,
@@ -31,6 +31,18 @@ const API_PATH = {
   TIMEDOUT_ENDPOINT: '/login?timedOut=true',
   LOGIN_PAGE: '/login',
   ROOT: '/',
+  UPDATE_PASSWORD: '/api/profile/updatePassword',
+  UPDATE_PROFILE: '/api/profile/updateProfile',
+  GETPROFILEDATA: '/api/profile/getProfileData',
+  UPDATE_MENTOR_PROFILE: '/api/mentors/updateProfile',
+  GET_MENTORS_PROFILEDATA: '/api/mentors/profile',
+  GET_TIME_SLOTS: '/api/booking/getTimeSlots',
+  ADD_CALENDAR_EVENT: '/api/booking/createCalendarEvent',
+  GET_MEETING_DETAILS: '/api/booking/',
+  GET_SKILLS: '/api/skills/',
+  UPDATE_SKILLS: '/api/skills/update',
+  FORGOT_PASSWORD: '/api/register/forgotpassword',
+  RESET_PASSWORD: '/api/register/resetpassword',
 };
 
 const METHOD_TYPE = {
@@ -55,9 +67,12 @@ const ROUTES_LABEL = {
   LISTINGS: 'listings',
   VOLUNTEER: 'volunteer',
   ABOUT: 'whatWeDo',
-  RESOURCES: 'resources',
+  GET_INVOLVED: 'getinvolved',
   THREADS: 'threads',
   SETTINGS: 'settings',
+  FORGOTPASSWORD: 'forgotpassword',
+  RESETPASSWORD: 'resetpassword',
+  DEV: 'dev',
 };
 
 const ROUTES = [
@@ -69,7 +84,7 @@ const ROUTES = [
   },
   {
     id: 2,
-    isProtected: true,
+    // isProtected: true,
     label: ROUTES_LABEL.MENTORS,
     path: '/mentors',
   },
@@ -107,7 +122,7 @@ const ROUTES = [
     id: 8,
     isProtected: false,
     label: ROUTES_LABEL.RESOURCES,
-    path: '/resources',
+    path: '/getinvolved',
   },
   {
     id: 9,
@@ -126,6 +141,25 @@ const ROUTES = [
     isProtected: true,
     label: ROUTES_LABEL.DASHBOARD,
     path: '/dashboard',
+  },
+  {
+    id: 12,
+    isProtected: false,
+    label: ROUTES_LABEL.FORGOTPASSWORD,
+    path: '/forgotpassword',
+  },
+  {
+    id: 13,
+    isProtected: false,
+    label: ROUTES_LABEL.RESETPASSWORD,
+    path: '/resetpassword',
+  },
+  {
+    // temperory route
+    id: 14,
+    isProtected: false,
+    label: ROUTES_LABEL.DEV,
+    path: '/dev',
   },
 ];
 
@@ -148,4 +182,9 @@ export {
   MOBILE_MEDIA_QUERY,
   COHORT,
   APP_DEADLINE,
+};
+
+export const userRoles = {
+  mentor: 0,
+  mentee: 1,
 };

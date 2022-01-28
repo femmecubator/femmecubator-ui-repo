@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       color: '#400CCC',
     },
-    '@media (max-width: 490px)': {
+    '@media (max-width: 800px)': {
       marginRight: 48,
       marginLeft: -35,
     },

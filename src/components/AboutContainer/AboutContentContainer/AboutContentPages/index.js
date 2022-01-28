@@ -1,6 +1,8 @@
-import Programs from './Programs';
+import Community from './Community';
 import WhatWeDo from './WhatWeDo';
 import WhoWeAre from './WhoWeAre';
-import GetInvolved from './GetInvolved';
+import Support from './Support';
+import Volunteer from './Volunteer';
+import ContactUs from './ContactUs';
 
-export { Programs, WhatWeDo, WhoWeAre, GetInvolved };
+export { Community, WhatWeDo, WhoWeAre, Support, Volunteer, ContactUs };

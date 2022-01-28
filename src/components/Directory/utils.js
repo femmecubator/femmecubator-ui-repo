@@ -23,11 +23,11 @@ export const directoryTabs = tabClass => [
     className: tabClass,
   },
   {
-    label: 'Calendar',
-    id: 'Calendar',
-    'aria-controls': 'Calendar Tab',
+    label: 'SCHEDULE',
+    id: 'SCHEDULE',
+    'aria-controls': 'SCHEDULE Tab',
     tabIndex: '0',
-    disabled: true,
+    className: tabClass,
   },
 ];
 

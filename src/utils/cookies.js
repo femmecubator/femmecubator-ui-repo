@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -13,6 +14,10 @@ function isAuthCookiesExists() {
 
 function getTokenCookie() {
   return cookies.get('TOKEN');
+}
+
+export function getUserRole() {
+  return jwtDecode(cookies.get('TOKEN')).role_id;
 }
 
 function clearSessionData() {

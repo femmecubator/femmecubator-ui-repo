@@ -1,10 +1,9 @@
 import React from 'react';
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, makeStyles } from '@material-ui/core/styles';
 import { Typography, Link } from '@material-ui/core/';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link as RouterLink } from 'react-router-dom';
 import { ReactComponent as FemmecubatorLogo } from './assets/femmecubatorlogo.svg';
-import { ReactComponent as Facebook } from './assets/facebook.svg';
 import { ReactComponent as Instagram } from './assets/instagram.svg';
 import { ReactComponent as Twitter } from './assets/twitter.svg';
 import { ReactComponent as Patreon } from './assets/patreon.svg';
@@ -91,7 +90,7 @@ const Footer = () => {
     quickLinksContainer,
   } = useStyles();
 
-  const theme = createMuiTheme({
+  const theme = createTheme({
     breakpoints: {
       values: {
         xs: 0,
@@ -113,7 +112,7 @@ const Footer = () => {
       ) : null}
       <div className={footerContainers}>
         <Typography variant="h3" className={footerHeaders}>
-          Femmecubator © 2020
+          Femmecubator © 2022
         </Typography>
         <Typography
           {...{
@@ -145,25 +144,17 @@ const Footer = () => {
         <Link
           {...{
             component: RouterLink,
-            to: '/',
+            target: '_blank',
+            to: { pathname: 'https://medium.com/femmecubator' },
             className: quickLinks,
           }}
         >
-          Resources
+          FC Labs
         </Link>
         <Link
           {...{
             component: RouterLink,
-            to: '/',
-            className: quickLinks,
-          }}
-        >
-          Blog
-        </Link>
-        <Link
-          {...{
-            component: RouterLink,
-            to: '/',
+            to: '/about?page=contactus',
             className: quickLinks,
           }}
         >
@@ -184,19 +175,52 @@ const Footer = () => {
           Follow Us
         </Typography>
         <div className={socialNetworksContainer}>
-          <Facebook
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Instagram
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Twitter
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Patreon
-            {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
-          />
-          <Linkedin {...{ 'data-testid': 'SocialSVG' }} />
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://instagram.com/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Instagram
+              {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
+            />
+          </Link>
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://twitter.com/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Twitter
+              {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
+            />
+          </Link>
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://www.patreon.com/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Patreon
+              {...{ 'data-testid': 'SocialSVG', className: socialNetworks }}
+            />
+          </Link>
+          <Link
+            {...{
+              component: RouterLink,
+              target: '_blank',
+              to: { pathname: 'https://www.linkedin.com/company/femmecubator' },
+              className: quickLinks,
+            }}
+          >
+            <Linkedin {...{ 'data-testid': 'SocialSVG' }} />
+          </Link>
         </div>
       </div>
     </div>

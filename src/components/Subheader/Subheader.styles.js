@@ -11,8 +11,9 @@ const font = {
 const useStyles = makeStyles(() => ({
   subheaderContainer: {
     display: 'flex',
-    minHeight: '100px',
+    minHeight: '0px',
     minWidth: '100%',
+    marginBottom: 40,
   },
   subheader: {
     display: 'flex',

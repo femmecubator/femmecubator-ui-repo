@@ -9,9 +9,14 @@ const useStyles = makeStyles(() => ({
     maxHeight: '20%',
     position: ({ isMobile }) => (isMobile ? 'relative' : 'absolute'),
     right: '0',
-    top: ({ isMobile }) => (isMobile ? '0' : '12rem'),
     margin: ({ isMobile }) => (isMobile ? '.5rem' : '.7rem'),
     zIndex: 2,
+  },
+  normalTop: {
+    top: ({ isMobile }) => (isMobile ? '0' : '7rem'),
+  },
+  aboveTop: {
+    top: ({ isMobile }) => (isMobile ? '0' : '-3rem'),
   },
   searchInput: {
     minWidth: ({ isMobile }) => (isMobile ? '99%' : '73%'),

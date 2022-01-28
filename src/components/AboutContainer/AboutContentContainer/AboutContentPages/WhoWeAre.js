@@ -57,12 +57,6 @@ const photoSectionConfig = {
         subtitle: 'Operations and Programming',
       },
       {
-        id: 'pauline-content',
-        img: 'assets/Pauline.png',
-        name: 'Pauline Vercaza',
-        title: 'Content and Community Lead',
-      },
-      {
         id: 'krish-ux',
         img: 'assets/Krish.png',
         name: 'Krish Uy Raneses',
@@ -151,16 +145,10 @@ const photoSectionConfig = {
     text: 'Board of Directors',
     members: [
       {
-        id: 'heatherlee-board-chair',
-        img: 'assets/Heatherlee.png',
-        name: 'Heatherlee Nguyen',
-        title: 'Board Chair',
-      },
-      {
         id: 'nefertiti-vice-chair',
         img: 'assets/Nefertiti.png',
         name: 'Nefertiti Stokes',
-        title: 'Vice Chair',
+        title: 'Board Chair',
       },
       {
         id: 'megan-treasurer',

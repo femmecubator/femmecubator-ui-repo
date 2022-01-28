@@ -9,9 +9,11 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './DirectorySearchBar.styles';
 
-const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
+const DirectorySearchBar = ({ setQuery, mockOnSubmit, type }) => {
   const isMobile = useMediaQuery('(max-width:1029px)');
-  const { searchBar, searchBtn, searchInput } = useStyles({ isMobile });
+  const { searchBar, searchBtn, searchInput, normalTop, aboveTop } = useStyles({
+    isMobile,
+  });
   const { register, handleSubmit } = useForm();
 
   const onSubmit = data => {
@@ -21,7 +23,9 @@ const DirectorySearchBar = ({ setQuery, mockOnSubmit }) => {
   return (
     <form
       {...{
-        className: searchBar,
+        className: `${searchBar} ${
+          type === 'aboveTabs' ? aboveTop : normalTop
+        }`,
         label: 'search',
         onSubmit: handleSubmit(mockOnSubmit || onSubmit),
       }}

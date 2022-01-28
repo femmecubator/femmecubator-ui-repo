@@ -3,9 +3,11 @@ import Listings from './Listings';
 import Mentors from './Mentors';
 import Volunteer from './Volunteer';
 import About from './About';
-import Resources from './Resources';
 import Threads from './Threads';
 import Settings from './Settings';
+import Forgot from './Forgot';
+import Reset from './Reset';
+import Dev from './Dev';
 
 export {
   Landing,
@@ -13,7 +15,9 @@ export {
   Mentors,
   Volunteer,
   About,
-  Resources,
   Threads,
   Settings,
+  Forgot,
+  Reset,
+  Dev,
 };

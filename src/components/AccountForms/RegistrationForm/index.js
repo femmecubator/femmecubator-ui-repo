@@ -15,7 +15,7 @@ import {
   InputLabel,
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import isEmpty from 'lodash/isEmpty';
@@ -101,8 +101,21 @@ const RegistrationForm = ({ mockOnSubmit }) => {
   const [openModal, setOpenModal] = useState(false);
   const watchEmail = watch('email', '');
   const history = useHistory();
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
   const modalTitleText = "You're All Set!";
   const modalBodyText = `We have just created your account! Don't forget to verify through your email at ${watchEmail}`;
+
+  React.useEffect(() => {
+    if (query.get('type') && !watch('role_id')) {
+      if (query.get('type') === 'mentor') {
+        setValue('role_id', 0, { shouldDirty: true, shouldValidate: true });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit = async data => {
     try {
