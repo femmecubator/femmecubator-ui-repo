@@ -14,8 +14,8 @@ const Community = () => {
         <h3>Mentor Match Event</h3>
         <p>
           Mentor Match is a one-on-one mentor support to BIPOC women new to UX
-          careers. We've invited mentors from Microsoft, Boeing, Optum and many
-          more!
+          careers. Each cycle, we invite group of mentors from companies such as
+          Flatiron Health, Optum, Microsoft, Boeing, Target and many more!
         </p>
         <p>
           As a mentee, you will be matched with a committed, experienced, and
