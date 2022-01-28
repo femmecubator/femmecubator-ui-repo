@@ -641,9 +641,7 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Career-switching to UX or Dev? Connect with mentors who can
-                  help with portfolio reviews, practice interviews or code
-                  challenge preps.
+                  Career-switching to UX Design and Web Development?
                 </Typography>
               </div>
             </div>
@@ -673,23 +671,6 @@ export default function Home() {
                   tech-related workshops through our monthly LiT Talks event.
                 </Typography>
               </div>
-            </div>
-          </Grid>
-          <Grid className={workathonContainer} item xs={12}>
-            <WorkathonSVG className={workathonSVG} />
-            <div className={workathonContainerDiv}>
-              <Typography
-                {...{
-                  'aria-label': 'Register for webmaking workathon',
-                  variant: 'h3',
-                  className: registerWebmaking,
-                }}
-              >
-                Register for our webmaking workathon
-              </Typography>
-              <Typography variant="body1" className={letGrow}>
-                Stay tuned for more updates by joining our Slack channel.
-              </Typography>
             </div>
           </Grid>
           <Grid

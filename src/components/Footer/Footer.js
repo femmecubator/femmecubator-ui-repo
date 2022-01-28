@@ -144,24 +144,6 @@ const Footer = () => {
         <Link
           {...{
             component: RouterLink,
-            to: '/',
-            className: quickLinks,
-          }}
-        >
-          Resources
-        </Link>
-        <Link
-          {...{
-            component: RouterLink,
-            to: '/',
-            className: quickLinks,
-          }}
-        >
-          Blog
-        </Link>
-        <Link
-          {...{
-            component: RouterLink,
             target: '_blank',
             to: { pathname: 'https://medium.com/femmecubator' },
             className: quickLinks,

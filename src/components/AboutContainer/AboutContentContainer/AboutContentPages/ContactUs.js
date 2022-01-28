@@ -56,7 +56,7 @@ const ContactUs = () => {
               erika@femmecubator.org
             </Link>
           </p>
-          <h3>Erika Jeffers</h3>
+          <h3>Krizia Fernando</h3>
           <p>
             Executive Director, Tech and Community <br />
             <Link className={emailStyle} href="mailto:krizia@femmecubator.org">
@@ -80,7 +80,7 @@ const ContactUs = () => {
               variant="h2"
               className={bookAndContributeComponentTitle}
             >
-              Join the community on Slack.
+              Join our community of designers and developers on Slack.
             </Typography>
             <Link
               {...{
@@ -93,7 +93,7 @@ const ContactUs = () => {
               }}
             >
               <BlueFilledButton className={joinSlackButton}>
-                Join us on Slack
+                Join us
               </BlueFilledButton>
             </Link>
           </div>

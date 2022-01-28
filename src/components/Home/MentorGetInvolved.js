@@ -990,8 +990,9 @@ export default function MentorGetInvolved() {
                   {...{ className: faqAccordianParagraphTwo, item: true }}
                 >
                   Femmecubator’s mission is to support BIPOC women breaking into
-                  the field of UX or Developments. In a nutshell, members often
-                  need support in different stages of their career switch:
+                  the field of UX Design and Web Development. In a nutshell,
+                  members often need support in different stages of their career
+                  switch:
                   <br />
                   <br />
                   Just starting - seeking out best resources or next step
