@@ -68,7 +68,14 @@ const Directory = () => {
       if (mentorList.length < 1 && query)
         return <EmptyDirectory {...emptySearch} />;
       return mentorList.map(mentorObject => (
-        <MentorCard {...mentorObject} key={mentorObject._id} />
+        <>
+          <MentorCard {...mentorObject} key={mentorObject._id} />
+          <MentorCard {...mentorObject} key={mentorObject._id} />
+          <MentorCard {...mentorObject} key={mentorObject._id} />
+          <MentorCard {...mentorObject} key={mentorObject._id} />
+          <MentorCard {...mentorObject} key={mentorObject._id} />
+          <MentorCard {...mentorObject} key={mentorObject._id} />
+        </>
       ));
     },
     1: () => {

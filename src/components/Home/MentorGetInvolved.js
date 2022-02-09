@@ -45,409 +45,6 @@ const BlueFilledButton = withStyles({
   },
 })(Button);
 
-/* const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-  introContainer: {
-    backgroundColor: 'white',
-    height: '476px',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '20px',
-    display: 'flex',
-    '@media (max-width: 799px)': {
-      height: '332px',
-    },
-  },
-  topImageContainer: {
-    backgroundColor: 'white',
-    height: '476px',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-    '@media (max-width: 799px)': {
-      height: '238px',
-      order: '-1',
-    },
-  },
-  waysMentorContainer: {
-    height: '330px',
-    backgroundColor: '#FFFFFF',
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    paddingTop: '45px',
-    '@media (max-width: 799px)': {
-      paddingTop: '0px',
-      alignItems: 'center',
-      height: '700px',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
-    },
-  },
-  workathonContainer: {
-    height: '180px',
-    backgroundColor: '#A454C2',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    '@media (max-width: 799px)': {
-      height: '218px',
-      flexDirection: 'column',
-      padding: '10px 10px',
-    },
-  },
-  headingContainer: {
-    height: '400px',
-    backgroundImage: `url('./assets/mentorhome.jpg')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: '0% 30%',
-    //boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
-    display: 'flex',
-    alignItems: 'center',
-    '@media (max-width: 799px)': {
-      justifyContent: 'center',
-    },
-  },
-  carouselContainer: {
-    height: '549px',
-    backgroundColor: '#F2F7FF',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0px 20px',
-    '@media (max-width: 799px)': {
-      height: '466px',
-      padding: '0px',
-    },
-  },
-  carouselContainerDiv: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-    padding: '0px 20px',
-    marginTop: '40px',
-    justifyContent: 'space-around',
-    '@media (max-width: 799px)': {
-      height: '466px',
-      padding: '0px',
-      marginTop: '25px',
-    },
-  },
-  joinSlackContainer: {
-    height: '250px',
-    backgroundColor: '#ABF5D1',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    '@media (max-width: 799px)': {
-      height: '400px',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  },
-  titlePurple: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    fontSize: '28px',
-    color: '#400CCC',
-    marginBottom: '30px',
-    display: 'flex',
-    alignItems: 'center',
-    '@media (max-width: 799px)': {
-      marginBottom: '15px',
-      textAlign: 'center',
-    },
-  },
-  title: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    fontSize: '21px',
-    color: '#400CCC',
-    marginBottom: '30px',
-    display: 'flex',
-    alignItems: 'center',
-    '@media (max-width: 799px)': {
-      marginBottom: '15px',
-    },
-  },
-  waysMentorComponentTitle: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    fontSize: '28px',
-    color: '#400CCC',
-    marginBottom: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    '@media (max-width: 799px)': {
-      marginBottom: '15px',
-      textAlign: 'center',
-    },
-  },
-  paragraph: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
-    fontSize: '21px',
-    color: '#000000',
-    marginBottom: '40px',
-    '@media (max-width: 799px)': {
-      fontSize: '16px',
-      textAlign: 'center',
-    },
-  },
-  firstContainerDiv: {
-    padding: '20px',
-    flexBasis: '430px',
-    flexShrink: '1',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    '@media (max-width: 799px)': {
-      width: '90%',
-      alignItems: 'center',
-    },
-  },
-  workathonSVG: {
-    height: '100%',
-    marginRight: '20px',
-    '@media (max-height: 799px)': {
-      textAlign: 'center',
-      marginRight: '0px',
-    },
-  },
-  meetOnSlackSVG: {
-    height: '150px',
-    '@media (max-height: 799px)': {
-      textAlign: 'center',
-      height: '150px',
-    },
-  },
-  registerWebmaking: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    fontSize: '28px',
-    color: '#FFFFFF',
-    '@media (max-width: 799px)': {
-      textAlign: 'center',
-      fontSize: '21px',
-    },
-  },
-  letGrow: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
-    fontSize: '16px',
-    color: '#FFFFFF',
-    '@media (max-width: 799px)': {
-      textAlign: 'center',
-    },
-  },
-  workathonContainerDiv: {
-    textAlign: 'left',
-    '@media (max-width: 799px)': {
-      textAlign: 'center',
-      height: '100%',
-    },
-  },
-  waysMentorComponent: {
-    maxWidth: '360px',
-    minWidth: '200px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    '@media (max-width: 799px)': {
-      alignItems: 'center',
-      width: '300px',
-    },
-  },
-  waysMentorContainerParagraph: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
-    fontSize: '16px',
-    color: '#000000',
-    marginBottom: '40px',
-    '@media (max-width: 799px)': {
-      textAlign: 'center',
-      marginBottom: '0px',
-    },
-  },
-  headingComponent: {
-    flexBasis: '432px',
-    flexShrink: '1',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    marginLeft: '177px',
-    '@media (max-width: 799px)': {
-      flexBasis: '80%',
-      marginLeft: '0px',
-      alignItems: 'center',
-    },
-  },
-  headingComponentParagraph: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    fontSize: '14px',
-    color: 'white',
-    marginBottom: '40px',
-    '@media (max-width: 799px)': {
-      textAlign: 'center',
-    },
-  },
-  titleWhite: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    fontSize: '28px',
-    color: 'white',
-    marginBottom: '30px',
-    '@media (max-width: 799px)': {
-      textAlign: 'center',
-    },
-  },
-  partnerSVG: {
-    color: '#EB5757',
-    marginRight: '15px',
-  },
-  mentorSVG: {
-    color: '#F2994A',
-    marginRight: '15px',
-  },
-  volunteerSVG: {
-    color: '#719AF5',
-    marginRight: '15px',
-  },
-  greenCircle: {
-    width: '60px',
-    height: '60px',
-    minWidth: '60px',
-    borderRadius: '50%',
-    backgroundColor: '#ABF5D1',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: '8%',
-    '@media (max-width: 799px)': {
-      marginBottom: '27px',
-    },
-  },
-  cohortMentorContainer: {
-    display: 'flex',
-    padding: '20px',
-    '@media (max-width: 799px)': {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  },
-  waysMentorContainerSVG: {
-    color: '#400CCC',
-  },
-
-  carouselContainerComponents: {
-    width: '320px',
-    display: 'flex',
-    flexShrink: 1,
-    height: '300px',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    padding: '0px 20px',
-    '@media (max-width: 799px)': {
-      width: '300px',
-      height: '300px',
-    },
-  },
-
-  carouselComponentParagraph: {
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
-    fontSize: '16px',
-    color: '#000000',
-    '@media (max-width: 799px)': {
-      marginBottom: '0px',
-    },
-  },
-  inputForm: {
-    height: '45px',
-    border: 'none',
-    width: '435px',
-    borderRadius: '4px',
-    padding: '0px 15px',
-    marginBottom: '10px',
-    marginRight: '10px',
-    '@media (max-width: 799px)': {
-      marginBottom: '10px',
-      width: '90%',
-      marginRight: '0px',
-    },
-    '&::placeholder': {
-      fontFamily: ' Open Sans',
-      fontSize: '16px',
-    },
-  },
-  slackFormContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    '@media (max-width: 799px)': {
-      width: '80%',
-      alignItems: 'center',
-    },
-  },
-  slackForm: {
-    width: '100%',
-    marginTop: '10px',
-    '@media (max-width: 799px)': {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-  },
-  /* inProgress: {
-    height: 'auto',
-    background: '#4F4F4F',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    padding: '30px 138px',
-    '@media (max-width: 1200px)': {
-      height: 'auto',
-      padding: '30px 50px',
-    },
-    '@media (max-width: 799px)': {
-      height: 'auto',
-      padding: '30px',
-    },
-  },
-  inProgressHeader: {
-    color: '#F2F2F2',
-    fontSize: '21px',
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
-    marginBottom: '20px',
-  },
-  inProgressParagraph: {
-    fontSize: '14px',
-    color: '#F2F2F2',
-    textAlign: 'left',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
-  },
-  joinSlackButton: {
-    alignSelf: 'center',
-  },
-}); */
-
 const theme = createMuiTheme({
   breakpoints: {
     values: {
@@ -495,14 +92,17 @@ export default function MentorGetInvolved() {
     titlePurple,
     mentorTypeContainer,
     greenCircle,
+    greenCircleLg,
     waysMentorContainerSVG,
     waysMentorComponentTitle,
     mentorComponentWithSVG,
     cohortMentor,
     flexibleMentor,
     waysMentorContainerParagraph,
+    verticalDivider,
     howToStartContainer,
     howToStartNestedContainer,
+    howToStartNestedContainer2,
     howToStartContainerTitle,
     howToStartComponent,
     howToStartNumbers,
@@ -522,6 +122,8 @@ export default function MentorGetInvolved() {
     buttonOne,
   } = classes;
 
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <ThemeProvider theme={theme}>
       <main className={root}>
@@ -532,10 +134,10 @@ export default function MentorGetInvolved() {
               container: true,
               className: headingContainer,
               item: true,
-              sm: 12,
+              xs: 12,
             }}
           >
-            <div className="headingComponent">
+            <div className={headingComponent}>
               <Typography
                 {...{
                   variant: 'h2',
@@ -569,7 +171,7 @@ export default function MentorGetInvolved() {
             {...{
               className: waysMentorContainer,
               container: true,
-              spacing: 2,
+              // spacing: 2,
               //sm: 12,
             }}
           >
@@ -590,83 +192,90 @@ export default function MentorGetInvolved() {
                 className: mentorTypeContainer,
               }}
             >
-              {/* <Grid className={mentorComponentWithSVG} item> */}
-              <Grid className={greenCircle} item>
-                <SupervisorAccountIcon
-                  item="true"
-                  fontSize="large"
-                  className={waysMentorContainerSVG}
-                />
-              </Grid>
+              <Grid
+                {...{ item: true, sm: 3, className: mentorComponentWithSVG }}
+              >
+                <Grid className={greenCircle} item>
+                  <SupervisorAccountIcon
+                    item="true"
+                    fontSize="large"
+                    className={waysMentorContainerSVG}
+                  />
+                </Grid>
 
-              <Grid {...{ item: true, sm: 3, className: cohortMentor }}>
-                <Typography
-                  {...{
-                    variant: 'h2',
-                    className: waysMentorComponentTitle,
-                    item: true,
-                  }}
-                >
-                  Cohort Mentoring
-                </Typography>
-                <Typography
-                  {...{
-                    variant: 'body1',
-                    className: waysMentorContainerParagraph,
-                    item: true,
-                  }}
-                >
-                  Volunteer to become a mentor for our 8-week mentorship program
-                  offered to aspiring UX designers and software developers twice
-                  a year.
-                </Typography>
+                <Grid {...{ item: true, sm: 12, className: cohortMentor }}>
+                  <Typography
+                    {...{
+                      variant: 'h2',
+                      className: waysMentorComponentTitle,
+                      item: true,
+                    }}
+                  >
+                    Cohort Mentoring
+                  </Typography>
+                  <Typography
+                    {...{
+                      variant: 'body1',
+                      className: waysMentorContainerParagraph,
+                      item: true,
+                    }}
+                  >
+                    Volunteer to become a mentor for our 8-week mentorship
+                    program offered to aspiring UX designers and software
+                    developers twice a year.
+                  </Typography>
+                </Grid>
               </Grid>
-              {/* </Grid> */}
               <Divider
+                {...{ item: true, sm: 3, className: verticalDivider }}
+                // classes={verticalDivider}
                 orientation="vertical"
                 variant="middle"
-                style={{ height: '100%', marginRight: '7%', marginLeft: '7%' }}
-                item
+                // style={{ height: '100%', marginRight: '7%', marginLeft: '7%' }}
+                // item
                 //flexItem
               />
 
-              {/* <Grid className={mentorComponentWithSVG} item> */}
-              <Grid className={greenCircle} item>
-                <SchoolIcon
-                  fontSize="large"
-                  className={waysMentorContainerSVG}
-                />
-              </Grid>
-              <Grid {...{ item: true, sm: 3, className: flexibleMentor }}>
-                <Typography
-                  {...{
-                    variant: 'h2',
-                    className: waysMentorComponentTitle,
-                    item: true,
-                  }}
-                >
-                  Flexible Mentoring
-                </Typography>
-                <Typography
-                  {...{
-                    variant: 'body1',
-                    className: waysMentorContainerParagraph,
-                    item: true,
-                  }}
-                >
-                  Set your calendar availability so mentees can easily book 1:1
-                  time with you through our dedicated platform.
-                </Typography>
+              <Grid
+                {...{ item: true, sm: 3, className: mentorComponentWithSVG }}
+              >
+                <Grid className={greenCircle} item>
+                  <SchoolIcon
+                    fontSize="large"
+                    className={waysMentorContainerSVG}
+                  />
+                </Grid>
+                <Grid {...{ item: true, sm: 12, className: flexibleMentor }}>
+                  <Typography
+                    {...{
+                      variant: 'h2',
+                      className: waysMentorComponentTitle,
+                      item: true,
+                    }}
+                  >
+                    Flexible Mentoring
+                  </Typography>
+                  <Typography
+                    {...{
+                      variant: 'body1',
+                      className: waysMentorContainerParagraph,
+                      item: true,
+                    }}
+                  >
+                    Set your calendar availability so mentees can easily book
+                    1:1 time with you through our dedicated platform.
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-            {/* </Grid> */}
           </Grid>
 
           <Grid
             {...{
               className: howToStartContainer,
               container: true,
-              spacing: 4,
+              // spacing: 4,
+              background: '#026FE4',
               //direction: 'column',
             }}
           >
@@ -679,124 +288,132 @@ export default function MentorGetInvolved() {
             </Grid>
 
             <Grid className={howToStartNestedContainer} item sm={12}>
-              <Grid {...{ className: howToStartComponent, item: true, sm: 2 }}>
-                <div
-                  className={greenCircle}
-                  style={{
-                    color: '#400CCC',
-                    fontSize: '20px',
-                    fontWeight: 500,
-                    marginLeft: '38%',
-                    marginBottom: '20px',
-                  }}
-                  item="true"
+              <Grid className={howToStartNestedContainer2} item sm={4}>
+                <Grid
+                  {...{ className: howToStartComponent, item: true, sm: 6 }}
                 >
-                  1
-                </div>
-                <Typography
-                  {...{ variant: 'h2', className: titlePurple, item: true }}
+                  <div
+                    className={greenCircleLg}
+                    style={{
+                      color: '#400CCC',
+                      fontSize: '28px',
+                      fontWeight: 700,
+                      marginBottom: '20px',
+                    }}
+                    item="true"
+                  >
+                    1
+                  </div>
+                  <Typography
+                    {...{ variant: 'h2', className: titlePurple, item: true }}
+                  >
+                    Sign Up
+                  </Typography>
+                  <Typography
+                    {...{
+                      variant: 'body1',
+                      className: howToStartContainerParagraph,
+                      item: true,
+                    }}
+                  >
+                    Make an account on Femmecubator
+                  </Typography>
+                </Grid>
+
+                <Grid
+                  {...{ className: howToStartComponent, item: true, sm: 6 }}
                 >
-                  Sign Up
-                </Typography>
-                <Typography
-                  {...{
-                    variant: 'body1',
-                    className: howToStartContainerParagraph,
-                    item: true,
-                  }}
-                >
-                  Make an account on Femmecubator
-                </Typography>
+                  <div
+                    className={greenCircleLg}
+                    style={{
+                      color: '#400CCC',
+                      fontSize: '28px',
+                      fontWeight: 700,
+                      marginBottom: '20px',
+                    }}
+                    item="true"
+                  >
+                    2
+                  </div>
+                  <Typography
+                    {...{ variant: 'h2', className: titlePurple, item: true }}
+                  >
+                    Apply
+                  </Typography>
+                  <Typography
+                    {...{
+                      variant: 'body1',
+                      className: howToStartContainerParagraph,
+                      item: true,
+                    }}
+                  >
+                    Complete and submit the mentor application form
+                  </Typography>
+                </Grid>
               </Grid>
 
-              <Grid {...{ className: howToStartComponent, item: true, sm: 2 }}>
-                <div
-                  className={greenCircle}
-                  style={{
-                    color: '#400CCC',
-                    fontSize: '20px',
-                    fontWeight: 500,
-                    marginLeft: '38%',
-                    marginBottom: '20px',
-                  }}
-                  item="true"
+              <Grid className={howToStartNestedContainer2} item sm={4}>
+                <Grid
+                  {...{ className: howToStartComponent, item: true, sm: 6 }}
                 >
-                  2
-                </div>
-                <Typography
-                  {...{ variant: 'h2', className: titlePurple, item: true }}
-                >
-                  Apply
-                </Typography>
-                <Typography
-                  {...{
-                    variant: 'body1',
-                    className: howToStartContainerParagraph,
-                    item: true,
-                  }}
-                >
-                  Complete and submit the mentor application form
-                </Typography>
-              </Grid>
+                  <div
+                    className={greenCircleLg}
+                    style={{
+                      color: '#400CCC',
+                      fontSize: '28px',
+                      fontWeight: 700,
+                      marginBottom: '20px',
+                    }}
+                    item="true"
+                  >
+                    3
+                  </div>
+                  <Typography
+                    {...{ variant: 'h2', className: titlePurple, item: true }}
+                  >
+                    Get Approved
+                  </Typography>
+                  <Typography
+                    {...{
+                      variant: 'body1',
+                      className: howToStartContainerParagraph,
+                      item: true,
+                    }}
+                  >
+                    Recieve an email confirmation within a week
+                  </Typography>
+                </Grid>
 
-              <Grid {...{ className: howToStartComponent, item: true, sm: 2 }}>
-                <div
-                  className={greenCircle}
-                  style={{
-                    color: '#400CCC',
-                    fontSize: '20px',
-                    fontWeight: 500,
-                    marginLeft: '38%',
-                    marginBottom: '20px',
-                  }}
-                  item="true"
+                <Grid
+                  {...{ className: howToStartComponent, item: true, sm: 6 }}
                 >
-                  3
-                </div>
-                <Typography
-                  {...{ variant: 'h2', className: titlePurple, item: true }}
-                >
-                  Get Approved
-                </Typography>
-                <Typography
-                  {...{
-                    variant: 'body1',
-                    className: howToStartContainerParagraph,
-                    item: true,
-                  }}
-                >
-                  Recieve an email confirmation within a week
-                </Typography>
-              </Grid>
-
-              <Grid {...{ className: howToStartComponent, item: true, sm: 2 }}>
-                <div
-                  className={greenCircle}
-                  style={{
-                    color: '#400CCC',
-                    fontSize: '20px',
-                    fontWeight: 500,
-                    marginLeft: '38%',
-                    marginBottom: '20px',
-                  }}
-                  item="true"
-                >
-                  4
-                </div>
-                <Typography
-                  {...{ variant: 'h2', className: titlePurple, item: true }}
-                >
-                  Start Mentoring
-                </Typography>
-                <Typography
-                  {...{
-                    variant: 'body1',
-                    className: howToStartContainerParagraph,
-                    item: true,
-                  }}
-                >
-                  Complete your profile and start making an impact
-                </Typography>
+                  <div
+                    className={greenCircleLg}
+                    style={{
+                      color: '#400CCC',
+                      fontSize: '28px',
+                      fontWeight: 700,
+                      marginBottom: '20px',
+                    }}
+                    item="true"
+                  >
+                    4
+                  </div>
+                  <Typography
+                    {...{ variant: 'h2', className: titlePurple, item: true }}
+                  >
+                    Start Mentoring
+                  </Typography>
+                  <Typography
+                    {...{
+                      variant: 'body1',
+                      className: howToStartContainerParagraph,
+                      item: true,
+                    }}
+                  >
+                    Complete your profile and start making an impact
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
 
@@ -809,7 +426,7 @@ export default function MentorGetInvolved() {
                     /* display: 'flex', */
                     //alignItems: 'center',
                     //justifyContent: 'space-around',
-                    marginLeft: '45%',
+                    margin: 'auto',
                   },
                 }}
               >
@@ -822,7 +439,8 @@ export default function MentorGetInvolved() {
             {...{
               className: communityQuotesContainer,
               container: true,
-              spacing: 3,
+              // spacing: 3,
+              sm: 12,
             }}
           >
             <Grid
@@ -837,36 +455,68 @@ export default function MentorGetInvolved() {
                   variant: 'h2',
                   className: titlePurple,
                   //item: true,
-                  //sm: 12,
+                  // sm: 12,
                 }}
               >
                 What the Femmecubator community is saying
               </Typography>
             </Grid>
 
-            <Grid className={communityQuotesNestedContainer} item sm={12}>
-              {communityQuotes.map(({ quote: id, img, text, name }, idx) => (
-                <div key={`${id} - ${idx}`}>
-                  <Grid className={communityQuotesComponent} item sm={9}>
-                    <img
-                      src={img}
-                      aria-label={name}
-                      className={communityQuotesImage}
-                      item
-                    />
-                    <Typography
-                      {...{ item: true, className: communityQuotesText }}
-                    >
-                      {text}
-                    </Typography>
-                    <Typography
-                      {...{ item: true, className: communityQuotesName }}
-                    >
-                      {name}
-                    </Typography>
-                  </Grid>
-                </div>
-              ))}
+            <Grid className={communityQuotesNestedContainer} item sm={8}>
+              {matches ? (
+                <Carousel
+                  navButtonsAlwaysInvisible={true}
+                  className="myCarousel"
+                >
+                  {communityQuotes.map(
+                    ({ quote: id, img, text, name }, idx) => (
+                      <div key={`${id} - ${idx}`}>
+                        <Grid className={communityQuotesComponent} item sm={9}>
+                          <img
+                            src={img}
+                            aria-label={name}
+                            className={communityQuotesImage}
+                            item
+                          />
+                          <Typography
+                            {...{ item: true, className: communityQuotesText }}
+                          >
+                            {text}
+                          </Typography>
+                          <Typography
+                            {...{ item: true, className: communityQuotesName }}
+                          >
+                            {name}
+                          </Typography>
+                        </Grid>
+                      </div>
+                    )
+                  )}
+                </Carousel>
+              ) : (
+                communityQuotes.map(({ quote: id, img, text, name }, idx) => (
+                  <div key={`${id} - ${idx}`}>
+                    <Grid className={communityQuotesComponent} item sm={9}>
+                      <img
+                        src={img}
+                        aria-label={name}
+                        className={communityQuotesImage}
+                        item
+                      />
+                      <Typography
+                        {...{ item: true, className: communityQuotesText }}
+                      >
+                        {text}
+                      </Typography>
+                      <Typography
+                        {...{ item: true, className: communityQuotesName }}
+                      >
+                        {name}
+                      </Typography>
+                    </Grid>
+                  </div>
+                ))
+              )}
             </Grid>
           </Grid>
 

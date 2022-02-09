@@ -22,6 +22,7 @@ const AboutContainer = () => {
   const query = useQuery();
 
   React.useEffect(() => {
+    console.log('param: ', query.get('page'));
     if (query.get('page')) {
       if (query.get('page') === 'volunteer') {
         setSelected('Volunteer');
@@ -35,7 +36,6 @@ const AboutContainer = () => {
   }, [query.get('page')]);
 
   React.useEffect(() => {
-    history.push(`/about?page=${selected.split(' ').join('').toLowerCase()}`);
     scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
