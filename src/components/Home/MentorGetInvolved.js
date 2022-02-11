@@ -19,6 +19,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Footer from 'components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const BlueFilledButton = withStyles({
   root: {
@@ -120,6 +121,7 @@ export default function MentorGetInvolved() {
     faqAccordianParagraph,
     faqAccordianParagraphTwo,
     buttonOne,
+    linkStyle,
   } = classes;
 
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -158,13 +160,15 @@ export default function MentorGetInvolved() {
                 in UX or Software Development to mentor other BIPOC women
                 looking to break into tech.
               </Typography>
-              <BlueFilledButton
-                variant="contained"
-                className="buttonOne"
+              <Link
+                to="/register"
+                className={linkStyle}
                 style={{ marginLeft: '9%' }}
               >
-                SIGN UP NOW
-              </BlueFilledButton>
+                <BlueFilledButton variant="contained" className="buttonOne">
+                  SIGN UP NOW
+                </BlueFilledButton>
+              </Link>
             </div>
           </Grid>
           <Grid
@@ -418,20 +422,23 @@ export default function MentorGetInvolved() {
             </Grid>
 
             <Grid {...{ item: true, sm: 12 }}>
-              <BlueFilledButton
-                {...{
-                  variant: 'contained',
-                  item: true,
-                  style: {
-                    /* display: 'flex', */
-                    //alignItems: 'center',
-                    //justifyContent: 'space-around',
-                    margin: 'auto',
-                  },
-                }}
+              <Link
+                to="/register"
+                className={linkStyle}
+                style={{ marginLeft: '9%' }}
               >
-                SIGN UP NOW
-              </BlueFilledButton>
+                <BlueFilledButton
+                  {...{
+                    variant: 'contained',
+                    item: true,
+                    style: {
+                      margin: 'auto',
+                    },
+                  }}
+                >
+                  SIGN UP NOW
+                </BlueFilledButton>
+              </Link>
             </Grid>
           </Grid>
 

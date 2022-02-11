@@ -360,7 +360,7 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '100px',
     paddingRight: '100px',
     paddingLeft: '100px',
-    backgroundColor: '#F1F7FF',
+    backgroundColor: '#FFFFFF',
     '@media (max-width: 799px)': {
       paddingRight: '0px',
       paddingLeft: '0px',
@@ -377,7 +377,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   faqAccordionComponent: {
-    backgroundColor: '#F1F7FF',
+    backgroundColor: '#FFFFFF',
     borderBottom: '0.5px solid gray',
     boxShadow: 'none',
     textAlign: 'left',
@@ -387,6 +387,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: '900',
   },
   faqAccordianParagraphTwo: {},
+  linkStyle: {
+    textDecoration: 'none',
+  },
 }));
 
 export default useStyles;
