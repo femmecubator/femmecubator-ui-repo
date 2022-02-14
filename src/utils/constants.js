@@ -68,11 +68,10 @@ const ROUTES_LABEL = {
   VOLUNTEER: 'volunteer',
   ABOUT: 'whatWeDo',
   GET_INVOLVED: 'getinvolved',
-  THREADS: 'threads',
+  // THREADS: 'threads',
   SETTINGS: 'settings',
   FORGOTPASSWORD: 'forgotpassword',
   RESETPASSWORD: 'resetpassword',
-  DEV: 'dev',
 };
 
 const ROUTES = [
@@ -84,7 +83,7 @@ const ROUTES = [
   },
   {
     id: 2,
-    // isProtected: true,
+    isProtected: true,
     label: ROUTES_LABEL.MENTORS,
     path: '/mentors',
   },
@@ -124,42 +123,35 @@ const ROUTES = [
     label: ROUTES_LABEL.RESOURCES,
     path: '/getinvolved',
   },
+  // {
+  //   id: 9,
+  //   isProtected: true,
+  //   label: ROUTES_LABEL.THREADS,
+  //   path: '/threads',
+  // },
   {
     id: 9,
-    isProtected: true,
-    label: ROUTES_LABEL.THREADS,
-    path: '/threads',
-  },
-  {
-    id: 10,
     isProtected: true,
     label: ROUTES_LABEL.SETTINGS,
     path: '/settings',
   },
   {
-    id: 11,
+    id: 10,
     isProtected: true,
     label: ROUTES_LABEL.DASHBOARD,
     path: '/dashboard',
   },
   {
-    id: 12,
+    id: 11,
     isProtected: false,
     label: ROUTES_LABEL.FORGOTPASSWORD,
     path: '/forgotpassword',
   },
   {
-    id: 13,
+    id: 12,
     isProtected: false,
     label: ROUTES_LABEL.RESETPASSWORD,
     path: '/resetpassword',
-  },
-  {
-    // temperory route
-    id: 14,
-    isProtected: false,
-    label: ROUTES_LABEL.DEV,
-    path: '/dev',
   },
 ];
 

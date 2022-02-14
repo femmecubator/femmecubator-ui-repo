@@ -13,11 +13,11 @@ const useStyles = makeStyles(() => ({
     boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.5)',
     display: 'flex',
     alignItems: 'center',
-    /* '@media (max-width: 799px)': {
+    '@media (max-width: 799px)': {
       justifyContent: 'center',
-    }, */
+    },
   },
-  /*   headingComponent: {
+  headingComponent: {
     flexBasis: '432px',
     flexShrink: '1',
     display: 'flex',
@@ -29,12 +29,13 @@ const useStyles = makeStyles(() => ({
       marginLeft: '0px',
       alignItems: 'center',
     },
-  }, */
+  },
   headingComponentParagraph: {
     textAlign: 'left',
-    width: '27%',
+    width: '90%',
+    maxWidth: '350px',
     fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
+    fontWeight: 400,
     fontSize: '14px',
     color: 'white',
     marginBottom: '40px',
@@ -71,6 +72,7 @@ const useStyles = makeStyles(() => ({
     //display: 'flex',
     alignItems: 'center',
     '@media (max-width: 799px)': {
+      fontSize: 21,
       marginBottom: '15px',
       textAlign: 'center',
     },
@@ -84,7 +86,22 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: '2%',
+    marginRight: '29px',
+    '@media (max-width: 799px)': {
+      marginBottom: '27px',
+      marginRight: '0px',
+    },
+  },
+  greenCircleLg: {
+    width: '90px',
+    height: '90px',
+    minWidth: '90px',
+    borderRadius: '50%',
+    backgroundColor: '#ABF5D1',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '0 auto',
     '@media (max-width: 799px)': {
       marginBottom: '27px',
     },
@@ -124,10 +141,9 @@ const useStyles = makeStyles(() => ({
     color: '#400CCC',
     marginBottom: '20px',
     //alignItems: 'center',
-    /* '@media (max-width: 799px)': {
-      marginBottom: '15px',
-      textAlign: 'center',
-    }, */
+    '@media (max-width: 799px)': {
+      fontSize: 24,
+    },
   },
   /* waysMentorComponent: {
     //maxWidth: '360px',
@@ -146,24 +162,39 @@ const useStyles = makeStyles(() => ({
     alignItems: 'flex-start',
     justifyContent: 'center',
     //padding: '20px',
-    /* '@media (max-width: 799px)': {
-      //flexDirection: 'row',
+    '@media (max-width: 799px)': {
+      flexDirection: 'column',
       alignItems: 'center',
-    }, */
+      gap: 40,
+    },
   },
   mentorComponentWithSVG: {
     display: 'flex',
     flexDirection: 'row',
+    '@media (max-width: 799px)': {
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
   },
   cohortMentor: {
     //marginRight: '7%',
     display: 'flex',
     flexDirection: 'column',
+    '@media (max-width: 799px)': {
+      alignItems: 'center',
+      padding: '0px 20px',
+      maxWidth: 350,
+    },
   },
   flexibleMentor: {
     //marginLeft: '7%',
     display: 'flex',
     flexDirection: 'column',
+    '@media (max-width: 799px)': {
+      alignItems: 'center',
+      padding: '0px 20px',
+      maxWidth: 350,
+    },
   },
   waysMentorContainerParagraph: {
     textAlign: 'left',
@@ -174,15 +205,23 @@ const useStyles = makeStyles(() => ({
     //width: '27%',
     //marginBottom: '40px',
     //marginTop: '40px',
-    /* '@media (max-width: 799px)': {
+    '@media (max-width: 799px)': {
       textAlign: 'center',
-      marginBottom: '0px',
-    }, */
+      // marginBottom: '0px',
+    },
   },
   waysMentorContainerSVG: {
     color: '#400CCC',
     //display: 'flex',
     //alignItems: 'flex-end',
+  },
+  verticalDivider: {
+    height: '100%',
+    marginRight: '7%',
+    marginLeft: '7%',
+    '@media (max-width: 799px)': {
+      display: 'none',
+    },
   },
   howToStartContainer: {
     display: 'flex',
@@ -190,13 +229,14 @@ const useStyles = makeStyles(() => ({
     paddingTop: '45px',
     paddingBottom: '100px',
     flexDirection: 'row',
-    /* '@media (max-width: 799px)': {
-      paddingTop: '20px',
-      alignItems: 'center',
-      height: '700px',
-      flexWrap: 'wrap',
+    background: '#F2F7FF',
+    '@media (max-width: 799px)': {
+      // paddingTop: '20px',
+      // alignItems: 'center',
+      // height: '700px',
+      // flexWrap: 'wrap',
       flexDirection: 'column',
-    }, */
+    },
   },
   howToStartContainerTitle: {
     //marginTop: '40px',
@@ -207,10 +247,20 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    /* '@media (max-width: 799px)': {
-      alignItems: 'center',
-      width: '300px',
-    }, */
+    // gap: 20,
+    '@media (max-width: 799px)': {
+      flexDirection: 'column',
+    },
+  },
+  howToStartNestedContainer2: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 16,
+    gap: 30,
+    '@media (max-width: 799px)': {
+      // flexDirection: 'column',
+    },
   },
   howToStartComponent: {
     display: 'flex',
@@ -228,6 +278,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '16px',
     color: '#000000',
     marginBottom: '40px',
+    maxWidth: 300,
     /* '@media (max-width: 799px)': {
       textAlign: 'center',
       marginBottom: '0px',
@@ -236,21 +287,23 @@ const useStyles = makeStyles(() => ({
   communityQuotesContainer: {
     backgroundColor: '#FFFFFF',
     //display: 'flex',
+    // margin: 'auto',
     paddingTop: '45px',
     paddingBottom: '100px',
     //flexDirection: 'column',
-    /* '@media (max-width: 799px)': {
-      paddingTop: '0px',
-      alignItems: 'center',
-      height: '700px',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
-    }, */
+    '@media (max-width: 799px)': {
+      justifyContent: 'center',
+      // paddingTop: '0px',
+      // alignItems: 'center',
+      // height: '700px',
+      // flexWrap: 'wrap',
+      // flexDirection: 'column',
+    },
   },
   communityQuotesNestedContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginLeft: '9%',
+    margin: 'auto',
   },
   communityQuotesComponent: {
     //maxWidth: '200px',
@@ -258,6 +311,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    margin: 'auto',
     /* '@media (max-width: 799px)': {
       alignItems: 'center',
       //width: '300px',
@@ -280,10 +334,9 @@ const useStyles = makeStyles(() => ({
     color: '#000000',
     marginBottom: '20px',
     display: 'flex',
-    /*     '@media (max-width: 799px)': {
-      textAlign: 'center',
-      marginBottom: '20px',
-    }, */
+    '@media (max-width: 799px)': {
+      maxWidth: 350,
+    },
   },
   communityQuotesName: {
     textAlign: 'center',
@@ -303,25 +356,40 @@ const useStyles = makeStyles(() => ({
   faqAccordionContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '50px',
-    marginBottom: '100px',
+    paddingTop: '50px',
+    paddingBottom: '100px',
     paddingRight: '100px',
     paddingLeft: '100px',
+    backgroundColor: '#FFFFFF',
+    '@media (max-width: 799px)': {
+      paddingRight: '0px',
+      paddingLeft: '0px',
+      textAlign: 'center',
+      marginBottom: '20px',
+    },
   },
   faqAccordionContainerTitle: {
     display: 'flex',
     justifyContent: 'center',
     paddingBottom: '50px',
+    '@media (max-width: 799px)': {
+      paddingBottom: '30px',
+    },
   },
   faqAccordionComponent: {
-    backgroundColor: '#F1F7FF',
+    backgroundColor: '#FFFFFF',
     borderBottom: '0.5px solid gray',
     boxShadow: 'none',
+    textAlign: 'left',
+    padding: 10,
   },
   faqAccordianParagraph: {
     fontWeight: '900',
   },
   faqAccordianParagraphTwo: {},
+  linkStyle: {
+    textDecoration: 'none',
+  },
 }));
 
 export default useStyles;

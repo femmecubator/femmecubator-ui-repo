@@ -37,13 +37,19 @@ const useStyles = makeStyles(() => ({
     margin: '1rem 0 0 5rem',
   },
   mentorListContainer: {
-    overflow: 'scroll',
+    overflow: 'auto',
     maxHeight: ({ isMobile }) => (isMobile ? '65vh' : '70vh'),
     marginTop: ({ isMobile }) => (isMobile ? '0' : '3rem'),
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     backgroundColor: 'white',
+    gap: '24px',
+    padding: '24px',
+    margin: 'auto',
+    '@media (max-width: 799px)': {
+      padding: '4px',
+    },
   },
   tabs: {
     borderBottom: '1px #BDBDBD solid',
