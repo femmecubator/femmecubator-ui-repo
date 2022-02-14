@@ -641,7 +641,9 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Career-switching to UX Design and Web Development?
+                  Career-switching to UX Design and Web Development? Connect
+                  with mentors who can help with portfolio reviews, practice
+                  interviews or code challenge preps.
                 </Typography>
               </div>
             </div>
@@ -699,9 +701,11 @@ export default function Home() {
                 access to resources and a supportive network of leaders, we’ll
                 help you find your next step in tech.
               </Typography>
-              <WhiteOutlineButton variant="contained" color="primary">
-                JOIN TODAY
-              </WhiteOutlineButton>
+              <Link to="/register?type=mentor" className={linkStyle}>
+                <WhiteOutlineButton variant="contained" color="primary">
+                  JOIN TODAY
+                </WhiteOutlineButton>
+              </Link>
             </div>
           </Grid>
           <Grid

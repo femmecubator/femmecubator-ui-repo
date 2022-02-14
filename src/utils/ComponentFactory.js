@@ -3,11 +3,10 @@ import {
   Mentors,
   Listings,
   Volunteer,
-  Threads,
+  // Threads,
   Settings,
   Forgot,
   Reset,
-  Dev,
 } from 'stubs';
 import Home from 'components/Home/Home';
 import MentorGetInvolved from 'components/Home/MentorGetInvolved';
@@ -27,12 +26,11 @@ const {
   VOLUNTEER,
   ABOUT,
   GETINVOLVED,
-  THREADS,
+  // THREADS,
   SETTINGS,
   DASHBOARD,
   FORGOTPASSWORD,
   RESETPASSWORD,
-  DEV,
 } = ROUTES_LABEL;
 
 export default class ComponentFactory {
@@ -56,16 +54,14 @@ export default class ComponentFactory {
         return AboutContainer;
       case GETINVOLVED:
         return MentorGetInvolved;
-      case THREADS:
-        return Threads;
+      // case THREADS:
+      //   return Threads;
       case SETTINGS:
         return Settings;
       case FORGOTPASSWORD:
         return Forgot;
       case RESETPASSWORD:
         return ResetPassword;
-      case DEV:
-        return Dev; // Temp component for testing dislog boxes
       default:
         throw new Error('Route undefined!');
     }
