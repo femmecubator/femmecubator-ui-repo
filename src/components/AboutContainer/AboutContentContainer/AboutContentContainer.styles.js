@@ -6,8 +6,11 @@ const useStyles = makeStyles(() => ({
     maxWidth: 1440,
     padding: '29px 64px 180px 36px',
     borderLeft: '1px solid #828282',
-    '@media (max-width: 799px)': {
-      padding: '0px 24px 180px 24px',
+    '@media (max-width: 1055px)': {
+      padding: '29px 0px 180px 0px',
+    },
+    '@media (max-width: 760px)': {
+      padding: '0px 0px 180px 0px',
       borderLeft: 0,
     },
   },
@@ -17,11 +20,15 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 28,
     marginBottom: 15,
-    marginLeft: 0,
+    marginLeft: 30,
+    '@media (max-width: 1055px)': {
+      marginLeft: 30,
+    },
     '@media (max-width: 760px)': {
       fontSize: 19,
-      marginLeft: 0,
-      paddingTop: 10,
+      marginLeft: 26,
+      marginBottom: 0,
+      paddingTop: 20,
     },
   },
   content: {
@@ -32,7 +39,10 @@ const useStyles = makeStyles(() => ({
     color: '#495057',
     margin: '36px 15% 0 0',
     '@media (max-width: 1055px)': {
-      margin: '0 15px -125px 15px',
+      margin: '0 0px -125px 0px',
+    },
+    '@media (max-width: 760px)': {
+      margin: '0 0px -125px 0px',
     },
   },
   blue: {
@@ -42,30 +52,35 @@ const useStyles = makeStyles(() => ({
     color: '#026FE4',
   },
   photosContainer: {
-    margin: '10px 0 20px -40px',
+    margin: '10px 0 20px 0px',
+    '@media (max-width: 1055px)': {
+      width: '100% !important',
+    },
   },
   photoContainer: {
     width: 'auto',
     height: 'auto',
     display: 'flex',
     flexFlow: 'row wrap',
+    padding: '20px !important',
     '& img': {
       objectFit: 'cover',
-      width: 300,
-      height: 300,
+      width: 150,
+      height: 150,
       borderRadius: 5,
-      '@media (max-width: 299px)': {
-        width: 150,
-        height: 150,
+      '@media (max-width: 450px)': {
+        width: '100%',
+        height: 'auto',
+        aspectRatio: 1,
       },
-      '@media (min-width: 300px) and (max-width: 399px)': {
-        width: 200,
-        height: 200,
-      },
-      '@media (min-width: 400px) and (max-width: 769px)': {
-        width: 250,
-        height: 250,
-      },
+      // '@media (min-width: 300px) and (max-width: 399px)': {
+      //   width: 200,
+      //   height: 200,
+      // },
+      // '@media (min-width: 400px) and (max-width: 769px)': {
+      //   width: 250,
+      //   height: 250,
+      // },
     },
     '& p': {
       margin: 0,
@@ -77,12 +92,19 @@ const useStyles = makeStyles(() => ({
     '& p:last-of-type': {
       marginBottom: 20,
     },
+    '@media (max-width: 760px)': {
+      paddingBottom: '0px !important',
+    },
   },
   memberCard: {
     margin: 10,
+    width: 150,
     '@media (max-width: 760px)': {
       margin: 0,
       padding: 5,
+    },
+    '@media (max-width: 450px)': {
+      width: '45%',
     },
   },
   listStyle: {

@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: 'none',
     color: '#495057',
     padding: '8px 12px',
-    borderRadius: '16px',
+    borderRadius: '4px',
     '&:hover': {
       backgroundColor: '#026FE4',
       color: '#fff',
