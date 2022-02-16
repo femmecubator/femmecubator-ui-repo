@@ -62,7 +62,7 @@ const useStyles = makeStyles(() => ({
     height: 'auto',
     display: 'flex',
     flexFlow: 'row wrap',
-    padding: '20px 20px 0 !important',
+    padding: '20px !important',
     '& img': {
       objectFit: 'cover',
       width: 150,
@@ -91,6 +91,9 @@ const useStyles = makeStyles(() => ({
     },
     '& p:last-of-type': {
       marginBottom: 20,
+    },
+    '@media (max-width: 760px)': {
+      paddingBottom: '0px !important',
     },
   },
   memberCard: {
