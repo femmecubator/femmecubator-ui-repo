@@ -95,8 +95,8 @@ const useStyles = makeStyles(() => ({
   },
   memberCard: {
     margin: 10,
+    width: 150,
     '@media (max-width: 760px)': {
-      width: 150,
       margin: 0,
       padding: 5,
     },
