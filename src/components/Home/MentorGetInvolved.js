@@ -62,20 +62,20 @@ const communityQuotes = [
   {
     id: 1,
     img: '../assets/communityImg1.png',
-    text: 'I’ve learned so much from my mentor and made invaluable connections with other mentees like me.',
-    name: 'Kimberly - Mentee',
+    text: 'I definitely credit my mentors and teammates at Femmecubator for being a significant part in helping me land an engineering role at a company I absolutely love! Being part of the dev team not only gave me much needed technical experience in a real world setting, but also introduced me to incredible people who have grown to be my lifelong friends.',
+    name: 'Anh - Tech4Good Team Member',
   },
   {
     id: 2,
     img: './assets/communityImg2.png',
-    text: 'I’ve been able to grow my leadership skills while doing something meaningful to me - helping other BIPOC women working in tech.',
-    name: 'Yasmine - Mentor',
+    text: 'It’s been incredibly rewarding to share my knowledge and experiences with a community of women while gaining exposure to diverse perspectives and growing my leadership capacity.',
+    name: 'Chyna - Mentor',
   },
   {
     id: 3,
     img: './assets/communityImg3.png',
-    text: 'It’s amazing being able to give back in this capacity. Femmecubator has created a safe community of talented individuals.',
-    name: 'Sam - Mentor',
+    text: 'It’s been incredibly rewarding to share my knowledge and experiences with a community of women while gaining exposure to diverse perspectives and growing my leadership capacity.',
+    name: 'Chyna - Mentee',
   },
 ];
 

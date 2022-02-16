@@ -48,10 +48,11 @@ const Volunteer = ({ selected, setSelected }) => {
         <Grid item xs={12} sm={6}>
           <h3>Career / Technical Mentor (1:1)</h3>
           <p>
-            Our members need you! If you are an industry expert in Design or
-            Development and can allot an hour a week for career support calls or
-            technical career coaching such as portfolio, project or code
-            reviews, and interview practice.
+            Our members need you! We're looking for design and development
+            mentors who's willing to donate at least 1-2 hours a month as a
+            career/technical coach. Typical sessions involve career coaching,
+            portfolio, or code reviews either as flexible (1:1) or cohort
+            mentor.
           </p>
           <Link to="/register" className={linkStyle}>
             <BlueOutlineButton variant="outlined">Join Today</BlueOutlineButton>

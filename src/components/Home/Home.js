@@ -156,33 +156,40 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     '@media (max-width: 799px)': {
+      height: 'auto',
+      minHeight: '400px',
+      padding: '20px 10px',
       justifyContent: 'center',
     },
   },
   carouselContainer: {
-    height: '549px',
+    height: 'auto',
+    minHeight: '549px',
     backgroundColor: '#F2F7FF',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0px 20px',
+    padding: '40px 20px',
     '@media (max-width: 799px)': {
-      height: '466px',
-      padding: '0px',
+      justifyContent: 'space-evenly',
+      minHeight: '466px',
+      padding: '30px 10px',
     },
   },
   carouselContainerDiv: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: '100%',
     padding: '0px 20px',
     marginTop: '40px',
+    marginBottom: '40px',
     justifyContent: 'space-around',
     '@media (max-width: 799px)': {
       height: '466px',
-      padding: '0px',
+      padding: '0px 10px',
       marginTop: '25px',
+      marginBottom: '0px',
     },
   },
   joinSlackContainer: {
@@ -314,7 +321,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'flex-start',
     '@media (max-width: 799px)': {
       alignItems: 'center',
-      width: '300px',
+      width: '100%',
     },
   },
   bookAndContributeContainerParagraph: {
@@ -402,17 +409,25 @@ const useStyles = makeStyles(() => ({
     color: '#400CCC',
   },
 
+  myCarousel: {
+    width: '100%',
+    lineBreak: 'auto',
+    textAlign: 'center',
+  },
+
   carouselContainerComponents: {
     width: '320px',
     display: 'flex',
     flexShrink: 1,
-    height: '300px',
+    minHeight: '300px',
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: '0px 20px',
     '@media (max-width: 799px)': {
-      width: '300px',
-      height: '300px',
+      margin: 'auto',
+      width: '90%',
+      minHeight: '300px',
+      padding: '0 10px',
     },
   },
 
@@ -423,7 +438,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '16px',
     color: '#000000',
     '@media (max-width: 799px)': {
-      marginBottom: '0px',
+      marginBottom: '20px',
     },
   },
   inputForm: {
@@ -559,6 +574,7 @@ export default function Home() {
     slackFormContainer,
     slackForm,
     joinSlackButton,
+    myCarousel,
     carouselContainerDiv,
     inProgress,
     inProgressHeader,
@@ -641,8 +657,8 @@ export default function Home() {
                     paragraph: true,
                   }}
                 >
-                  Career-switching to UX Design and Web Development? Connect
-                  with mentors who can help with portfolio reviews, practice
+                  Career-switching to UX Design or Web Development? Connect with
+                  mentors who can help with portfolio reviews, practice
                   interviews or code challenge preps.
                 </Typography>
               </div>
@@ -720,7 +736,7 @@ export default function Home() {
               Get involved
             </Typography>
             {matches ? (
-              <Carousel navButtonsAlwaysInvisible={true} className="myCarousel">
+              <Carousel navButtonsAlwaysInvisible={true} className={myCarousel}>
                 <div className={carouselContainerComponents}>
                   <Typography variant="h3" className={title}>
                     <FavoriteBorderOutlinedIcon
@@ -736,10 +752,15 @@ export default function Home() {
                       paragraph: true,
                     }}
                   >
-                    We are fundraising for our first mentorship program cohort
-                    which will launch by March. Our goal is to mentor 10 Women
-                    of Color in tech by 2021. Join us by supporting this program
-                    and create a pledge on Patreon.
+                    From launching this online space to building a growing
+                    community for self-taught and career-switchers, we continue
+                    our efforts to improve and provide a supportive experience.
+                    <br />
+                    <br />
+                    Donors and partners work with us in many ways through
+                    individual donations, pro-bono tech, or corporate
+                    sponsorships.
+                    <br />
                   </Typography>
                   <BlueOutlineButton variant="contained">
                     DONATE
@@ -810,10 +831,15 @@ export default function Home() {
                       paragraph: true,
                     }}
                   >
-                    We are fundraising for our first mentorship program cohort
-                    which will launch by March. Our goal is to mentor 10 Women
-                    of Color in tech by 2021. Join us by supporting this program
-                    and create a pledge on Patreon.
+                    From launching this online space to building a growing
+                    community for self-taught and career-switchers, we continue
+                    our efforts to improve and provide a supportive experience.
+                    <br />
+                    <br />
+                    Donors and partners work with us in many ways through
+                    individual donations, pro-bono tech, or corporate
+                    sponsorships.
+                    <br />
                   </Typography>
                   <Link to="/about?page=support" className={linkStyle}>
                     <BlueOutlineButton variant="contained">

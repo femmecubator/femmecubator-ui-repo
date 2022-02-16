@@ -288,8 +288,8 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#FFFFFF',
     //display: 'flex',
     // margin: 'auto',
-    paddingTop: '45px',
-    paddingBottom: '100px',
+    padding: '45px 10px 100px',
+    // paddingBottom: '100px',
     //flexDirection: 'column',
     '@media (max-width: 799px)': {
       justifyContent: 'center',
@@ -304,6 +304,12 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'row',
     margin: 'auto',
+    justifyContent: 'space-evenly',
+    '& > div': {
+      '@media (min-width: 960px)': {
+        width: '33%',
+      },
+    },
   },
   communityQuotesComponent: {
     //maxWidth: '200px',
