@@ -38,11 +38,7 @@ const SlotTable = ({
             </div>
             <div className={slots}>
               {slotItem.time.length === 0 ? (
-                <Button
-                  variant="contained"
-                  className={unavailableButton}
-                  disabled
-                >
+                <Button className={unavailableButton} disabled>
                   unavailable
                 </Button>
               ) : (
