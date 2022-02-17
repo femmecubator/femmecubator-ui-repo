@@ -20,13 +20,13 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 28,
     marginBottom: 15,
-    marginLeft: 30,
+    // marginLeft: 30,
     '@media (max-width: 1055px)': {
-      marginLeft: 30,
+      // marginLeft: 30,
     },
     '@media (max-width: 760px)': {
       fontSize: 19,
-      marginLeft: 26,
+      // marginLeft: 26,
       marginBottom: 0,
       paddingTop: 20,
     },
@@ -38,6 +38,7 @@ const useStyles = makeStyles(() => ({
     lineHeight: 1.5,
     color: '#495057',
     margin: '36px 15% 0 0',
+    padding: '0 20px',
     '@media (max-width: 1055px)': {
       margin: '0 0px -125px 0px',
     },
@@ -62,7 +63,8 @@ const useStyles = makeStyles(() => ({
     height: 'auto',
     display: 'flex',
     flexFlow: 'row wrap',
-    padding: '20px !important',
+    marginLeft: '-10px',
+    padding: '20px 0 !important',
     '& img': {
       objectFit: 'cover',
       width: 150,
@@ -94,6 +96,7 @@ const useStyles = makeStyles(() => ({
     },
     '@media (max-width: 760px)': {
       paddingBottom: '0px !important',
+      marginLeft: '-5px',
     },
   },
   memberCard: {
@@ -113,11 +116,17 @@ const useStyles = makeStyles(() => ({
       listStyle: 'none',
     },
   },
+  slackFormContainerParent: {
+    '@media (max-width: 760px)': {
+      padding: '20px 0px !important',
+    },
+  },
   slackFormContainer: {
     maxWidth: '90%',
     backgroundColor: '#ABF5D1',
     width: '90%',
     padding: '40px',
+    margin: '0 20px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -129,10 +138,13 @@ const useStyles = makeStyles(() => ({
       margin: 20,
       padding: '10px 20px',
     },
-    '@media (max-width: 760px)': {
-      width: '80%',
+    '@media (max-width: 1055px)': {
+      width: '70%',
       flexDirection: 'column',
-      padding: '20px 10px',
+      margin: 'auto',
+    },
+    '@media (max-width: 760px)': {
+      padding: 20,
     },
   },
   bookAndContributeComponentTitle: {
