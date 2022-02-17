@@ -164,13 +164,16 @@ const useStyles = makeStyles(() => ({
   },
   carouselContainer: {
     height: 'auto',
-    minHeight: '549px',
+    minHeight: '500px',
     backgroundColor: '#F2F7FF',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     padding: '40px 20px',
+    '@media (max-width: 960px)': {
+      padding: '0px 20px',
+    },
     '@media (max-width: 799px)': {
       justifyContent: 'space-evenly',
       minHeight: '466px',
@@ -182,9 +185,9 @@ const useStyles = makeStyles(() => ({
     alignItems: 'flex-start',
     width: '100%',
     padding: '0px 20px',
-    marginTop: '40px',
+    marginTop: '20px',
     marginBottom: '40px',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     '@media (max-width: 799px)': {
       height: '466px',
       padding: '0px 10px',
@@ -423,9 +426,10 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: '0px 20px',
-    '@media (max-width: 799px)': {
-      margin: 'auto',
+    '@media (max-width: 1055px)': {
+      margin: '0 auto',
       width: '90%',
+      maxWidth: '350px',
       minHeight: '300px',
       padding: '0 10px',
     },
@@ -436,6 +440,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Open Sans, sans-serif',
     fontWeight: 400,
     fontSize: '16px',
+    marginBottom: 30,
     color: '#000000',
     '@media (max-width: 799px)': {
       marginBottom: '20px',
@@ -753,8 +758,9 @@ export default function Home() {
                     }}
                   >
                     From launching this online space to building a growing
-                    community for self-taught and career-switchers, we continue
-                    our efforts to improve and provide a supportive experience.
+                    community for self-taught learners and career-switchers, we
+                    continue our efforts to improve and provide a supportive
+                    experience.
                     <br />
                     <br />
                     Donors and partners work with us in many ways through
@@ -832,8 +838,9 @@ export default function Home() {
                     }}
                   >
                     From launching this online space to building a growing
-                    community for self-taught and career-switchers, we continue
-                    our efforts to improve and provide a supportive experience.
+                    community for self-taught learners and career-switchers, we
+                    continue our efforts to improve and provide a supportive
+                    experience.
                     <br />
                     <br />
                     Donors and partners work with us in many ways through

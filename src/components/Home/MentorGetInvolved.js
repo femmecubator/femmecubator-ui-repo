@@ -61,21 +61,21 @@ const theme = createMuiTheme({
 const communityQuotes = [
   {
     id: 1,
-    img: '../assets/communityImg1.png',
+    img: '../assets/communityImg1_new.png',
     text: 'I definitely credit my mentors and teammates at Femmecubator for being a significant part in helping me land an engineering role at a company I absolutely love! Being part of the dev team not only gave me much needed technical experience in a real world setting, but also introduced me to incredible people who have grown to be my lifelong friends.',
     name: 'Anh - Tech4Good Team Member',
   },
   {
     id: 2,
-    img: './assets/communityImg2.png',
+    img: './assets/communityImg2_new.png',
     text: 'It’s been incredibly rewarding to share my knowledge and experiences with a community of women while gaining exposure to diverse perspectives and growing my leadership capacity.',
     name: 'Chyna - Mentor',
   },
   {
     id: 3,
-    img: './assets/communityImg3.png',
-    text: 'It’s been incredibly rewarding to share my knowledge and experiences with a community of women while gaining exposure to diverse perspectives and growing my leadership capacity.',
-    name: 'Chyna - Mentee',
+    img: './assets/communityImg3_new.png',
+    text: 'Femmecubator has provided me with a community of diverse, kind, and supportive individuals in Tech. I’m grateful to have an opportunity to mentor others but have learned equally as much from both fellow mentors and mentees.',
+    name: 'Nayeli - Mentor, Women Excel Labs',
   },
 ];
 
