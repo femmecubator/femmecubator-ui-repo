@@ -62,14 +62,14 @@ const communityQuotes = [
   {
     id: 1,
     img: '../assets/communityImg1_new.png',
-    text: 'I definitely credit my mentors and teammates at Femmecubator for being a significant part in helping me land an engineering role at a company I absolutely love! Being part of the dev team not only gave me much needed technical experience in a real world setting, but also introduced me to incredible people who have grown to be my lifelong friends.',
-    name: 'Anh - Tech4Good Team Member',
+    text: 'I definitely credit my mentors and teammates at Femmecubator for helping me land an engineering role at a company I absolutely love! Being part of the team not only gave me technical experience, but also introduced me to incredible people who have grown to be my lifelong friends.',
+    name: 'Anh - Team Member, Tech4Good',
   },
   {
     id: 2,
     img: './assets/communityImg2_new.png',
     text: 'It’s been incredibly rewarding to share my knowledge and experiences with a community of women while gaining exposure to diverse perspectives and growing my leadership capacity.',
-    name: 'Chyna - Mentor',
+    name: 'Chyna - Mentor, MentorMatch',
   },
   {
     id: 3,
