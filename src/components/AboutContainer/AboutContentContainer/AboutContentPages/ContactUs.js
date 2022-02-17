@@ -30,6 +30,7 @@ const BlueFilledButton = withStyles({
 const ContactUs = () => {
   const {
     title,
+    slackFormContainerParent,
     slackFormContainer,
     bookAndContributeComponentTitle,
     linkStyle,
@@ -46,7 +47,7 @@ const ContactUs = () => {
         direction="row"
         justify="flex-start"
         alignItems="flex-start"
-        spacing={7}
+        spacing={5}
       >
         <Grid item sm={12} md={4}>
           <h3>Erika Jeffers</h3>
@@ -74,7 +75,7 @@ const ContactUs = () => {
             </Link>
           </p>
         </Grid>
-        <Grid item sm={12} md={8}>
+        <Grid item sm={12} md={8} className={slackFormContainerParent}>
           <div className={slackFormContainer}>
             <Typography
               variant="h2"

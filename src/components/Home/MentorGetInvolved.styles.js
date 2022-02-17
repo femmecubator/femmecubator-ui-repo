@@ -288,11 +288,12 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#FFFFFF',
     //display: 'flex',
     // margin: 'auto',
-    padding: '45px 10px 100px',
+    padding: '45px 10px 80px',
     // paddingBottom: '100px',
     //flexDirection: 'column',
     '@media (max-width: 799px)': {
       justifyContent: 'center',
+      paddingBottom: 40,
       // paddingTop: '0px',
       // alignItems: 'center',
       // height: '700px',
@@ -317,7 +318,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: 'auto',
+    margin: '20px auto',
     /* '@media (max-width: 799px)': {
       alignItems: 'center',
       //width: '300px',
@@ -326,7 +327,7 @@ const useStyles = makeStyles(() => ({
   communityQuotesImage: {
     marginBottom: '20px',
     display: 'flex',
-    //maxWidth: '150px',
+    maxWidth: '130px',
     /* '@media (max-width: 799px)': {
       alignItems: 'center',
       marginBottom: '20px',
