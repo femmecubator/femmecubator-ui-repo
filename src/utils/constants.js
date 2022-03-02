@@ -43,6 +43,8 @@ const API_PATH = {
   UPDATE_SKILLS: '/api/skills/update',
   FORGOT_PASSWORD: '/api/register/forgotpassword',
   RESET_PASSWORD: '/api/register/resetpassword',
+  ROLE_IDS: '/api/profile/getuserroles',
+  ALL_USERS_DATA: '/api/profile/getAllUsers',
 };
 
 const METHOD_TYPE = {
@@ -72,54 +74,63 @@ const ROUTES_LABEL = {
   SETTINGS: 'settings',
   FORGOTPASSWORD: 'forgotpassword',
   RESETPASSWORD: 'resetpassword',
+  BACKOFFICE: 'backoffice',
 };
 
 const ROUTES = [
   {
     id: 1,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.HOME,
     path: '/',
   },
   {
     id: 2,
     isProtected: true,
+    adminRoute: false,
     label: ROUTES_LABEL.MENTORS,
     path: '/mentors',
   },
   {
     id: 3,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.LOGIN,
     path: '/login',
   },
   {
     id: 4,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.REGISTER,
     path: '/register',
   },
   {
     id: 5,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.LISTINGS,
     path: '/listings',
   },
   {
     id: 6,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.VOLUNTEER,
     path: '/volunteer',
   },
   {
     id: 7,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.ABOUT,
     path: '/about',
   },
   {
     id: 8,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.RESOURCES,
     path: '/getinvolved',
   },
@@ -132,26 +143,37 @@ const ROUTES = [
   {
     id: 9,
     isProtected: true,
+    adminRoute: false,
     label: ROUTES_LABEL.SETTINGS,
     path: '/settings',
   },
   {
     id: 10,
     isProtected: true,
+    adminRoute: false,
     label: ROUTES_LABEL.DASHBOARD,
     path: '/dashboard',
   },
   {
     id: 11,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.FORGOTPASSWORD,
     path: '/forgotpassword',
   },
   {
     id: 12,
     isProtected: false,
+    adminRoute: false,
     label: ROUTES_LABEL.RESETPASSWORD,
     path: '/resetpassword',
+  },
+  {
+    id: 13,
+    isProtected: true,
+    adminRoute: true,
+    label: ROUTES_LABEL.BACKOFFICE,
+    path: '/backoffice',
   },
 ];
 
@@ -179,4 +201,5 @@ export {
 export const userRoles = {
   mentor: 0,
   mentee: 1,
+  admin: 4,
 };

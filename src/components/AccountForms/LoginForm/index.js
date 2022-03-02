@@ -17,6 +17,7 @@ import {
 import { Visibility, VisibilityOff, Error } from '@material-ui/icons';
 import { ReactComponent as LoginHero } from './assets/LoginHero.svg';
 import Auth from 'utils/auth';
+import { userRoles } from 'utils/constants';
 
 const FORM_TITLE = 'Welcome back!';
 
@@ -46,14 +47,24 @@ const LoginForm = ({ testOnSubmit }) => {
 
   const onSubmit = async credentials => {
     try {
-      await request.post(API_PATH.LOGIN, credentials);
+      const loginRes = await request.post(API_PATH.LOGIN, credentials);
+      // const roleIdsRes = await request.get(API_PATH.ROLE_IDS);
+      // console.log(roleIdsRes);
+      const role_id = loginRes.data.data.role_id;
       const inProduction = process.env.NODE_ENV === 'production';
       const options = {
         category: 'onSubmit',
         action: 'Logged In',
       };
       inProduction && event(options);
-      history.push('/dashboard');
+      console.log(role_id, typeof role_id);
+      if (role_id === userRoles.admin) {
+        console.log('if');
+        history.push('/backoffice');
+      } else {
+        console.log('else');
+        history.push('/dashboard');
+      }
     } catch ({ status, data: { message } }) {
       if (status === 401 || status === 403) {
         setError('server', {
