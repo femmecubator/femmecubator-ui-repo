@@ -12,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import useStyles from './BackOffice.styles';
 import { API_PATH } from 'utils/constants';
 import request from 'utils/axiosConfig';
-import axios from 'axios';
+import { userRoles } from 'utils/constants';
 
 const columns = [
   { id: 'firstName', label: 'First Name', minWidth: 80 },
@@ -31,51 +31,6 @@ const columns = [
     id: 'action',
     label: 'Action',
     minWidth: 150,
-  },
-];
-
-const rows = [
-  {
-    firstName: 'Leanne',
-    lastName: 'Graham',
-    email: 'Sincere@april.biz',
-    title: 'Mentor',
-  },
-  {
-    firstName: 'Ervin',
-    lastName: 'Howell',
-    email: 'Shanna@melissa.tv',
-    title: 'Mentor',
-  },
-  {
-    firstName: 'Clementine',
-    lastName: 'Bauch',
-    email: 'Nathan@yesenia.net',
-    title: 'Mentor',
-  },
-  {
-    firstName: 'Patricia',
-    lastName: 'Lebsack',
-    email: 'Julianne.OConner@kory.org',
-    title: 'Mentee',
-  },
-  {
-    firstName: 'Chelsey',
-    lastName: 'Dietrich',
-    email: 'Lucio_Hettinger@annie.ca',
-    title: 'Mentee',
-  },
-  {
-    firstName: 'Dennis',
-    lastName: 'Schulist',
-    email: 'Karley_Dach@jasper.info',
-    title: 'Mentee',
-  },
-  {
-    firstName: 'Kurtis',
-    lastName: 'Weissnat',
-    email: 'Telly.Hoeger@billy.biz',
-    title: 'Mentee',
   },
 ];
 
@@ -102,21 +57,56 @@ const BackOfficeComponent = () => {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [usersData, setUsersData] = React.useState([]);
+  const [totalCount, setTotalCount] = React.useState(0);
+  const [usersCount, setUsersCount] = React.useState([]);
+  const [dataFilters, setDataFilters] = React.useState({
+    mentors: true,
+    mentees: true,
+    admins: true,
+  });
+
+  const fetchRoles = async () => {
+    const rolesRes = await request.get(API_PATH.ROLE_IDS);
+    console.log(rolesRes);
+  };
 
   const fetchAllUsersData = async () => {
-    // const usersData = await request.get(API_PATH.ALL_USERS_DATA, {
-    //   filterArray: [4, 1, 0],
-    // });
-    const usersData = axios.get(
-      'http://local.femmecubator.com:3001/api/profile/getallusers',
-      { filterArray: [4, 1, 0] }
-    );
-    console.log(usersData);
+    const filterArray = [];
+    if (dataFilters.mentors) filterArray.push(userRoles.mentor);
+    if (dataFilters.mentees) filterArray.push(userRoles.mentee);
+    if (dataFilters.admins) filterArray.push(userRoles.admin);
+
+    const usersRes = await request.post(API_PATH.ALL_USERS_DATA, {
+      filterArray,
+    });
+    console.log(usersRes);
+    const usersDataReceived = usersRes.data.data.usersData;
+    const usersCount = usersRes.data.data.usersCount;
+    setUsersCount([...usersCount]);
+    console.log(usersCount);
+    let tempTotalCount = 0;
+    usersCount.map(type => {
+      tempTotalCount += type.count;
+    });
+    setTotalCount(tempTotalCount);
+    setUsersData([...usersDataReceived]);
   };
 
   useEffect(() => {
+    fetchRoles();
     fetchAllUsersData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log(usersData);
+  }, [usersData]);
+
+  const getTypeCount = id => {
+    if (usersCount.length === 0) return 0;
+    return usersCount.filter(userCount => userCount._id === id)[0].count;
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -134,8 +124,8 @@ const BackOfficeComponent = () => {
         <h3 className={tabTitle}>Account Management</h3>
       </div>
       <h2 className={subtitle}>
-        There are <span>100</span> registered members on Femmecubator as of
-        (current date).
+        There are <span>{totalCount}</span> registered members on Femmecubator
+        as of (current date).
       </h2>
       <div className={contentContainer}>
         <div className={filtersContainer}>
@@ -145,37 +135,99 @@ const BackOfficeComponent = () => {
             <p className={filterOptionsContainer}>
               <Checkbox
                 defaultChecked
+                checked={dataFilters.mentors}
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+                onChange={() => {
+                  setDataFilters({
+                    ...dataFilters,
+                    mentors: !dataFilters.mentors,
+                  });
+                }}
               />
-              <span className={filterOptions}>Mentors (68)</span>
+              <span className={filterOptions}>
+                Mentors ({getTypeCount(userRoles.mentor)})
+              </span>
             </p>
             <p className={filterOptionsContainer}>
               <Checkbox
                 defaultChecked
+                checked={dataFilters.mentees}
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+                onChange={() => {
+                  setDataFilters({
+                    ...dataFilters,
+                    mentees: !dataFilters.mentees,
+                  });
+                }}
               />
-              <span className={filterOptions}>Mentees (20)</span>
+              <span className={filterOptions}>
+                Mentees ({getTypeCount(userRoles.mentee)})
+              </span>
             </p>
             <p className={filterOptionsContainer}>
               <Checkbox
                 defaultChecked
+                checked={dataFilters.admins}
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+                onChange={() => {
+                  setDataFilters({
+                    ...dataFilters,
+                    admins: !dataFilters.admins,
+                  });
+                }}
               />
-              <span className={filterOptions}>Admins (2)</span>
+              <span className={filterOptions}>
+                Admins ({getTypeCount(userRoles.admin)})
+              </span>
             </p>
             <p className={filterOptionsContainer}>
               <Checkbox
                 defaultChecked
+                checked={
+                  dataFilters.mentors &&
+                  dataFilters.mentees &&
+                  dataFilters.admins
+                }
                 color="primary"
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+                onChange={() => {
+                  if (
+                    !dataFilters.mentors ||
+                    !dataFilters.mentees ||
+                    !dataFilters.admins
+                  )
+                    setDataFilters({
+                      mentees: true,
+                      mentors: true,
+                      admins: true,
+                    });
+                  else
+                    setDataFilters({
+                      mentees: false,
+                      mentors: false,
+                      admins: false,
+                    });
+                }}
               />
               <span className={filterOptions}>See All</span>
             </p>
           </div>
-          <Button className={filtersButton} variant="outlined" color="primary">
+          <Button
+            className={filtersButton}
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              fetchAllUsersData();
+            }}
+            disabled={
+              !dataFilters.mentors &&
+              !dataFilters.mentees &&
+              !dataFilters.admins
+            }
+          >
             Apply Filters
           </Button>
         </div>
@@ -197,7 +249,7 @@ const BackOfficeComponent = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {usersData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(row => {
                     return (
@@ -226,7 +278,7 @@ const BackOfficeComponent = () => {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25, 50]}
             component="div"
-            count={rows.length}
+            count={usersData.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

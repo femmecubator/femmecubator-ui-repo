@@ -30,6 +30,7 @@ const useStyles = makeStyles(() => ({
   // },
   root: {
     width: ({ isTablet }) => (isTablet ? '100%' : 'calc(100% - 280px)'),
+    height: 'fit-content',
     '& th': {
       fontWeight: 'bold',
       background: '#e5e5e5',
