@@ -152,8 +152,7 @@ const MentorOnboardingModal = ({
       updateSkills(newSkills);
 
       const response = await request.post(API_PATH.UPDATE_MENTOR_PROFILE, body);
-      console.log('response');
-      console.log(API_PATH.UPDATE_MENTOR_PROFILE);
+
       if (response.data.message === 'Success') {
         setOpenBackdropt(false);
         setOpenSnackBar(true);
@@ -240,7 +239,7 @@ const MentorOnboardingModal = ({
             'data-testid': 'skills',
             onChange: (event, newValue) => {
               // setSkillsArray(newValue.map(option => option.inputValue));
-              console.log(newValue, getValues('skills'));
+
               setValue('skills', JSON.stringify(newValue), {
                 shouldValidate: true,
               });

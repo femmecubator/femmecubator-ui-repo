@@ -45,6 +45,7 @@ const API_PATH = {
   RESET_PASSWORD: '/api/register/resetpassword',
   ROLE_IDS: '/api/profile/getuserroles',
   ALL_USERS_DATA: '/api/profile/getAllUsers',
+  DELETE_USER: '/api/profile/deleteUser',
 };
 
 const METHOD_TYPE = {

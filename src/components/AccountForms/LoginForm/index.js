@@ -57,12 +57,9 @@ const LoginForm = ({ testOnSubmit }) => {
         action: 'Logged In',
       };
       inProduction && event(options);
-      console.log(role_id, typeof role_id);
       if (role_id === userRoles.admin) {
-        console.log('if');
         history.push('/backoffice');
       } else {
-        console.log('else');
         history.push('/dashboard');
       }
     } catch ({ status, data: { message } }) {

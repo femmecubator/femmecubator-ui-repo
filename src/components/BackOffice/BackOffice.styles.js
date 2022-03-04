@@ -116,6 +116,10 @@ const useStyles = makeStyles(() => ({
       // color: '#026FE4',
     },
   },
+  backdrop: {
+    zIndex: 999999,
+    color: '#fff',
+  },
 }));
 
 export default useStyles;
