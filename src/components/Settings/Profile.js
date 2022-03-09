@@ -26,11 +26,9 @@ const Profile = ({ profileData, mentorsProfileData }) => {
       const { bio, googlemeet, phone, skills, timezone } = mentorsProfileData;
       let userSkills = '';
       skills.map((skill, index) => {
-        console.log(skill, index);
         if (index === skills.length - 1) userSkills += skill.title;
         else userSkills += `${skill.title}, `;
       });
-      console.log(userSkills);
       setBio(bio);
       setGoogleMeet(googlemeet);
       setPhone(phone);

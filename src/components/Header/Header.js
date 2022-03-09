@@ -14,6 +14,7 @@ import Auth from 'utils/auth';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 import useStyles from './Header.styles';
+import { getUserRole } from 'utils/cookies';
 
 function Header() {
   const { root, header, drawerChoice, accountChoice, logOutIcon } = useStyles();
@@ -36,6 +37,8 @@ function Header() {
   useEffect(() => {
     const fetchHeaderData = async () => {
       try {
+        const role = getUserRole();
+        // if (role !== 4) {
         const response = await request.get(API_PATH.COMMON_MENU);
         const {
           data: {
@@ -54,6 +57,7 @@ function Header() {
           userName,
           title,
         }));
+        // }
       } catch (error) {
         clearSessionData();
         history.push(API_PATH.LOGIN_PAGE);

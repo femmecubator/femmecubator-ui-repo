@@ -200,6 +200,107 @@ const useStyles = makeStyles(() => ({
       fontSize: 16,
     },
   },
+  accountInfoWrapper: {
+    padding: '20px 20px 10px',
+  },
+  profile: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '20px',
+  },
+  mentorName: {
+    height: '54px',
+    width: '54px',
+    background: '#FFAB00',
+    borderRadius: '50%',
+    fontFamily: 'Open Sans',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '21px',
+    lineHeight: '29px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mentorProfession: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
+  mentorFullName: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
+  batch: {
+    background: '#026FE4',
+    border: '2px solid #026FE4',
+    boxSizing: 'border-box',
+    borderRadius: '30px',
+    marginTop: '25px',
+    fontFamily: 'Open Sans',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    lineHeight: '150%',
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: '80px',
+  },
+  email_password: {
+    marginTop: '25px',
+    width: '90%',
+    '& p': {
+      margin: 0,
+    },
+    '& h4': {
+      margin: 0,
+      color: '#4F4F4F',
+    },
+  },
+  settingsButton: {
+    border: '1px solid #026FE4',
+    fontFamily: 'Open Sans',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: '18px',
+    lineHeight: '25px',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: '#026FE4',
+    marginTop: ({ isMobile }) => (isMobile ? '20px' : '50px'),
+    textTransform: 'inherit',
+    paddingLeft: '16px',
+    paddingRight: '16px',
+  },
+  securityFields: {
+    marginTop: '10px',
+    width: '100%',
+    '& div': {
+      '& input': {
+        padding: '11.5px 14px',
+      },
+    },
+  },
+  disabledInputsBG: {
+    background: '#F2F2F2 !important',
+  },
+  personalInfoDisabled: {
+    '& div': {
+      '& input': {
+        padding: 0,
+        fontWeight: 'normal',
+        fontSize: '16px',
+        lineHeight: '150%',
+        color: '#4F4F4F',
+      },
+    },
+    '& fieldset': {
+      border: 'none',
+    },
+  },
 }));
 
 export default useStyles;

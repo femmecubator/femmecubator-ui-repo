@@ -31,9 +31,11 @@ const MentorCard = ({
   const [openBackdrop, setOpenBackdropt] = useState(false);
   const [mentorInfo, setMentorInfo] = useState({
     timeZone: timezone.name,
-    mentorEmail: userInfo[0].email,
-    mentortName: `${userInfo[0].firstName} ${userInfo[0].lastName}`,
-    mentorTitle: userInfo[0].title,
+    mentorEmail: userInfo.length > 0 ? userInfo[0].email : '',
+    mentortName: `${userInfo.length > 0 ? userInfo[0].firstName : ''} ${
+      userInfo.length > 0 ? userInfo[0].lastName : ''
+    }`,
+    mentorTitle: userInfo.length > 0 ? userInfo[0].title : '',
   });
   const [goals, setGoals] = useState('');
   const isMobileDevice = useMediaQuery('(max-width:820px)');
@@ -134,8 +136,8 @@ const MentorCard = ({
         <CardHeader
           avatar={
             <Avatar aria-label="Mentor Avatar" className={avatar}>
-              {userInfo[0].firstName.charAt(0)}
-              {userInfo[0].lastName.charAt(0)}
+              {userInfo.length > 0 ? userInfo[0].firstName.charAt(0) : ''}
+              {userInfo.length > 0 ? userInfo[0].lastName.charAt(0) : ''}
             </Avatar>
           }
           action={
@@ -162,7 +164,8 @@ const MentorCard = ({
                 'data-testid': 'mentorNameField',
               }}
             >
-              {userInfo[0].firstName} {userInfo[0].lastName}
+              {userInfo.length > 0 ? userInfo[0].firstName : ''}{' '}
+              {userInfo.length > 0 ? userInfo[0].lastName : ''}
             </Typography>
           }
           subheader={
@@ -173,7 +176,7 @@ const MentorCard = ({
                 'data-testid': 'jobTitleField',
               }}
             >
-              {userInfo[0].title}
+              {userInfo.length > 0 ? userInfo[0].title : ''}
             </Typography>
           }
         />

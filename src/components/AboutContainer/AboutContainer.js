@@ -22,7 +22,6 @@ const AboutContainer = () => {
   const query = useQuery();
 
   React.useEffect(() => {
-    console.log('param: ', query.get('page'));
     if (query.get('page')) {
       if (query.get('page') === 'volunteer') {
         setSelected('Volunteer');

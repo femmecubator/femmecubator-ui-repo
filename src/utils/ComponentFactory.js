@@ -7,6 +7,7 @@ import {
   Settings,
   Forgot,
   Reset,
+  BackOffice,
 } from 'stubs';
 import Home from 'components/Home/Home';
 import MentorGetInvolved from 'components/Home/MentorGetInvolved';
@@ -31,6 +32,7 @@ const {
   DASHBOARD,
   FORGOTPASSWORD,
   RESETPASSWORD,
+  BACKOFFICE,
 } = ROUTES_LABEL;
 
 export default class ComponentFactory {
@@ -62,6 +64,8 @@ export default class ComponentFactory {
         return Forgot;
       case RESETPASSWORD:
         return ResetPassword;
+      case BACKOFFICE:
+        return BackOffice;
       default:
         throw new Error('Route undefined!');
     }

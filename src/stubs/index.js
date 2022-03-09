@@ -7,6 +7,7 @@ import About from './About';
 import Settings from './Settings';
 import Forgot from './Forgot';
 import Reset from './Reset';
+import BackOffice from './BackOffice';
 
 export {
   Landing,
@@ -18,4 +19,5 @@ export {
   Settings,
   Forgot,
   Reset,
+  BackOffice,
 };
