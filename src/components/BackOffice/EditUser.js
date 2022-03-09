@@ -92,7 +92,7 @@ const EditUser = ({
       .required('Last name is required')
       .min(2, MIN_CHARS)
       .matches(/^[a-zA-Z]+$/, ONLY_LETTERS),
-    jobTitle: yup
+    title: yup
       .string()
       .required('Job Title is required')
       .min(2, MIN_CHARS)
@@ -115,8 +115,8 @@ const EditUser = ({
         setOpenSnackBar(true);
         setResponseMessage('Account info updated successfully');
         setResponseMessageType('success');
-        setDisableInputs(true);
         fetchAllUsersData();
+        handleEditClose();
       }
     } catch (err) {
       setOpenBackdropt(false);
@@ -132,7 +132,7 @@ const EditUser = ({
       setValue('email', email);
       setValue('firstName', firstName);
       setValue('lastName', lastName);
-      setValue('jobTitle', title);
+      setValue('title', title);
     }
   }, [setValue, userInAction]);
 
@@ -243,20 +243,20 @@ const EditUser = ({
                 <h4>Job Title</h4>
                 <TextField
                   {...{
-                    id: 'jobTitle',
+                    id: 'title',
                     className: `${
                       disabledInputs
                         ? `${securityFields} ${personalInfoDisabled}`
                         : securityFields
                     }`,
                     variant: 'outlined',
-                    inputProps: { 'data-testid': 'jobTitle' },
-                    name: 'jobTitle',
+                    inputProps: { 'data-testid': 'title' },
+                    name: 'title',
                     autoFocus: true,
                     inputRef: register,
                     disabled: disabledInputs,
-                    error: !isEmpty(errors.jobTitle),
-                    helperText: errors.jobTitle && errors.jobTitle.message,
+                    error: !isEmpty(errors.title),
+                    helperText: errors.title && errors.title.message,
                     defaultValue: `${userInAction ? userInAction.title : ''}`,
                   }}
                 />

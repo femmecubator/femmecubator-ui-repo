@@ -16,6 +16,7 @@ import { formatAMPM } from 'utils/timeConverter';
 import { Backdrop, CircularProgress } from '@material-ui/core';
 import { API_PATH } from 'utils/constants';
 import request from 'utils/axiosConfig';
+import SnackBar from 'components/SnackBar';
 
 const DeleteUser = ({
   openDelete,
@@ -49,17 +50,16 @@ const DeleteUser = ({
   const deleteAccount = async () => {
     try {
       setOpenBackdropt(true);
-      const deleteRes = await request.delete(API_PATH.DELETE_USER, {
-        data: { _id: userInAction._id },
-      });
+      const deleteRes = await request.delete(
+        API_PATH.DELETE_USER + '/' + userInAction._id
+      );
       if (deleteRes.data.message === 'Success') {
-        if (response.data.message === 'Success') {
-          setOpenBackdropt(false);
-          setOpenSnackBar(true);
-          setResponseMessage('Account deleted successfully');
-          setResponseMessageType('success');
-          fetchAllUsersData();
-        }
+        setOpenBackdropt(false);
+        setOpenSnackBar(true);
+        setResponseMessage('Account deleted successfully');
+        setResponseMessageType('success');
+        fetchAllUsersData();
+        handleDeleteClose();
       }
     } catch (err) {
       setOpenBackdropt(false);
@@ -74,6 +74,12 @@ const DeleteUser = ({
       <Backdrop className={backdrop} open={openBackdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
+      <SnackBar
+        openSnackBar={openSnackBar}
+        setOpenSnackBar={setOpenSnackBar}
+        responseMessage={responseMessage}
+        responseMessageType={responseMessageType}
+      />
       <Dialog
         className={rootMeet}
         open={openDelete}
