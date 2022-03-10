@@ -24,6 +24,7 @@ const DeleteUser = ({
   handleDeleteClose,
   userInAction,
   fetchAllUsersData,
+  setPage,
 }) => {
   const isMobile = useMediaQuery('(max-width:767px)');
   const [openBackdrop, setOpenBackdropt] = useState(false);
@@ -59,6 +60,7 @@ const DeleteUser = ({
         setResponseMessage('Account deleted successfully');
         setResponseMessageType('success');
         fetchAllUsersData();
+        setPage(0);
         handleDeleteClose();
       }
     } catch (err) {

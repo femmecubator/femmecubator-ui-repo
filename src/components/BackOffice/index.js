@@ -267,6 +267,7 @@ const BackOfficeComponent = () => {
               color="primary"
               onClick={() => {
                 fetchAllUsersData();
+                setPage(0);
               }}
               disabled={
                 !dataFilters.mentors &&
@@ -359,6 +360,7 @@ const BackOfficeComponent = () => {
             handleDeleteOpen={handleDeleteOpen}
             handleDeleteClose={handleDeleteClose}
             fetchAllUsersData={fetchAllUsersData}
+            setPage={setPage}
           />
           <EditUser
             userInAction={userInAction}
